@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 import copy
 import math
 from .config import PHYSICS, Physics
-from .geometry import (EPS, circle_rect_overlap, point_rect,
+from .geometry import (EPS, circle_rect_overlap,
                        sweep_circle_rect, sweep_point_rect,
                        sweep_circle_polygon, circle_polygon_overlap)
 
@@ -13,13 +13,14 @@ class Platform:
     id: str
     x: float
     y: float
-    w: float = 20.
-    h: float = 20.
+    w: float = 64.
+    h: float = 64.
     kind: str = 'normal'
     travel: float = 0.
     period: float = 2.8
     active_for: float = 2.
     phase: float = 0.
+    warning: float = .5
     group: str = ''
     arrow: int = 1
     break_at: float | None = None
@@ -48,7 +49,7 @@ class Collectible:
     x: float
     y: float
     value: int = 1
-    size: float = 14.
+    size: float = 32.
 
     @property
     def rect(self):
@@ -59,12 +60,12 @@ class Collectible:
 class Spike:
     x: float
     y: float
-    w: float = 40.
-    h: float = 20.
+    w: float = 128.
+    h: float = 64.
 
     @property
     def triangles(self):
-        # Two equal triangles within the specified 40x20 logical region.
+        # The collision triangles are also the rendered spike silhouette.
         return [((self.x+i*self.w/2, self.y+self.h),
                  (self.x+(i+.5)*self.w/2, self.y),
                  (self.x+(i+1)*self.w/2, self.y+self.h)) for i in (0, 1)]
@@ -116,9 +117,10 @@ def crossing_time(position, velocity, acceleration, boundary, duration, near):
 
 
 class World:
-    def __init__(self, level: Level, physics: Physics = PHYSICS):
+    def __init__(self, level: Level, physics: Physics = PHYSICS, auto_reset=True):
         self.level = level
         self.physics = physics
+        self.auto_reset = auto_reset
         self.failures = 0
         self.reset()
 
@@ -126,7 +128,7 @@ class World:
         self.platforms = copy.deepcopy(self.level.platforms)
         self.ball = Ball(*self.level.spawn)
         self.time = 0.
-        self.started = False
+        self.failed = False
         self.paused = False
         self.cleared = False
         self.collected = set()
@@ -155,21 +157,21 @@ class World:
 
     def fail(self, reason):
         self.failures += 1
-        self.reset()
+        if self.auto_reset:
+            self.reset()
+        else:
+            self.failed = True
         self.last_failure = reason
         self.events.append(('fail', reason))
 
     def step(self, direction=0, dt=None):
         self.events = []
-        if self.cleared or self.paused:
+        if self.cleared or self.failed or self.paused:
             return
         direction = max(-1, min(1, direction))
-        if not self.started:
-            if direction == 0:
-                return
-            self.started = True
-        self.events = []
         dt = self.physics.dt if dt is None else dt
+        if not math.isfinite(dt) or dt <= 0:
+            raise ValueError('dt must be finite and positive')
         # CCD on short parabolic pieces; no discrete position-only hazard checks.
         count = max(4, math.ceil((abs(self.ball.vx)+abs(self.ball.vy))*dt/2))
         for _ in range(count):
@@ -213,8 +215,9 @@ class World:
             candidates = []
             solids = []
             for q in self.platforms:
-                if q.id==b.launch_source and not b.launch:
-                    continue  # release may not immediately retrigger its source pad
+                if q.id == b.launch_source:
+                    # Center-height launches pass through their source until fully outside.
+                    continue
                 if q.active(self.time, self.switches):
                     rect = q.rect_at(self.time, p)
                     move_x = q.rect_at(self.time+remaining, p)[0]-rect[0]
@@ -291,6 +294,7 @@ class World:
                                 q.armed = False
                                 self.events.append(('switch', q.group))
                             if q.kind == 'launcher':
+                                b.y = q.y+q.h/2
                                 b.launch = True; b.vy = 0.; b.vx = q.arrow*p.max_speed
                                 b.launch_source=q.id
                             else:
@@ -306,20 +310,18 @@ class World:
                         b.x += normal[0]*1e-6
                         if b.vx*normal[0] < 0: b.vx = 0.
                         b.launch = False
-                    b.x += normal[0]*1e-6; b.y += normal[1]*1e-6
+                    if not (q and q.kind == 'launcher' and b.launch):
+                        b.x += normal[0]*1e-6; b.y += normal[1]*1e-6
             # Collected sensor events vanish, so remaining time can continue.
         if remaining > 1e-8:
             self.time += remaining
         self.time = end_time
         # Activation/side pushes: resolve gentle overlap; only unresolved crush fails.
-        unresolved = False
         for _ in range(4):
-            overlaps = [q for q in self.platforms if not (q.id==b.launch_source and not b.launch) and q.active(self.time, self.switches)
+            overlaps = [q for q in self.platforms if q.id != b.launch_source and q.active(self.time, self.switches)
                         and circle_rect_overlap(b.x, b.y, p.radius, q.rect_at(self.time,p), 1e-5)]
             if not overlaps:
-                unresolved = False
                 break
-            unresolved = True
             for q in overlaps:
                 x,y,w,h=q.rect_at(self.time,p)
                 options=[(abs(b.x-(x-p.radius)),x-p.radius,b.y,'x'),
@@ -331,7 +333,7 @@ class World:
                 if side=='x': b.vx=0.
                 elif side=='bottom' and b.vy<0: b.vy=0.
                 elif side=='top' and not old_active[q.id]: b.vy=-p.bounce_speed
-        still_overlaps = any(not (q.id==b.launch_source and not b.launch) and q.active(self.time,self.switches) and circle_rect_overlap(b.x,b.y,p.radius,q.rect_at(self.time,p),1e-4) for q in self.platforms)
+        still_overlaps = any(q.id != b.launch_source and q.active(self.time,self.switches) and circle_rect_overlap(b.x,b.y,p.radius,q.rect_at(self.time,p),1e-4) for q in self.platforms)
         if still_overlaps:
             self._crush_time += duration
             if any(q.kind=='timed' and not old_active[q.id] and q.active(self.time,self.switches) for q in self.platforms) or self._crush_time >= .05:

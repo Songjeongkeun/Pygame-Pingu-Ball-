@@ -1,16 +1,16 @@
-"""Eight authored stages. Coordinates are multiples of the 20px tile."""
+"""Eight 25 by 13 tile stages and reproducible input routes."""
+from .config import PHYSICS
 from .engine import Platform, Collectible, Spike, Level
 
-
 TITLES = [
-    ('첫 바운스', '좌우 방향키로 움직이고, 생선은 선택해서 모으세요.'),
-    ('금이 간 빙하', '착지한 얼음은 0.5초 뒤 깨집니다. 멈추지 말고 이어 가세요.'),
-    ('가시 해협', '가시 위를 건너고, 위쪽 길에서 금색 생선을 모으세요.'),
+    ('첫 바운스', '방향키로 이동하세요. 생선은 선택 사항이며 이글루에 닿으면 성공합니다.'),
+    ('금이 간 빙하', '금 간 얼음은 첫 착지 0.5초 후 깨집니다.'),
+    ('가시 해협', '넓은 가시 앞에서는 위쪽 우회 발판을 이용하세요.'),
     ('무너지는 길', '깨지는 발판과 가시를 함께 통과하세요.'),
-    ('더 높은 바운스', '분홍 점프대는 90px. 긴 틈 앞에서 점프대에 착지하세요.'),
-    ('움직이는 얼음', '왕복 발판과 공은 독립적으로 움직입니다. 다음 착지를 예측하세요.'),
-    ('얼음의 시간', '청록 발판은 사라집니다. 점멸을 보고 안전한 곳에서 기다리세요.'),
-    ('집으로 가는 길', '빨간 스위치로 A 다리를 열고, 모든 규칙을 활용해 집으로 돌아가세요.'),
+    ('더 높은 바운스', '분홍 점프대는 144px 높이로 튕깁니다.'),
+    ('움직이는 얼음', '왕복 발판은 공을 운반하지 않습니다. 착지 시점을 조절하세요.'),
+    ('얼음의 시간', '청록 발판은 깜빡인 뒤 사라집니다. 주기를 살펴보세요.'),
+    ('집으로 가는 길', '빨간 스위치로 다리를 열고 이글루로 돌아가세요.'),
 ]
 
 
@@ -19,129 +19,103 @@ def make_levels():
 
 
 def make_level(index):
-    blocks=[]
-    def block(name,x,y,w=20,kind='normal',**kwargs):
-        blocks.append(Platform(name,x,y,w,20,kind,**kwargs))
-    def strip(name,x,end,y,kind='normal',**kwargs):
-        if kind=='breakable':
-            for n,at in enumerate(range(x,end,20)):
-                block(f'{name}-{n}',at,y,20,kind,**kwargs)
-        else:
-            block(name,x,y,end-x,kind,**kwargs)
+    if index not in range(8):
+        raise ValueError('stage must be between 0 and 7')
+    blocks = []
 
-    if index==0:
-        strip('start',40,260,500)
-        strip('island',320,540,500)
-        strip('home',600,1160,500)
-        block('practice-step',400,460,80)
-        fish=[Collectible(440,405)]
-        return Level(0,*TITLES[0],blocks,fish,[],(70.,435.5),(1120.,480.,20.,20.),
-                     [(1130.,'goal')],[(350.,'land:island'),(440.,'fish0'),(1130.,'goal')])
+    def tile(name, col, row, kind='normal', **kwargs):
+        blocks.append(Platform(name, col*64, row*64, kind=kind, **kwargs))
 
-    # Main lower route and a higher optional route containing all three bonuses.
-    if index==4:
-        strip('start',40,420,500)
-        block('big-jump',420,500,20,'spring')
-        strip('home',700,1160,500)
-        base=[(430.,'land:big-jump'),(1130.,'goal')]
-    elif index==6:
-        strip('start',40,420,500)
-        block('time-bridge',420,500,240,'timed',period=3.2,active_for=2.2,phase=.2)
-        strip('home',660,1160,500)
-        base=[(1130.,'goal')]
-    elif index==7:
-        strip('start',40,180,500)
-        block('switch-A',180,500,20,'switch',group='A')
-        strip('approach',200,480,500)
-        block('bridge-A',480,500,180,'linked',group='A')
-        strip('home',660,1160,500)
-        base=[(190.,'switch:A'),(1130.,'goal')]
-    elif index in (1,3):
-        strip('start',40,380,500)
-        strip('crumble-main',380,460,500,'breakable')
-        strip('middle',460,860,500)
-        strip('crumble-end',860,940,500,'breakable')
-        strip('home',940,1160,500)
-        base=[(1130.,'goal')]
-    elif index==5:
-        strip('start',40,420,500)
-        block('ferry',420,500,20,'moving',travel=160)
-        strip('home',600,1160,500)
-        base=[(410.,'land:start'),(1130.,'goal')]
+    def strip(name, first, end, row, kind='normal', **kwargs):
+        for col in range(first, end):
+            tile(f'{name}-{col}', col, row, kind, **kwargs)
+
+    strip('start', 0, 8, 11)
+    # One-tile stairs rise 64px at a time, below the 96px normal bounce.
+    tile('step-low', 3, 10)
+    tile('step-mid', 5, 9)
+    tile('step-high', 7, 8)
+    strip('upper', 9, 22, 7)
+    strip('home', 20, 25, 11)
+    spikes = []
+    base = []
+
+    if index in (2, 3, 7):
+        strip('lower', 8, 14, 11, 'breakable' if index == 3 else 'normal')
+        tile('bypass-step', 14, 10)
+        strip('bypass', 16, 19, 9)
+        strip('landing', 14, 20, 11)
+        spikes = [Spike(16*64, 10*64)]
+        base += [(928., 'land:bypass-step'), (1056., 'land:bypass'), (1280., 'below:600')]
+    elif index == 4:
+        strip('approach', 8, 14, 11)
+        tile('big-jump', 14, 11, 'spring')
+        # 128px gap: spring offers 235px center travel with ample headroom.
+        strip('landing', 17, 20, 11)
+        base += [(928., 'land:big-jump'), (1120., 'land:landing')]
+    elif index == 5:
+        strip('approach', 8, 13, 11)
+        tile('ferry', 13, 11, 'moving', travel=128.)
+        strip('landing', 16, 20, 11)
+        base += [(928., 'land:ferry'), (1056., 'land:landing')]
+    elif index == 6:
+        strip('approach', 8, 14, 11)
+        strip('time-bridge', 14, 17, 11, 'timed', period=3.6, active_for=2.8, phase=.2)
+        strip('landing', 17, 20, 11)
+        base += [(864., 'land:approach'), (1120., 'land:landing')]
     else:
-        strip('start',40,1160,500)
-        base=[(1130.,'goal')]
+        strip('lower', 8, 20, 11, 'breakable' if index == 1 else 'normal')
 
-    # Staircase rises 40px per bounce, with generous landing areas.
-    block('step-low',180,460,80)
-    block('step-high',300,420,100)
-    strip('upper-left',440,620,380)
-    if index in (1,3):
-        strip('crumble-upper',620,780,380,'breakable')
-    elif index==6:
-        block('upper-time',620,380,160,'timed',period=3.2,active_for=2.4,phase=.1)
-    elif index==7:
-        block('upper-launch',620,380,20,'launcher',arrow=1)
-        strip('upper-mid',640,780,380)
-    else:
-        strip('upper-mid',620,780,380)
-    strip('upper-right',780,1040,380)
-    block('return-step',1060,440,40)
-    if index==4:
-        block('bonus-pad',300,420,100,'spring')
-        blocks=[q for q in blocks if q.id!='step-high']
-    if index==5:
-        block('upper-ferry',760,440,20,'moving',travel=200,phase=90)
-        block('small-ferry',500,440,20,'moving',travel=100,phase=40)
-    if index==7:
-        next(q for q in blocks if q.id=='home').w=420
-        strip('home-last',1120,1160,500)
-        block('final-crumble',1080,500,40,'breakable')
-        block('time-side',920,440,80,'timed',period=2.6,active_for=1.8,phase=.4)
-        block('ferry-side',680,440,20,'moving',travel=120,phase=50)
-        # The final bonus route climbs through three distinct tiers.
-        blocks=[q for q in blocks if q.id not in ('upper-mid','upper-right')]
-        strip('peak-step',640,760,340)
-        strip('high-ridge',780,900,300)
-        strip('summit',920,1040,260)
+    if index == 7:
+        # Both routes must open the bridge; it starts hidden and non-solid.
+        blocks = [q for q in blocks if q.id != 'start-2' and not q.id.startswith('home-2')]
+        tile('switch-A', 2, 11, 'switch', group='A')
+        strip('bridge-A', 20, 23, 11, 'linked', group='A')
+        strip('goal-floor', 23, 25, 11)
+        tile('launcher', 19, 9, 'launcher', arrow=1)
+        tile('side-time', 19, 10, 'timed', period=3.2, active_for=2.2)
+        tile('side-crumble', 22, 8, 'breakable')
+        base.insert(0, (160., 'switch:A'))
 
-    spikes=[]
-    if index in (2,3):
-        spikes=[Spike(600,480),Spike(840,480)]
-        base=[(490.,'land:start' if index==2 else 'land:middle'),(1130.,'goal')]
-    if index==4:
-        # Below the spring-assisted jump, rather than an invisible fail region.
-        spikes=[Spike(x,560) for x in range(460,660,40)]
-    if index==7:
-        spikes=[Spike(740,480),Spike(980,480)]
-
-    fish=[Collectible(480,325),Collectible(720,325),Collectible(960,325),Collectible(540,470,-1)]
-    # First bonus is on the second step, so the upper path can be entered naturally.
-    fish_path=[(120.,'land:start'),(220.,'land:step-low'),(350.,'land:step-high' if index!=4 else 'land:bonus-pad'),
-               (480.,'fish0'),(720.,'fish1'),(960.,'fish2'),(1130.,'goal')]
-    if index==7:
-        fish=[Collectible(480,325),Collectible(820,245),Collectible(960,205),Collectible(540,470,-1)]
-        fish_path=[(190.,'switch:A'),(120.,'land:start'),(220.,'land:step-low'),
-                   (350.,'land:step-high'),(480.,'fish0'),(580.,'land:upper-left'),(700.,'land:peak-step'),
-                   (820.,'fish1'),(960.,'fish2'),(1130.,'goal')]
-    return Level(index,*TITLES[index],blocks,fish,spikes,(70.,435.5),(1120.,480.,20.,20.),base,fish_path)
+    # All fish are airborne. The negative item is near the start, below the spawn apex.
+    fish = [Collectible(672., 366.), Collectible(960., 366.), Collectible(1280., 366.),
+            Collectible(64., 650., -1)]
+    all_fish = [(224., 'land:step-low'), (352., 'land:step-mid'),
+                (480., 'land:step-high'), (608., 'land:upper'),
+                (672., 'fish0'), (960., 'fish1'), (1280., 'fish2')]
+    if index == 7:
+        all_fish.insert(0, (160., 'switch:A'))
+    if index == 0:
+        fish = fish[:1]
+        all_fish = all_fish[:5]
+    base.append((1504., 'goal'))
+    all_fish.append((1504., 'goal'))
+    return Level(index, *TITLES[index], blocks, fish, spikes,
+                 (96., 11*64-PHYSICS.radius-PHYSICS.bounce_height),
+                 (23*64., 10*64., 64., 64.), base, all_fish)
 
 
 def waypoint_direction(world, target):
-    """Feedback controller used by the validation CLI, not by gameplay."""
-    b=world.ball
-    distance=target-b.x
-    stop=b.vx*abs(b.vx)/(2*world.physics.deceleration)
-    if abs(distance)<1.5 and abs(b.vx)<8:
+    """Supply ordinary left/right input for repeatable route validation."""
+    b = world.ball
+    distance = target-b.x
+    stop = b.vx*abs(b.vx)/(2*world.physics.deceleration)
+    if abs(distance) < 1.5 and abs(b.vx) < 8:
         return 0
-    if (distance>0 and b.vx>0 and distance<=stop+.7) or (distance<0 and b.vx<0 and -distance<=-stop+.7):
+    if (distance > 0 and b.vx > 0 and distance <= stop+.7) or (distance < 0 and b.vx < 0 and -distance <= -stop+.7):
         return 0
-    return 1 if distance>0 else -1
+    return 1 if distance > 0 else -1
 
 
 def condition_met(world, condition):
-    if condition=='goal':return world.cleared
-    if condition.startswith('fish'):return int(condition[4:]) in world.collected
-    if condition.startswith('land:'):return world.last_landing==condition[5:]
-    if condition.startswith('switch:'):return world.switches.get(condition[7:],False)
+    if condition == 'goal':
+        return world.cleared
+    if condition.startswith('fish'):
+        return int(condition[4:]) in world.collected
+    if condition.startswith('land:'):
+        return world.last_landing is not None and world.last_landing.startswith(condition[5:])
+    if condition.startswith('switch:'):
+        return world.switches.get(condition[7:], False)
+    if condition.startswith('below:'):
+        return world.ball.y > float(condition[6:])
     return False

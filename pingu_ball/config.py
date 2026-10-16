@@ -4,16 +4,16 @@ import math
 
 @dataclass(frozen=True)
 class Physics:
-    width: int = 1200
-    height: int = 600
-    tile: float = 20.0
-    radius: float = 4.5
-    bounce_height: float = 60.0
-    pad_height: float = 90.0
-    flight_time: float = 0.8
-    horizontal_range: float = 240.0
-    acceleration: float = 3000.0
-    deceleration: float = 4500.0
+    width: int = 1600
+    height: int = 832
+    tile: int = 64
+    radius: float = 14.0
+    bounce_height: float = 96.0
+    pad_height: float = 144.0
+    flight_time: float = 0.9
+    horizontal_range: float = 192.0
+    acceleration: float = 9600.0
+    deceleration: float = 14400.0
     hz: int = 120
     break_delay: float = 0.5
 
