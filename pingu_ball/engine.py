@@ -246,7 +246,7 @@ class World:
             self.events.append(('switch', q.group))
         if q.kind == 'launcher':
             b.y = q.y+q.h/2
-            b.launch = True; b.vy = 0.; b.vx = q.arrow*p.max_speed
+            b.launch = True; b.vy = 0.; b.vx = q.arrow*p.launch_speed
             b.launch_source = q.id
         else:
             b.launch = False

@@ -141,12 +141,11 @@ def third():
     q = a.block(22, 4, 'launcher', arrow=-1)
     a.route.append((1456., 'touch:'+q.id))
     a.route.append((1504., 'release'))
-    previous = a.step(23, 5)
+    a.block(23, 5)
     for r in (7, 9, 11):
         a.block(22, r-1, 'launcher', arrow=-1)
-        a.route.append((1552., f'below:{previous.y+66}'))
-        previous = a.step(23, r)
-    a.route.append((1552., f'below:{previous.y+66}'))
+        a.block(23, r)
+    # At 640px/s the release momentum takes the outside descent to the bottom shelf.
     a.block(24, 13)
     a.step(23, 13)
     a.step(22, 13)

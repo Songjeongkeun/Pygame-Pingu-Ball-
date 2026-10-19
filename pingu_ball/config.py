@@ -35,7 +35,11 @@ class Physics:
 
     @property
     def platform_speed(self):
-        return self.max_speed / 3
+        return self.max_speed / 3 * 3
+
+    @property
+    def launch_speed(self):
+        return self.max_speed * 3
 
     @property
     def dt(self):

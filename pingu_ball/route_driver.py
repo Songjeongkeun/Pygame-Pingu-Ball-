@@ -75,9 +75,16 @@ class RouteDriver:
                 reach = p.max_speed*flight-12. if flight else 0.
                 ready = 0 < sign*(exit_block.x+32-b.x) <= reach
                 if not ready and self.planned_landing != w.last_landing_time:
-                    choices = [x for _, x in self.future_tiles(prefix, p.flight_time)
-                               if abs(x-b.x) <= p.horizontal_range-12]
-                    if choices: self.intercept = max(choices, key=lambda x: sign*x)
+                    tiles = self.future_tiles(prefix, p.flight_time)
+                    if p.platform_speed >= p.max_speed*.9:
+                        # Keep moving across a fast ferry; stopping at each tile centre
+                        # loses the platform. Predict its full span through reversals.
+                        left = min(x-q.w/2 for q, x in tiles)+16.
+                        right = max(x+q.w/2 for q, x in tiles)-16.
+                        self.intercept = max(left, min(right, b.x+sign*(p.horizontal_range+64.)))
+                    else:
+                        choices = [x for _, x in tiles if abs(x-b.x) <= p.horizontal_range-12]
+                        if choices: self.intercept = max(choices, key=lambda x: sign*x)
                     self.planned_landing = w.last_landing_time
             target = b.x if self.intercept is None else self.intercept
         else:

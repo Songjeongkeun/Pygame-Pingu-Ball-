@@ -24,7 +24,8 @@ class PhysicsTests(unittest.TestCase):
         self.assertAlmostEqual(P.gravity, 948.148148148)
         self.assertAlmostEqual(P.bounce_speed, 426.6666666667)
         self.assertAlmostEqual(P.max_speed, 213.3333333333)
-        self.assertAlmostEqual(P.platform_speed, P.max_speed/3)
+        self.assertAlmostEqual(P.platform_speed, 213.3333333333)
+        self.assertAlmostEqual(P.launch_speed, 640.)
         self.assertEqual(P.bounce_height+2*P.radius, 124)
         self.assertEqual(P.pad_height+2*P.radius, 172)
 
@@ -125,7 +126,8 @@ class PhysicsTests(unittest.TestCase):
 
     def test_moving_platform_speed_and_turnaround(self):
         block = Platform('ferry', 128, 640, kind='moving', travel=128)
-        self.assertAlmostEqual(block.rect_at(1)[0]-128, P.platform_speed)
+        # Measure before the faster platform reaches its first turnaround.
+        self.assertAlmostEqual(block.rect_at(.25)[0]-128, P.platform_speed*.25)
         self.assertAlmostEqual(block.rect_at(128/P.platform_speed)[0], 256)
         self.assertAlmostEqual(block.rect_at(256/P.platform_speed)[0], 128)
 
@@ -432,7 +434,7 @@ class SpecialBlockTests(unittest.TestCase):
             world.step(1)
         self.assertEqual(world.failures, 0)
 
-    def test_launcher_and_release_preserve_speed(self):
+    def test_launcher_release_returns_to_normal_movement_speed(self):
         world = empty_world([Platform('launch', 0, 640, 1600, kind='launcher')])
         world.ball.y, world.ball.vy = 626., 1.
         world.step(0)
@@ -442,11 +444,13 @@ class SpecialBlockTests(unittest.TestCase):
         x, y = world.ball.x, world.ball.y
         world.step(0)
         self.assertEqual(world.ball.y, y)
-        self.assertGreater(world.ball.x, x)
+        self.assertAlmostEqual(world.ball.x-x, P.launch_speed*P.dt)
         world.step(1)
         self.assertFalse(world.ball.launch)
-        self.assertAlmostEqual(world.ball.vx, P.max_speed)
+        self.assertAlmostEqual(world.ball.vx, P.launch_speed-P.acceleration*P.dt)
         self.assertGreater(world.ball.vy, 0.)
+        world.step(1, (P.launch_speed-P.max_speed)/P.acceleration)
+        self.assertAlmostEqual(world.ball.vx, P.max_speed)
 
     def test_both_launcher_directions_keep_block_center_height(self):
         for arrow in (-1, 1):
@@ -455,7 +459,7 @@ class SpecialBlockTests(unittest.TestCase):
                 world.ball.x, world.ball.y, world.ball.vy = 320., 498., 1.
                 world.step(0)
                 self.assertEqual(world.ball.y, 544.)
-                self.assertEqual(world.ball.vx, arrow*P.max_speed)
+                self.assertEqual(world.ball.vx, arrow*P.launch_speed)
                 self.assertEqual(world.ball.launch_source, 'launch')
                 for _ in range(40):
                     world.step(0)
