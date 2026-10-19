@@ -5,7 +5,7 @@ from .levels import make_level
 
 
 class Environment:
-    """Actions -1, 0, 1 mean left, release, right; each step is one physics tick."""
+    """Left/release/right actions with optional one-shot power-up activation."""
 
     def __init__(self, stage=0, time_limit=None):
         if time_limit is not None and (not math.isfinite(time_limit) or time_limit <= 0):
@@ -53,17 +53,29 @@ class Environment:
                 'launch_source': ball.launch_source, 'previous_action': self.previous_action,
                 'time': world.time, 'time_remaining': max(0., self.time_limit-world.time),
                 'collected': sorted(world.collected), 'switches': dict(world.switches),
+                'power_up': ball.power_up,
+                'powerups': [{'index': index, 'kind': item.kind, 'rect': item.rect,
+                              'collected': index in world.collected_powerups}
+                             for index, item in enumerate(world.level.powerups)],
+                'boost_direction': ball.boost_direction,
+                'boost_remaining': max(0., ball.boost_until-world.time),
+                'specials': world.special.observe(),
+                'projectiles': [{'id':shot.id,'center':shot.center(world.time),
+                                 'velocity':(shot.vx,shot.vy),'radius':shot.radius,
+                                 'expires':shot.born+shot.lifetime} for shot in world.special.projectiles],
                 'platforms': platforms, 'crush_time': world._crush_time,
                 'cleared': world.cleared, 'failed': world.failed}
 
-    def step(self, action):
+    def step(self, action, *, use_power=False, power_direction=0):
         if self.done:
             raise RuntimeError('Call reset() after a terminal or truncated step')
         if type(action) is not int or action not in (-1, 0, 1):
             raise ValueError('action must be -1, 0 or 1')
+        if type(use_power) is not bool or type(power_direction) is not int or power_direction not in (-1, 0, 1):
+            raise ValueError('use_power must be bool and power_direction must be -1, 0 or 1')
         before = self.world.plus-self.world.minus
         duration = min(self.world.physics.dt, self.time_limit-self.world.time)
-        self.world.step(action, duration)
+        self.world.step(action, duration, use_power=use_power, power_direction=power_direction)
         self.previous_action = action
         terminated = self.world.cleared or self.world.failed
         truncated = not terminated and self.world.time >= self.time_limit-1e-10

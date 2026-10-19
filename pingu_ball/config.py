@@ -16,6 +16,8 @@ class Physics:
     deceleration: float = 14400.0
     hz: int = 120
     break_delay: float = 0.5
+    power_up_height: float = 192.0
+    forward_jump_duration: float = 0.3
 
     @property
     def gravity(self):
@@ -40,6 +42,14 @@ class Physics:
     @property
     def launch_speed(self):
         return self.max_speed * 3
+
+    @property
+    def forward_jump_speed(self):
+        return self.max_speed * 2
+
+    @property
+    def power_up_speed(self):
+        return math.sqrt(2 * self.gravity * self.power_up_height)
 
     @property
     def dt(self):

@@ -1,6 +1,6 @@
 """Tutorial, six image-based maps, final stage and reproducible input routes."""
 from .config import PHYSICS
-from .engine import Platform, Collectible, Spike, Level
+from .engine import Platform, Collectible, Spike, Level, PowerUp
 
 LEGACY_TITLES = {
     0: ('첫 바운스', '방향키로 이동하세요. 생선은 선택 사항이며 이글루에 닿으면 성공합니다.'),
@@ -73,7 +73,9 @@ def make_level(index):
     all_fish.append((1504., 'goal'))
     return Level(index, *LEGACY_TITLES[index], blocks, fish, spikes,
                  (96., 11*64-PHYSICS.radius-PHYSICS.bounce_height),
-                 (23*64., 10*64., 64., 64.), base, all_fish)
+                 (23*64., 10*64., 64., 64.), base, all_fish,
+                 powerups=[PowerUp(160., 650., 'forward'),
+                           PowerUp(384., 666., 'up') if index == 0 else PowerUp(608., 400., 'up')])
 
 
 def waypoint_direction(world, target):

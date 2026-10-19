@@ -4,7 +4,7 @@ The maps use 15 rows; the view fits the complete map below the HUD. Short
 approach platforms bridge gaps that cannot be crossed with the original
 96px bounce / 144px spring. Coordinates here are actual collision geometry.
 """
-from .engine import Level, Platform, Spike
+from .engine import Level, Platform, Spike, PowerUp
 
 
 # Each clock opens before the first ordinary-input landing on its route.
@@ -84,10 +84,14 @@ class Layout:
 
     def finish(self, start, goal):
         self.route.append((goal.x+32, 'goal'))
+        upper_pickup = {1: (1184., 144.), 2: (1056., 784.), 3: (1248., 848.),
+                        4: (1248., 784.), 5: (1504., 784.), 6: (1504., 784.)}[self.index]
         return Level(self.index, self.title, self.hint, list(self.blocks.values()), [], self.spikes,
                      (start.x+32, start.y-110.), (goal.x, goal.y-64., 64., 64.),
                      list(self.route), list(self.route), height=960,
-                     preview=f'assets/maps/stage_{self.index:02d}.png', time_limit=120.)
+                     preview=f'assets/maps/stage_{self.index:02d}.png', time_limit=120.,
+                     powerups=[PowerUp(start.x+32, start.y-48., 'forward'),
+                               PowerUp(*upper_pickup, 'up')])
 
 
 def first():
