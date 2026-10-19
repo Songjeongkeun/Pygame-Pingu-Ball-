@@ -23,6 +23,7 @@ GOLD = (239, 173, 55)
 CORAL = (212, 90, 101)
 TEAL = (39, 166, 172)
 GRADES = {6: 'B', 7: 'A', 8: 'S', 9: 'SS', 10: 'SSS'}
+DOUBLE_TAP_MS = 300
 
 
 def default_save_path():
@@ -51,6 +52,7 @@ class App:
         self.buttons = []
         self.held_keys = set()
         self.last_tap = None
+        self.last_key_tap = None
         self.pending_power_direction = None
         self.active_finger = None
         self.hover = (0, 0)
@@ -308,8 +310,31 @@ class App:
 
     def clear_taps(self):
         self.last_tap = None
+        self.last_key_tap = None
         self.pending_power_direction = None
         self.active_finger = None
+
+    def arrow_down(self, key, timestamp, repeat=False):
+        # Only fresh presses count. The key must be released between taps.
+        if repeat or key in self.held_keys:
+            return
+        self.held_keys.add(key)
+        if (self.scene != 'play' or not self.world or self.world.paused or self.help
+                or self.world.cleared or self.world.failed):
+            self.last_key_tap = None
+            return
+        kind = self.world.ball.power_up
+        valid = ((kind == 'forward' and key in (pygame.K_LEFT, pygame.K_RIGHT))
+                 or (kind == 'up' and key == pygame.K_UP))
+        if not valid or {pygame.K_LEFT, pygame.K_RIGHT} <= self.held_keys:
+            self.last_key_tap = None
+            return
+        previous = self.last_key_tap
+        self.last_key_tap = (key, timestamp)
+        if previous and previous[0] == key and 0 <= timestamp-previous[1] <= DOUBLE_TAP_MS:
+            self.pending_power_direction = -1 if key == pygame.K_LEFT else 1 if key == pygame.K_RIGHT else 0
+            self.last_key_tap = None
+            self.last_tap = None
 
     def map_viewport(self):
         p = self.world.physics
@@ -330,7 +355,7 @@ class App:
             return
         previous = self.last_tap
         self.last_tap = (timestamp, at)
-        if previous and 0 <= timestamp-previous[0] <= 300 and math.dist(at, previous[1]) <= 64:
+        if previous and 0 <= timestamp-previous[0] <= DOUBLE_TAP_MS and math.dist(at, previous[1]) <= 64:
             ball_x = self.map_view.x+self.world.ball.x*self.map_view.width/self.world.physics.width
             self.pending_power_direction = 1 if at[0] >= ball_x else -1
             self.last_tap = None
@@ -399,7 +424,8 @@ class App:
         caption = '수평 발사 중 · 방향키를 누르면 낙하합니다.' if world.ball.launch else world.level.subtitle
         if world.ball.power_up:
             kind = '앞으로 점프' if world.ball.power_up == 'forward' else '위로 점프'
-            caption = f'{kind} 1회 보유 · 게임 화면의 같은 곳을 빠르게 두 번 누르면 사용합니다.'
+            keys = '←← / →→' if world.ball.power_up == 'forward' else '↑↑'
+            caption = f'{kind} 1회 · {keys} 또는 게임 화면 더블 클릭·터치로 사용'
         self.text(caption, 32, 785, 22)
         if self.toast and self.wall_time < self.toast_until:
             self.text(self.toast, 800, 146, 24, CORAL, True, True)
@@ -473,7 +499,7 @@ class App:
                 ('점프 화살표 ↑', '일반 발판보다 더 높이 튕깁니다.'),
                 ('이동 ↔ / 시간 발판', '표시 구간 왕복 이동 / 주기적 등장과 소멸'),
                 ('파랑 » / 노랑 ↑↑', '앞으로 / 위로 점프 아이템 · 한 번에 하나 보유'),
-                ('더블 클릭·터치', '아이템 1회 사용 · 앞으로 점프는 누른 쪽으로 이동'),
+                ('아이템 사용', '←←·→→ / ↑↑ 또는 화면 더블 클릭·터치'),
                 ('빨간 스위치', '연결 다리 전환 · 완전히 벗어난 뒤 재작동'),
                 ('좌우 발사 화살표', '중심 높이에서 발사 · 방향키 또는 벽 충돌로 해제'),
                 ('이글루', '생선 획득 여부와 관계없이 도착하면 클리어')]
@@ -495,7 +521,7 @@ class App:
             self.world.step(direction, use_power=power_direction is not None,
                             power_direction=power_direction or 0)
             if power_direction is not None:
-                self.last_tap = None
+                self.clear_taps()
             self.accumulator -= PHYSICS.dt
             for kind, payload in self.world.events:
                 if kind in self.sounds:
@@ -551,8 +577,9 @@ class App:
                     self.menu()
                 elif event.key == pygame.K_r and self.scene in ('play', 'result') and not self.help:
                     self.restart()
-                elif event.key in (pygame.K_LEFT, pygame.K_RIGHT) and self.scene == 'play' and not self.world.paused:
-                    self.held_keys.add(event.key)
+                elif event.key in (pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN) and self.scene == 'play' and not self.world.paused and not self.help:
+                    self.arrow_down(event.key, getattr(event,'timestamp',pygame.time.get_ticks()),
+                                    repeat=getattr(event,'repeat',False))
             elif event.type == pygame.KEYUP:
                 self.held_keys.discard(event.key)
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and not getattr(event, 'touch', False):
