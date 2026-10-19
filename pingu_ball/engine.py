@@ -57,6 +57,22 @@ class Collectible:
 
 
 @dataclass(frozen=True)
+class PowerUp:
+    x: float
+    y: float
+    kind: str
+    size: float = 32.
+
+    def __post_init__(self):
+        if self.kind not in ('forward', 'up'):
+            raise ValueError('power-up kind must be forward or up')
+
+    @property
+    def rect(self):
+        return self.x-self.size/2, self.y-self.size/2, self.size, self.size
+
+
+@dataclass(frozen=True)
 class Spike:
     x: float
     y: float
@@ -91,6 +107,8 @@ class Level:
     height: int = 832
     preview: str = ''
     time_limit: float = 60.
+    powerups: list[PowerUp] = field(default_factory=list)
+    specials: list = field(default_factory=list)
 
 
 @dataclass
@@ -101,6 +119,9 @@ class Ball:
     vy: float = 0.
     launch: bool = False
     launch_source: str | None = None
+    power_up: str | None = None
+    boost_until: float = 0.
+    boost_direction: int = 0
 
 
 def advance_x(v, target, acceleration, time):
@@ -140,12 +161,15 @@ class World:
         self.paused = False
         self.cleared = False
         self.collected = set()
+        self.collected_powerups = set()
         self.switches = {}
         self.last_landing = None
         self.last_landing_time = -1.
         self.last_failure = ''
         self.events = []
         self._crush_time = 0.
+        from .specials import SpecialRuntime
+        self.special = SpecialRuntime(self)
 
     @property
     def plus(self):
@@ -172,7 +196,7 @@ class World:
         self.last_failure = reason
         self.events.append(('fail', reason))
 
-    def step(self, direction=0, dt=None):
+    def step(self, direction=0, dt=None, *, use_power=False, power_direction=0):
         self.events = []
         if self.cleared or self.failed or self.paused:
             return
@@ -180,17 +204,46 @@ class World:
         dt = self.physics.dt if dt is None else dt
         if not math.isfinite(dt) or dt <= 0:
             raise ValueError('dt must be finite and positive')
+        if use_power:
+            self.use_power_up(power_direction)
         # CCD on short parabolic pieces; no discrete position-only hazard checks.
         count = max(4, math.ceil((abs(self.ball.vx)+abs(self.ball.vy))*dt/2))
+        if self.level.specials:
+            count = max(count, self.special.subdivisions(dt))
         for _ in range(count):
             if not self._piece(direction, dt/count):
                 return
 
+    def use_power_up(self, direction=0):
+        """Consume one held charge; the simulation never depends on mouse coordinates."""
+        if self.paused or self.cleared or self.failed or self.ball.power_up is None:
+            return False
+        if type(direction) is not int or direction not in (-1, 0, 1):
+            raise ValueError('power direction must be -1, 0 or 1')
+        b, p = self.ball, self.physics
+        kind = b.power_up
+        b.power_up = None
+        b.launch = False
+        b.boost_until = self.time
+        if kind == 'forward':
+            b.boost_direction = direction or 1
+            b.vx = b.boost_direction*p.forward_jump_speed
+            b.vy = -p.bounce_speed
+            b.boost_until = self.time+p.forward_jump_duration
+        else:
+            b.vx = 0.
+            b.vy = -p.power_up_speed
+        self.events.append(('power_use', kind))
+        return True
+
     def _side_motion(self, direction, duration):
         """Constrain only motion into touching walls, until their side is cleared."""
         b, p = self.ball, self.physics
-        target = direction*p.max_speed
+        target = direction*p.max_speed*self.special.speed_scale()
         interval = duration
+        if self.time < b.boost_until-EPS:
+            target = b.boost_direction*p.forward_jump_speed
+            interval = min(interval, b.boost_until-self.time)
         walls = [((-40., -40., 40., p.height+100.), 0.),
                  ((p.width, -40., 40., p.height+100.), 0.)]
         for q in self.platforms:
@@ -212,6 +265,8 @@ class World:
                 side = 0
             if not side:
                 continue
+            if self.time < b.boost_until and target*side < 0:
+                b.boost_until = self.time
             if b.launch and (b.vx-speed)*side < 0:
                 b.launch = False
             if side < 0:
@@ -234,10 +289,11 @@ class World:
     def _land(self, q):
         """Only a descending impact on a flat top may trigger block effects."""
         b, p = self.ball, self.physics
-        b.y = q.y-p.radius
+        b.y = q.rect_at(self.time,p)[1]-p.radius
         self.last_landing = q.id
         self.last_landing_time = self.time
         self.events.append(('land', q.id))
+        b.boost_until = self.time
         if q.kind == 'breakable' and q.break_at is None:
             q.break_at = self.time+p.break_delay
         if q.kind == 'switch' and q.armed:
@@ -245,16 +301,19 @@ class World:
             q.armed = False
             self.events.append(('switch', q.group))
         if q.kind == 'launcher':
-            b.y = q.y+q.h/2
+            b.y = q.rect_at(self.time,p)[1]+q.h/2
             b.launch = True; b.vy = 0.; b.vx = q.arrow*p.launch_speed
             b.launch_source = q.id
         else:
             b.launch = False
             b.vy = -p.pad_speed if q.kind == 'spring' else -p.bounce_speed
             b.y -= 1e-6
+        self.special.land(q)
 
     def _piece(self, direction, duration, _depth=0):
         b, p = self.ball, self.physics
+        self.special.sync(self.time)
+        self.special.rearm()
         if b.y-p.radius > p.height:
             self.fail('얼음 바다로 떨어졌어요'); return False
         for spike in self.level.spikes:
@@ -270,8 +329,9 @@ class World:
                 if b.x+p.radius < x or b.x-p.radius > x+w:
                     q.armed = True
             if q.id == b.launch_source:
-                x,_,w,_=q.rect_at(self.time,p)
-                if b.x+p.radius < x or b.x-p.radius > x+w:
+                x,y,w,h=q.rect_at(self.time,p)
+                vertical = q.id in self.special.devices and self.special.devices[q.id].type_id in (405,406)
+                if b.x+p.radius < x or b.x-p.radius > x+w or (vertical and (b.y+p.radius < y or b.y-p.radius > y+h)):
                     b.launch_source=None
         if b.launch and direction:
             b.launch = False
@@ -295,13 +355,14 @@ class World:
                     continue
                 if q.active(self.time, self.switches):
                     rect = q.rect_at(self.time, p)
-                    move_x = q.rect_at(self.time+interval, p)[0]-rect[0]
-                    hit = sweep_circle_rect(start, (dx-move_x, dy), rect, p.radius)
+                    future = q.rect_at(self.time+interval, p)
+                    move_x,move_y = future[0]-rect[0],future[1]-rect[1]
+                    hit = sweep_circle_rect(start, (dx-move_x, dy-move_y), rect, p.radius)
                     if hit:
                         fraction, normal = hit
                         if normal in ((0., -1.), (0., 1.)):
                             boundary = rect[1]-p.radius if normal[1] < 0 else rect[1]+rect[3]+p.radius
-                            hit_time = crossing_time(b.y, b.vy, gravity, boundary, interval, fraction*interval)
+                            hit_time = crossing_time(b.y, b.vy-move_y/interval, gravity, boundary, interval, fraction*interval)
                             hit_dx = (b.vx*hit_time if b.launch else advance_x(b.vx, target, accel, hit_time)[0])
                             at_x = b.x+hit_dx-(q.rect_at(self.time+hit_time, p)[0]-rect[0])
                             if rect[0]-EPS <= at_x <= rect[0]+rect[2]+EPS:
@@ -324,11 +385,18 @@ class World:
                         candidates.append((hit[0], 0, 'fail', '가시에 닿았어요'))
             if dy > 0 and b.y <= p.height+p.radius < b.y+dy:
                 candidates.append(((p.height+p.radius-b.y)/dy, 0, 'fail', '얼음 바다로 떨어졌어요'))
+            candidates.extend(self.special.candidates(start,delta,interval))
             for i, fish in enumerate(self.level.collectibles):
                 if i not in self.collected:
                     fraction = sweep_point_rect(start, delta, fish.rect)
                     if fraction is not None:
                         candidates.append((fraction, 1, 'fish', i))
+            if b.power_up is None:
+                for i, item in enumerate(self.level.powerups):
+                    if i not in self.collected_powerups:
+                        fraction = sweep_point_rect(start, delta, item.rect)
+                        if fraction is not None:
+                            candidates.append((fraction, 1, 'powerup', i))
             fraction = sweep_point_rect(start, delta, self.level.goal)
             if fraction is not None:
                 candidates.append((fraction, 2, 'goal', None))
@@ -349,9 +417,17 @@ class World:
             if any(q[2] == 'fail' for q in simultaneous):
                 self.fail(next(q[3] for q in simultaneous if q[2] == 'fail'))
                 return False
+            special_hits = [q for q in simultaneous if q[2] == 'special']
+            if special_hits:
+                self.special.resolve(special_hits[0][3])
+                continue
             for event in simultaneous:
                 if event[2] == 'fish':
                     self.collected.add(event[3]); self.events.append(('fish', event[3]))
+                elif event[2] == 'powerup' and b.power_up is None:
+                    self.collected_powerups.add(event[3])
+                    b.power_up = self.level.powerups[event[3]].kind
+                    self.events.append(('powerup', b.power_up))
             if any(q[2] == 'goal' for q in simultaneous):
                 self.cleared = True; b.vx = b.vy = 0.; b.launch = False
                 self.events.append(('clear', None))
@@ -376,10 +452,12 @@ class World:
                     if normal == (0., -1.):
                         continue
                     if normal == (0., 1.):
-                        b.y = q.y+q.h+p.radius+1e-6 if q else p.radius+1e-6
+                        b.boost_until = self.time
+                        b.y = q.rect_at(self.time,p)[1]+q.h+p.radius+1e-6 if q else p.radius+1e-6
                         if b.vy < 0: b.vy = 0.
                         b.launch = False
                     elif normal[0]:
+                        b.boost_until = self.time
                         # Outside the flat top, a corner is a horizontal barrier.
                         # Separate to the side so gravity cannot cause zero-time re-hits.
                         side = -1 if normal[0] < 0 else 1
@@ -390,6 +468,7 @@ class World:
                             b.x = p.radius+1e-6 if side > 0 else p.width-p.radius-1e-6
                         if b.vx*side < 0: b.vx = 0.
                         b.launch = False
+                        if q: self.special.wall_slide(q)
             # Collected sensor events vanish, so remaining time can continue.
         if remaining > 1e-10:
             # Keep sweeping the remainder; never advance the clock without motion.
@@ -398,6 +477,7 @@ class World:
             return (self._piece(direction, remaining/2, _depth+1)
                     and self._piece(direction, remaining/2, _depth+1))
         self.time = end_time
+        self.special.sync(self.time)
         # Activation/side pushes: resolve gentle overlap; only unresolved crush fails.
         for _ in range(4):
             overlaps = [q for q in self.platforms if q.id != b.launch_source and q.active(self.time, self.switches)
@@ -426,4 +506,7 @@ class World:
         for spike in self.level.spikes:
             if spike.near(b.x, b.y, p.radius) and any(circle_polygon_overlap(b.x,b.y,p.radius,t) for t in spike.triangles):
                 self.fail('가시에 닿았어요');return False
+        for event in self.special.candidates((b.x,b.y),(0.,0.),0.):
+            if event[2] == 'fail':
+                self.fail(event[3]); return False
         return True

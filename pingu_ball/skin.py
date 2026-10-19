@@ -21,6 +21,22 @@ class WinterSkin:
             image = pygame.image.load(str(folder/(file+'.png'))).convert_alpha()
             # The sprites contain transparent padding; visible edges are physics edges.
             self.originals[name] = image.subsurface(image.get_bounding_rect()).copy()
+        charged = pygame.image.load(str(Path(root)/'assets'/'ball_charged.png')).convert_alpha()
+        self.originals['ball_charged'] = charged.subsurface(charged.get_bounding_rect(min_alpha=32)).copy()
+        angry_path = Path(root)/'assets'/'ball_angry.png'
+        angry = pygame.image.load(str(angry_path)).convert_alpha() if angry_path.exists() else self.originals['ball']
+        self.originals['angry'] = angry.subsurface(angry.get_bounding_rect(min_alpha=32)).copy()
+        for kind, color in [('forward', (16, 148, 226)), ('up', (226, 144, 26))]:
+            icon = pygame.Surface((64, 64), pygame.SRCALPHA)
+            pygame.draw.circle(icon, (245, 253, 255), (32, 32), 29)
+            pygame.draw.circle(icon, color, (32, 32), 29, 4)
+            if kind == 'forward':
+                for x in (20, 33):
+                    pygame.draw.lines(icon, color, False, [(x, 19), (x+13, 32), (x, 45)], 6)
+            else:
+                for y in (19, 32):
+                    pygame.draw.lines(icon, color, False, [(19, y+13), (32, y), (45, y+13)], 6)
+            self.originals['power_'+kind] = icon
         image = pygame.transform.smoothscale(self.originals['normal'], (64, 64))
         points = [(7,36), (21,23), (21,30), (43,30), (43,23),
                   (57,36), (43,49), (43,42), (21,42), (21,49)]
@@ -36,6 +52,9 @@ class WinterSkin:
         return self.cache[key]
 
     def platform(self, block, time, switches):
+        if hasattr(block,'device'):
+            from .special_draw import tile_image
+            return tile_image(self,block,time,switches)
         if not block.active(time, switches):
             return self.image('timed_off', (block.w, block.h)) if block.kind == 'timed' else None
         name = block.kind

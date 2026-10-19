@@ -40,10 +40,13 @@ class InterfaceTests(unittest.TestCase):
         pygame.quit()
         self.temp.cleanup()
 
-    def click(self, x, y):
+    def click(self, x, y, timestamp=None):
         app = self.app
         at = (round(x*app.scale+app.offset[0]), round(y*app.scale+app.offset[1]))
-        pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN, {'button': 1, 'pos': at}))
+        data = {'button': 1, 'pos': at}
+        if timestamp is not None:
+            data['timestamp'] = timestamp
+        pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN, data))
         app.process_events()
         app.render()
 
@@ -53,6 +56,7 @@ class InterfaceTests(unittest.TestCase):
         self.app.process_events()
 
     def test_locked_cards_and_automatic_tutorial_start(self):
+        self.click(*self.app.title_start.center)
         self.click(500, 350)
         self.assertEqual(self.app.scene, 'menu')
         self.click(200, 350)
@@ -120,9 +124,10 @@ class InterfaceTests(unittest.TestCase):
 
     def test_help_resize_and_letterboxed_mouse_coordinates(self):
         app = self.app
+        self.click(*app.title_start.center)
         self.click(1210, 60)
         self.assertTrue(app.help)
-        self.click(1100, 665)
+        self.click(1100, 705)
         self.assertFalse(app.help)
         app.window = pygame.display.set_mode((800, 700), pygame.RESIZABLE)
         app.render()
@@ -131,6 +136,95 @@ class InterfaceTests(unittest.TestCase):
         self.click(200, 350)
         self.assertEqual(app.scene, 'play')
         self.assertEqual(app.canvas.get_size(), (1600, 832))
+
+    def test_title_artwork_start_button_after_resize_and_return(self):
+        app = self.app
+        self.assertEqual(app.scene, 'title')
+        self.assertIsNone(app.world)
+        self.click(200, 350)
+        self.assertEqual(app.scene, 'title')
+        app.window = pygame.display.set_mode((800, 700), pygame.RESIZABLE)
+        app.render()
+        self.click(*app.title_start.center)
+        self.assertEqual(app.scene, 'menu')
+        self.assertIsNone(app.world)
+        self.click(1000, 60)
+        self.assertEqual(app.scene, 'title')
+        self.key(pygame.K_RETURN)
+        app.render()
+        self.assertEqual(app.scene, 'menu')
+        self.key(pygame.K_ESCAPE)
+        self.assertEqual(app.scene, 'title')
+
+    def test_pickup_changes_sprite_and_double_click_uses_clicked_side(self):
+        app = self.app
+        for sign in (-1, 1):
+            app.start(1)
+            item = app.world.level.powerups[0]
+            app.world.ball.x, app.world.ball.y = item.x, item.y
+            app.update(1/120, 0)
+            app.window = pygame.display.set_mode((800, 700), pygame.RESIZABLE)
+            app.render()
+            self.assertEqual(app.world.ball.power_up, 'forward')
+            b = app.world.ball
+            rect = pygame.Rect(round(b.x-14), round(b.y-14), 28, 28)
+            self.assertEqual(app.map_canvas.subsurface(rect).get_at((14, 14)),
+                             app.skin.image('ball_charged', (28, 28)).get_at((14, 14)))
+            x = app.map_view.left+30 if sign < 0 else app.map_view.right-30
+            self.click(x, 300, 100)
+            self.assertIsNone(app.pending_power_direction)
+            self.click(x, 300, 220)
+            app.update(1/120, 0)
+            app.render()
+            self.assertIsNone(app.world.ball.power_up)
+            self.assertGreater(app.world.ball.vx*sign, 0.)
+            b = app.world.ball
+            rect = pygame.Rect(round(b.x-14), round(b.y-14), 28, 28)
+            self.assertEqual(app.map_canvas.subsurface(rect).get_at((14, 14)),
+                             app.skin.image('ball', (28, 28)).get_at((14, 14)))
+
+    def test_slow_or_distant_clicks_and_pause_do_not_use_charge(self):
+        app = self.app
+        app.start(1)
+        app.world.ball.power_up = 'up'
+        app.render()
+        self.click(800, 300, 100)
+        self.click(800, 300, 500)
+        self.click(1100, 300, 600)
+        self.assertIsNone(app.pending_power_direction)
+        self.click(1080, 32, 650)
+        self.assertTrue(app.world.paused)
+        self.assertIsNone(app.last_tap)
+        self.click(800, 440, 700)
+        self.assertFalse(app.world.paused)
+        self.click(800, 300, 750)
+        self.assertIsNone(app.pending_power_direction)
+        app.restart()
+        self.assertIsNone(app.last_tap)
+        self.assertIsNone(app.world.ball.power_up)
+
+    def test_double_touch_ignores_emulated_mouse_and_second_finger(self):
+        app = self.app
+        app.start(1)
+        app.world.ball.power_up = 'up'
+        app.render()
+        def finger(event_type, finger_id, timestamp):
+            pygame.event.post(pygame.event.Event(event_type,
+                {'finger_id': finger_id, 'x': .7, 'y': .5, 'timestamp': timestamp}))
+        finger(pygame.FINGERDOWN, 1, 100)
+        pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN,
+            {'button': 1, 'pos': (700, 260), 'touch': True, 'timestamp': 100}))
+        finger(pygame.FINGERDOWN, 2, 110)
+        app.process_events()
+        self.assertIsNone(app.pending_power_direction)
+        finger(pygame.FINGERUP, 1, 150)
+        finger(pygame.FINGERDOWN, 1, 220)
+        finger(pygame.FINGERUP, 1, 260)
+        app.process_events()
+        app.update(1/120, 0)
+        self.assertIsNone(app.world.ball.power_up)
+        self.assertAlmostEqual(app.world.ball.vx, 0.)
+        self.assertLess(app.world.ball.vy, -500.)
 
     def test_final_stage_ending_screen(self):
         app = self.app
