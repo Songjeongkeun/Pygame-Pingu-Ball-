@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from dataclasses import replace
 
 from pingu_ball.config import PHYSICS as P
 from pingu_ball.engine import World, Level, Platform, Collectible, Spike, advance_x
@@ -146,6 +147,153 @@ class PhysicsTests(unittest.TestCase):
 
 
 class CollisionTests(unittest.TestCase):
+    def test_holding_either_wall_preserves_free_vertical_motion(self):
+        for direction, x in ((1, 242.), (-1, 334.)):
+            for vy in (-120., 0., 120.):
+                with self.subTest(direction=direction, vy=vy):
+                    world = empty_world([Platform('wall', 256, 0, 64, 700)], auto_reset=False)
+                    world.ball.x, world.ball.y, world.ball.vy = x, 200., vy
+                    for _ in range(24):
+                        world.step(direction)
+                    self.assertAlmostEqual(world.time, .2, places=8)
+                    self.assertAlmostEqual(world.ball.y, 200.+vy*.2+.5*P.gravity*.2**2, places=5)
+                    self.assertAlmostEqual(world.ball.vy, vy+P.gravity*.2, places=5)
+                    self.assertAlmostEqual(world.ball.x, x, places=4)
+                    self.assertIsNone(world.last_landing)
+
+    def test_wall_contact_releases_below_block(self):
+        world = empty_world([Platform('wall', 256, 200)], auto_reset=False)
+        world.ball.x, world.ball.y, world.ball.vy = 242., 260., 160.
+        for _ in range(24):
+            world.step(1)
+        self.assertGreater(world.ball.x, 256.)
+        self.assertAlmostEqual(world.ball.vy, 160.+P.gravity*.2, places=5)
+        self.assertIsNone(world.last_landing)
+
+    def test_wall_input_can_reverse_away_from_contact(self):
+        world = empty_world([Platform('wall', 256, 0, 64, 700)], auto_reset=False)
+        world.ball.x, world.ball.y = 242., 200.
+        for _ in range(12):
+            world.step(1)
+        world.step(-1, .1)
+        self.assertLess(world.ball.x, 230.)
+        self.assertAlmostEqual(world.ball.vy, P.gravity*.2, places=5)
+
+    def test_stacked_block_seams_do_not_interrupt_falling(self):
+        world = empty_world([Platform(str(i), 256, 128+64*i) for i in range(8)], auto_reset=False)
+        world.ball.x, world.ball.y, world.ball.vy = 242., 150., 120.
+        for _ in range(48):
+            world.step(1)
+        self.assertFalse(world.failed)
+        self.assertIsNone(world.last_landing)
+        self.assertAlmostEqual(world.ball.y, 150.+120.*.4+.5*P.gravity*.4**2, places=5)
+        self.assertAlmostEqual(world.ball.vy, 120.+P.gravity*.4, places=5)
+
+    def test_moving_wall_and_turnaround_preserve_fall_speed(self):
+        for phase in (0., 63.6, 64., 127.6):
+            for direction in (-1, 1):
+                with self.subTest(phase=phase, direction=direction):
+                    wall = Platform('moving', 400, 0, 64, 700, kind='moving', travel=64., phase=phase)
+                    world = empty_world([wall], auto_reset=False)
+                    left = wall.rect_at(0)[0]
+                    world.ball.x = left-P.radius if direction > 0 else left+64+P.radius
+                    world.ball.y = 200.
+                    for _ in range(24):
+                        world.step(direction)
+                    self.assertFalse(world.failed)
+                    self.assertIsNone(world.last_landing)
+                    self.assertAlmostEqual(world.ball.y, 200.+.5*P.gravity*.2**2, places=5)
+                    self.assertAlmostEqual(world.ball.vy, P.gravity*.2, places=5)
+
+    def test_upper_corners_do_not_bounce_or_activate_blocks(self):
+        for kind in ('normal', 'spring', 'breakable', 'switch', 'launcher'):
+            for x in (250., 326.):
+                with self.subTest(kind=kind, x=x):
+                    world = empty_world([Platform('corner', 256, 300, kind=kind, group='A')], auto_reset=False)
+                    world.ball.x, world.ball.y, world.ball.vy = x, 280., 120.
+                    for _ in range(24):
+                        world.step(0)
+                    self.assertIsNone(world.last_landing)
+                    self.assertFalse(world.ball.launch)
+                    self.assertFalse(world.switches)
+                    self.assertIsNone(world.platforms[0].break_at)
+                    self.assertAlmostEqual(world.ball.vy, 120.+P.gravity*.2, places=5)
+                    self.assertAlmostEqual(world.ball.y, 280.+120.*.2+.5*P.gravity*.2**2, places=4)
+
+    def test_ceiling_impact_keeps_remaining_gravity(self):
+        world = empty_world([Platform('ceiling', 0, 300, 1600)], auto_reset=False)
+        world.ball.y, world.ball.vy = 380., -300.
+        impact = (300.-(300.**2-4*P.gravity)**.5)/P.gravity
+        world.step(0, .1)
+        self.assertIsNone(world.last_landing)
+        self.assertAlmostEqual(world.ball.vy, P.gravity*(.1-impact), places=3)
+        self.assertAlmostEqual(world.ball.y, 378.+.5*P.gravity*(.1-impact)**2, places=3)
+
+    def test_lower_corner_does_not_cancel_upward_motion(self):
+        world = empty_world([Platform('corner', 256, 300)], auto_reset=False)
+        world.ball.x, world.ball.y, world.ball.vy = 250., 384., -200.
+        for _ in range(12):
+            world.step(0)
+        self.assertIsNone(world.last_landing)
+        self.assertAlmostEqual(world.ball.vy, -200.+P.gravity*.1, places=5)
+
+    def test_corner_penetration_is_separated_without_a_jump(self):
+        for x in (250., 326.):
+            for y, vy in ((289., 20.), (375., -100.)):
+                with self.subTest(x=x, y=y):
+                    block = Platform('corner', 256, 300)
+                    world = empty_world([block], auto_reset=False)
+                    world.ball.x, world.ball.y, world.ball.vy = x, y, vy
+                    world.step(0)
+                    self.assertFalse(world.failed)
+                    self.assertIsNone(world.last_landing)
+                    self.assertFalse(circle_rect_overlap(world.ball.x, world.ball.y, P.radius, block.rect_at(world.time)))
+                    self.assertAlmostEqual(world.ball.vy, vy+P.gravity*P.dt, places=5)
+
+    def test_floor_and_held_wall_resolve_together(self):
+        wall = Platform('wall', 256, 0, 64, 640)
+        floor = Platform('floor', 0, 640, 256)
+        world = empty_world([wall, floor], auto_reset=False)
+        reference = empty_world([floor], auto_reset=False)
+        for w in (world, reference):
+            w.ball.x, w.ball.y, w.ball.vy = 242., 626., 5.
+        for _ in range(108):
+            world.step(1)
+            reference.step(0)
+        self.assertFalse(world.failed)
+        self.assertEqual(world.last_landing, 'floor')
+        self.assertAlmostEqual(world.ball.y, reference.ball.y, places=4)
+        self.assertAlmostEqual(world.ball.vy, reference.ball.vy, places=4)
+
+    def test_overlap_correction_is_not_a_landing(self):
+        world = empty_world([Platform('timed', 96, 640, kind='timed', period=1., active_for=.5, phase=.6)], auto_reset=False)
+        world.time = .399
+        world.ball.y, world.ball.vy = 630., -20.
+        world.step(0)
+        self.assertFalse(world.failed)
+        self.assertIsNone(world.last_landing)
+        self.assertGreater(world.ball.vy, -20.)
+
+    def test_wall_fall_still_checks_fish_and_goal(self):
+        world = empty_world([Platform('wall', 256, 0, 64, 700)],
+                            fish=[Collectible(242., 218., size=2.)],
+                            goal=(240., 220., 4., 4.), auto_reset=False)
+        world.ball.x, world.ball.y = 242., 200.
+        for _ in range(30):
+            world.step(1)
+        self.assertTrue(world.cleared)
+        self.assertEqual(world.plus, 1)
+
+    def test_many_events_do_not_discard_remaining_motion(self):
+        level = Level(1, '', '', [], [Collectible(130.+i, 400., size=.1) for i in range(30)],
+                      [], (128., 400.), (1500., 700., 64., 64.))
+        world = World(level, physics=replace(P, bounce_height=0.), auto_reset=False)
+        world.ball.vx = P.max_speed
+        world._piece(1, .2)
+        self.assertEqual(world.plus, 30)
+        self.assertAlmostEqual(world.ball.x, 128.+P.max_speed*.2, places=6)
+        self.assertAlmostEqual(world.time, .2, places=8)
+
     def test_continuous_side_collision(self):
         hit = sweep_circle_rect((0, 50), (200, 0), (90, 20, 64, 80), 14)
         self.assertAlmostEqual(hit[0], 76/200)

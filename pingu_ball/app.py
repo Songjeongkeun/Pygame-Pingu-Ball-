@@ -4,6 +4,7 @@ from array import array
 import math
 import os
 from pathlib import Path
+import sys
 import tempfile
 
 import pygame
@@ -23,6 +24,12 @@ TEAL = (39, 166, 172)
 GRADES = {6: 'B', 7: 'A', 8: 'S', 9: 'SS', 10: 'SSS'}
 
 
+def default_save_path():
+    # One-file builds unpack assets into a temporary directory, but saves persist.
+    root = Path(sys.executable).resolve().parent if getattr(sys, 'frozen', False) else ROOT
+    return root/'save_data'/'progress.json'
+
+
 class App:
     def __init__(self, save_path=None, headless=False):
         self.headless = headless
@@ -36,7 +43,7 @@ class App:
         self.canvas = pygame.Surface((PHYSICS.width, PHYSICS.height)).convert()
         self.clock = pygame.time.Clock()
         self.levels = make_levels()
-        self.progress = Progress(save_path or ROOT/'save_data'/'progress.json')
+        self.progress = Progress(save_path or default_save_path())
         self.scene = 'menu'
         self.world = None
         self.running = True

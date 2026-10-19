@@ -6,9 +6,26 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import pygame
-from pingu_ball.app import App
+from pingu_ball.app import App, ROOT, default_save_path
 from pingu_ball.storage import Progress
+
+
+class SavePathTests(unittest.TestCase):
+    def test_source_build_uses_project_save_directory(self):
+        with patch('pingu_ball.app.sys.frozen', False, create=True):
+            self.assertEqual(default_save_path(), ROOT/'save_data'/'progress.json')
+
+    def test_executable_uses_persistent_directory_next_to_exe(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            executable = Path(temporary)/'PinguBall.exe'
+            with patch('pingu_ball.app.sys.frozen', True, create=True), \
+                 patch('pingu_ball.app.sys.executable', str(executable)):
+                path = default_save_path()
+                self.assertEqual(path, executable.resolve().parent/'save_data'/'progress.json')
+                Progress(path).complete(0, None, 1.)
+                self.assertEqual(Progress(default_save_path()).records['0'], {'cleared': True})
 
 
 class InterfaceTests(unittest.TestCase):

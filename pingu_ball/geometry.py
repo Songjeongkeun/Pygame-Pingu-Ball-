@@ -20,6 +20,20 @@ def circle_rect_overlap(x, y, r, rect, tolerance=0.0):
     return (x-qx)**2 + (y-qy)**2 < (r-tolerance)**2
 
 
+def circle_rect_separation(x, y, r, rect):
+    """Minimum outward translation, including rounded corners and inside starts."""
+    left, top, w, h = rect
+    qx = max(left, min(x, left+w))
+    qy = max(top, min(y, top+h))
+    dx, dy = x-qx, y-qy
+    distance = math.hypot(dx, dy)
+    if distance > EPS:
+        return max(0., r-distance), (dx/distance, dy/distance)
+    distance, normal = min(((x-left, (-1., 0.)), (left+w-x, (1., 0.)),
+                            (y-top, (0., -1.)), (top+h-y, (0., 1.))))
+    return r+distance, normal
+
+
 def point_rect(x, y, rect):
     left, top, w, h = rect
     return left <= x <= left+w and top <= y <= top+h
