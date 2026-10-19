@@ -124,14 +124,17 @@ class App:
     def prepare_sounds(self):
         if not pygame.mixer.get_init():
             return
-        for name, hz, length in [('fish', 880, .10), ('fail', 160, .16), ('clear', 660, .24), ('switch', 440, .08),
+        for name, hz, length in [('fish', 880, .10), ('clear', 660, .24), ('switch', 440, .08),
                                  ('powerup', 1040, .12), ('power_use', 720, .12)]:
             frames = int(44100*length)
             samples = array('h', (int(6000*math.sin(2*math.pi*hz*i/44100)*(1-i/frames)**2) for i in range(frames)))
             self.sounds[name] = pygame.mixer.Sound(buffer=samples)
+        self.sounds['fail'] = pygame.mixer.Sound(str(ROOT/'assets'/'audio'/'fail_noot.mp3'))
 
     def sound(self, name):
         if self.sound_on and name in self.sounds:
+            if name == 'fail':
+                self.sounds[name].stop()
             self.sounds[name].play()
 
     def draw_pingu(self, x, y, size, charged=False):
@@ -268,6 +271,8 @@ class App:
 
     def toggle_sound(self):
         self.sound_on = not self.sound_on
+        if not self.sound_on and pygame.mixer.get_init():
+            pygame.mixer.stop()
 
     def restart(self):
         if self.world:
