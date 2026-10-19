@@ -12,6 +12,7 @@ from .config import PHYSICS
 from .engine import World
 from .levels import make_levels
 from .storage import Progress
+from .skin import WinterSkin
 
 ROOT = Path(__file__).resolve().parent.parent
 INK = (23, 48, 70)
@@ -64,9 +65,13 @@ class App:
         self.font_path = self.find_font()
         self.background = pygame.image.load(str(ROOT/'assets'/'antarctica.png')).convert()
         self.background = pygame.transform.smoothscale(self.background, self.canvas.get_size())
-        image = pygame.image.load(str(ROOT/'assets'/'pingu.png')).convert_alpha()
-        self.pingu = image.subsurface(image.get_bounding_rect()).copy()
-        self.sprites = {}
+        self.skin = WinterSkin(ROOT)
+        self.map_canvas = None
+        self.previews = {}
+        for level in self.levels:
+            if level.preview:
+                image = pygame.image.load(str(ROOT/level.preview)).convert()
+                self.previews[level.index] = pygame.transform.smoothscale(image, (124, 78))
         self.prepare_sounds()
 
     @staticmethod
@@ -116,73 +121,31 @@ class App:
             self.sounds[name].play()
 
     def draw_pingu(self, x, y, size):
-        if size not in self.sprites:
-            self.sprites[size] = pygame.transform.smoothscale(self.pingu, (size, size))
-        self.canvas.blit(self.sprites[size], (round(x-size/2), round(y-size/2)))
+        self.canvas.blit(self.skin.image('ball', (size, size)), (round(x-size/2), round(y-size/2)))
 
     def fish(self, x, y, size=32, bone=False, collected=False):
-        color = (174, 112, 171) if bone else GOLD
+        image = self.skin.image('bone' if bone else 'fish', (size, size))
         if collected:
-            color = (169, 187, 196)
-        if bone:
-            pygame.draw.line(self.canvas, color, (x-size*.4, y), (x+size*.25, y), 3)
-            for offset in [-.2, 0, .2]:
-                pygame.draw.line(self.canvas, color, (x+size*offset, y-size*.28), (x+size*offset, y+size*.28), 2)
-            pygame.draw.polygon(self.canvas, color, [(x+size*.23, y), (x+size*.5, y-size*.3), (x+size*.5, y+size*.3)])
-            pygame.draw.circle(self.canvas, color, (round(x-size*.38), round(y)), max(2, int(size*.16)))
-        else:
-            pygame.draw.polygon(self.canvas, color, [(x+size*.12, y), (x+size*.5, y-size*.3), (x+size*.5, y+size*.3)])
-            pygame.draw.ellipse(self.canvas, color, (x-size*.5, y-size*.3, size*.8, size*.6))
-            pygame.draw.circle(self.canvas, INK, (round(x-size*.28), round(y-size*.05)), 2)
+            image = image.copy(); image.set_alpha(90)
+        self.canvas.blit(image, (round(x-size/2), round(y-size/2)))
 
     def igloo(self, rect):
-        x, y, size, _ = rect
-        previous_clip = self.canvas.get_clip()
-        self.canvas.set_clip(pygame.Rect(rect))
-        pygame.draw.ellipse(self.canvas, WHITE, (x, y, size, size*1.8))
-        pygame.draw.rect(self.canvas, WHITE, (x, y+size*.5, size, size*.5))
-        for offset in (.35, .65):
-            pygame.draw.line(self.canvas, (164, 196, 214), (x+4, y+size*offset), (x+size-4, y+size*offset), 2)
-        pygame.draw.ellipse(self.canvas, (42, 90, 121), (x+size*.35, y+size*.48, size*.34, size*.52))
-        self.canvas.set_clip(previous_clip)
-        self.text('HOME', x+size/2, y-22, 18, BLUE, True, True)
+        x, y, w, h = rect
+        self.canvas.blit(self.skin.image('goal', (w, h)), (round(x), round(y)))
 
     def tile(self, block, time, switches):
-        x, y, width, height = block.rect_at(time)
-        rect = pygame.Rect(round(x), round(y), round(width), round(height))
-        if not block.active(time, switches):
-            if block.kind == 'timed':
-                ghost = pygame.Surface(rect.size, pygame.SRCALPHA)
-                pygame.draw.rect(ghost, (45, 161, 176, 80), ghost.get_rect().inflate(-2, -2), 2, border_radius=6)
-                self.canvas.blit(ghost, rect)
+        if block.id.startswith('spike-base-'):
             return
-        colors = {'normal': (146, 194, 220), 'breakable': (166, 201, 220),
-                  'spring': (228, 150, 171), 'moving': (92, 160, 214),
-                  'timed': (91, 207, 205), 'linked': (114, 190, 157),
-                  'switch': (212, 90, 101), 'launcher': (130, 135, 213)}
-        fill = colors[block.kind]
-        if block.kind == 'timed' and (time+block.phase) % block.period > block.active_for-block.warning and int(time*12) % 2:
-            fill = (204, 242, 240)
-        pygame.draw.rect(self.canvas, (88, 149, 188), rect, border_radius=6)
-        pygame.draw.rect(self.canvas, fill, rect.inflate(-4, -4), border_radius=6)
-        pygame.draw.line(self.canvas, WHITE, (x+8, y+9), (x+width-8, y+9), 3)
-        if block.kind == 'breakable':
-            pygame.draw.lines(self.canvas, MUTED, False, [(x+38, y+12), (x+24, y+28), (x+40, y+40), (x+20, y+56)], 3)
-            if block.break_at is not None:
-                remaining = max(0., (block.break_at-time)/PHYSICS.break_delay)
-                pygame.draw.line(self.canvas, CORAL, (x, y-5), (x+width*remaining, y-5), 4)
-        elif block.kind in ('moving', 'launcher'):
-            sign = block.arrow if block.kind == 'launcher' else 1
-            tip = x+width*(.75 if sign > 0 else .25)
-            pygame.draw.line(self.canvas, WHITE, (x+width*.25, y+32), (x+width*.75, y+32), 4)
-            pygame.draw.lines(self.canvas, WHITE, False, [(tip-sign*12, y+20), (tip, y+32), (tip-sign*12, y+44)], 4)
-        elif block.kind == 'spring':
-            pygame.draw.lines(self.canvas, WHITE, False, [(x+16, y+42), (x+32, y+24), (x+48, y+42)], 4)
-        elif block.kind == 'timed':
-            pygame.draw.circle(self.canvas, WHITE, rect.center, 15, 2)
-            pygame.draw.lines(self.canvas, WHITE, False, [(x+32, y+20), (x+32, y+32), (x+42, y+32)], 2)
-        elif block.kind == 'switch':
-            self.text(block.group, *rect.center, 28, WHITE, True, True)
+        image = self.skin.platform(block, time, switches)
+        if image is None:
+            return
+        x, y, width, height = block.rect_at(time)
+        self.canvas.blit(image, (round(x), round(y)))
+        if block.kind == 'switch':
+            self.text(block.group, x+width-12, y+height-16, 14, WHITE, True, True)
+        if block.break_at is not None:
+            remaining = max(0., (block.break_at-time)/PHYSICS.break_delay)
+            pygame.draw.line(self.canvas, CORAL, (x,y-4), (x+width*remaining,y-4), 3)
 
     def backdrop(self):
         self.canvas.blit(self.background, (0, 0))
@@ -202,7 +165,9 @@ class App:
             unlocked = index <= self.progress.unlocked
             self.panel(rect)
             self.text('튜토리얼' if index == 0 else f'STAGE {index}', rect.x+22, rect.y+16, 18, BLUE if unlocked else MUTED, True)
-            self.text(level.title, rect.x+22, rect.y+49, 27, INK if unlocked else MUTED, True)
+            self.text(level.title, rect.x+22, rect.y+49, 23, INK if unlocked else MUTED, True)
+            if index in self.previews:
+                self.canvas.blit(self.previews[index], (rect.right-138, rect.y+15))
             record = self.progress.records.get(str(index))
             if record:
                 detail = 'CLEAR' if index == 0 else f"{GRADES[record['score']]} · {record['score']}점 · {record['time']:.2f}초"
@@ -218,6 +183,7 @@ class App:
 
     def start(self, index):
         self.world = World(self.levels[index])
+        self.map_canvas = pygame.Surface((self.world.physics.width, self.world.physics.height), pygame.SRCALPHA).convert_alpha()
         self.scene = 'play'
         self.accumulator = 0.
         self.held_keys.clear()
@@ -252,24 +218,52 @@ class App:
     def draw_play(self):
         world = self.world
         self.backdrop()
+        screen = self.canvas
+        self.canvas = self.map_canvas
+        try:
+            self.draw_map(world)
+        finally:
+            self.canvas = screen
+        scale = min(1568/world.physics.width, 704/world.physics.height)
+        size = (round(world.physics.width*scale), round(world.physics.height*scale))
+        self.map_view = pygame.Rect((1600-size[0])//2, 72, *size)
+        self.canvas.blit(pygame.transform.smoothscale(self.map_canvas, size), self.map_view)
+        self.draw_play_hud(world)
+
+    def draw_map(self, world):
+        self.canvas.fill((0, 0, 0, 0))
+        groups = {}
+        for block in world.platforms:
+            if block.kind == 'moving':
+                prefix = block.id.rsplit('-', 1)[0]
+                groups.setdefault(prefix, []).append(block)
+        for blocks in groups.values():
+            left = min(q.x for q in blocks)
+            right = max(q.x+q.w+q.travel for q in blocks)
+            y = blocks[0].y-12
+            pygame.draw.line(self.canvas, (86, 185, 213), (left,y), (right,y), 2)
+            for x in (left, right):
+                pygame.draw.line(self.canvas, (86, 185, 213), (x,y-5), (x,y+5), 2)
         for block in world.platforms:
             self.tile(block, world.time, world.switches)
         for spike in world.level.spikes:
-            for triangle in spike.triangles:
-                pygame.draw.polygon(self.canvas, (232, 247, 255), triangle)
-                pygame.draw.polygon(self.canvas, (101, 151, 181), triangle, 2)
+            self.canvas.blit(self.skin.image('spike', (spike.w, spike.h+(16 if spike.teeth == 6 else 0))),
+                             (round(spike.x), round(spike.y)))
         for index, fish in enumerate(world.level.collectibles):
             if index not in world.collected:
                 self.fish(fish.x, fish.y, int(fish.size), fish.value < 0)
         self.igloo(world.level.goal)
         self.draw_pingu(world.ball.x, world.ball.y, 28)
+
+    def draw_play_hud(self, world):
         # Top row belongs to UI; the map never scrolls.
         self.panel((0, 0, 1600, 64), (249, 253, 255, 245), 0)
         self.text(('튜토리얼' if world.level.index == 0 else f'STAGE {world.level.index}')+' / '+world.level.title, 24, 18, 24, INK, True)
-        total = 1 if world.level.index == 0 else 3
-        self.fish(530, 32)
-        self.text(f'{world.plus}/{total}', 554, 18, 24)
-        if world.level.index:
+        total = sum(fish.value > 0 for fish in world.level.collectibles)
+        if total:
+            self.fish(530, 32)
+            self.text(f'{world.plus}/{total}', 554, 18, 24)
+        if any(fish.value < 0 for fish in world.level.collectibles):
             self.fish(640, 32, bone=True)
             self.text(str(world.minus), 664, 18, 24)
         self.text(f'{world.time:.2f}초', 750, 20, 22, MUTED)
@@ -277,19 +271,8 @@ class App:
         self.button('재시작 R', (1180, 10, 170, 44), self.restart)
         self.button('스테이지', (1360, 10, 216, 44), self.menu)
         self.panel((16, 778, 1568, 42), radius=10)
-        self.text(world.level.subtitle, 32, 785, 22)
-        states = []
-        timed = [q for q in world.platforms if q.kind == 'timed']
-        if timed:
-            states.append('시간 발판 '+str(sum(q.active(world.time, world.switches) for q in timed))+'/'+str(len(timed))+' ON')
-        if any(q.kind == 'moving' for q in world.platforms):
-            states.append(f'왕복 {PHYSICS.platform_speed:.2f}px/s')
-        groups = sorted({q.group for q in world.platforms if q.kind == 'switch'})
-        states += [f'스위치 {key} '+('ON' if world.switches.get(key) else 'OFF') for key in groups]
-        if world.ball.launch:
-            states.append('수평 발사 · 방향키로 해제')
-        if states:
-            self.text(' / '.join(states), 24, 80, 20)
+        caption = '수평 발사 중 · 방향키를 누르면 낙하합니다.' if world.ball.launch else world.level.subtitle
+        self.text(caption, 32, 785, 22)
         if self.toast and self.wall_time < self.toast_until:
             self.text(self.toast, 800, 146, 24, CORAL, True, True)
         if world.paused:
@@ -338,7 +321,7 @@ class App:
         self.panel((350, 150, 900, 540))
         self.draw_pingu(800, 280, 140)
         self.text('남극 여행을 마쳤어요!', 800, 416, 44, INK, True, True)
-        self.text('모든 스테이지에서 SSS 기록에 도전해 보세요.', 800, 490, 26, MUTED, False, True)
+        self.text('모든 스테이지에서 더 빠른 기록에 도전해 보세요.', 800, 490, 26, MUTED, False, True)
         self.button('스테이지 선택', (550, 566, 500, 60), self.menu, True)
 
     def draw_help(self):
@@ -347,11 +330,11 @@ class App:
         rows = [('← → / R', '좌우 이동 / 처음부터 재시작 · 입장 즉시 자동 반동'),
                 ('생선 / 생선 가시', '+1점 / -1점 · 모두 선택 사항'),
                 ('금 간 얼음', '첫 착지 0.5초 후 파괴'),
-                ('분홍 점프대', '144px 반동 · 일반 발판은 96px'),
-                ('파랑 / 청록 발판', '독립 왕복 이동 / 주기적 등장과 소멸'),
+                ('점프 화살표 ↑', '일반 발판보다 더 높이 튕깁니다.'),
+                ('이동 ↔ / 시간 발판', '표시 구간 왕복 이동 / 주기적 등장과 소멸'),
                 ('빨간 스위치', '연결 다리 전환 · 완전히 벗어난 뒤 재작동'),
-                ('보라 화살표', '중심 높이에서 발사 · 방향키 또는 벽 충돌로 해제'),
-                ('이글루', '별 개수와 관계없이 공 중심이 들어오면 클리어')]
+                ('좌우 발사 화살표', '중심 높이에서 발사 · 방향키 또는 벽 충돌로 해제'),
+                ('이글루', '생선 획득 여부와 관계없이 도착하면 클리어')]
         for index, (label, body) in enumerate(rows):
             self.text(label, 390, 226+index*48, 22, BLUE, True)
             self.text(body, 610, 226+index*48, 21)

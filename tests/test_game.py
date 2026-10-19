@@ -74,10 +74,10 @@ class PhysicsTests(unittest.TestCase):
     def test_entry_restart_and_failure_start_without_input(self):
         world = World(make_levels()[5])
         initial = world.ball.y
-        self.assertEqual(initial, 704-110)
+        self.assertEqual(initial, 384-110)
         for _ in range(54):
             world.step(0)
-        self.assertAlmostEqual(world.ball.y, 690., places=4)
+        self.assertAlmostEqual(world.ball.y, 370., places=4)
         self.assertAlmostEqual(world.time, .45)
         ferry = next(q for q in world.platforms if q.kind == 'moving')
         self.assertNotEqual(ferry.rect_at(world.time), ferry.rect_at(0))
@@ -565,7 +565,7 @@ class EnvironmentTests(unittest.TestCase):
         json.dumps(observation, allow_nan=False)
 
     def test_item_rewards_and_collection_flags(self):
-        env = Environment(1)
+        env = Environment(7)
         env.world.ball.x, env.world.ball.y = 672., 366.
         observation, reward, terminated, truncated, _ = env.step(0)
         self.assertEqual(reward, 1)
@@ -618,7 +618,8 @@ class EnvironmentTests(unittest.TestCase):
 
     def test_success_and_time_limit(self):
         env = Environment(1)
-        env.world.ball.x, env.world.ball.y = 1504., 670.
+        x, y, width, height = env.world.level.goal
+        env.world.ball.x, env.world.ball.y = x+width/2, y+height/2
         _, reward, terminated, truncated, info = env.step(0)
         self.assertTrue(terminated)
         self.assertFalse(truncated)
@@ -638,7 +639,7 @@ class EnvironmentTests(unittest.TestCase):
 
 class LevelTests(unittest.TestCase):
     def test_scores_and_grades(self):
-        world = World(make_levels()[1])
+        world = World(make_levels()[7])
         for collected, score, grade in [({3}, 6, 'B'), (set(), 7, 'A'), ({0}, 8, 'S'), ({0, 1}, 9, 'SS'), ({0, 1, 2}, 10, 'SSS')]:
             world.collected = collected
             self.assertEqual((world.score, world.grade), (score, grade))
@@ -648,17 +649,48 @@ class LevelTests(unittest.TestCase):
         levels = make_levels()
         self.assertEqual(len(levels), 8)
         for level in levels:
-            self.assertEqual(sum(f.value > 0 for f in level.collectibles), 1 if level.index == 0 else 3)
-            self.assertEqual(sum(f.value < 0 for f in level.collectibles), 0 if level.index == 0 else 1)
+            reference = 1 <= level.index <= 6
+            self.assertEqual(sum(f.value > 0 for f in level.collectibles), 0 if reference else 1 if level.index == 0 else 3)
+            self.assertEqual(sum(f.value < 0 for f in level.collectibles), 1 if level.index == 7 else 0)
             self.assertEqual(len({p.id for p in level.platforms}), len(level.platforms))
             for block in level.platforms:
-                self.assertEqual((block.x % 64, block.y % 64, block.w, block.h), (0, 0, 64, 64))
-                self.assertTrue(0 <= block.x < 1600 and 64 <= block.y < 832)
+                support = block.id.startswith('spike-base-')
+                self.assertEqual((block.x % 64, block.y % 64, block.w, block.h),
+                                 (0, 48 if support else 0, 64, 16 if support else 64))
+                self.assertTrue(0 <= block.x < 1600 and 0 <= block.y <= level.height-block.h)
                 self.assertFalse(circle_rect_overlap(*level.spawn, P.radius, block.rect_at(0)))
             for fish in level.collectibles:
                 self.assertFalse(any(circle_rect_overlap(fish.x, fish.y, fish.size/2, q.rect_at(0)) for q in level.platforms))
             for spike in level.spikes:
-                self.assertEqual((spike.w, spike.h), (128, 64))
+                self.assertEqual((spike.w, spike.h), (64, 48) if reference else (128, 64))
+
+    def test_reference_map_endpoints_and_nonphysical_movement_markers(self):
+        levels = make_levels()
+        self.assertEqual(levels[3].goal[:2], (768., 576.))
+        self.assertEqual(levels[5].goal[:2], (64., 768.))
+        sixth = levels[6]
+        self.assertEqual(sixth.goal[:2], (896., 576.))
+        self.assertFalse(any(q.kind == 'portal' for q in sixth.platforms))
+        ferry = [q for q in sixth.platforms if q.kind == 'moving']
+        self.assertEqual(len(ferry), 3)
+        self.assertEqual(min(q.x for q in ferry), 128.)
+        self.assertEqual(max(q.x+q.w+q.travel for q in ferry), 1472.)
+        for level in levels[1:7]:
+            self.assertTrue(Path(level.preview).is_file())
+            self.assertEqual(level.height, 960)
+
+    def test_learning_uses_map_height_and_default_episode_duration(self):
+        env = Environment(5)
+        observation, _ = env.reset()
+        self.assertEqual(observation['world_size'], (1600, 960))
+        self.assertEqual(observation['time_remaining'], 120.)
+        env.world.ball.y = 900.
+        self.assertFalse(env.step(0)[2])
+        env.world.ball.y = 975.
+        self.assertTrue(env.step(0)[2])
+        self.assertEqual(env.reset(stage=0)[0]['time_remaining'], 60.)
+        env = Environment(5, time_limit=30.)
+        self.assertEqual(env.reset(stage=0)[0]['time_remaining'], 30.)
 
     def test_all_sixteen_real_input_routes(self):
         for level in make_levels():

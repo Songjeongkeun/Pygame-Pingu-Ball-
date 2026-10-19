@@ -1,5 +1,5 @@
 """Display-independent simulation. All coordinates are logical pixels."""
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 import copy
 import math
 from .config import PHYSICS, Physics
@@ -62,13 +62,18 @@ class Spike:
     y: float
     w: float = 128.
     h: float = 64.
+    teeth: int = 2
+
+    def near(self, x, y, radius):
+        return (self.x-radius <= x <= self.x+self.w+radius
+                and self.y-radius <= y <= self.y+self.h+radius)
 
     @property
     def triangles(self):
         # The collision triangles are also the rendered spike silhouette.
-        return [((self.x+i*self.w/2, self.y+self.h),
-                 (self.x+(i+.5)*self.w/2, self.y),
-                 (self.x+(i+1)*self.w/2, self.y+self.h)) for i in (0, 1)]
+        return [((self.x+i*self.w/self.teeth, self.y+self.h),
+                 (self.x+(i+.5)*self.w/self.teeth, self.y),
+                 (self.x+(i+1)*self.w/self.teeth, self.y+self.h)) for i in range(self.teeth)]
 
 
 @dataclass
@@ -83,6 +88,9 @@ class Level:
     goal: tuple[float, float, float, float]
     no_fish_waypoints: list[tuple[float, str]] = field(default_factory=list)
     fish_waypoints: list[tuple[float, str]] = field(default_factory=list)
+    height: int = 832
+    preview: str = ''
+    time_limit: float = 60.
 
 
 @dataclass
@@ -119,7 +127,7 @@ def crossing_time(position, velocity, acceleration, boundary, duration, near):
 class World:
     def __init__(self, level: Level, physics: Physics = PHYSICS, auto_reset=True):
         self.level = level
-        self.physics = physics
+        self.physics = replace(physics, height=level.height)
         self.auto_reset = auto_reset
         self.failures = 0
         self.reset()
@@ -250,7 +258,7 @@ class World:
         if b.y-p.radius > p.height:
             self.fail('얼음 바다로 떨어졌어요'); return False
         for spike in self.level.spikes:
-            if any(circle_polygon_overlap(b.x,b.y,p.radius,t) for t in spike.triangles):
+            if spike.near(b.x, b.y, p.radius) and any(circle_polygon_overlap(b.x,b.y,p.radius,t) for t in spike.triangles):
                 self.fail('가시에 닿았어요'); return False
         end_time = self.time+duration
         old_active = {q.id:q.active(self.time, self.switches) for q in self.platforms}
@@ -305,6 +313,11 @@ class World:
                 if hit:
                     solids.append((hit[0], 3, 'wall', hit[1]))
             for spike in self.level.spikes:
+                if (max(start[0], start[0]+dx)+p.radius < spike.x
+                        or min(start[0], start[0]+dx)-p.radius > spike.x+spike.w
+                        or max(start[1], start[1]+dy)+p.radius < spike.y
+                        or min(start[1], start[1]+dy)-p.radius > spike.y+spike.h):
+                    continue
                 for triangle in spike.triangles:
                     hit = sweep_circle_polygon(start, delta, triangle, p.radius)
                     if hit:
@@ -411,6 +424,6 @@ class World:
         if b.y-p.radius > p.height:
             self.fail('얼음 바다로 떨어졌어요');return False
         for spike in self.level.spikes:
-            if any(circle_polygon_overlap(b.x,b.y,p.radius,t) for t in spike.triangles):
+            if spike.near(b.x, b.y, p.radius) and any(circle_polygon_overlap(b.x,b.y,p.radius,t) for t in spike.triangles):
                 self.fail('가시에 닿았어요');return False
         return True

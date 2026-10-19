@@ -96,7 +96,7 @@ class InterfaceTests(unittest.TestCase):
         app.progress.complete(0, None, 5.)
         app.start(1)
         self.key(pygame.K_RIGHT)
-        app.world.ball.y = 900.
+        app.world.ball.y = app.world.physics.height+20.
         app.update(.05, 1)
         self.assertFalse(app.held_keys)
         self.assertEqual(app.world.time, 0.)
@@ -110,11 +110,10 @@ class InterfaceTests(unittest.TestCase):
         app.start(1)
         app.world.cleared = True
         app.world.time = 8.
-        app.world.collected = {0, 1, 2}
         app.update(.02, 0)
         app.render()
         self.assertEqual(app.scene, 'result')
-        self.assertEqual(Progress(self.path).records['1']['score'], 10)
+        self.assertEqual(Progress(self.path).records['1']['score'], 7)
         self.click(930, 540)
         self.assertEqual(app.scene, 'play')
         self.assertEqual(app.world.level.index, 2)
@@ -141,6 +140,22 @@ class InterfaceTests(unittest.TestCase):
         app.render()
         self.click(930, 540)
         self.assertEqual(app.scene, 'ending')
+
+    def test_all_reference_maps_fit_between_hud_and_footer(self):
+        app = self.app
+        self.assertEqual(set(app.previews), set(range(1, 7)))
+        for stage in range(1, 7):
+            app.start(stage)
+            app.render()
+            self.assertGreaterEqual(app.map_view.top, 64)
+            self.assertLessEqual(app.map_view.bottom, 778)
+            self.assertEqual(app.map_canvas.get_size(), (1600, 960))
+            # Empty world pixels stay transparent: there is one continuous background.
+            self.assertEqual(app.map_canvas.get_at((800, 0)).a, 0)
+        arrow = app.skin.image('moving')
+        plain = app.skin.image('normal')
+        for x in (10, 54):
+            self.assertNotEqual(arrow.get_at((x, 36)), plain.get_at((x, 36)))
 
     def test_focus_loss_pauses_and_clears_keys(self):
         app = self.app

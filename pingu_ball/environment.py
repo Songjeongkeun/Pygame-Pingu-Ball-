@@ -7,12 +7,13 @@ from .levels import make_level
 class Environment:
     """Actions -1, 0, 1 mean left, release, right; each step is one physics tick."""
 
-    def __init__(self, stage=0, time_limit=60.):
-        if not math.isfinite(time_limit) or time_limit <= 0:
+    def __init__(self, stage=0, time_limit=None):
+        if time_limit is not None and (not math.isfinite(time_limit) or time_limit <= 0):
             raise ValueError('time_limit must be finite and positive')
         self.stage = stage
-        self.time_limit = time_limit
+        self._time_limit_override = time_limit
         self.world = World(make_level(stage), auto_reset=False)
+        self.time_limit = self.world.level.time_limit if time_limit is None else time_limit
         self.previous_action = 0
         self.done = False
 
@@ -20,6 +21,7 @@ class Environment:
         next_stage = self.stage if stage is None else stage
         world = World(make_level(next_stage), auto_reset=False)
         self.stage, self.world = next_stage, world
+        self.time_limit = world.level.time_limit if self._time_limit_override is None else self._time_limit_override
         self.previous_action = 0
         self.done = False
         return self.observe(), {'stage': self.stage}
@@ -41,6 +43,7 @@ class Environment:
                               'direction': (1 if moving_phase < block.travel else -1) if block.travel else 0,
                               'cycle': (world.time+block.phase) % block.period if block.kind == 'timed' else None})
         return {'stage': self.stage, 'goal': world.level.goal,
+                'world_size': (world.physics.width, world.physics.height),
                 'collectibles': [{'index': index, 'rect': fish.rect, 'value': fish.value,
                                   'collected': index in world.collected}
                                  for index, fish in enumerate(world.level.collectibles)],

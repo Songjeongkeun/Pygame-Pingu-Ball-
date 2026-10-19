@@ -19,8 +19,7 @@ try {
         '--workpath', (Join-Path $buildRoot 'work'),
         '--specpath', $buildRoot,
         '--paths', $projectRoot,
-        '--add-data', ((Join-Path $projectRoot 'assets\antarctica.png') + ';assets'),
-        '--add-data', ((Join-Path $projectRoot 'assets\pingu.png') + ';assets'),
+        '--add-data', ((Join-Path $projectRoot 'assets') + ';assets'),
         (Join-Path $projectRoot 'main.py')
     )
     & $buildPython @buildArguments

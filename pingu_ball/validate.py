@@ -3,34 +3,30 @@ import argparse
 import json
 from pathlib import Path
 from .engine import World
-from .levels import make_levels, waypoint_direction, condition_met
+from .levels import make_levels
+from .route_driver import RouteDriver
 
 
-def run_route(level, collect_all, seconds=45):
-    world=World(level)
+def run_route(level, collect_all, seconds=None):
+    seconds = level.time_limit if seconds is None else seconds
+    world=World(level, auto_reset=False)
     path=level.fish_waypoints if collect_all else level.no_fish_waypoints
     point=0
     trace=[]
+    driver=RouteDriver(world, path)
     for tick in range(int(seconds/world.physics.dt)):
-        target,condition=path[min(point,len(path)-1)]
-        ready=condition_met(world,condition)
-        if condition.startswith('land:'):
-            ready = ready and abs(world.ball.x-target)<2 and world.time-world.last_landing_time < world.physics.dt*1.1
-        if ready:
-            point+=1
-            if point>=len(path):break
-            target,condition=path[point]
-        direction=waypoint_direction(world,target)
-        world.step(direction)
+        world.step(driver.direction())
+        point=driver.point
         if tick%120==0:
             trace.append([round(world.time,2),round(world.ball.x,1),round(world.ball.y,1),point,world.plus,world.minus])
         if world.failures or world.cleared:break
-    expected=1 if level.index==0 else 3
+    expected=sum(f.value > 0 for f in level.collectibles)
     success=world.cleared and world.minus==0 and (world.plus==expected if collect_all else world.plus==0)
     return {'stage':level.index,'route':'all_fish' if collect_all else 'no_fish',
             'passed':success,'cleared':world.cleared,'plus':world.plus,'minus':world.minus,
             'time':round(world.time,3),'failures':world.failures,'reason':world.last_failure,
-            'position':[round(world.ball.x,2),round(world.ball.y,2)],'waypoint':point,'trace':trace}
+            'position':[round(world.ball.x,2),round(world.ball.y,2)],'waypoint':point,'trace':trace,
+            'condition':path[point], 'milestones':driver.milestones}
 
 
 def main():
