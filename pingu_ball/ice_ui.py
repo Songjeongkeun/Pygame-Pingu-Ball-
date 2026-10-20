@@ -26,6 +26,8 @@ class IceUI:
                              for n in range(10)]
         self.regular_native_cards=[(58+(n%4)*406,239+(n//4)*194,402,185) for n in range(12)]
         self.regular_cards=[self.list_rect('regular_menu',rect) for rect in self.regular_native_cards]
+        self.regular_play_buttons=[self.list_rect('regular_menu',(x+27,y+125,200,53))
+                                   for x,y,w,h in self.regular_native_cards]
         self.list_back={name:self.list_rect(name,rect) for name,rect in {
             'tutorial_menu':(1382,28,310,90),'regular_menu':(1382,57,310,92)}.items()}
         self.list_sound={name:self.list_rect(name,rect) for name,rect in {
@@ -67,6 +69,15 @@ class IceUI:
                              mask.get_rect().inflate(-2*inset,-2*inset),border_radius=8)
         face.blit(mask,(0,0),special_flags=pygame.BLEND_RGBA_MULT)
         self.regular_unlocked_footer=face
+        # Keep the supplied screens intact outside the requested artwork edits.
+        for name,filename,rect in (
+            ('menu','menu_tutorial_count_removed',(603,586,183,43)),
+            ('menu','menu_regular_count_removed',(1088,585,181,44)),
+            ('regular_menu','regular_first_button_removed',(83,339,241,70)),
+        ):
+            patch=pygame.image.load(str(root/'assets/ui'/f'{filename}.png')).convert_alpha()
+            target=pygame.Rect(rect) if name=='menu' else self.list_rect(name,rect)
+            self.images[name].blit(pygame.transform.smoothscale(patch,target.size),target)
 
     def native_rect(self,name,rect,original_size):
         im=self.images[name];x,y=self.positions[name];sx=im.get_width()/original_size[0];sy=im.get_height()/original_size[1]

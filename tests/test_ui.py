@@ -155,7 +155,7 @@ class InterfaceTests(unittest.TestCase):
         app.progress.unlocked=12;app.render()
         # All twelve document maps are separate from the tutorial list.
         for index in range(1,13):
-            self.click(*app.ice_ui.regular_cards[index-1].center)
+            self.click(*app.ice_ui.regular_play_buttons[index-1].center)
             self.assertEqual(app.world.level.index,index)
             app.menu();app.render();self.assertEqual(app.scene,'normal_menu')
         self.click(30,800);self.assertEqual(app.scene,'normal_menu')
