@@ -311,7 +311,10 @@ class CampaignTests(unittest.TestCase):
         self.assertEqual(replay.world.failures,0)
         labels=[m['label'] for m in replay.milestones]
         self.assertEqual([label for label in labels if label.startswith('spring-')],
-                         ['spring-33','spring-26','spring-23','spring-26','spring-33'])
+                         ['spring-33','spring-26','spring-23','spring-26'])
+        self.assertIn('breakable-37',labels)
+        self.assertIn('breakable-42',labels)
+        self.assertIn('left-launcher',labels)
         level=make_level(11)
         for name,position in [('spring-23',(256,768)),('spring-26',(384,640)),
                               ('spring-33',(640,704))]:
@@ -320,20 +323,30 @@ class CampaignTests(unittest.TestCase):
         self.assertEqual((replay.world.physics.bounce_height,replay.world.physics.pad_height),(96,144))
         self.assertTrue(any(q.kind=='normal' and (q.x,q.y)==(1408,576)
                             for q in level.platforms))
-        for regression in ('fixed','old_left_spring','old_center_spring','old_return_path'):
+        self.assertTrue(any(q.kind=='normal' and (q.x,q.y)==(1472,512)
+                            for q in level.platforms))
+        for regression in ('fixed','old_left_spring','old_center_spring'):
             level=make_level(11)
             if regression=='old_left_spring': next(d for d in level.specials if d.id=='spring-26').y=576
             if regression=='old_center_spring': next(d for d in level.specials if d.id=='spring-33').y=768
-            if regression=='old_return_path':
-                for q in level.platforms:
-                    if q.id=='normal-50': q.x,q.y=1280,768
-                    if q.id=='normal-57': q.x,q.y=1472,512
             world=World(level,auto_reset=False)
             for direction,use,power_direction in replay.inputs:
                 world.step(direction,use_power=use,power_direction=power_direction)
                 if world.failed or world.cleared: break
             self.assertEqual(world.cleared,regression=='fixed',regression)
             if regression=='fixed': self.assertEqual(world.failures,0)
+
+    def test_eleventh_map_roof_closes_the_direct_drop_to_the_igloo(self):
+        for closed in (False,True):
+            level=make_level(11)
+            if not closed:
+                level.platforms=[q for q in level.platforms if q.id!='normal-65']
+            world=World(level,auto_reset=False)
+            for _ in range(600):
+                world.step(waypoint_direction(world,1504))
+                if world.failed or world.cleared: break
+            self.assertEqual(world.cleared,not closed)
+            if closed: self.assertEqual(world.failures,0)
 
 
 if __name__=='__main__': unittest.main()

@@ -154,10 +154,11 @@ def route(number):
         r.until(lambda:w.cleared,None,label='goal')
     elif number==11:
         r.land('normal-55',1440)
-        # Wait one bounce so the sea lion is clear when crossing its island.
+        # Align the sea lion's phase before clearing the two breakable columns.
         r.land('normal-55',1440)
         for name,x in [('normal-51',1312),('normal-50',1248),('breakable-41',1184),
-                       ('normal-40',1056),('normal-39',992),('breakable-36',864),
+                       ('breakable-42',1184),('normal-40',1056),('normal-39',992),
+                       ('breakable-36',864),('breakable-37',864),
                        ('normal-35',800),('normal-34',736),('spring-33',672)]: r.land(name,x)
         r.until(lambda:w.ball.y<562 and w.ball.vy<0,672,label='above-center-wall')
         for name,x in [('normal-29',608),('normal-28',544),('normal-27',480),('spring-26',416)]: r.land(name,x)
@@ -168,11 +169,14 @@ def route(number):
         r.land('breakable-24',352)
         r.land('spring-23',288)
         r.land('spring-26',416)
-        for name,x in [('normal-27',480),('normal-28',544),('normal-29',608),
-                       ('spring-33',672),('normal-34',736),('normal-35',800),
-                       ('normal-39',976),('normal-40',1080),('normal-50',1232),
-                       ('normal-51',1312),('normal-57',1376),('normal-55',1440)]: r.land(name,x)
-        r.until(lambda:w.cleared,1504,label='goal')
+        # The second jump pickup returns to the top of the left sun wall.
+        # Drop through its gap onto the launcher; the broken columns now let
+        # its horizontal flight reach the igloo underneath the starting ledge.
+        r.until(lambda:w.ball.vy>=-8 and w.ball.y<485,416,label='return-spring-apex')
+        r.tick(-1,True)
+        r.land('normal-3',288)
+        r.until(lambda:w.last_landing=='launcher_right-25',160,label='left-launcher')
+        r.until(lambda:w.cleared,None,label='goal')
     elif number==12:
         r.land('normal-41',1440)
         r.until(lambda:w.ball.launch,1632,label='right-launcher')
