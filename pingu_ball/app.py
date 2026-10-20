@@ -528,15 +528,6 @@ class App:
         self.button('일시정지', (1000, 10, 170, 44), self.toggle_pause)
         self.button('재시작 R', (1180, 10, 170, 44), self.restart)
         self.button('튜토리얼 목록' if self.lab_id is not None else '스테이지', (1360, 10, 216, 44), self.menu)
-        self.panel((16, 778, 1568, 42), radius=10)
-        caption = '수평 발사 중 · 방향키를 누르면 낙하합니다.' if world.ball.launch else world.level.subtitle
-        if world.ball.power_up:
-            kind = '대시' if world.ball.power_up == 'forward' else '점프'
-            keys = '←← / →→' if world.ball.power_up == 'forward' else '↑↑'
-            caption = f'{kind} 1회 · {keys} 또는 게임 화면 더블 클릭·터치로 사용'
-            if world.ball.reserve_power_up:
-                caption='대시 + 점프 보유 · 대시 먼저: ←← / →→ · 이후 점프: ↑↑ · 더블 클릭·터치로도 사용'
-        self.text(caption, 32, 785, 22)
         if self.toast and self.wall_time < self.toast_until:
             self.text(self.toast, 800, 146, 24, CORAL, True, True)
         if world.paused:
