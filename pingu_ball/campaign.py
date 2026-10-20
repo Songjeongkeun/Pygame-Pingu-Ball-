@@ -53,7 +53,7 @@ POSITION_ADJUSTMENTS = {
     # The added roof tile closes the direct drop from spawn to the igloo.
     11: {('spring',6,9):(6,10), ('spring',10,12):(10,11),
          ('normal',20,12):(19,11), ('normal',23,8):(21,9)},
-    12: {('spring',13,12.5):(13,11.5)},
+    12: {('spring',13,12.5):(13,11.5), ('spring',34,6.25):(34,5)},
 }
 
 

@@ -348,5 +348,22 @@ class CampaignTests(unittest.TestCase):
             self.assertEqual(world.cleared,not closed)
             if closed: self.assertEqual(world.failures,0)
 
+    def test_twelfth_upper_ferry_and_spring_reach_basic_platform_from_spawn(self):
+        from tools.verify_stage12 import upper_route
+        replay=upper_route()
+        self.assertEqual(replay.world.last_landing,'normal-29')
+        self.assertEqual(replay.world.failures,0)
+        self.assertIn('spring-32',[m['label'] for m in replay.milestones])
+        for old_height in (False,True):
+            level=make_level(12)
+            if old_height:
+                next(d for d in level.specials if d.id=='spring-32').y=400
+            world=World(level,auto_reset=False)
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                if world.failed: break
+            self.assertEqual(world.last_landing=='normal-29',not old_height)
+            if not old_height: self.assertEqual(world.failures,0)
+
 
 if __name__=='__main__': unittest.main()
