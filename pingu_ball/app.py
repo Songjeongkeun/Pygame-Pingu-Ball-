@@ -476,21 +476,7 @@ class App:
     def draw_map(self, world):
         self.canvas.fill((0, 0, 0, 0))
         from .special_draw import draw_patrols, draw_movement_markers
-        draw_movement_markers(self.canvas,world)
         draw_patrols(self.canvas,world,self.skin)
-        groups = {}
-        for block in world.platforms:
-            if block.kind == 'moving':
-                prefix = block.id.rsplit('-', 1)[0]
-                groups.setdefault(prefix, []).append(block)
-        if world.level.show_movement_rails:
-            for blocks in groups.values():
-                left = min(q.x for q in blocks)
-                right = max(q.x+q.w+q.travel for q in blocks)
-                y = blocks[0].y-12
-                pygame.draw.line(self.canvas, (86, 185, 213), (left,y), (right,y), 2)
-                for x in (left, right):
-                    pygame.draw.line(self.canvas, (86, 185, 213), (x,y-5), (x,y+5), 2)
         # Only a column's exposed upper tile has snow. Horizontal sprite
         # edges remain native, preserving the approved natural seams.
         positions={(q.x,q.y):q for q in world.platforms if q.kind=='normal' and (q.w,q.h)==(64,64)
@@ -499,8 +485,12 @@ class App:
         occupied_tiles={platform_rects[q.id][:2] for q in world.platforms
                         if (q.w,q.h)==(64,64) and q.active(world.time,world.switches)}
         drawn=set()
+        movers=[]
         for block in sorted(world.platforms,key=lambda q:q.y):
             if block.id in drawn: continue
+            if block.kind=='moving' or (hasattr(block,'device') and block.device.type_id==508):
+                movers.append(block)
+                continue
             column=[block]
             if (block.x,block.y) in positions:
                 while (block.x,block.y+64*len(column)) in positions:
@@ -510,11 +500,8 @@ class App:
                 drawn.update(q.id for q in column)
             else:
                 self.tile(block, world.time, world.switches,occupied_tiles)
-        for d in world.special.devices.values():
-            if d.type_id==508:
-                x=d.x+d.w/2
-                for y in range(round(d.y+32),round(d.y+d.options.get('travel',128.)+32),13):
-                    pygame.draw.line(self.canvas,(86,185,213),(x,y),(x,y+6),2)
+        draw_movement_markers(self.canvas,world)
+        for block in movers:self.tile(block,world.time,world.switches,occupied_tiles)
         for spike in world.level.spikes:
             self.canvas.blit(self.skin.image('spike', (spike.w, spike.h+(16 if spike.teeth == 6 else 0)+4)),
                              (round(spike.x), round(spike.y)))

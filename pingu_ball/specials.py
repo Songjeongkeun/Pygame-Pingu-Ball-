@@ -210,14 +210,15 @@ class SpecialRuntime:
 
     @staticmethod
     def patrol_pose(d,time):
-        """Center follows the joined block outline; angle is its tangent."""
+        """Follow the joined outline with more body exposed outside each edge."""
         o=d.options
         left,top,width,height=o.get('path',(d.x,d.y,192.,64.))
         distance=(time*o.get('speed',64.)+o.get('phase',0.))%(2*(width+height))
-        if distance<width: return left+distance,top,0
-        if distance<width+height: return left+width,top+distance-width,90
-        if distance<2*width+height: return left+2*width+height-distance,top+height,180
-        return left,top+2*(width+height)-distance,270
+        outset=o.get('outset',8.)
+        if distance<width: return left+distance,top-outset,0
+        if distance<width+height: return left+width+outset,top+distance-width,90
+        if distance<2*width+height: return left+2*width+height-distance,top+height+outset,180
+        return left-outset,top+2*(width+height)-distance,270
 
     def sync(self,time):
         w = self.world
@@ -320,13 +321,16 @@ class SpecialRuntime:
             if self.icicle_age(d,time)<o.get('delay',.5): return []
             return [[(x,y),(x+w,y),(x+w,y+h),(x,y+h)]]
         if t == 703:
-            # Only the exposed half is hazardous; the other half is hidden
-            # behind the opaque terrain, using the same tangent as rendering.
+            # Clip the hazard at the real terrain edge, rather than the
+            # shifted image center. Hidden body never kills through terrain.
             angle=self.patrol_pose(d,time)[2]
-            if angle==0: h/=2
-            elif angle==90: x+=w/2;w/=2
-            elif angle==180: y+=h/2;h/=2
-            else: w/=2
+            left,top,width,height=o.get('path',(d.x,d.y,192.,64.))
+            if angle==0:h=max(0.,min(y+h,top)-y)
+            elif angle==90:
+                end=x+w;x=max(x,left+width);w=max(0.,end-x)
+            elif angle==180:
+                end=y+h;y=max(y,top+height);h=max(0.,end-y)
+            else:w=max(0.,min(x+w,left)-x)
             return [[(x,y),(x+w,y),(x+w,y+h),(x,y+h)]]
         if t in (201,202,211,221):
             if t == 202: x += w*3/8; y += h*3/4; w /= 4; h /= 4

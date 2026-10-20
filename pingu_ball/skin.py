@@ -24,30 +24,20 @@ class WinterSkin:
             image = pygame.image.load(str(folder/(file+'.png'))).convert_alpha()
             # Use the solid body, not the faint shadow beneath the basic tile,
             # to fit both basic and cracked artwork into the same 64px square.
-            alpha=128 if name in ('normal','breakable') else 1
+            alpha=128 if name in ('normal','breakable','moving_vertical') else 1
             self.originals[name] = image.subsurface(image.get_bounding_rect(min_alpha=alpha)).copy()
         charged = pygame.image.load(str(Path(root)/'assets'/'ball_charged.png')).convert_alpha()
         self.originals['ball_charged'] = charged.subsurface(charged.get_bounding_rect(min_alpha=32)).copy()
         angry_path = Path(root)/'assets'/'ball_angry.png'
         angry = pygame.image.load(str(angry_path)).convert_alpha() if angry_path.exists() else self.originals['ball']
         self.originals['angry'] = angry.subsurface(angry.get_bounding_rect(min_alpha=32)).copy()
-        for kind, color in [('forward', (16, 190, 236)), ('up', (245, 177, 35))]:
-            icon = pygame.Surface((64, 64), pygame.SRCALPHA)
-            points=[(32,2),(54,12),(62,36),(48,59),(19,61),(2,39),(9,14)]
-            pygame.draw.polygon(icon,color,points)
-            pygame.draw.lines(icon,(221,252,255),True,points,3)
-            pygame.draw.lines(icon,(245,253,255),False,[(9,14),(22,9),(36,9)],4)
-            if kind == 'forward':
-                for x in (20, 33):
-                    pygame.draw.lines(icon,(240,253,255),False,[(x,19),(x+13,32),(x,45)],9)
-                    pygame.draw.lines(icon,(9,31,55),False,[(x,19),(x+13,32),(x,45)],5)
-            else:
-                for x in (22,42):
-                    pygame.draw.line(icon,(245,253,255),(x,47),(x,20),10)
-                    pygame.draw.polygon(icon,(245,253,255),[(x-10,29),(x,15),(x+10,29)])
-                    pygame.draw.line(icon,(29,31,38),(x,46),(x,25),5)
-                    pygame.draw.polygon(icon,(29,31,38),[(x-6,27),(x,19),(x+6,27)])
-            self.originals['power_'+kind] = icon
+        for kind,file in [('forward','item_dash.png'),('up','item_jump.png')]:
+            image=pygame.image.load(str(folder/file)).convert_alpha()
+            image=image.subsurface(image.get_bounding_rect(min_alpha=32)).copy()
+            side=max(image.get_size())
+            icon=pygame.Surface((side,side),pygame.SRCALPHA)
+            icon.blit(image,image.get_rect(center=(side//2,side//2)))
+            self.originals['power_'+kind]=icon
         for kind,color,rim in [('forward',(3,15,30),(25,221,250)),('up',(91,46,25),(255,204,69))]:
             ball=pygame.transform.smoothscale(self.originals['ball'],(64,64)).copy()
             # Recolor only the dark head; red beak and white eyes stay intact.
