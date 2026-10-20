@@ -99,6 +99,13 @@ class WinterSkin:
             self.cache[key] = pygame.transform.smoothscale(self.originals[name], size)
         return self.cache[key]
 
+    def collectible(self, bone=False, width=32):
+        """Fit the supplied fish artwork by width without stretching its body."""
+        name='bone' if bone else 'fish'
+        source=self.originals[name]
+        height=round(width*source.get_height()/source.get_width())
+        return self.image(name,(width,height))
+
     def platform(self, block, time, switches):
         if hasattr(block,'device'):
             from .special_draw import tile_image

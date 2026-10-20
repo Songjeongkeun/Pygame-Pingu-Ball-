@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from dataclasses import replace
 
 from pingu_ball.campaign import TILE_ADDITIONS, campaign_layouts
 from pingu_ball.config import CAMPAIGN_ID, REGULAR_STAGE_COUNT
@@ -17,6 +18,44 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CampaignTests(unittest.TestCase):
+    def test_approved_fish_layouts_and_score_range(self):
+        from pingu_ball.campaign import collectible_layouts
+        for source in collectible_layouts():
+            level=make_level(source['number'])
+            self.assertEqual([(q.x,q.y,q.value,q.size) for q in level.collectibles],
+                             [(q['x'],q['y'],q['value'],32) for q in source['collectibles']])
+            self.assertEqual([q.value for q in level.collectibles],[1,1,1,-1])
+            world=World(level)
+            for collected,score in [(set(),7),({3},6),({0,1,2},10),({0,1,2,3},9)]:
+                world.collected=collected
+                self.assertEqual(world.score,score)
+            world.reset()
+            self.assertFalse(world.collected)
+            self.assertEqual(world.score,7)
+
+    def test_bone_inside_breakable_is_collected_only_after_breaking_it(self):
+        level=make_level(4)
+        self.assertEqual((level.collectibles[3].x,level.collectibles[3].y),(224,800))
+        world=World(replace(level,spawn=(224,650)),auto_reset=False)
+        block=world.special.platforms['breakable-44']
+        broken_at=None;collected_at=None
+        for _ in range(450):
+            world.step(0)
+            if block.destroyed and broken_at is None: broken_at=world.time
+            if 3 in world.collected:
+                self.assertTrue(block.destroyed)
+                collected_at=world.time
+                break
+            if not block.destroyed: self.assertNotIn(3,world.collected)
+            self.assertFalse(world.failed)
+        self.assertIsNotNone(broken_at)
+        self.assertIsNotNone(collected_at)
+        self.assertLess(broken_at,collected_at)
+        self.assertEqual(world.minus,1)
+        world.reset()
+        self.assertFalse(world.special.platforms['breakable-44'].destroyed)
+        self.assertFalse(world.collected)
+
     def test_document_order_and_fixed_requested_goal_supports(self):
         self.assertEqual(REGULAR_STAGE_COUNT, 12)
         self.assertEqual([stage['number'] for stage in campaign_layouts()], list(range(1, 13)))
@@ -347,6 +386,23 @@ class CampaignTests(unittest.TestCase):
                 if world.failed or world.cleared: break
             self.assertEqual(world.cleared,not closed)
             if closed: self.assertEqual(world.failures,0)
+
+    def test_twelfth_upper_ferry_and_spring_reach_basic_platform_from_spawn(self):
+        from tools.verify_stage12 import upper_route
+        replay=upper_route()
+        self.assertEqual(replay.world.last_landing,'normal-29')
+        self.assertEqual(replay.world.failures,0)
+        self.assertIn('spring-32',[m['label'] for m in replay.milestones])
+        for old_height in (False,True):
+            level=make_level(12)
+            if old_height:
+                next(d for d in level.specials if d.id=='spring-32').y=400
+            world=World(level,auto_reset=False)
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                if world.failed: break
+            self.assertEqual(world.last_landing=='normal-29',not old_height)
+            if not old_height: self.assertEqual(world.failures,0)
 
 
 if __name__=='__main__': unittest.main()

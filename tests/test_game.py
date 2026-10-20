@@ -579,7 +579,7 @@ class EnvironmentTests(unittest.TestCase):
         observation, _ = env.reset()
         self.assertEqual(observation['stage'], 7)
         self.assertEqual(observation['goal'], env.world.level.goal)
-        self.assertEqual(observation['collectibles'], [])
+        self.assertEqual([q['value'] for q in observation['collectibles']], [1,1,1,-1])
         self.assertTrue(any(item['type_id'] == 701 for item in observation['specials']))
         self.assertTrue(any(item['kind'] == 'timed' for item in observation['platforms']))
         # A plain data observation can be stored or sent to a separate learner.
@@ -673,7 +673,7 @@ class LevelTests(unittest.TestCase):
         self.assertEqual(len(levels), 13)
         for level in levels[1:]:
             world = World(level, auto_reset=False)
-            self.assertFalse(level.collectibles)
+            self.assertEqual([q.value for q in level.collectibles],[1,1,1,-1])
             self.assertEqual(len({p.id for p in world.platforms}), len(world.platforms))
             for block in world.platforms:
                 self.assertEqual((block.w, block.h), (64, 64))

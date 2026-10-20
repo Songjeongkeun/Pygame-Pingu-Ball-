@@ -4,7 +4,7 @@ import copy
 from pathlib import Path
 
 from .config import CAMPAIGN_ID, REGULAR_STAGE_COUNT
-from .engine import Level, Platform, PowerUp
+from .engine import Collectible, Level, Platform, PowerUp
 from .specials import Device
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,7 +53,7 @@ POSITION_ADJUSTMENTS = {
     # The added roof tile closes the direct drop from spawn to the igloo.
     11: {('spring',6,9):(6,10), ('spring',10,12):(10,11),
          ('normal',20,12):(19,11), ('normal',23,8):(21,9)},
-    12: {('spring',13,12.5):(13,11.5)},
+    12: {('spring',13,12.5):(13,11.5), ('spring',34,6.25):(34,5)},
 }
 
 
@@ -104,6 +104,11 @@ def campaign_layouts():
     if data['campaign'] != CAMPAIGN_ID or len(data['maps']) != REGULAR_STAGE_COUNT:
         raise ValueError('Invalid document campaign data')
     return data['maps']
+
+
+def collectible_layouts():
+    """Approved center coordinates, including pickups inside breakable tiles."""
+    return json.loads((ROOT / 'assets/stages/collectibles.json').read_text(encoding='utf-8'))['maps']
 
 
 def make_campaign_level(index):
@@ -172,7 +177,9 @@ def make_campaign_level(index):
         movement_markers=[(left,deck[0].y),(right-64,deck[0].y)]
     # Rendering adds the same 4px snow overlap as the document image.
     gx, gy, gw, gh = data['goal']
-    return Level(index, TITLES[index - 1], HINTS[index - 1], blocks, [], [],
+    collectibles=[Collectible(q['x'],q['y'],q['value'],32)
+                  for q in collectible_layouts()[index-1]['collectibles']]
+    return Level(index, TITLES[index - 1], HINTS[index - 1], blocks, collectibles, [],
                  tuple(data['spawn']), (gx, gy - 4, gw, gh),
                  height=data['height'], width=data['width'], time_limit=180.,
                  preview=f'assets/stages/stage_{index:02d}.png', powerups=items, specials=devices,

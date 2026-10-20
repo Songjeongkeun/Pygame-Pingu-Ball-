@@ -57,12 +57,12 @@ class InterfaceTests(unittest.TestCase):
 
     def test_locked_cards_and_automatic_tutorial_start(self):
         self.click(*self.app.title_start.center)
-        self.click(1150,550)
+        self.click(1180,670)
         self.assertEqual(self.app.scene,'normal_menu')
         self.click(572, 280)
         self.assertEqual(self.app.scene,'normal_menu')
         self.key(pygame.K_ESCAPE);self.app.render()
-        self.click(400,550)
+        self.click(650,670)
         self.assertEqual(self.app.scene,'lab_menu')
         self.click(1100,70)
         self.assertEqual(self.app.scene,'lab_menu')
@@ -84,7 +84,7 @@ class InterfaceTests(unittest.TestCase):
         before = (app.world.time, app.world.ball.x, app.world.ball.y)
         app.update(.1, 1)
         self.assertEqual(before, (app.world.time, app.world.ball.x, app.world.ball.y))
-        self.click(800, 440)
+        self.click(800, 530)
         self.assertFalse(app.world.paused)
         self.key(pygame.K_RIGHT)
         self.assertIn(pygame.K_RIGHT, app.held_keys)
@@ -101,7 +101,7 @@ class InterfaceTests(unittest.TestCase):
         direction = int(pygame.K_RIGHT in self.app.held_keys)-int(pygame.K_LEFT in self.app.held_keys)
         self.app.update(.05, direction)
         self.assertEqual(self.app.world.ball.vx, 0.)
-        self.assertEqual(self.app.world.ball.x, 96.)
+        self.assertEqual(self.app.world.ball.x, self.app.world.level.spawn[0])
 
     def test_failure_discards_buffer_and_preserves_records(self):
         app = self.app
@@ -126,7 +126,7 @@ class InterfaceTests(unittest.TestCase):
         app.render()
         self.assertEqual(app.scene, 'result')
         self.assertEqual(Progress(self.path).records['1']['score'], 7)
-        self.click(930, 540)
+        self.click(800, 625)
         self.assertEqual(app.scene, 'play')
         self.assertEqual(app.world.level.index, 2)
 
@@ -141,7 +141,7 @@ class InterfaceTests(unittest.TestCase):
         app.render()
         self.assertAlmostEqual(app.scale, .5)
         self.assertEqual(app.offset, (0, 142))
-        self.click(400,550)
+        self.click(650,670)
         self.click(1100,70)
         self.assertEqual(app.scene,'lab_menu')
         self.click(200,240)
@@ -151,7 +151,7 @@ class InterfaceTests(unittest.TestCase):
     def test_normal_and_tutorial_lists_keep_their_own_return_paths(self):
         app=self.app
         self.click(*app.title_start.center)
-        self.click(1150,550)
+        self.click(1180,670)
         app.progress.unlocked=12;app.render()
         # All twelve document maps are separate from the tutorial list.
         for index in range(1,13):
@@ -160,7 +160,7 @@ class InterfaceTests(unittest.TestCase):
             app.menu();app.render();self.assertEqual(app.scene,'normal_menu')
         self.click(200,705);self.assertEqual(app.scene,'normal_menu')
         self.key(pygame.K_ESCAPE);app.render();self.assertEqual(app.scene,'menu')
-        self.click(400,550);self.assertEqual(app.scene,'lab_menu')
+        self.click(650,670);self.assertEqual(app.scene,'lab_menu')
         self.click(200,240);self.assertIsNotNone(app.lab_id)
         app.menu();app.render();self.assertEqual(app.scene,'lab_menu')
         self.click(1100,70);self.assertEqual(app.scene,'lab_menu')
@@ -227,7 +227,7 @@ class InterfaceTests(unittest.TestCase):
         self.click(1080, 32, 650)
         self.assertTrue(app.world.paused)
         self.assertIsNone(app.last_tap)
-        self.click(800, 440, 700)
+        self.click(800, 530, 700)
         self.assertFalse(app.world.paused)
         self.click(800, 300, 750)
         self.assertIsNone(app.pending_power_direction)
@@ -264,17 +264,18 @@ class InterfaceTests(unittest.TestCase):
         app.world.cleared = True
         app.update(.02, 0)
         app.render()
-        self.click(930, 540)
+        self.click(800, 625)
         self.assertEqual(app.scene, 'ending')
 
-    def test_all_reference_maps_fit_between_hud_and_footer(self):
+    def test_all_reference_maps_fill_the_playfield_below_the_hud(self):
         app = self.app
         self.assertEqual(set(app.previews), set(range(1, 13)))
         for stage in range(1, 13):
             app.start(stage)
             app.render()
-            self.assertGreaterEqual(app.map_view.top, 64)
-            self.assertLessEqual(app.map_view.bottom, 778)
+            self.assertGreaterEqual(app.map_view.top, 144)
+            self.assertLessEqual(app.map_view.bottom, 816)
+            self.assertEqual((app.map_view.left,app.map_view.right),(16,1584))
             self.assertEqual(app.map_canvas.get_size(), (app.world.level.width, app.world.level.height))
             # Empty world pixels stay transparent: there is one continuous background.
             self.assertEqual(app.map_canvas.get_at((800, 0)).a, 0)
@@ -291,6 +292,46 @@ class InterfaceTests(unittest.TestCase):
         app.process_events()
         self.assertTrue(app.world.paused)
         self.assertFalse(app.held_keys)
+
+    def test_artwork_pause_keys_close_restart_and_select_after_resize(self):
+        app=self.app
+        app.start(2)
+        app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        app.render()
+        self.key(pygame.K_p);app.render()
+        self.assertTrue(app.world.paused)
+        self.assertEqual(len(app.buttons),4)
+        self.click(*app.ice_ui.pause_buttons['close'].center)
+        self.assertFalse(app.world.paused)
+        self.key(pygame.K_ESCAPE);app.render()
+        self.assertTrue(app.world.paused)
+        self.key(pygame.K_ESCAPE);app.render()
+        self.assertFalse(app.world.paused)
+        app.update(.1,0)
+        app.toggle_pause();app.render()
+        self.click(*app.ice_ui.pause_buttons['restart'].center)
+        self.assertEqual(app.world.time,0)
+        self.assertFalse(app.world.paused)
+        app.toggle_pause();app.render()
+        self.click(*app.ice_ui.pause_buttons['select'].center)
+        self.assertEqual(app.scene,'normal_menu')
+
+    def test_result_displays_actual_grade_score_time_and_record_status(self):
+        app=self.app;app.start(2)
+        app.world.time=12.34;app.world.collected={0,1,2};app.world.cleared=True
+        app.update(1/120,0)
+        with patch.object(app,'text',wraps=app.text) as rendered:app.render()
+        labels=[call.args[0] for call in rendered.call_args_list]
+        self.assertIn('SSS',labels)
+        self.assertIn('10점  ·  12.34초',labels)
+        self.assertIn('최고 기록 갱신',labels)
+        self.assertEqual(len(app.buttons),3)
+        self.click(*app.ice_ui.result_buttons['retry'].center)
+        self.assertEqual(app.scene,'play')
+        self.assertEqual(app.world.time,0)
+        app.world.cleared=True;app.update(1/120,0);app.render()
+        self.click(*app.ice_ui.result_buttons['select'].center)
+        self.assertEqual(app.scene,'normal_menu')
 
     def test_update_at_30_60_120_fps_and_slow_frame(self):
         app = self.app
