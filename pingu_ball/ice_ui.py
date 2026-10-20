@@ -30,8 +30,23 @@ class IceUI:
             'tutorial_menu':(1382,28,310,90),'regular_menu':(1382,57,310,92)}.items()}
         self.list_sound={name:self.list_rect(name,rect) for name,rect in {
             'tutorial_menu':(1513,823,205,73),'regular_menu':(1467,830,250,69)}.items()}
-        self.list_sound_label={name:self.list_rect(name,rect) for name,rect in {
+        self.sound_labels={name:self.list_rect(name,rect) for name,rect in {
             'tutorial_menu':(1570,843,126,35),'regular_menu':(1534,846,160,35)}.items()}
+        self.sound_labels['menu']=pygame.Rect(1439,749,114,40)
+        self.sound_label_backgrounds={}
+        for name,rect in self.sound_labels.items():
+            # Paint the entire baked-in wording before drawing either state.
+            # A single cached face keeps the two labels visually consistent.
+            face=pygame.Surface(rect.size,pygame.SRCALPHA)
+            top,bottom=(28,161,220),(12,124,197)
+            for y in range(rect.h):
+                t=y/max(1,rect.h-1)
+                color=tuple(round(a+(b-a)*t) for a,b in zip(top,bottom))
+                pygame.draw.line(face,color,(0,y),(rect.w-1,y))
+            mask=pygame.Surface(rect.size,pygame.SRCALPHA)
+            pygame.draw.rect(mask,(255,255,255,255),mask.get_rect(),border_radius=7)
+            face.blit(mask,(0,0),special_flags=pygame.BLEND_RGBA_MULT)
+            self.sound_label_backgrounds[name]=face
         source=self.images['regular_menu']
         button=source.subsurface(self.list_rect('regular_menu',(91,345,222,58))).copy()
         self.list_play_button=pygame.transform.smoothscale(button,(151,41))

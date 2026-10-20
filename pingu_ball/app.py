@@ -96,6 +96,15 @@ class App:
                                        round(580*title_scale), round(166*title_scale))
         self.skin = WinterSkin(ROOT)
         self.ice_ui = IceUI(ROOT)
+        # Render above bitmap-font sizes, then downsample once for smooth Korean
+        # lettering without the heavy outline used by the old mute label.
+        sound_font=pygame.font.Font(self.font_path,48)
+        sound_font.set_bold(True)
+        self.sound_labels={}
+        for enabled,label in ((True,'소리 켜짐'),(False,'소리 꺼짐')):
+            image=sound_font.render(label,True,WHITE)
+            self.sound_labels[enabled]=pygame.transform.smoothscale(image,
+                (round(image.get_width()/2),round(image.get_height()/2)))
         self.map_canvas = None
         self._scaled_map = None
         self._scaled_window = None
@@ -265,7 +274,7 @@ class App:
                  'sound':self.toggle_sound}
         for name,callback in actions.items():
             self.art_button(self.ice_ui.menu_buttons[name],callback)
-        self.fitted_text('소리 켜짐' if self.sound_on else '소리 꺼짐',(1442,748,110,40),25,(247,252,255))
+        self.draw_sound_label('menu')
         if self.progress.error:self.text(self.progress.error,64,782,20,CORAL)
 
     def show_normal_menu(self):
@@ -357,10 +366,14 @@ class App:
     def draw_list_sound(self,name):
         ui=self.ice_ui
         self.art_button(ui.list_sound[name],self.toggle_sound)
-        if not self.sound_on:
-            rect=ui.list_sound_label[name]
-            pygame.draw.rect(self.canvas,(54,178,229),rect,border_radius=8)
-            self.fitted_text('소리 꺼짐',rect,23,WHITE,outline=(7,44,104))
+        self.draw_sound_label(name)
+
+    def draw_sound_label(self,name):
+        ui=self.ice_ui
+        rect=ui.sound_labels[name]
+        self.canvas.blit(ui.sound_label_backgrounds[name],rect)
+        image=self.sound_labels[self.sound_on]
+        self.canvas.blit(image,image.get_rect(center=rect.center))
 
     def quit(self):
         self.running = False
