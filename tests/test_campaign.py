@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from pingu_ball.campaign import campaign_layouts
+from pingu_ball.campaign import TILE_ADDITIONS, campaign_layouts
 from pingu_ball.config import CAMPAIGN_ID, REGULAR_STAGE_COUNT
 from pingu_ball.engine import World
 from pingu_ball.levels import make_level, make_levels
@@ -67,11 +67,12 @@ class CampaignTests(unittest.TestCase):
         for name,digest in json.loads(baseline.read_text(encoding='utf-8')).items():
             self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),digest,name)
 
-    def test_repositioning_keeps_original_block_and_item_counts(self):
+    def test_layout_counts_include_only_requested_additions_and_removals(self):
         for source in campaign_layouts():
             level=make_level(source['number'])
             self.assertEqual(len(level.platforms)+len(level.specials),
                              len(source['tiles'])+len(source.get('patrols',[]))
+                             + len(TILE_ADDITIONS.get(source['number'], []))
                              - (1 if source['number']==4 else 0))
             self.assertEqual(len(level.powerups),len(source['items']))
             self.assertFalse(any(q.id.startswith('approach') for q in level.platforms+level.specials))
@@ -181,16 +182,27 @@ class CampaignTests(unittest.TestCase):
         replay=route(5)
         self.assertTrue(replay.world.cleared)
         self.assertEqual(replay.world.failures,0)
-        for old_height in (False,True):
+        labels=[m['label'] for m in replay.milestones]
+        expected=['spring-33','spring-32','spring-31','spring-72','spring-73','launcher_left-47']
+        self.assertEqual([label for label in labels if label in expected],expected)
+        springs=[d for d in replay.world.level.specials if d.type_id==401]
+        self.assertEqual(sorted(d.y for d in springs),[320,448,576,704,832])
+        self.assertTrue(all((d.w,d.h)==(64,64) for d in springs))
+        for regression in ('fixed','old_height','missing_steps'):
             level=make_level(5)
-            if old_height:
+            if regression=='old_height':
                 next(d for d in level.specials if d.id=='spring-32').y=640
+            if regression=='missing_steps':
+                level.specials=[d for d in level.specials if d.id not in ('spring-72','spring-73')]
             world=World(level,auto_reset=False)
+            reached_launcher=False
             for direction,use,power_direction in replay.inputs:
                 world.step(direction,use_power=use,power_direction=power_direction)
+                reached_launcher |= world.last_landing=='launcher_left-47'
                 if world.failed or world.cleared: break
-            self.assertEqual(world.cleared,not old_height)
-            if not old_height: self.assertEqual(world.failures,0)
+            self.assertEqual(world.cleared,regression=='fixed')
+            self.assertEqual(reached_launcher,regression=='fixed')
+            if regression=='fixed': self.assertEqual(world.failures,0)
 
     def test_ninth_map_repositioned_tiles_reach_the_launcher_and_goal(self):
         w=World(make_level(9),auto_reset=False)

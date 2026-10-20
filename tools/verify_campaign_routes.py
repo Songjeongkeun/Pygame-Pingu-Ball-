@@ -68,12 +68,20 @@ def route(number):
         r.until(lambda:w.cleared,None,label='goal')
     elif number==5:
         r.land('normal-37',1504)
+        # Wait on the safe start deck for the later timed staircase's phase.
+        for _ in range(3): r.land('normal-37',1504)
         for name in ('launcher_left-43','launcher_left-44','launcher_left-45','launcher_left-46'):
             r.until(lambda:w.last_landing==name,1440,label=name)
             r.tick(1)
         for name,x in [('breakable-66',1376),('normal-36',1248),('normal-35',1184),
                        ('spring-33',1056),('spring-32',1184),('spring-31',1056),
-                       ('normal-26',960)]: r.land(name,x)
+                       ('spring-72',1184),('spring-73',1056),
+                       ('launcher_left-47',1184)]: r.land(name,x)
+        r.until(lambda:w.ball.x<340,None,label='fly-left')
+        r.tick(1)
+        r.until(lambda:w.ball.y>450,224,label='below-bridge')
+        for name,x in [('timed-67',288),('timed-68',416),
+                       ('timed_off-69',544),('timed_off-70',672)]: r.land(name,x)
         r.until(lambda:w.cleared,800,label='goal')
     elif number==6:
         r.land('normal-1',96)
