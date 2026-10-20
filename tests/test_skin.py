@@ -93,6 +93,24 @@ class SkinTests(unittest.TestCase):
             for block in (terrain,w.special.platforms['device']):
                 self.assert_reference(self.skin.platform(block,0,{}),f'block_launcher_{name}.png')
 
+    def test_vertical_mover_visible_body_fills_its_real_collision_square(self):
+        w=self.world(Device('lift',508,320.,320.))
+        block=w.special.platforms['lift']
+        self.assertEqual((block.w,block.h),(64,64))
+        image=self.skin.platform(block,0,{})
+        self.assertEqual(image.get_bounding_rect(min_alpha=128),pygame.Rect(0,0,64,64))
+
+    def test_document_item_art_keeps_aspect_and_transparency_at_pickup_size(self):
+        for kind,file in [('forward','item_dash.png'),('up','item_jump.png')]:
+            raw=pygame.image.load(str(ROOT/'assets/assets_v2/winter_cartoon'/file)).convert_alpha()
+            source=raw.subsurface(raw.get_bounding_rect(min_alpha=32))
+            side=max(source.get_size());square=pygame.Surface((side,side),pygame.SRCALPHA)
+            square.blit(source,source.get_rect(center=(side//2,side//2)))
+            expected=pygame.transform.smoothscale(square,(48,48))
+            actual=self.skin.image('power_'+kind,(48,48))
+            self.assertEqual(pygame.image.tobytes(actual,'RGBA'),pygame.image.tobytes(expected,'RGBA'))
+            self.assertEqual(actual.get_at((0,0)).a,0)
+
     def test_inactive_linked_ghost_is_visible_but_has_no_collision(self):
         w=self.world(Device('device',416,320.,320.,group='bridge'))
         block=w.special.platforms['device']

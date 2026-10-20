@@ -60,6 +60,19 @@ class TutorialMechanicsTests(unittest.TestCase):
         hits=w.special.candidates((132,185),(0,0),0)
         self.assertTrue(any(hit[2]=='fail' for hit in hits))
 
+    def test_patrol_outset_is_eight_pixels_and_hidden_body_is_clipped_on_all_edges(self):
+        d=Device('lion',703,100,200,options={'path':(100,200,192,64),'speed':64})
+        w=world_with(d)
+        for time,pose in [(1,(164,192,0)),(3.5,(300,232,90)),(5,(228,272,180)),(7.5,(92,232,270))]:
+            self.assertEqual(w.special.patrol_pose(d,time),pose)
+            polygon=w.special.polygons(d,time)[0]
+            xs=[p[0] for p in polygon];ys=[p[1] for p in polygon]
+            angle=pose[2]
+            if angle==0:self.assertEqual((min(ys),max(ys)),(164,200))
+            elif angle==90:self.assertEqual((min(xs),max(xs)),(292,328))
+            elif angle==180:self.assertEqual((min(ys),max(ys)),(264,300))
+            else:self.assertEqual((min(xs),max(xs)),(64,100))
+
     def test_final_gap_is_cleared_with_dash_but_not_with_the_dash_press_omitted(self):
         witness=route(10)
         self.assertTrue(witness.world.cleared)

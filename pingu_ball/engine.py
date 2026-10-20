@@ -167,6 +167,8 @@ class World:
     def __init__(self, level: Level, physics: Physics = PHYSICS, auto_reset=True):
         self.level = level
         self.physics = replace(physics, width=level.width, height=level.height)
+        from .movement import movement_endpoints
+        self.movement_endpoints = movement_endpoints(level)
         self.auto_reset = auto_reset
         self.failures = 0
         self.reset()

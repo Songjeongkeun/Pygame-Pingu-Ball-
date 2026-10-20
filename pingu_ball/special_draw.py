@@ -1,5 +1,6 @@
 """Winter-styled device symbols and collision-matched hazard rendering."""
 import math
+from functools import lru_cache
 import pygame
 from .specials import SOLID
 
@@ -74,18 +75,23 @@ def tile_image(skin,block,time,switches):
     return pygame.transform.smoothscale(image,(round(block.w),round(block.h)))
 
 
+@lru_cache(maxsize=32)
+def movement_marker_image(width,height):
+    image=pygame.Surface((width,height),pygame.SRCALPHA)
+    pygame.draw.rect(image,(100,210,241,28),(3,3,width-6,height-6),border_radius=3)
+    color=(24,77,110,205)
+    for i in range(3,width-3,11):
+        for y in (3,height-4):pygame.draw.line(image,color,(i,y),(min(i+6,width-4),y),2)
+    for i in range(3,height-3,11):
+        for x in (3,width-4):pygame.draw.line(image,color,(x,i),(x,min(i+6,height-4)),2)
+    pygame.draw.circle(image,color,(width//2,height//2),10,2)
+    return image
+
+
 def draw_movement_markers(surface, world):
-    """Range endpoints are guides, never solid blocks or hazards."""
-    color = (25, 63, 86, 220)
-    for x, y in world.level.movement_markers:
-        x, y = round(x), round(y)
-        for i in range(3, 61, 11):
-            for a, b in (((x+i,y+3),(x+min(i+6,61),y+3)),
-                         ((x+i,y+61),(x+min(i+6,61),y+61)),
-                         ((x+3,y+i),(x+3,y+min(i+6,61))),
-                         ((x+61,y+i),(x+61,y+min(i+6,61)))):
-                pygame.draw.line(surface, color, a, b, 2)
-        pygame.draw.circle(surface, color, (x+32,y+32), 10, 2)
+    """Every joined tile has the same guide at both exact turning positions."""
+    for x,y,width,height in world.movement_endpoints:
+        surface.blit(movement_marker_image(round(width),round(height)),(round(x),round(y)))
 
 
 def draw_patrols(surface,world,skin):

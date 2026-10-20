@@ -96,8 +96,9 @@ class CampaignTests(unittest.TestCase):
             left,top,width,height=d.options['path']
             poses=[w.special.patrol_pose(d,t/64) for t in range(0,round(2*(width+height)),16)]
             self.assertEqual({angle for _,_,angle in poses},{0,90,180,270})
-            for x,y,_ in poses:
-                self.assertTrue(x in (left,left+width) or y in (top,top+height))
+            for x,y,angle in poses:
+                self.assertEqual(y if angle in (0,180) else x,
+                                 {0:top-8,90:left+width+8,180:top+height+8,270:left-8}[angle])
 
     def test_tutorial_layouts_and_assets_are_unchanged(self):
         self.assertEqual(len(LAB_TYPES),10)
