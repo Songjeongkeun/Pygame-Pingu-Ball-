@@ -103,7 +103,14 @@ def route(number):
                     and min(q[0] for q in future)+20<1504<max(q[0]+q[2] for q in future)-20)
         r.until(ready_to_board,1504,seconds=40,label='wait-for-ferry')
         r.until(lambda:(w.last_landing or '').startswith('ferry'),1504,label='spring-to-ferry')
-        r.until(lambda:w.cleared,1440,label='goal')
+        r.until(lambda:w.time-w.last_landing_time<w.physics.dt*1.1
+                and (w.last_landing or '').startswith('ferry') and w.ball.x<700,
+                lambda:min(q.rect_at(w.time,w.physics)[0] for q in ferry)+32,
+                seconds=25,label='ride-left')
+        r.land('spring-27',544)
+        r.land('normal-20',672)
+        r.until(lambda:w.last_landing=='launcher_right-25' and w.ball.launch,800,label='upper-launcher')
+        r.until(lambda:w.cleared,None,label='goal')
     elif number==7:
         for name,x in [('spring-3',224),('spring-7',352),('spring-11',480),
                        ('spring-15',608),('spring-34',736),('spring-41',864)]: r.land(name,x)

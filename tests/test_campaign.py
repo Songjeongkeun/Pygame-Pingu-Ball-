@@ -140,32 +140,44 @@ class CampaignTests(unittest.TestCase):
             self.assertEqual(w.cleared,not old_range)
             self.assertEqual(w.failed,old_range)
 
-    def test_sixth_map_spring_boards_lowered_ferry_and_reaches_goal_from_spawn(self):
+    def test_sixth_map_ferry_returns_to_required_launcher_before_goal(self):
         from tools.verify_campaign_routes import route
         replay=route(6)
         self.assertTrue(replay.world.cleared)
         self.assertEqual(replay.world.failures,0)
         self.assertIn('spring-to-ferry',[m['label'] for m in replay.milestones])
+        labels=[m['label'] for m in replay.milestones]
+        expected=['ride-left','spring-27','normal-20','upper-launcher','goal']
+        self.assertEqual([label for label in labels if label in expected],expected)
         level=make_level(6)
         ferry=[d for d in level.specials if d.type_id==501]
         self.assertEqual([(d.y,d.options['travel'],d.options['speed']) for d in ferry],
                          [(704,896,96),(704,896,96)])
         self.assertEqual(level.movement_markers,[(576,704),(1472,704)])
-        self.assertEqual(level.goal[:2],(1408,576))
-        for old_height in (False,True):
+        self.assertFalse(level.show_movement_rails)
+        self.assertEqual(level.goal[:2],(1408,448))
+        self.assertTrue(any((q.x,q.y)==(1408,512) for q in level.platforms))
+        # The ferry and right spring cannot reach even the bottom of the goal.
+        for q in replay.world.platforms:
+            if q.kind=='moving' or q.id in ('spring-28','normal-22','normal-23','normal-24'):
+                height=replay.world.physics.pad_height if q.kind=='spring' else replay.world.physics.bounce_height
+                self.assertGreater(q.y-height-replay.world.physics.radius,level.goal[1]+level.goal[3])
+        for regression in ('fixed','old_ferry_height','missing_upper_launcher'):
             level=make_level(6)
-            if old_height:
+            if regression=='old_ferry_height':
                 for d in level.specials:
                     if d.type_id==501: d.y=640
+            if regression=='missing_upper_launcher':
+                level.specials=[d for d in level.specials if d.id!='launcher_right-25']
             world=World(level,auto_reset=False)
             boarded=False
             for direction,use,power_direction in replay.inputs:
                 world.step(direction,use_power=use,power_direction=power_direction)
                 boarded |= (world.last_landing or '').startswith('ferry')
                 if world.failed or world.cleared: break
-            self.assertEqual(boarded,not old_height)
-            self.assertEqual(world.cleared,not old_height)
-            if not old_height: self.assertEqual(world.failures,0)
+            self.assertEqual(boarded,regression!='old_ferry_height')
+            self.assertEqual(world.cleared,regression=='fixed')
+            if regression=='fixed': self.assertEqual(world.failures,0)
 
     def test_fourth_map_full_route_requires_fixed_spring_heights(self):
         from tools.verify_stage4 import route

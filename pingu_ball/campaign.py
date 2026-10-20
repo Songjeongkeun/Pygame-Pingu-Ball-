@@ -16,7 +16,7 @@ HINTS = ('가시를 피해 내려가고 발사 블록을 이용해 오른쪽 이
          '이동 발판에서 가시 계단 아래로 내려간 뒤 점프 블록을 따라 올라가세요.',
          '움직이는 발판의 범위를 살펴 왼쪽 아래 이글루로 가세요.',
          '시간 발판이 나타나는 때에 맞춰 가운데 이글루로 가세요.',
-         '태양을 피하고 좌우 이동 발판을 이용하세요.',
+         '이동 발판으로 왼쪽에 돌아가 위쪽 발사 블록을 타고 이글루로 가세요.',
          '점프는 ↑↑, 대시는 ←←·→→로 사용하세요.',
          '파괴 발판과 엘리베이터를 이용해 왼쪽 이글루에 도착하세요.',
          '고드름을 피하며 점프 아이템과 발사 발판을 이용하세요.',
@@ -36,7 +36,8 @@ POSITION_ADJUSTMENTS = {
     4: {('spring',23,9):(23,10), ('normal',21,6):(21,8),
         ('normal',20,5):(20,7), ('normal',19,5):(18,6)},
     5: {('spring',18,10):(18,11), ('spring',16,7):(16,9)},
-    6: {('normal',10,7):(10,9), ('normal',22,7):(22,10),
+    6: {('normal',10,7):(10,8), ('normal',22,7):(22,8),
+        ('launcher_right',12,6):(12,7),
         ('moving',12.15,10):(12.15,11), ('moving',13.15,10):(13.15,11)},
     7: {('spring',7,14):(5,12), ('spring',11,14):(7,10),
         ('spring',15,14):(9,8), ('spring',5,8):(11,6),
@@ -162,4 +163,4 @@ def make_campaign_level(index):
                  tuple(data['spawn']), (gx, gy - 4, gw, gh),
                  height=data['height'], width=data['width'], time_limit=180.,
                  preview=f'assets/stages/stage_{index:02d}.png', powerups=items, specials=devices,
-                 movement_markers=movement_markers,show_movement_rails=index!=3)
+                 movement_markers=movement_markers,show_movement_rails=index not in (3,6))
