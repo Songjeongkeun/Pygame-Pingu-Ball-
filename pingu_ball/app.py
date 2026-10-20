@@ -186,10 +186,10 @@ class App:
                          (round(x-size/2), round(y-size/2)))
 
     def fish(self, x, y, size=32, bone=False, collected=False):
-        image = self.skin.image('bone' if bone else 'fish', (size, size))
+        image = self.skin.collectible(bone,size)
         if collected:
             image = image.copy(); image.set_alpha(90)
-        self.canvas.blit(image, (round(x-size/2), round(y-size/2)))
+        self.canvas.blit(image, (round(x-image.get_width()/2), round(y-image.get_height()/2)))
 
     def igloo(self, rect):
         x, y, w, h = rect

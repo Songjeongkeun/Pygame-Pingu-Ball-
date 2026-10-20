@@ -4,7 +4,7 @@ import copy
 from pathlib import Path
 
 from .config import CAMPAIGN_ID, REGULAR_STAGE_COUNT
-from .engine import Level, Platform, PowerUp
+from .engine import Collectible, Level, Platform, PowerUp
 from .specials import Device
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -106,6 +106,11 @@ def campaign_layouts():
     return data['maps']
 
 
+def collectible_layouts():
+    """Approved center coordinates, including pickups inside breakable tiles."""
+    return json.loads((ROOT / 'assets/stages/collectibles.json').read_text(encoding='utf-8'))['maps']
+
+
 def make_campaign_level(index):
     if type(index) is not int or not 1 <= index <= REGULAR_STAGE_COUNT:
         raise ValueError(f'stage must be between 1 and {REGULAR_STAGE_COUNT}')
@@ -172,7 +177,9 @@ def make_campaign_level(index):
         movement_markers=[(left,deck[0].y),(right-64,deck[0].y)]
     # Rendering adds the same 4px snow overlap as the document image.
     gx, gy, gw, gh = data['goal']
-    return Level(index, TITLES[index - 1], HINTS[index - 1], blocks, [], [],
+    collectibles=[Collectible(q['x'],q['y'],q['value'],32)
+                  for q in collectible_layouts()[index-1]['collectibles']]
+    return Level(index, TITLES[index - 1], HINTS[index - 1], blocks, collectibles, [],
                  tuple(data['spawn']), (gx, gy - 4, gw, gh),
                  height=data['height'], width=data['width'], time_limit=180.,
                  preview=f'assets/stages/stage_{index:02d}.png', powerups=items, specials=devices,

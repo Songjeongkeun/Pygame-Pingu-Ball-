@@ -54,6 +54,16 @@ class SkinTests(unittest.TestCase):
                     block=w.special.platforms['device'];block.armed=not armed
                     self.assert_reference(self.skin.platform(block,time,switches),filename)
 
+    def test_fish_and_bone_keep_the_supplied_artwork_aspect_ratio(self):
+        for bone,filename in [(False,'item_fish.png'),(True,'item_fish_bone.png')]:
+            source=pygame.image.load(str(ROOT/'assets/assets_v2/winter_cartoon'/filename)).convert_alpha()
+            source=source.subsurface(source.get_bounding_rect(min_alpha=1))
+            expected_size=(32,round(32*source.get_height()/source.get_width()))
+            image=self.skin.collectible(bone)
+            self.assertEqual(image.get_size(),expected_size)
+            self.assertLess(image.get_height(),image.get_width())
+            self.assert_reference(image,filename)
+
     def test_moving_platform_has_the_same_two_arrow_heads_in_both_directions(self):
         expected=self.skin.image('moving')
         for direction in (-1,1):
