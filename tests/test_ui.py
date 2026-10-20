@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import pygame
-from pingu_ball.app import App, ROOT, default_save_path
+from pingu_ball.app import App, ROOT, PLAY_PRESS_SECONDS, default_save_path
 from pingu_ball.storage import Progress
 
 
@@ -40,7 +40,7 @@ class InterfaceTests(unittest.TestCase):
         pygame.quit()
         self.temp.cleanup()
 
-    def click(self, x, y, timestamp=None):
+    def click(self, x, y, timestamp=None, settle=True):
         app = self.app
         at = (round(x*app.scale+app.offset[0]), round(y*app.scale+app.offset[1]))
         data = {'button': 1, 'pos': at}
@@ -49,6 +49,9 @@ class InterfaceTests(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN, data))
         app.process_events()
         app.render()
+        if settle and app.play_press is not None:
+            app.update(PLAY_PRESS_SECONDS,0)
+            app.render()
 
     def key(self, key, pressed=True):
         event = pygame.KEYDOWN if pressed else pygame.KEYUP
@@ -204,6 +207,43 @@ class InterfaceTests(unittest.TestCase):
             self.assertTrue(pygame.mixer.music.get_busy())
             self.click(*app.ice_ui.list_back[name].center)
             self.assertEqual(app.scene,'menu')
+
+    def test_play_press_animates_before_one_stage_start_and_can_be_cancelled(self):
+        app=self.app
+        app.progress.unlocked=3
+        app.show_normal_menu()
+        app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        app.render()
+        selected=app.ice_ui.regular_play_buttons[1]
+        other=app.ice_ui.regular_play_buttons[2]
+        before=pygame.image.tobytes(app.canvas.subsurface(selected),'RGB')
+        untouched=pygame.image.tobytes(app.canvas.subsurface(other),'RGB')
+        self.click(*selected.center,settle=False)
+        self.assertEqual(app.scene,'normal_menu')
+        self.assertIsNone(app.world)
+        self.assertNotEqual(pygame.image.tobytes(app.canvas.subsurface(selected),'RGB'),before)
+        self.assertEqual(pygame.image.tobytes(app.canvas.subsurface(other),'RGB'),untouched)
+        app.update(.05,0)
+        self.click(*other.center,settle=False)
+        self.assertEqual(app.play_press,(2,.05))
+        app.update(PLAY_PRESS_SECONDS-.05,0)
+        self.assertEqual(app.scene,'play')
+        self.assertEqual(app.world.level.index,2)
+        self.assertEqual(app.world.time,0.)
+        app.update(1/60,0)
+        self.assertGreater(app.world.time,0.)
+        app.menu();app.render()
+        self.click(*selected.center,settle=False)
+        self.key(pygame.K_ESCAPE)
+        app.update(.2,0)
+        self.assertEqual(app.scene,'menu')
+        self.assertIsNone(app.play_press)
+        app.show_normal_menu();app.render()
+        self.click(*selected.center,settle=False)
+        pygame.event.post(pygame.event.Event(pygame.WINDOWFOCUSLOST))
+        app.process_events();app.update(.2,0)
+        self.assertEqual(app.scene,'normal_menu')
+        self.assertIsNone(app.play_press)
 
     def test_title_artwork_start_button_after_resize_and_return(self):
         app = self.app

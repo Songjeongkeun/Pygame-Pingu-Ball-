@@ -18,6 +18,9 @@ pills (10/12 stages) and the baked-in STAGE 1 play button, reconstructing the
 icy panel and thumbnail behind them while preserving the rest of each screen.
 All unlocked regular cards now draw the same cached play button at the same
 relative card position and size, including STAGE 1.
+Regular card clicks compress and darken the play button, then ease it back
+over 140 ms before starting the selected stage. Repeated clicks during that
+effect are ignored; leaving the menu or losing focus cancels the pending start.
 
 `pause.png` uses the approved transparent image with the bottom
 “ESC 또는 P로 돌아가기” line removed using the built-in imagegen editor.

@@ -27,6 +27,7 @@ CORAL = (212, 90, 101)
 TEAL = (39, 166, 172)
 GRADES = {6: 'B', 7: 'A', 8: 'S', 9: 'SS', 10: 'SSS'}
 DOUBLE_TAP_MS = 300
+PLAY_PRESS_SECONDS = .14
 
 
 def default_save_path():
@@ -69,6 +70,7 @@ class App:
         self.help = False
         self.lab_id = None
         self.sound_on = True
+        self.play_press = None
         self.sounds = {}
         self.music_ready = False
         self.music_playing = False
@@ -278,6 +280,7 @@ class App:
         if self.progress.error:self.text(self.progress.error,64,782,20,CORAL)
 
     def show_normal_menu(self):
+        self.play_press = None
         self.lab_id = None
         self.scene = 'normal_menu'
         self.sync_music()
@@ -288,6 +291,7 @@ class App:
 
     def draw_normal_menu(self):
         ui=self.ice_ui;name='regular_menu'
+        self.canvas.fill((114,180,225))
         ui.blit(self.canvas,name)
         self.art_button(ui.list_back[name],self.menu)
         completed = sum(str(i) in self.progress.records for i in range(1, REGULAR_STAGE_COUNT+1))
@@ -301,20 +305,41 @@ class App:
                 x,y,w,h=ui.regular_native_cards[index-1]
                 footer=ui.list_rect(name,(x+23,y+126,w-46,49))
                 self.canvas.blit(ui.regular_unlocked_footer,footer)
-                self.canvas.blit(ui.list_play_button,ui.regular_play_buttons[index-1])
+                self.draw_stage_play_button(index)
                 if record:
                     detail=f"{GRADES[record['score']]} · {record['score']}점"
                     record_x=244
                     record_y,size,line_height=126,18,23
                     self.fitted_text(detail,ui.list_rect(name,(x+record_x,y+record_y,w-record_x-26,line_height)),size,TEAL)
                     self.fitted_text(f"{record['time']:.2f}초",ui.list_rect(name,(x+record_x,y+record_y+line_height,w-record_x-26,line_height)),size,(3,40,98))
-                self.art_button(rect,lambda n=index:self.start(n))
+                self.art_button(rect,lambda n=index:self.press_stage_play(n))
         self.draw_list_sound(name)
         if self.progress.error:
             self.panel((30,778,1260,40),(249,253,255,245),8)
             self.fitted_text(self.progress.error,(40,780,1240,36),18,CORAL,False)
 
+    def press_stage_play(self,index):
+        if self.scene=='normal_menu' and 1<=index<=self.progress.unlocked and self.play_press is None:
+            self.play_press=(index,0.)
+            self.held_keys.clear()
+            self.clear_taps()
+
+    def draw_stage_play_button(self,index):
+        ui=self.ice_ui
+        rect=ui.regular_play_buttons[index-1]
+        image=ui.list_play_button
+        if self.play_press and self.play_press[0]==index:
+            # Release smoothly from a compressed, slightly darker button.
+            amount=(1-min(1,self.play_press[1]/PLAY_PRESS_SECONDS))**2
+            size=(round(rect.w*(1-.04*amount)),round(rect.h*(1-.10*amount)))
+            image=pygame.transform.smoothscale(image,size)
+            shade=round(255-24*amount)
+            image.fill((shade,shade,shade,255),special_flags=pygame.BLEND_RGBA_MULT)
+            rect=image.get_rect(center=(rect.centerx,rect.centery+round(3*amount)))
+        self.canvas.blit(image,rect)
+
     def start(self, index):
+        self.play_press = None
         self.lab_id = None
         self.world = World(expand_playfield(self.levels[index]))
         self.map_canvas = pygame.Surface((self.world.physics.width, self.world.physics.height), pygame.SRCALPHA).convert_alpha()
@@ -328,6 +353,7 @@ class App:
         self.new_record = False
 
     def show_lab_menu(self):
+        self.play_press = None
         self.scene = 'lab_menu'
         self.sync_music()
         self.lab_id = None
@@ -336,6 +362,7 @@ class App:
         self.help = False
 
     def start_special(self, type_id):
+        self.play_press = None
         from .special_lab import make_lab, resolve_lab_type
         type_id = resolve_lab_type(type_id)
         self.lab_id = type_id
@@ -353,6 +380,7 @@ class App:
     def draw_lab_menu(self):
         from .special_lab import LAB_TYPES
         ui=self.ice_ui;name='tutorial_menu'
+        self.canvas.fill((114,180,225))
         ui.blit(self.canvas,name)
         for rect,code in zip(ui.tutorial_cards,LAB_TYPES):
             self.art_button(rect,lambda c=code:self.start_special(c))
@@ -372,6 +400,7 @@ class App:
         self.canvas.blit(image,image.get_rect(center=rect.center))
 
     def quit(self):
+        self.play_press = None
         self.running = False
         self.sync_music()
 
@@ -390,6 +419,7 @@ class App:
             self.clear_taps()
 
     def menu(self):
+        self.play_press = None
         if self.lab_id is not None:
             self.show_lab_menu()
             return
@@ -407,6 +437,7 @@ class App:
         self.clear_taps()
 
     def show_title(self):
+        self.play_press = None
         self.scene = 'title'
         self.sync_music()
         self.accumulator = 0.
@@ -457,6 +488,8 @@ class App:
                            VIEW_TOP+(VIEW_HEIGHT-size[1])//2, *size)
 
     def pointer_down(self, position, timestamp):
+        if self.play_press is not None:
+            return
         at = ((position[0]-self.offset[0])/self.scale, (position[1]-self.offset[1])/self.scale)
         for rect, callback in reversed(self.buttons):
             if rect.collidepoint(at):
@@ -656,6 +689,16 @@ class App:
 
     def update(self, seconds, direction):
         self.wall_time += seconds
+        if self.play_press is not None:
+            index,elapsed=self.play_press
+            if self.scene!='normal_menu':
+                self.play_press=None
+            elif elapsed+seconds>=PLAY_PRESS_SECONDS:
+                self.start(index)
+                return  # Gameplay starts with its own first frame, after the effect.
+            else:
+                self.play_press=(index,elapsed+seconds)
+                return
         if self.scene != 'play' or not self.world or self.world.paused or self.help:
             self.accumulator = 0.
             self.clear_taps()
@@ -753,11 +796,13 @@ class App:
                                   getattr(event, 'timestamp', pygame.time.get_ticks()))
             elif event.type == pygame.FINGERUP and event.finger_id == self.active_finger:
                 self.active_finger = None
-            elif event.type == pygame.WINDOWFOCUSLOST and self.world and self.scene == 'play':
-                self.world.paused = True
-                self.accumulator = 0.
-                self.held_keys.clear()
-                self.clear_taps()
+            elif event.type == pygame.WINDOWFOCUSLOST:
+                self.play_press = None
+                if self.world and self.scene == 'play':
+                    self.world.paused = True
+                    self.accumulator = 0.
+                    self.held_keys.clear()
+                    self.clear_taps()
 
     def run(self, frames=0):
         self.render()
