@@ -43,6 +43,7 @@ POSITION_ADJUSTMENTS = {
         ('spring',15,14):(9,8), ('spring',5,8):(11,6),
         ('spring',2,5):(13,4), ('breakable',7,8):(8,12),
         ('breakable',9,8):(10,12)},
+    8: {('spring',4,9):(4,10)},
     9: {('breakable',13,9):(13,10), ('breakable',15,9):(15,10),
         ('breakable',17,9):(17,10), ('breakable',20,9):(19,10),
         ('spring',23,9):(21,9), ('launcher_left',21,6):(20,7), ('normal',1,7):(1,8)},
@@ -82,6 +83,11 @@ def fit_jump_layout(source):
         # Lower the full deck and its range together: 128px above the right spring.
         data['rails']=[[[c,r+1] for c,r in rail] for rail in data['rails']]
         data['markers']=[[c,r+1] for c,r in data['markers']]
+    if data['number']==8:
+        # The source only records the elevator rail. Keep the horizontal deck
+        # on the left, bridging the starting bank and the x=768 island.
+        data['rails'].append([[3.5,13.5],[11.5,13.5]])
+        data['markers'].extend([[3,13],[11,13]])
     data['tiles'].extend(copy.deepcopy(TILE_ADDITIONS.get(data['number'], [])))
     return data
 

@@ -249,6 +249,34 @@ class CampaignTests(unittest.TestCase):
         self.assertTrue(w.cleared,w.last_failure)
         self.assertEqual(w.level.goal[:2],(64,448))
 
+    def test_eighth_map_left_ferry_and_spring_height_from_spawn(self):
+        from tools.verify_stage8 import left_route
+        replay=left_route()
+        self.assertFalse(replay.world.failed)
+        self.assertEqual(replay.world.failures,0)
+        self.assertEqual(replay.world.last_landing,'spring-38')
+        level=make_level(8)
+        ferry=next(d for d in level.specials if d.type_id==501)
+        self.assertEqual((ferry.x,ferry.y,ferry.options['travel'],ferry.options['phase']),
+                         (192,832,512,0))
+        self.assertTrue({(192,832),(704,832)}.issubset(set(level.movement_markers)))
+        self.assertTrue({(1920,192),(1920,896)}.issubset(set(level.movement_markers)))
+        for regression in ('fixed','old_right_ferry','old_spring_height'):
+            level=make_level(8)
+            if regression=='old_right_ferry':
+                d=next(d for d in level.specials if d.type_id==501)
+                d.x=1664;d.options.update(travel=384,phase=-1472)
+            if regression=='old_spring_height':
+                next(d for d in level.specials if d.id=='spring-38').y=576
+            world=World(level,auto_reset=False)
+            reached=False
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                reached |= world.last_landing=='spring-38'
+                if world.failed or world.cleared: break
+            self.assertEqual(reached,regression=='fixed')
+            if regression=='fixed': self.assertEqual(world.failures,0)
+
     def test_old_campaign_records_reset_but_tutorial_times_survive(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/'progress.json'
