@@ -24,11 +24,12 @@ HINTS = ('가시를 피해 내려가고 발사 블록을 이용해 오른쪽 이
          '발판 둘레를 도는 바다사자를 피해 오른쪽 아래로 가세요.',
          '블록과 아이템을 조합해 오른쪽 아래 이글루에 도착하세요.')
 
-# Keep the fixed 96/144px jump heights. Stage 5 adds two spring steps to reach
-# the upper launcher; append them so existing device IDs and timer phases stay stable.
+# Keep the fixed 96/144px jump heights. Append stage 5's extra tiles so existing
+# device IDs and timer phases stay stable.
 TILE_REMOVALS = {4: {('spike', 3, 13)}}
 TILE_ADDITIONS = {5: [{'kind': 'spring', 'c': 18, 'r': 7},
-                      {'kind': 'spring', 'c': 16, 'r': 5}]}
+                      {'kind': 'spring', 'c': 16, 'r': 5},
+                      {'kind': 'normal', 'c': 15, 'r': 7}]}
 POSITION_ADJUSTMENTS = {
     3: {('spring',23,10):(21,9), ('spring',20,12):(19,11),
         ('spring',17,14):(17,13)},
