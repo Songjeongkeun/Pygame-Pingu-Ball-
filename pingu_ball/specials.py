@@ -30,6 +30,8 @@ CATALOG = {
     601: ('소행성', 'hazard'), 603: ('대포', 'hazard'),
     602: ('레드바운스', 'hazard'), 604: ('단검', 'hazard'),
     605: ('벽 단검', 'hazard'), 606: ('붉은 적', 'hazard'),
+    701: ('태양', 'hazard'), 702: ('고드름', 'hazard'),
+    703: ('바다사자', 'hazard'),
 }
 SOLID = {301,401,302,403,307,501,508,507,511,512,304,404,305,415,416,510,306,402,405,406}
 
@@ -99,6 +101,8 @@ class DevicePlatform(Platform):
         if d.type_id == 508:
             travel = o.get('travel',128.)
             y += triangle_wave(time*o.get('speed',p.platform_speed)+o.get('phase',0.),travel)
+        elif d.type_id == 501:
+            x = d.x + triangle_wave(time*o.get('speed',p.platform_speed)+o.get('phase',0.),o.get('travel',128.))
         if self.fall_at is not None:
             y += .5*o.get('gravity',p.gravity)*max(0.,time-self.fall_at)**2
         return x+self.offset[0],y+self.offset[1],w,h
@@ -161,7 +165,10 @@ class SpecialRuntime:
             o=d.options
             if d.type_id in (503,504):
                 speed=max(speed,abs(math.radians(o.get('angular_speed',90.)))*o.get('length',192.))
-            elif d.type_id in (602,604,605,606):
+            elif d.type_id == 702:
+                age=self.icicle_age(d,self.world.time)
+                speed=max(speed,o.get('gravity',self.world.physics.gravity)*max(0.,age-o.get('delay',.5)))
+            elif d.type_id in (602,604,605,606,703):
                 velocity=o.get('velocity',(96.,64.))
                 speed=max(speed,math.hypot(*velocity),o.get('speed',96.))
         return max(math.ceil(dt*240),math.ceil(speed*dt/2))
@@ -170,7 +177,14 @@ class SpecialRuntime:
         if d.id in self.platforms: return self.platforms[d.id].rect_at(time,self.world.physics)
         x,y,w,h = d.x,d.y,d.w,d.h
         o = d.options
-        if d.type_id == 602:
+        if d.type_id == 702:
+            age=self.icicle_age(d,time)
+            y += .5*o.get('gravity',self.world.physics.gravity)*max(0.,age-o.get('delay',.5))**2
+        elif d.type_id == 703:
+            cx,cy,_=self.patrol_pose(d,time)
+            w=h=o.get('size',56.)
+            x,y=cx-w/2,cy-h/2
+        elif d.type_id == 602:
             x += triangle_wave(time*o.get('speed',96.),o.get('travel',128.))
             y -= abs(math.sin(time*math.pi/o.get('period',1.2)))*o.get('bounce_height',48.)
         elif d.type_id == 604:
@@ -188,6 +202,21 @@ class SpecialRuntime:
         elif d.type_id == 606:
             x += triangle_wave(time*o.get('speed',32.),o.get('travel',0.))
         return x,y,w,h
+
+    @staticmethod
+    def icicle_age(d,time):
+        return (time+d.options.get('phase',0.))%d.options.get('period',4.)
+
+    @staticmethod
+    def patrol_pose(d,time):
+        """Center follows the joined block outline; angle is its tangent."""
+        o=d.options
+        left,top,width,height=o.get('path',(d.x,d.y,192.,64.))
+        distance=(time*o.get('speed',64.)+o.get('phase',0.))%(2*(width+height))
+        if distance<width: return left+distance,top,0
+        if distance<width+height: return left+width,top+distance-width,90
+        if distance<2*width+height: return left+2*width+height-distance,top+height,180
+        return left,top+2*(width+height)-distance,270
 
     def sync(self,time):
         w = self.world
@@ -258,7 +287,7 @@ class SpecialRuntime:
             w.events.append(('device',d.id))
         elif d.type_id in (405,406):
             count = 4 if d.type_id == 405 else 8
-            index = o.get('direction',s['shot'])%count
+            index = o.get('direction',o.get('initial_direction',0)+s['shot'])%count
             angle = -math.pi/2+index*math.tau/count
             speed = o.get('speed',w.physics.launch_speed)
             x,y,width,height=q.rect_at(w.time,w.physics)
@@ -286,8 +315,28 @@ class SpecialRuntime:
     def polygons(self,d,time):
         """Convex polygons used by both rendering and swept collisions."""
         x,y,w,h = self.rect(d,time); o,t = d.options,d.type_id
+        if t == 702:
+            if self.icicle_age(d,time)<o.get('delay',.5): return []
+            return [[(x,y),(x+w,y),(x+w,y+h),(x,y+h)]]
+        if t == 703:
+            # Only the exposed half is hazardous; the other half is hidden
+            # behind the opaque terrain, using the same tangent as rendering.
+            angle=self.patrol_pose(d,time)[2]
+            if angle==0: h/=2
+            elif angle==90: x+=w/2;w/=2
+            elif angle==180: y+=h/2;h/=2
+            else: w/=2
+            return [[(x,y),(x+w,y),(x+w,y+h),(x,y+h)]]
         if t in (201,202,211,221):
             if t == 202: x += w*3/8; y += h*3/4; w /= 4; h /= 4
+            elif t==201 and self.world.level.index==0 and any(
+                    abs(q.rect_at(time,self.world.physics)[1]-(y+h))<.01
+                    and q.rect_at(time,self.world.physics)[0]<x+w
+                    and q.rect_at(time,self.world.physics)[0]+q.w>x for q in self.world.platforms):
+                # Tutorial art overlaps the support snow by 22px. The exposed
+                # teeth start at the same visible tip, not at an invisible
+                # position above it; the hidden rocky foot stays in terrain.
+                y+=22;h-=22
             n = o.get('teeth',3)
             return [[(x+i*w/n,y+h),(x+(i+.5)*w/n,y),(x+(i+1)*w/n,y+h)] for i in range(n)]
         if t in (502,503,504):
@@ -301,6 +350,9 @@ class SpecialRuntime:
             return [[(cx-nx,cy-ny),(ex-nx,ey-ny),(ex+nx,ey+ny),(cx+nx,cy+ny)]]
         if t == 303:
             if (time+o.get('phase',0.))%o.get('period',2.) >= o.get('active_for',1.): return []
+            points=self.spark_outline(d,time)
+            center=(x+w/2,y+h/2)
+            return [[center,points[i],points[(i+1)%len(points)]] for i in range(len(points))]
         if t in (601,602,604,605):
             cx,cy = x+w/2,y+h/2
             if t == 601:
@@ -310,6 +362,11 @@ class SpecialRuntime:
             return [[(cx,y if t != 601 else cy-h/2),(cx+w/2,cy),(cx,cy+h/2),(cx-w/2,cy)]]
         return [[(x,y),(x+w,y),(x+w,y+h),(x,y+h)]]
 
+    def spark_outline(self,d,time):
+        x,y,w,h=self.rect(d,time)
+        return [(x+w/2+math.cos(-math.pi/2+i*math.pi/8)*w*(.5 if i%2==0 else .23),
+                 y+h/2+math.sin(-math.pi/2+i*math.pi/8)*h*(.5 if i%2==0 else .23)) for i in range(16)]
+
     def candidates(self,start,delta,duration):
         w,p = self.world,self.world.physics
         time = w.time
@@ -317,6 +374,14 @@ class SpecialRuntime:
         for d in self.devices.values():
             if not self.enabled(d): continue
             t,o,s = d.type_id,d.options,self.state[d.id]
+            # Large image maps contain long spike/spark grids. Stationary
+            # shapes outside the complete swept bounds cannot be contacts.
+            if t in (303,201,202,211,221,306):
+                end=(start[0]+delta[0],start[1]+delta[1])
+                margin=p.radius+1.
+                if (max(start[0],end[0])+margin<d.x or min(start[0],end[0])-margin>d.x+d.w
+                        or max(start[1],end[1])+margin<d.y or min(start[1],end[1])-margin>d.y+d.h):
+                    continue
             if t in (407,408,410):
                 if time < self.teleport_until: continue
                 rect = self.rect(d,time)
@@ -333,17 +398,20 @@ class SpecialRuntime:
                 delay = o.get('delay',.5 if o.get('color','red') == 'blue' else .85)
                 if time-s['triggered'] < delay: continue
                 effect = 'repel' if o.get('color','red') == 'blue' else 'kill'
-            elif t in (303,201,202,211,221,502,503,504,601,602,604,605,606):
+            elif t in (303,201,202,211,221,502,503,504,601,602,604,605,606,701,702,703):
                 effect = 'repel' if t in (502,503,504) and o.get('color','red') == 'blue' else 'kill'
             else: continue
             if effect == 'repel' and time-s['last_effect'] < .15: continue
             hits = []
             # Relative swept translation plus midpoint/end samples for rotation.
-            times = (time,time+duration/2,time+duration) if t in (503,504) else (time,)
+            times = (time,time+duration/2,time+duration) if t in (503,504,703) else (time,)
             for sample_time in times:
                 polys = self.polygons(d,sample_time)
                 now_rect,next_rect = self.rect(d,time),self.rect(d,time+duration)
                 mx,my = next_rect[0]-now_rect[0],next_rect[1]-now_rect[1]
+                if t==702 and self.icicle_age(d,time+duration)<self.icicle_age(d,time):
+                    # Respawning is not an upward-moving collision sweep.
+                    mx=my=0.
                 if t == 601:
                     velocity = o.get('velocity',(-128.,64.)); mx,my = velocity[0]*duration,velocity[1]*duration
                 for poly in polys:
@@ -391,13 +459,17 @@ class SpecialRuntime:
             self.teleport_until = w.time+.35
             if blocked or not (p.radius <= exit_x <= p.width-p.radius and p.radius <= exit_y <= p.height-p.radius):
                 w.events.append(('teleport_blocked',name)); return
+            if b.forward_target_x is not None:
+                b.forward_target_x+=exit_x-b.x
             b.x,b.y = exit_x,exit_y
             w.events.append(('teleport',(name,other.id)))
         elif effect == 'stomp':
             s['destroyed'] = True
+            b.forward_target_x = None
             b.y = self.rect(d,w.time)[1]-p.radius-1e-4
             b.vy = -p.bounce_speed; b.launch = False
             w.events.append(('stomp',name))
+            w.events.append(('bounce',name))
         else:
             s['last_effect'] = w.time
             nx,ny = normal or (0.,-1.)
@@ -405,11 +477,13 @@ class SpecialRuntime:
             b.vx,b.vy = nx*speed,ny*speed
             b.x += nx*.01; b.y += ny*.01
             b.launch = False
+            b.forward_target_x = None
             # Retain the horizontal impulse for a short, explicit period.
             if abs(nx) > .1:
                 b.boost_direction = 1 if nx > 0 else -1
                 b.boost_until = w.time+.15
             w.events.append(('repel',name))
+            w.events.append(('bounce',name))
 
     def observe(self):
         return [{'id':d.id,'type_id':d.type_id,'name':CATALOG[d.type_id][0],

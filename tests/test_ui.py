@@ -57,14 +57,22 @@ class InterfaceTests(unittest.TestCase):
 
     def test_locked_cards_and_automatic_tutorial_start(self):
         self.click(*self.app.title_start.center)
-        self.click(500, 350)
-        self.assertEqual(self.app.scene, 'menu')
-        self.click(200, 350)
+        self.click(1150,550)
+        self.assertEqual(self.app.scene,'normal_menu')
+        self.click(572, 280)
+        self.assertEqual(self.app.scene,'normal_menu')
+        self.key(pygame.K_ESCAPE);self.app.render()
+        self.click(400,550)
+        self.assertEqual(self.app.scene,'lab_menu')
+        self.click(1100,70)
+        self.assertEqual(self.app.scene,'lab_menu')
+        self.click(200,240)
         self.assertEqual(self.app.scene, 'play')
         self.assertEqual(self.app.world.level.index, 0)
+        initial_y=self.app.world.ball.y
         self.app.update(1/60, 0)
         self.assertGreater(self.app.world.time, 0)
-        self.assertGreater(self.app.world.ball.y, 594.)
+        self.assertGreater(self.app.world.ball.y, initial_y)
 
     def test_pause_resume_and_r_reset_clear_input(self):
         app = self.app
@@ -133,9 +141,33 @@ class InterfaceTests(unittest.TestCase):
         app.render()
         self.assertAlmostEqual(app.scale, .5)
         self.assertEqual(app.offset, (0, 142))
-        self.click(200, 350)
+        self.click(400,550)
+        self.click(1100,70)
+        self.assertEqual(app.scene,'lab_menu')
+        self.click(200,240)
         self.assertEqual(app.scene, 'play')
         self.assertEqual(app.canvas.get_size(), (1600, 832))
+
+    def test_normal_and_tutorial_lists_keep_their_own_return_paths(self):
+        app=self.app
+        self.click(*app.title_start.center)
+        self.click(1150,550)
+        app.progress.unlocked=12;app.render()
+        # All twelve document maps are separate from the tutorial list.
+        for index in range(1,13):
+            self.click(200+(index-1)%4*372,280+(index-1)//4*160)
+            self.assertEqual(app.world.level.index,index)
+            app.menu();app.render();self.assertEqual(app.scene,'normal_menu')
+        self.click(200,705);self.assertEqual(app.scene,'normal_menu')
+        self.key(pygame.K_ESCAPE);app.render();self.assertEqual(app.scene,'menu')
+        self.click(400,550);self.assertEqual(app.scene,'lab_menu')
+        self.click(200,240);self.assertIsNotNone(app.lab_id)
+        app.menu();app.render();self.assertEqual(app.scene,'lab_menu')
+        self.click(1100,70);self.assertEqual(app.scene,'lab_menu')
+        self.click(200,240);self.assertEqual(app.lab_id,301)
+        app.world.cleared=True;app.update(.02,0);app.next_stage()
+        self.assertEqual(app.scene,'play')
+        self.assertEqual(app.lab_id,401)
 
     def test_title_artwork_start_button_after_resize_and_return(self):
         app = self.app
@@ -159,7 +191,7 @@ class InterfaceTests(unittest.TestCase):
     def test_pickup_changes_sprite_and_double_click_uses_clicked_side(self):
         app = self.app
         for sign in (-1, 1):
-            app.start(1)
+            app.start(7)
             item = app.world.level.powerups[0]
             app.world.ball.x, app.world.ball.y = item.x, item.y
             app.update(1/120, 0)
@@ -169,7 +201,7 @@ class InterfaceTests(unittest.TestCase):
             b = app.world.ball
             rect = pygame.Rect(round(b.x-14), round(b.y-14), 28, 28)
             self.assertEqual(app.map_canvas.subsurface(rect).get_at((14, 14)),
-                             app.skin.image('ball_charged', (28, 28)).get_at((14, 14)))
+                             app.skin.image('ball_forward', (28, 28)).get_at((14, 14)))
             x = app.map_view.left+30 if sign < 0 else app.map_view.right-30
             self.click(x, 300, 100)
             self.assertIsNone(app.pending_power_direction)
@@ -228,7 +260,7 @@ class InterfaceTests(unittest.TestCase):
 
     def test_final_stage_ending_screen(self):
         app = self.app
-        app.start(7)
+        app.start(12)
         app.world.cleared = True
         app.update(.02, 0)
         app.render()
@@ -237,13 +269,13 @@ class InterfaceTests(unittest.TestCase):
 
     def test_all_reference_maps_fit_between_hud_and_footer(self):
         app = self.app
-        self.assertEqual(set(app.previews), set(range(1, 7)))
-        for stage in range(1, 7):
+        self.assertEqual(set(app.previews), set(range(1, 13)))
+        for stage in range(1, 13):
             app.start(stage)
             app.render()
             self.assertGreaterEqual(app.map_view.top, 64)
             self.assertLessEqual(app.map_view.bottom, 778)
-            self.assertEqual(app.map_canvas.get_size(), (1600, 960))
+            self.assertEqual(app.map_canvas.get_size(), (app.world.level.width, app.world.level.height))
             # Empty world pixels stay transparent: there is one continuous background.
             self.assertEqual(app.map_canvas.get_at((800, 0)).a, 0)
         arrow = app.skin.image('moving')

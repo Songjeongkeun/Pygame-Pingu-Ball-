@@ -24,25 +24,22 @@ def tile_image(skin,block,time,switches):
     d,runtime=block.device,block.runtime
     t,s,o=d.type_id,runtime.state[d.id],d.options
     if block.destroyed: return None
+    if t in (301,401,302,501,415,416,402):
+        return skin.base_platform(block,time,switches)
     active=block.active(time,switches)
-    name={301:'breakable',401:'spring',302:'timed',501:'moving',415:'switch',416:'linked',402:'launcher_right' if block.arrow>0 else 'launcher_left'}.get(t,'normal')
     if not active:
         if t==305:
             image=pygame.Surface((64,64),pygame.SRCALPHA)
             pygame.draw.rect(image,CYAN,(3,3,58,58),3,border_radius=6)
             return pygame.transform.smoothscale(image,(round(block.w),round(block.h)))
-        if t not in (302,416): return None
-        name='timed_off' if t==302 else 'linked'
-    if t==302 and active and (time+block.phase)%block.period >= block.active_for-block.warning:
-        name='timed_warning'
-    if t==415 and not block.armed: name='switch_on'
-    image=skin.image(name).copy()
+        return None
+    image=skin.image('normal').copy()
     if t==403: arrow(image,(32,22),(32,50),GOLD)
     elif t==307:
         pygame.draw.arc(image,GOLD,(12,19,40,35),math.pi,math.tau,5)
         arrow(image,(31,42),(45,27),GOLD,4)
     elif t==508:
-        arrow(image,(32,45),(32,17),GOLD,4); arrow(image,(32,22),(32,51),CYAN,4)
+        return skin.image('moving_vertical',(block.w,block.h))
     elif t==507:
         pygame.draw.rect(image,CYAN,(6,18,7,39),border_radius=2)
         for y in (24,36,48): pygame.draw.lines(image,WHITE,False,[(17,y-4),(23,y),(17,y+4)],2)
@@ -74,18 +71,61 @@ def tile_image(skin,block,time,switches):
             angle=-math.pi/2+i*math.tau/count
             arrow(image,(32+math.cos(angle)*8,36+math.sin(angle)*8),(32+math.cos(angle)*23,36+math.sin(angle)*23),GOLD,3)
         pygame.draw.circle(image,INK,(32,36),9); pygame.draw.circle(image,RED,(32,36),5)
-    if not active: image.set_alpha(65)
     return pygame.transform.smoothscale(image,(round(block.w),round(block.h)))
+
+
+def draw_movement_markers(surface, world):
+    """Range endpoints are guides, never solid blocks or hazards."""
+    color = (25, 63, 86, 220)
+    for x, y in world.level.movement_markers:
+        x, y = round(x), round(y)
+        for i in range(3, 61, 11):
+            for a, b in (((x+i,y+3),(x+min(i+6,61),y+3)),
+                         ((x+i,y+61),(x+min(i+6,61),y+61)),
+                         ((x+3,y+i),(x+3,y+min(i+6,61))),
+                         ((x+61,y+i),(x+61,y+min(i+6,61)))):
+                pygame.draw.line(surface, color, a, b, 2)
+        pygame.draw.circle(surface, color, (x+32,y+32), 10, 2)
+
+
+def draw_patrols(surface,world,skin):
+    """Draw enemies behind opaque terrain so only the outside portion shows."""
+    for d in world.special.devices.values():
+        if d.type_id!=703 or not world.special.enabled(d): continue
+        cx,cy,angle=world.special.patrol_pose(d,world.time)
+        size=d.options.get('size',56.)
+        image=pygame.transform.rotate(skin.image('sea_lion',(size,size)),-angle)
+        surface.blit(image,image.get_rect(center=(round(cx),round(cy))))
 
 
 def draw_runtime(surface,world,skin):
     runtime=world.special
     for d in runtime.devices.values():
         t=d.type_id
-        if t in SOLID or runtime.state[d.id]['destroyed']: continue
+        if t in SOLID or t==703 or runtime.state[d.id]['destroyed']: continue
         x,y,w,h=runtime.rect(d,world.time)
         enabled=runtime.enabled(d)
-        if t in (407,408,410):
+        if t in (701,702) and enabled:
+            image=skin.image('sun' if t==701 else 'icicle',(w,h))
+            if t==702 and runtime.icicle_age(d,world.time)<d.options.get('delay',.5):
+                image=image.copy();image.set_alpha(90)
+            surface.blit(image,(round(x),round(y)))
+        elif t in (201,202,221) and enabled:
+            if t==202:
+                x+=w*3/8;y+=h*3/4;w/=4;h/=4
+            # Tuck the rocky foot into the snow cap below it. The PNG's
+            # rounded edges otherwise leave a visible seam at touching tiles.
+            support=any(abs(q.rect_at(world.time,world.physics)[1]-(y+h))<.01
+                        and q.rect_at(world.time,world.physics)[0]<x+w
+                        and q.rect_at(world.time,world.physics)[0]+q.w>x
+                        for q in world.platforms)
+            overlap=22. if support and t!=202 else min(4.,h/4) if support else 0.
+            image=skin.image('spike',(w,h))
+            if t==221:
+                image=image.copy()
+                image.fill((35,35,35,0),special_flags=pygame.BLEND_RGB_ADD)
+            surface.blit(image,(round(x),round(y+overlap)))
+        elif t in (407,408,410):
             color=(70,151,255) if t==407 else (180,250,255) if t==408 else (153,99,246)
             if not enabled: color=(80,106,124)
             center=(round(x+w/2),round(y+h/2))
@@ -106,6 +146,12 @@ def draw_runtime(surface,world,skin):
             polygons=runtime.polygons(d,world.time) if enabled else []
             if not polygons:
                 pygame.draw.rect(surface,(95,138,160),(x+8,y+8,w-16,h-16),2,border_radius=5)
+            if t==303 and polygons:
+                points=runtime.spark_outline(d,world.time)
+                pygame.draw.polygon(surface,(255,124,35),points)
+                pygame.draw.lines(surface,(255,225,135),True,points,2)
+                pygame.draw.circle(surface,(255,241,173),(round(x+w/2),round(y+h/2)),max(2,round(min(w,h)*.1)))
+                continue
             layer=pygame.Surface(surface.get_size(),pygame.SRCALPHA) if t==211 else surface
             for poly in polygons:
                 color=CYAN if d.options.get('color','red')=='blue' else RED if t in (303,502,503,504,602,606) else (146,220,248)

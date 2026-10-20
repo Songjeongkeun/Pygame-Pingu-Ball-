@@ -109,6 +109,9 @@ class Level:
     time_limit: float = 60.
     powerups: list[PowerUp] = field(default_factory=list)
     specials: list = field(default_factory=list)
+    width: int = 1600
+    movement_markers: list[tuple[float, float]] = field(default_factory=list)
+    show_movement_rails: bool = True
 
 
 @dataclass
@@ -122,6 +125,21 @@ class Ball:
     power_up: str | None = None
     boost_until: float = 0.
     boost_direction: int = 0
+    forward_direction: int = 0
+    forward_target_x: float | None = None
+    reserve_power_up: str | None = None
+
+    @property
+    def held_powerups(self):
+        return tuple(kind for kind in (self.power_up,self.reserve_power_up) if kind is not None)
+
+    def collect_power_up(self,kind):
+        held=set(self.held_powerups)
+        held.add(kind)
+        # Dash precedes jump, independent of pickup order. Duplicates do not
+        # add charges; each distinct kind can be used once.
+        self.power_up='forward' if 'forward' in held else 'up'
+        self.reserve_power_up='up' if len(held)==2 else None
 
 
 def advance_x(v, target, acceleration, time):
@@ -148,7 +166,7 @@ def crossing_time(position, velocity, acceleration, boundary, duration, near):
 class World:
     def __init__(self, level: Level, physics: Physics = PHYSICS, auto_reset=True):
         self.level = level
-        self.physics = replace(physics, height=level.height)
+        self.physics = replace(physics, width=level.width, height=level.height)
         self.auto_reset = auto_reset
         self.failures = 0
         self.reset()
@@ -222,19 +240,25 @@ class World:
             raise ValueError('power direction must be -1, 0 or 1')
         b, p = self.ball, self.physics
         kind = b.power_up
-        b.power_up = None
+        b.power_up,b.reserve_power_up = b.reserve_power_up,None
         b.launch = False
         b.boost_until = self.time
+        b.forward_target_x = None
         if kind == 'forward':
-            b.boost_direction = direction or 1
-            b.vx = b.boost_direction*p.forward_jump_speed
-            b.vy = -p.bounce_speed
-            b.boost_until = self.time+p.forward_jump_duration
+            b.forward_direction = direction or 1
+            b.forward_target_x = b.x+b.forward_direction*p.forward_jump_distance
+            b.vx = b.forward_direction*p.forward_jump_speed
+            b.vy = -p.forward_jump_up_speed
         else:
             b.vx = 0.
             b.vy = -p.power_up_speed
         self.events.append(('power_use', kind))
         return True
+
+    def _finish_forward_jump(self):
+        b=self.ball
+        if b.forward_target_x is not None and (b.forward_target_x-b.x)*b.forward_direction<=EPS:
+            b.forward_target_x=None
 
     def _side_motion(self, direction, duration):
         """Constrain only motion into touching walls, until their side is cleared."""
@@ -242,8 +266,15 @@ class World:
         target = direction*p.max_speed*self.special.speed_scale()
         interval = duration
         if self.time < b.boost_until-EPS:
-            target = b.boost_direction*p.forward_jump_speed
+            target = b.boost_direction*p.max_speed*2
             interval = min(interval, b.boost_until-self.time)
+        if b.forward_target_x is not None:
+            distance=(b.forward_target_x-b.x)*b.forward_direction
+            if distance<=EPS:
+                b.forward_target_x=None
+            else:
+                target=b.forward_direction*p.forward_jump_speed
+                interval=min(interval,distance/p.forward_jump_speed)
         walls = [((-40., -40., 40., p.height+100.), 0.),
                  ((p.width, -40., 40., p.height+100.), 0.)]
         for q in self.platforms:
@@ -267,6 +298,8 @@ class World:
                 continue
             if self.time < b.boost_until and target*side < 0:
                 b.boost_until = self.time
+            if b.forward_target_x is not None and target*side < 0:
+                b.forward_target_x=None
             if b.launch and (b.vx-speed)*side < 0:
                 b.launch = False
             if side < 0:
@@ -294,8 +327,10 @@ class World:
         self.last_landing_time = self.time
         self.events.append(('land', q.id))
         b.boost_until = self.time
-        if q.kind == 'breakable' and q.break_at is None:
-            q.break_at = self.time+p.break_delay
+        b.forward_target_x = None
+        if q.kind == 'breakable':
+            q.break_at = self.time
+            q.destroyed = True
         if q.kind == 'switch' and q.armed:
             self.switches[q.group] = not self.switches.get(q.group, False)
             q.armed = False
@@ -309,6 +344,8 @@ class World:
             b.vy = -p.pad_speed if q.kind == 'spring' else -p.bounce_speed
             b.y -= 1e-6
         self.special.land(q)
+        if not b.launch and b.vy < 0:
+            self.events.append(('bounce', q.id))
 
     def _piece(self, direction, duration, _depth=0):
         b, p = self.ball, self.physics
@@ -391,18 +428,18 @@ class World:
                     fraction = sweep_point_rect(start, delta, fish.rect)
                     if fraction is not None:
                         candidates.append((fraction, 1, 'fish', i))
-            if b.power_up is None:
-                for i, item in enumerate(self.level.powerups):
-                    if i not in self.collected_powerups:
-                        fraction = sweep_point_rect(start, delta, item.rect)
-                        if fraction is not None:
-                            candidates.append((fraction, 1, 'powerup', i))
+            for i, item in enumerate(self.level.powerups):
+                if i not in self.collected_powerups:
+                    fraction = sweep_point_rect(start, delta, item.rect)
+                    if fraction is not None:
+                        candidates.append((fraction, 1, 'powerup', i))
             fraction = sweep_point_rect(start, delta, self.level.goal)
             if fraction is not None:
                 candidates.append((fraction, 2, 'goal', None))
             candidates.extend(solids)
             if not candidates:
                 b.x += dx; b.y += dy; b.vx = next_vx; b.vy += gravity*interval
+                self._finish_forward_jump()
                 self.time += interval
                 remaining -= interval
                 continue
@@ -412,6 +449,7 @@ class World:
             traveled, vx = (b.vx*elapsed, b.vx) if b.launch else advance_x(b.vx, target, accel, elapsed)
             b.x += traveled; b.y += b.vy*elapsed+.5*gravity*elapsed**2
             b.vx = vx; b.vy += gravity*elapsed
+            self._finish_forward_jump()
             self.time += elapsed
             remaining -= elapsed
             if any(q[2] == 'fail' for q in simultaneous):
@@ -424,12 +462,14 @@ class World:
             for event in simultaneous:
                 if event[2] == 'fish':
                     self.collected.add(event[3]); self.events.append(('fish', event[3]))
-                elif event[2] == 'powerup' and b.power_up is None:
+                elif event[2] == 'powerup':
                     self.collected_powerups.add(event[3])
-                    b.power_up = self.level.powerups[event[3]].kind
-                    self.events.append(('powerup', b.power_up))
+                    kind=self.level.powerups[event[3]].kind
+                    b.collect_power_up(kind)
+                    self.events.append(('powerup',kind))
             if any(q[2] == 'goal' for q in simultaneous):
                 self.cleared = True; b.vx = b.vy = 0.; b.launch = False
+                b.forward_target_x=None
                 self.events.append(('clear', None))
                 return False
             hits = [q for q in simultaneous if q[2] in ('solid', 'wall')]
@@ -449,15 +489,19 @@ class World:
                     self._land(tops[0])
                 for _, _, kind, payload in hits:
                     q, normal = payload if kind == 'solid' else (None, payload)
+                    if q is not None and q.destroyed:
+                        continue
                     if normal == (0., -1.):
                         continue
                     if normal == (0., 1.):
                         b.boost_until = self.time
+                        b.forward_target_x = None
                         b.y = q.rect_at(self.time,p)[1]+q.h+p.radius+1e-6 if q else p.radius+1e-6
                         if b.vy < 0: b.vy = 0.
                         b.launch = False
                     elif normal[0]:
                         b.boost_until = self.time
+                        b.forward_target_x = None
                         # Outside the flat top, a corner is a horizontal barrier.
                         # Separate to the side so gravity cannot cause zero-time re-hits.
                         side = -1 if normal[0] < 0 else 1

@@ -15,9 +15,10 @@ class Physics:
     acceleration: float = 9600.0
     deceleration: float = 14400.0
     hz: int = 120
-    break_delay: float = 0.5
+    break_delay: float = 0.0
     power_up_height: float = 192.0
-    forward_jump_duration: float = 0.3
+    forward_jump_distance: float = 256.0
+    forward_jump_height: float = 32.0
 
     @property
     def gravity(self):
@@ -45,7 +46,12 @@ class Physics:
 
     @property
     def forward_jump_speed(self):
-        return self.max_speed * 2
+        flight=math.sqrt(8*self.forward_jump_height/self.gravity)
+        return self.forward_jump_distance/flight
+
+    @property
+    def forward_jump_up_speed(self):
+        return math.sqrt(2*self.gravity*self.forward_jump_height)
 
     @property
     def power_up_speed(self):
@@ -57,3 +63,5 @@ class Physics:
 
 
 PHYSICS = Physics()
+REGULAR_STAGE_COUNT = 12
+CAMPAIGN_ID = 'document-stages-v1'

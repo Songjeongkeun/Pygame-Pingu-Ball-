@@ -73,12 +73,13 @@ class PhysicsTests(unittest.TestCase):
         self.assertEqual(velocity, 0.)
 
     def test_entry_restart_and_failure_start_without_input(self):
-        world = World(make_levels()[5])
+        world = World(make_levels()[6])
         initial = world.ball.y
-        self.assertEqual(initial, 384-110)
+        floor = min(q.y for q in world.platforms if q.x <= world.ball.x <= q.x+q.w)
+        self.assertEqual(initial, floor-110)
         for _ in range(54):
             world.step(0)
-        self.assertAlmostEqual(world.ball.y, 370., places=4)
+        self.assertAlmostEqual(world.ball.y, floor-P.radius, places=4)
         self.assertAlmostEqual(world.time, .45)
         ferry = next(q for q in world.platforms if q.kind == 'moving')
         self.assertNotEqual(ferry.rect_at(world.time), ferry.rect_at(0))
@@ -219,6 +220,7 @@ class CollisionTests(unittest.TestCase):
                     self.assertFalse(world.ball.launch)
                     self.assertFalse(world.switches)
                     self.assertIsNone(world.platforms[0].break_at)
+                    self.assertFalse(world.platforms[0].destroyed)
                     self.assertAlmostEqual(world.ball.vy, 120.+P.gravity*.2, places=5)
                     self.assertAlmostEqual(world.ball.y, 280.+120.*.2+.5*P.gravity*.2**2, places=4)
 
@@ -368,22 +370,40 @@ class CollisionTests(unittest.TestCase):
 
 
 class SpecialBlockTests(unittest.TestCase):
-    def test_breakable_timer_and_reset(self):
-        world = empty_world([Platform('break', 0, 640, 1600, kind='breakable')])
+    def test_breakable_disappears_on_landing_but_keeps_bounce_and_resets(self):
+        world = empty_world([Platform('break', 0, 640, 1600, kind='breakable')], auto_reset=False)
         world.ball.y = 626.
         world.ball.vy = 1.
         world.step(0)
         block = world.platforms[0]
-        self.assertAlmostEqual(block.break_at, .5, places=5)
-        for _ in range(58):
-            world.step(0)
-        self.assertFalse(block.destroyed)
-        for _ in range(3):
-            world.step(0)
         self.assertTrue(block.destroyed)
+        self.assertFalse(block.active(world.time,world.switches))
+        self.assertAlmostEqual(block.break_at,world.last_landing_time)
+        self.assertLess(world.ball.vy,0.)
+        first_landing = world.last_landing_time
+        world.step(0,.94)
+        self.assertGreater(world.ball.y,626.)
+        self.assertGreater(world.ball.vy,0.)
+        self.assertEqual(world.last_landing_time,first_landing)
+        self.assertFalse(world.failed)
         world.reset()
         self.assertFalse(world.platforms[0].destroyed)
         self.assertIsNone(world.platforms[0].break_at)
+        self.assertTrue(world.platforms[0].active(0.,{}))
+
+    def test_breakable_side_and_bottom_contacts_do_not_destroy_it(self):
+        for side in ('side','bottom'):
+            with self.subTest(side=side):
+                world=empty_world([Platform('break',256.,300.,kind='breakable')],auto_reset=False)
+                if side == 'side':
+                    world.ball.x,world.ball.y=242.,330.
+                    world.step(1,.1)
+                else:
+                    world.ball.x,world.ball.y,world.ball.vy=288.,380.,-300.
+                    world.step(0,.1)
+                self.assertFalse(world.platforms[0].destroyed)
+                self.assertIsNone(world.platforms[0].break_at)
+                self.assertIsNone(world.last_landing)
 
     def test_switch_requires_full_horizontal_exit_to_rearm(self):
         world = empty_world([Platform('switch', 96, 640, kind='switch', group='A')])
@@ -539,7 +559,8 @@ class ProgressTests(unittest.TestCase):
                                         {'0': {'score': None, 'time': 8.}, '1': {'score': 10, 'time': 12.}}}))
             progress = Progress(path)
             self.assertEqual(progress.records['0'], {'cleared': True})
-            self.assertEqual(progress.records['1']['score'], 10)
+            self.assertNotIn('1', progress.records)
+            self.assertEqual(progress.unlocked, 1)
 
     def test_corrupt_and_nonfinite_save(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -558,18 +579,15 @@ class EnvironmentTests(unittest.TestCase):
         observation, _ = env.reset()
         self.assertEqual(observation['stage'], 7)
         self.assertEqual(observation['goal'], env.world.level.goal)
-        self.assertEqual(len(observation['collectibles']), 4)
-        self.assertEqual([item['value'] for item in observation['collectibles']], [1, 1, 1, -1])
-        self.assertTrue(all(not item['collected'] for item in observation['collectibles']))
-        self.assertEqual(observation['spikes'][0]['triangles'], env.world.level.spikes[0].triangles)
-        linked = next(block for block in observation['platforms'] if block['kind'] == 'linked')
-        self.assertEqual(linked['group'], 'A')
-        self.assertFalse(linked['active'])
+        self.assertEqual(observation['collectibles'], [])
+        self.assertTrue(any(item['type_id'] == 701 for item in observation['specials']))
+        self.assertTrue(any(item['kind'] == 'timed' for item in observation['platforms']))
         # A plain data observation can be stored or sent to a separate learner.
         json.dumps(observation, allow_nan=False)
 
     def test_item_rewards_and_collection_flags(self):
         env = Environment(7)
+        env.world = empty_world(fish=[Collectible(672.,366.), Collectible(64.,650.,-1)], auto_reset=False)
         env.world.ball.x, env.world.ball.y = 672., 366.
         observation, reward, terminated, truncated, _ = env.step(0)
         self.assertEqual(reward, 1)
@@ -580,13 +598,13 @@ class EnvironmentTests(unittest.TestCase):
         env.world.ball.x, env.world.ball.y = 64., 650.
         observation, reward, _, _, _ = env.step(0)
         self.assertEqual(reward, -1)
-        self.assertTrue(observation['collectibles'][3]['collected'])
+        self.assertTrue(observation['collectibles'][1]['collected'])
 
     def test_repeated_episodes_reset_all_learning_state(self):
         env = Environment(7)
         initial, _ = env.reset()
         for _ in range(20):
-            env.world.collected = {0, 3}
+            env.world.collected_powerups = {0, 1}
             env.world.switches['A'] = True
             env.world.platforms[0].destroyed = True
             env.world.ball.y = 900.
@@ -595,7 +613,7 @@ class EnvironmentTests(unittest.TestCase):
             self.assertEqual(observation, initial)
 
     def test_observation_contains_input_and_dynamic_state(self):
-        env = Environment(5)
+        env = Environment(6)
         observation, info = env.reset()
         self.assertEqual(observation['previous_action'], 0)
         observation, _, terminated, truncated, _ = env.step(1)
@@ -617,7 +635,7 @@ class EnvironmentTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             env.step(0)
         observation, _ = env.reset()
-        self.assertEqual(observation['ball'][1], 594.)
+        self.assertEqual(observation['ball'][1], 274.)
         self.assertFalse(observation['failed'])
 
     def test_success_and_time_limit(self):
@@ -643,65 +661,58 @@ class EnvironmentTests(unittest.TestCase):
 
 class LevelTests(unittest.TestCase):
     def test_scores_and_grades(self):
-        world = World(make_levels()[7])
+        world = empty_world(fish=[Collectible(672.,366.), Collectible(960.,366.),
+                                  Collectible(1280.,366.), Collectible(64.,650.,-1)])
         for collected, score, grade in [({3}, 6, 'B'), (set(), 7, 'A'), ({0}, 8, 'S'), ({0, 1}, 9, 'SS'), ({0, 1, 2}, 10, 'SSS')]:
             world.collected = collected
             self.assertEqual((world.score, world.grade), (score, grade))
         self.assertIsNone(World(make_levels()[0]).grade)
 
-    def test_eight_stages_grid_counts_and_safe_spawns(self):
+    def test_twelve_document_stages_have_native_tiles_and_safe_spawns(self):
         levels = make_levels()
-        self.assertEqual(len(levels), 8)
-        for level in levels:
-            reference = 1 <= level.index <= 6
-            self.assertEqual(sum(f.value > 0 for f in level.collectibles), 0 if reference else 1 if level.index == 0 else 3)
-            self.assertEqual(sum(f.value < 0 for f in level.collectibles), 1 if level.index == 7 else 0)
-            self.assertEqual(len({p.id for p in level.platforms}), len(level.platforms))
-            for block in level.platforms:
-                support = block.id.startswith('spike-base-')
-                self.assertEqual((block.x % 64, block.y % 64, block.w, block.h),
-                                 (0, 48 if support else 0, 64, 16 if support else 64))
-                self.assertTrue(0 <= block.x < 1600 and 0 <= block.y <= level.height-block.h)
+        self.assertEqual(len(levels), 13)
+        for level in levels[1:]:
+            world = World(level, auto_reset=False)
+            self.assertFalse(level.collectibles)
+            self.assertEqual(len({p.id for p in world.platforms}), len(world.platforms))
+            for block in world.platforms:
+                self.assertEqual((block.w, block.h), (64, 64))
+                x,y,w,h = block.rect_at(0)
+                self.assertTrue(0 <= x < level.width and 0 <= y <= level.height-h)
                 self.assertFalse(circle_rect_overlap(*level.spawn, P.radius, block.rect_at(0)))
-            for fish in level.collectibles:
-                self.assertFalse(any(circle_rect_overlap(fish.x, fish.y, fish.size/2, q.rect_at(0)) for q in level.platforms))
-            for spike in level.spikes:
-                self.assertEqual((spike.w, spike.h), (64, 48) if reference else (128, 64))
+            gx,gy,_,_ = level.goal
+            self.assertTrue(any(p.kind=='normal' and p.x==gx and p.y==gy+64 for p in level.platforms))
+            for _ in range(120): world.step(0)
+            self.assertFalse(world.failed, (level.index, world.last_failure))
+            self.assertGreater(world.time, .99)
 
-    def test_reference_map_endpoints_and_nonphysical_movement_markers(self):
+    def test_corrected_endpoints_and_movement_markers_are_not_solid(self):
         levels = make_levels()
-        self.assertEqual(levels[3].goal[:2], (768., 576.))
-        self.assertEqual(levels[5].goal[:2], (64., 768.))
-        sixth = levels[6]
-        self.assertEqual(sixth.goal[:2], (896., 576.))
-        self.assertFalse(any(q.kind == 'portal' for q in sixth.platforms))
-        ferry = [q for q in sixth.platforms if q.kind == 'moving']
-        self.assertEqual(len(ferry), 3)
-        self.assertEqual(min(q.x for q in ferry), 128.)
-        self.assertEqual(max(q.x+q.w+q.travel for q in ferry), 1472.)
-        for level in levels[1:7]:
-            self.assertTrue(Path(level.preview).is_file())
-            self.assertEqual(level.height, 960)
+        self.assertEqual(levels[5].goal[:2], (768,576))
+        self.assertEqual(levels[8].goal[:2], (64,384))
+        self.assertEqual(levels[12].goal[:2], (1664,864))
+        self.assertTrue(levels[4].movement_markers)
+        world=World(levels[4])
+        marker=levels[4].movement_markers[0]
+        self.assertFalse(any(p.rect_at(0)[:2]==marker for p in world.platforms))
+        self.assertEqual({d.type_id for d in levels[11].specials} & {701,702,703}, {701,702,703})
+        for level in levels[1:]: self.assertTrue(Path(level.preview).is_file())
 
-    def test_learning_uses_map_height_and_default_episode_duration(self):
-        env = Environment(5)
-        observation, _ = env.reset()
-        self.assertEqual(observation['world_size'], (1600, 960))
-        self.assertEqual(observation['time_remaining'], 120.)
-        env.world.ball.y = 900.
-        self.assertFalse(env.step(0)[2])
-        env.world.ball.y = 975.
+    def test_learning_uses_document_dimensions_and_episode_duration(self):
+        env=Environment(8)
+        observation,_=env.reset()
+        self.assertEqual(observation['world_size'],(2240,960))
+        self.assertEqual(observation['time_remaining'],180.)
+        env.world.ball.y=975.
         self.assertTrue(env.step(0)[2])
-        self.assertEqual(env.reset(stage=0)[0]['time_remaining'], 60.)
-        env = Environment(5, time_limit=30.)
-        self.assertEqual(env.reset(stage=0)[0]['time_remaining'], 30.)
+        self.assertEqual(env.reset(stage=0)[0]['time_remaining'],60.)
+        env=Environment(5,time_limit=30.)
+        self.assertEqual(env.reset(stage=0)[0]['time_remaining'],30.)
 
-    def test_all_sixteen_real_input_routes(self):
-        for level in make_levels():
-            for collect_all in (False, True):
-                with self.subTest(stage=level.index, all_fish=collect_all):
-                    result = run_route(level, collect_all)
-                    self.assertTrue(result['passed'], str(result))
+    def test_removed_regular_routes_do_not_claim_to_validate_new_maps(self):
+        result=run_route(make_levels()[1],False)
+        self.assertFalse(result['passed'])
+        self.assertEqual(result['reason'],'no_route_witness')
 
 
 if __name__ == '__main__':

@@ -1,81 +1,19 @@
-"""Tutorial, six image-based maps, final stage and reproducible input routes."""
-from .config import PHYSICS
-from .engine import Platform, Collectible, Spike, Level, PowerUp
-
-LEGACY_TITLES = {
-    0: ('첫 바운스', '방향키로 이동하세요. 생선은 선택 사항이며 이글루에 닿으면 성공합니다.'),
-    7: ('집으로 가는 길', '빨간 스위치로 다리를 열고 이글루로 돌아가세요.'),
-}
+"""Twelve document campaign stages plus the existing first-tutorial API alias."""
+from .config import REGULAR_STAGE_COUNT
 
 
 def make_levels():
-    return [make_level(i) for i in range(8)]
+    return [make_level(i) for i in range(REGULAR_STAGE_COUNT + 1)]
 
 
 def make_level(index):
-    if index not in range(8):
-        raise ValueError('stage must be between 0 and 7')
-    if 1 <= index <= 6:
-        from .reference_levels import make_reference_level
-        return make_reference_level(index)
-    blocks = []
-
-    def tile(name, col, row, kind='normal', **kwargs):
-        blocks.append(Platform(name, col*64, row*64, kind=kind, **kwargs))
-
-    def strip(name, first, end, row, kind='normal', **kwargs):
-        for col in range(first, end):
-            tile(f'{name}-{col}', col, row, kind, **kwargs)
-
-    strip('start', 0, 8, 11)
-    # One-tile stairs rise 64px at a time, below the 96px normal bounce.
-    tile('step-low', 3, 10)
-    tile('step-mid', 5, 9)
-    tile('step-high', 7, 8)
-    strip('upper', 9, 22, 7)
-    strip('home', 20, 25, 11)
-    spikes = []
-    base = []
-
-    if index == 7:
-        strip('lower', 8, 14, 11)
-        tile('bypass-step', 14, 10)
-        strip('bypass', 16, 19, 9)
-        strip('landing', 14, 20, 11)
-        spikes = [Spike(16*64, 10*64)]
-        base += [(928., 'land:bypass-step'), (1056., 'land:bypass'), (1280., 'below:600')]
-    else:
-        strip('lower', 8, 20, 11)
-
-    if index == 7:
-        # Both routes must open the bridge; it starts hidden and non-solid.
-        blocks = [q for q in blocks if q.id != 'start-2' and not q.id.startswith('home-2')]
-        tile('switch-A', 2, 11, 'switch', group='A')
-        strip('bridge-A', 20, 23, 11, 'linked', group='A')
-        strip('goal-floor', 23, 25, 11)
-        tile('launcher', 19, 9, 'launcher', arrow=1)
-        tile('side-time', 19, 10, 'timed', period=3.2, active_for=2.2)
-        tile('side-crumble', 22, 8, 'breakable')
-        base.insert(0, (160., 'switch:A'))
-
-    # All fish are airborne. The negative item is near the start, below the spawn apex.
-    fish = [Collectible(672., 366.), Collectible(960., 366.), Collectible(1280., 366.),
-            Collectible(64., 650., -1)]
-    all_fish = [(224., 'land:step-low'), (352., 'land:step-mid'),
-                (480., 'land:step-high'), (608., 'land:upper'),
-                (672., 'fish0'), (960., 'fish1'), (1280., 'fish2')]
-    if index == 7:
-        all_fish.insert(0, (160., 'switch:A'))
+    if type(index) is not int or not 0 <= index <= REGULAR_STAGE_COUNT:
+        raise ValueError(f'stage must be between 0 and {REGULAR_STAGE_COUNT}')
     if index == 0:
-        fish = fish[:1]
-        all_fish = all_fish[:5]
-    base.append((1504., 'goal'))
-    all_fish.append((1504., 'goal'))
-    return Level(index, *LEGACY_TITLES[index], blocks, fish, spikes,
-                 (96., 11*64-PHYSICS.radius-PHYSICS.bounce_height),
-                 (23*64., 10*64., 64., 64.), base, all_fish,
-                 powerups=[PowerUp(160., 650., 'forward'),
-                           PowerUp(384., 666., 'up') if index == 0 else PowerUp(608., 400., 'up')])
+        from .special_lab import make_lab
+        return make_lab(1)
+    from .campaign import make_campaign_level
+    return make_campaign_level(index)
 
 
 def waypoint_direction(world, target):
