@@ -1,4 +1,4 @@
-"""Replay stage 8's left ferry and both spring landings, not a full clear."""
+"""Replay stage 8's left ferry, springs and breakable bridge, not a full clear."""
 from pathlib import Path
 import json
 import sys
@@ -28,6 +28,8 @@ def left_route():
     r.land('normal-2',160)
     r.land('spring-4',120)
     r.land('spring-38',272)
+    for n,x in ((16,416),(17,480),(18,544),(19,608),(20,672),(21,736),(22,800)):
+        r.land(f'breakable-{n}',x)
     return r
 
 
@@ -36,8 +38,9 @@ def main():
     for direction,use,power_direction in replay.inputs:
         world.step(direction,use_power=use,power_direction=power_direction)
         if world.failed: break
-    passed=world.last_landing=='spring-38' and not world.failures
-    report=dict(stage=8,scope='left_ferry_and_two_springs',from_spawn=True,
+    passed=(world.last_landing=='breakable-22' and not world.failures
+            and all(world.special.platforms[f'breakable-{n}'].destroyed for n in range(16,23)))
+    report=dict(stage=8,scope='left_ferry_springs_and_breakable_bridge',from_spawn=True,
                 passed=passed,failures=world.failures,time=round(world.time,4),
                 full_clear_verified=False,milestones=replay.milestones)
     folder=ROOT/'output/campaign-routes';folder.mkdir(parents=True,exist_ok=True)

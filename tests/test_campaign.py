@@ -249,30 +249,39 @@ class CampaignTests(unittest.TestCase):
         self.assertTrue(w.cleared,w.last_failure)
         self.assertEqual(w.level.goal[:2],(64,448))
 
-    def test_eighth_map_left_ferry_and_spring_height_from_spawn(self):
+    def test_eighth_map_left_ferry_springs_and_breakable_bridge_from_spawn(self):
         from tools.verify_stage8 import left_route
         replay=left_route()
         self.assertFalse(replay.world.failed)
         self.assertEqual(replay.world.failures,0)
-        self.assertEqual(replay.world.last_landing,'spring-38')
+        self.assertEqual(replay.world.last_landing,'breakable-22')
+        for n in range(16,23):
+            self.assertTrue(replay.world.special.platforms[f'breakable-{n}'].destroyed)
+        self.assertTrue(all(not use for _,use,_ in replay.inputs))
         level=make_level(8)
         ferry=next(d for d in level.specials if d.type_id==501)
         self.assertEqual((ferry.x,ferry.y,ferry.options['travel'],ferry.options['phase']),
                          (192,832,512,0))
         self.assertTrue({(192,832),(704,832)}.issubset(set(level.movement_markers)))
         self.assertTrue({(1920,192),(1920,896)}.issubset(set(level.movement_markers)))
-        for regression in ('fixed','old_right_ferry','old_spring_height'):
+        self.assertEqual([next(d.y for d in level.specials if d.id==name)
+                          for name in ('spring-38','breakable-16','breakable-17','breakable-18')],
+                         [640,512,448,384])
+        for regression in ('fixed','old_right_ferry','old_spring_height','old_bridge_height'):
             level=make_level(8)
             if regression=='old_right_ferry':
                 d=next(d for d in level.specials if d.type_id==501)
                 d.x=1664;d.options.update(travel=384,phase=-1472)
             if regression=='old_spring_height':
                 next(d for d in level.specials if d.id=='spring-38').y=576
+            if regression=='old_bridge_height':
+                for d in level.specials:
+                    if d.id in ('breakable-16','breakable-17'): d.y=384
             world=World(level,auto_reset=False)
             reached=False
             for direction,use,power_direction in replay.inputs:
                 world.step(direction,use_power=use,power_direction=power_direction)
-                reached |= world.last_landing=='spring-38'
+                reached |= world.last_landing=='breakable-22'
                 if world.failed or world.cleared: break
             self.assertEqual(reached,regression=='fixed')
             if regression=='fixed': self.assertEqual(world.failures,0)

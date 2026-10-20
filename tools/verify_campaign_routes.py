@@ -13,7 +13,7 @@ from pingu_ball.levels import make_level
 from tools.verify_stage3 import Replay
 
 REVIEW_NOTES={
-    8: ['왼쪽 좌우 이동 발판과 점프 블록 768→640px 구간은 tools/verify_stage8.py로 실제 시작점부터 검증했다.',
+    8: ['왼쪽 이동 발판·점프 블록·파괴 블록 다리 7개는 tools/verify_stage8.py로 실제 시작점부터 검증했다.',
         '오른쪽 상하 이동 발판의 범위는 y=192~896px이다. 이글루까지의 전체 완주 경로는 미확인이다.'],
     11: ['오른쪽 640px 발판에서 512px 기둥 위로 복귀하려면 128px 상승이 필요하지만 일반 반동은 96px이다.',
          '왼쪽 점프 발판의 768→576px 구간과 중앙 상승 구간도 192px로, 144px 점프 반동과 맞지 않는다.'],
