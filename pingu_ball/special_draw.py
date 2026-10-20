@@ -98,8 +98,10 @@ def draw_patrols(surface,world,skin):
         surface.blit(image,image.get_rect(center=(round(cx),round(cy))))
 
 
-def draw_runtime(surface,world,skin):
+def draw_runtime(surface,world,skin,platform_rects=None):
     runtime=world.special
+    if platform_rects is None:
+        platform_rects=[q.rect_at(world.time,world.physics) for q in world.platforms]
     for d in runtime.devices.values():
         t=d.type_id
         if t in SOLID or t==703 or runtime.state[d.id]['destroyed']: continue
@@ -115,10 +117,8 @@ def draw_runtime(surface,world,skin):
                 x+=w*3/8;y+=h*3/4;w/=4;h/=4
             # Tuck the rocky foot into the snow cap below it. The PNG's
             # rounded edges otherwise leave a visible seam at touching tiles.
-            support=any(abs(q.rect_at(world.time,world.physics)[1]-(y+h))<.01
-                        and q.rect_at(world.time,world.physics)[0]<x+w
-                        and q.rect_at(world.time,world.physics)[0]+q.w>x
-                        for q in world.platforms)
+            support=any(abs(top-(y+h))<.01 and left<x+w and left+width>x
+                        for left,top,width,_ in platform_rects)
             overlap=22. if support and t!=202 else min(4.,h/4) if support else 0.
             image=skin.image('spike',(w,h))
             if t==221:

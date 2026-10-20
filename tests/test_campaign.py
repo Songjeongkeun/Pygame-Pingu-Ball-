@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from pingu_ball.campaign import campaign_layouts
+from pingu_ball.campaign import TILE_ADDITIONS, campaign_layouts
 from pingu_ball.config import CAMPAIGN_ID, REGULAR_STAGE_COUNT
 from pingu_ball.engine import World
 from pingu_ball.levels import make_level, make_levels
@@ -67,11 +67,13 @@ class CampaignTests(unittest.TestCase):
         for name,digest in json.loads(baseline.read_text(encoding='utf-8')).items():
             self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),digest,name)
 
-    def test_repositioning_keeps_original_block_and_item_counts(self):
+    def test_layout_counts_include_only_requested_additions_and_removals(self):
         for source in campaign_layouts():
             level=make_level(source['number'])
             self.assertEqual(len(level.platforms)+len(level.specials),
-                             len(source['tiles'])+len(source.get('patrols',[])))
+                             len(source['tiles'])+len(source.get('patrols',[]))
+                             + len(TILE_ADDITIONS.get(source['number'], []))
+                             - (1 if source['number']==4 else 0))
             self.assertEqual(len(level.powerups),len(source['items']))
             self.assertFalse(any(q.id.startswith('approach') for q in level.platforms+level.specials))
             w=World(level)
@@ -138,14 +140,99 @@ class CampaignTests(unittest.TestCase):
             self.assertEqual(w.cleared,not old_range)
             self.assertEqual(w.failed,old_range)
 
-    def test_sixth_map_repositioned_goal_is_reachable_from_existing_ferry(self):
-        w=World(make_level(6),auto_reset=False)
-        w.ball.x,w.ball.y,w.ball.vy=1504,626-1e-6,-w.physics.bounce_speed
-        for _ in range(600):
-            w.step(waypoint_direction(w,w.level.goal[0]+32))
-            if w.cleared or w.failed: break
-        self.assertTrue(w.cleared,w.last_failure)
-        self.assertEqual(w.level.goal[:2],(1408,512))
+    def test_sixth_map_ferry_returns_to_required_launcher_before_goal(self):
+        from tools.verify_campaign_routes import route
+        replay=route(6)
+        self.assertTrue(replay.world.cleared)
+        self.assertEqual(replay.world.failures,0)
+        self.assertIn('spring-to-ferry',[m['label'] for m in replay.milestones])
+        labels=[m['label'] for m in replay.milestones]
+        expected=['ride-left','spring-27','normal-20','upper-launcher','goal']
+        self.assertEqual([label for label in labels if label in expected],expected)
+        level=make_level(6)
+        ferry=[d for d in level.specials if d.type_id==501]
+        self.assertEqual([(d.y,d.options['travel'],d.options['speed']) for d in ferry],
+                         [(704,896,96),(704,896,96)])
+        self.assertEqual(level.movement_markers,[(576,704),(1472,704)])
+        self.assertFalse(level.show_movement_rails)
+        self.assertEqual(level.goal[:2],(1408,448))
+        self.assertTrue(any((q.x,q.y)==(1408,512) for q in level.platforms))
+        # The ferry and right spring cannot reach even the bottom of the goal.
+        for q in replay.world.platforms:
+            if q.kind=='moving' or q.id in ('spring-28','normal-22','normal-23','normal-24'):
+                height=replay.world.physics.pad_height if q.kind=='spring' else replay.world.physics.bounce_height
+                self.assertGreater(q.y-height-replay.world.physics.radius,level.goal[1]+level.goal[3])
+        for regression in ('fixed','old_ferry_height','missing_upper_launcher'):
+            level=make_level(6)
+            if regression=='old_ferry_height':
+                for d in level.specials:
+                    if d.type_id==501: d.y=640
+            if regression=='missing_upper_launcher':
+                level.specials=[d for d in level.specials if d.id!='launcher_right-25']
+            world=World(level,auto_reset=False)
+            boarded=False
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                boarded |= (world.last_landing or '').startswith('ferry')
+                if world.failed or world.cleared: break
+            self.assertEqual(boarded,regression!='old_ferry_height')
+            self.assertEqual(world.cleared,regression=='fixed')
+            if regression=='fixed': self.assertEqual(world.failures,0)
+
+    def test_fourth_map_full_route_requires_fixed_spring_heights(self):
+        from tools.verify_stage4 import route
+        replay=route()
+        self.assertTrue(replay.world.cleared)
+        self.assertEqual(replay.world.failures,0)
+        for regression in ('fixed','old_spring_height'):
+            with self.subTest(regression=regression):
+                level=make_level(4)
+                if regression=='old_spring_height':
+                    next(d for d in level.specials if d.id=='spring-35').y=576
+                world=World(level,auto_reset=False)
+                for direction in replay.inputs:
+                    self.assertIn(direction,(-1,0,1))
+                    world.step(direction)
+                    if world.failed or world.cleared: break
+                self.assertEqual(world.cleared,regression=='fixed')
+                self.assertEqual(world.failed,regression!='fixed')
+
+    def test_fourth_map_breakable_has_no_spike_inside_its_tile(self):
+        level=make_level(4)
+        tile=next(d for d in level.specials if d.type_id==301)
+        self.assertEqual((tile.x,tile.y),(192,768))
+        spikes=[d for d in level.specials if d.type_id==201]
+        self.assertEqual(len(spikes),11)
+        for spike in spikes:
+            self.assertFalse(tile.x<spike.x+spike.w and spike.x<tile.x+tile.w
+                             and tile.y<spike.y+spike.h and spike.y<tile.y+tile.h)
+
+    def test_fifth_map_full_route_and_original_spring_height_regression(self):
+        from tools.verify_campaign_routes import route
+        replay=route(5)
+        self.assertTrue(replay.world.cleared)
+        self.assertEqual(replay.world.failures,0)
+        labels=[m['label'] for m in replay.milestones]
+        expected=['spring-33','spring-32','spring-31','spring-72','spring-73','launcher_left-47']
+        self.assertEqual([label for label in labels if label in expected],expected)
+        springs=[d for d in replay.world.level.specials if d.type_id==401]
+        self.assertEqual(sorted(d.y for d in springs),[320,448,576,704,832])
+        self.assertTrue(all((d.w,d.h)==(64,64) for d in springs))
+        for regression in ('fixed','old_height','missing_steps'):
+            level=make_level(5)
+            if regression=='old_height':
+                next(d for d in level.specials if d.id=='spring-32').y=640
+            if regression=='missing_steps':
+                level.specials=[d for d in level.specials if d.id not in ('spring-72','spring-73')]
+            world=World(level,auto_reset=False)
+            reached_launcher=False
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                reached_launcher |= world.last_landing=='launcher_left-47'
+                if world.failed or world.cleared: break
+            self.assertEqual(world.cleared,regression=='fixed')
+            self.assertEqual(reached_launcher,regression=='fixed')
+            if regression=='fixed': self.assertEqual(world.failures,0)
 
     def test_ninth_map_repositioned_tiles_reach_the_launcher_and_goal(self):
         w=World(make_level(9),auto_reset=False)
@@ -161,6 +248,43 @@ class CampaignTests(unittest.TestCase):
             if w.cleared or w.failed: break
         self.assertTrue(w.cleared,w.last_failure)
         self.assertEqual(w.level.goal[:2],(64,448))
+
+    def test_eighth_map_left_ferry_springs_and_breakable_bridge_from_spawn(self):
+        from tools.verify_stage8 import left_route
+        replay=left_route()
+        self.assertFalse(replay.world.failed)
+        self.assertEqual(replay.world.failures,0)
+        self.assertEqual(replay.world.last_landing,'breakable-22')
+        for n in range(16,23):
+            self.assertTrue(replay.world.special.platforms[f'breakable-{n}'].destroyed)
+        self.assertTrue(all(not use for _,use,_ in replay.inputs))
+        level=make_level(8)
+        ferry=next(d for d in level.specials if d.type_id==501)
+        self.assertEqual((ferry.x,ferry.y,ferry.options['travel'],ferry.options['phase']),
+                         (192,832,512,0))
+        self.assertTrue({(192,832),(704,832)}.issubset(set(level.movement_markers)))
+        self.assertTrue({(1920,192),(1920,896)}.issubset(set(level.movement_markers)))
+        self.assertEqual([next(d.y for d in level.specials if d.id==name)
+                          for name in ('spring-38','breakable-16','breakable-17','breakable-18')],
+                         [640,512,448,384])
+        for regression in ('fixed','old_right_ferry','old_spring_height','old_bridge_height'):
+            level=make_level(8)
+            if regression=='old_right_ferry':
+                d=next(d for d in level.specials if d.type_id==501)
+                d.x=1664;d.options.update(travel=384,phase=-1472)
+            if regression=='old_spring_height':
+                next(d for d in level.specials if d.id=='spring-38').y=576
+            if regression=='old_bridge_height':
+                for d in level.specials:
+                    if d.id in ('breakable-16','breakable-17'): d.y=384
+            world=World(level,auto_reset=False)
+            reached=False
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                reached |= world.last_landing=='breakable-22'
+                if world.failed or world.cleared: break
+            self.assertEqual(reached,regression=='fixed')
+            if regression=='fixed': self.assertEqual(world.failures,0)
 
     def test_old_campaign_records_reset_but_tutorial_times_survive(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -179,6 +303,37 @@ class CampaignTests(unittest.TestCase):
             self.assertEqual(set(saved.records),{str(i) for i in range(13)})
             data=json.loads(path.read_text(encoding='utf-8'))
             self.assertEqual((data['version'],data['campaign']),(4,CAMPAIGN_ID))
+
+    def test_eleventh_map_all_springs_and_return_path_reach_goal_from_spawn(self):
+        from tools.verify_campaign_routes import route
+        replay=route(11)
+        self.assertTrue(replay.world.cleared)
+        self.assertEqual(replay.world.failures,0)
+        labels=[m['label'] for m in replay.milestones]
+        self.assertEqual([label for label in labels if label.startswith('spring-')],
+                         ['spring-33','spring-26','spring-23','spring-26','spring-33'])
+        level=make_level(11)
+        for name,position in [('spring-23',(256,768)),('spring-26',(384,640)),
+                              ('spring-33',(640,704))]:
+            d=next(d for d in level.specials if d.id==name)
+            self.assertEqual((d.x,d.y),position)
+        self.assertEqual((replay.world.physics.bounce_height,replay.world.physics.pad_height),(96,144))
+        self.assertTrue(any(q.kind=='normal' and (q.x,q.y)==(1408,576)
+                            for q in level.platforms))
+        for regression in ('fixed','old_left_spring','old_center_spring','old_return_path'):
+            level=make_level(11)
+            if regression=='old_left_spring': next(d for d in level.specials if d.id=='spring-26').y=576
+            if regression=='old_center_spring': next(d for d in level.specials if d.id=='spring-33').y=768
+            if regression=='old_return_path':
+                for q in level.platforms:
+                    if q.id=='normal-50': q.x,q.y=1280,768
+                    if q.id=='normal-57': q.x,q.y=1472,512
+            world=World(level,auto_reset=False)
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                if world.failed or world.cleared: break
+            self.assertEqual(world.cleared,regression=='fixed',regression)
+            if regression=='fixed': self.assertEqual(world.failures,0)
 
 
 if __name__=='__main__': unittest.main()

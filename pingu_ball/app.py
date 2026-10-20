@@ -1,6 +1,7 @@
 """Pygame UI with a 1600 by 832 logical canvas and proportional resizing."""
 import argparse
 from array import array
+from collections import OrderedDict
 import math
 import os
 from pathlib import Path
@@ -70,6 +71,8 @@ class App:
         self.music_ready = False
         self.music_playing = False
         self._font_cache = {}
+        self._text_cache = OrderedDict()
+        self._panel_cache = OrderedDict()
         self.font_path = self.find_font()
         self.background = pygame.image.load(str(ROOT/'assets'/'antarctica.png')).convert()
         self.background = pygame.transform.smoothscale(self.background, self.canvas.get_size())
@@ -83,6 +86,8 @@ class App:
                                        round(580*title_scale), round(166*title_scale))
         self.skin = WinterSkin(ROOT)
         self.map_canvas = None
+        self._scaled_map = None
+        self._scaled_window = None
         self.previews = {}
         for level in self.levels:
             if level.index>0 and level.preview:
@@ -106,15 +111,29 @@ class App:
             font = pygame.font.Font(self.font_path, size)
             font.set_bold(bold)
             self._font_cache[key] = font
-        image = self._font_cache[key].render(str(text), True, color)
+        render_key=(str(text),size,bold,tuple(color))
+        image=self._text_cache.get(render_key)
+        if image is None:
+            image=self._font_cache[key].render(str(text),True,color)
+            self._text_cache[render_key]=image
+            if len(self._text_cache)>128: self._text_cache.popitem(last=False)
+        else:
+            self._text_cache.move_to_end(render_key)
         rect = image.get_rect(center=(x, y)) if center else image.get_rect(topleft=(x, y))
         self.canvas.blit(image, rect)
         return rect
 
     def panel(self, rect, color=(249, 253, 255, 238), radius=20):
         rect = pygame.Rect(rect)
-        surface = pygame.Surface(rect.size, pygame.SRCALPHA)
-        pygame.draw.rect(surface, color, surface.get_rect(), border_radius=radius)
+        key=(rect.size,tuple(color),radius)
+        surface=self._panel_cache.get(key)
+        if surface is None:
+            surface=pygame.Surface(rect.size,pygame.SRCALPHA)
+            pygame.draw.rect(surface,color,surface.get_rect(),border_radius=radius)
+            self._panel_cache[key]=surface
+            if len(self._panel_cache)>16: self._panel_cache.popitem(last=False)
+        else:
+            self._panel_cache.move_to_end(key)
         self.canvas.blit(surface, rect)
 
     def button(self, label, rect, callback, primary=False):
@@ -176,7 +195,7 @@ class App:
         x, y, w, h = rect
         self.canvas.blit(self.skin.image('goal', (w, h)), (round(x), round(y)))
 
-    def tile(self, block, time, switches):
+    def tile(self, block, time, switches, occupied_tiles=None):
         if block.id.startswith('spike-base-'):
             return
         image = self.skin.platform(block, time, switches)
@@ -184,9 +203,10 @@ class App:
             return
         x, y, width, height = block.rect_at(time)
         if self.world and block.kind=='normal' and (width,height)==(64,64):
-            above=any(q.id!=block.id and q.active(time,switches)
-                      and q.rect_at(time)[:2]==(x,y-64) and (q.w,q.h)==(64,64)
-                      for q in self.world.platforms)
+            above=((x,y-64) in occupied_tiles if occupied_tiles is not None else
+                   any(q.id!=block.id and q.active(time,switches)
+                       and q.rect_at(time)[:2]==(x,y-64) and (q.w,q.h)==(64,64)
+                       for q in self.world.platforms))
             if above:
                 image=self.skin.column(128).subsurface((0,64,64,64))
         self.canvas.blit(image, (round(x), round(y)))
@@ -428,7 +448,10 @@ class App:
         finally:
             self.canvas = screen
         self.map_view = self.map_viewport()
-        self.canvas.blit(pygame.transform.smoothscale(self.map_canvas, self.map_view.size), self.map_view)
+        if self._scaled_map is None or self._scaled_map.get_size()!=self.map_view.size:
+            self._scaled_map=pygame.Surface(self.map_view.size,pygame.SRCALPHA).convert_alpha()
+        pygame.transform.smoothscale(self.map_canvas,self.map_view.size,self._scaled_map)
+        self.canvas.blit(self._scaled_map,self.map_view)
         self.draw_play_hud(world)
 
     def draw_map(self, world):
@@ -453,6 +476,9 @@ class App:
         # edges remain native, preserving the approved natural seams.
         positions={(q.x,q.y):q for q in world.platforms if q.kind=='normal' and (q.w,q.h)==(64,64)
                    and not hasattr(q,'device')}
+        platform_rects={q.id:q.rect_at(world.time) for q in world.platforms}
+        occupied_tiles={platform_rects[q.id][:2] for q in world.platforms
+                        if (q.w,q.h)==(64,64) and q.active(world.time,world.switches)}
         drawn=set()
         for block in sorted(world.platforms,key=lambda q:q.y):
             if block.id in drawn: continue
@@ -464,7 +490,7 @@ class App:
                 self.canvas.blit(self.skin.column(64*len(column)),(round(block.x),round(block.y)))
                 drawn.update(q.id for q in column)
             else:
-                self.tile(block, world.time, world.switches)
+                self.tile(block, world.time, world.switches,occupied_tiles)
         for d in world.special.devices.values():
             if d.type_id==508:
                 x=d.x+d.w/2
@@ -474,7 +500,7 @@ class App:
             self.canvas.blit(self.skin.image('spike', (spike.w, spike.h+(16 if spike.teeth == 6 else 0)+4)),
                              (round(spike.x), round(spike.y)))
         from .special_draw import draw_runtime
-        draw_runtime(self.canvas,world,self.skin)
+        draw_runtime(self.canvas,world,self.skin,platform_rects=platform_rects.values())
         for index, fish in enumerate(world.level.collectibles):
             if index not in world.collected:
                 self.fish(fish.x, fish.y, int(fish.size), fish.value < 0)
@@ -657,7 +683,13 @@ class App:
         size = (max(1, round(PHYSICS.width*self.scale)), max(1, round(PHYSICS.height*self.scale)))
         self.offset = ((width-size[0])//2, (height-size[1])//2)
         self.window.fill((15, 35, 52))
-        self.window.blit(pygame.transform.smoothscale(self.canvas, size), self.offset)
+        if size==self.canvas.get_size():
+            self.window.blit(self.canvas,self.offset)
+        else:
+            if self._scaled_window is None or self._scaled_window.get_size()!=size:
+                self._scaled_window=pygame.Surface(size).convert()
+            pygame.transform.smoothscale(self.canvas,size,self._scaled_window)
+            self.window.blit(self._scaled_window,self.offset)
         pygame.display.flip()
 
     def process_events(self):

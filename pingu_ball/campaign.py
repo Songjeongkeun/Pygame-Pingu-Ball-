@@ -16,7 +16,7 @@ HINTS = ('가시를 피해 내려가고 발사 블록을 이용해 오른쪽 이
          '이동 발판에서 가시 계단 아래로 내려간 뒤 점프 블록을 따라 올라가세요.',
          '움직이는 발판의 범위를 살펴 왼쪽 아래 이글루로 가세요.',
          '시간 발판이 나타나는 때에 맞춰 가운데 이글루로 가세요.',
-         '태양을 피하고 좌우 이동 발판을 이용하세요.',
+         '이동 발판으로 왼쪽에 돌아가 위쪽 발사 블록을 타고 이글루로 가세요.',
          '점프는 ↑↑, 대시는 ←←·→→로 사용하세요.',
          '파괴 발판과 엘리베이터를 이용해 왼쪽 이글루에 도착하세요.',
          '고드름을 피하며 점프 아이템과 발사 발판을 이용하세요.',
@@ -24,25 +24,43 @@ HINTS = ('가시를 피해 내려가고 발사 블록을 이용해 오른쪽 이
          '발판 둘레를 도는 바다사자를 피해 오른쪽 아래로 가세요.',
          '블록과 아이템을 조합해 오른쪽 아래 이글루에 도착하세요.')
 
-# Keep the original block counts and mechanics. Reposition the existing tiles
-# instead of adding support blocks or changing the fixed 96/144px jump heights.
+# Keep the fixed 96/144px jump heights. Append stage 5's extra tiles so existing
+# device IDs and timer phases stay stable.
+TILE_REMOVALS = {4: {('spike', 3, 13)}}
+TILE_ADDITIONS = {5: [{'kind': 'spring', 'c': 18, 'r': 7},
+                      {'kind': 'spring', 'c': 16, 'r': 5},
+                      {'kind': 'normal', 'c': 15, 'r': 7}]}
 POSITION_ADJUSTMENTS = {
     3: {('spring',23,10):(21,9), ('spring',20,12):(19,11),
         ('spring',17,14):(17,13)},
-    6: {('normal',10,7):(10,9), ('normal',22,7):(22,9)},
+    4: {('spring',23,9):(23,10), ('normal',21,6):(21,8),
+        ('normal',20,5):(20,7), ('normal',19,5):(18,6)},
+    5: {('spring',18,10):(18,11), ('spring',16,7):(16,9)},
+    6: {('normal',10,7):(10,8), ('normal',22,7):(22,8),
+        ('launcher_right',12,6):(12,7),
+        ('moving',12.15,10):(12.15,11), ('moving',13.15,10):(13.15,11)},
     7: {('spring',7,14):(5,12), ('spring',11,14):(7,10),
         ('spring',15,14):(9,8), ('spring',5,8):(11,6),
         ('spring',2,5):(13,4), ('breakable',7,8):(8,12),
         ('breakable',9,8):(10,12)},
+    8: {('spring',4,9):(4,10), ('breakable',6,6):(6,8),
+        ('breakable',7,6):(7,7)},
     9: {('breakable',13,9):(13,10), ('breakable',15,9):(15,10),
         ('breakable',17,9):(17,10), ('breakable',20,9):(19,10),
         ('spring',23,9):(21,9), ('launcher_left',21,6):(20,7), ('normal',1,7):(1,8)},
+    # Keep the block below spawn; the neighboring roof tile becomes a 64px
+    # step, leaving a vertical opening above the igloo approach.
+    11: {('spring',6,9):(6,10), ('spring',10,12):(10,11),
+         ('normal',20,12):(19,11), ('normal',23,8):(21,9)},
 }
 
 
 def fit_jump_layout(source):
     """Return gameplay positions without modifying the retained document data."""
     data=copy.deepcopy(source)
+    removed=TILE_REMOVALS.get(data['number'],set())
+    data['tiles']=[tile for tile in data['tiles']
+                   if (tile['kind'],tile['c'],tile['r']) not in removed]
     changes=POSITION_ADJUSTMENTS.get(data['number'],{})
     goal_support=(data['goal'][0]/64,(data['goal'][1]+60)/64)
     for tile in data['tiles']:
@@ -58,10 +76,24 @@ def fit_jump_layout(source):
     if data['number']==7:
         data['items']=[[13.5,3.5,kind] if kind=='up' else [c,r,kind]
                        for c,r,kind in data['items']]
+    if data['number']==4:
+        # Keep the dash pickup above the repositioned top approach platform.
+        data['items']=[[18.5,5.5,kind] if kind=='forward' else [c,r,kind]
+                       for c,r,kind in data['items']]
     if data['number']==3:
         # The two-tile deck must extend below the upper ledge's exit (x=768).
         # End its right edge at x=832, before the next spike column begins.
         data['rails'][0]=[[4.5,8.5],[11.5,8.5]]
+    if data['number']==6:
+        # Lower the full deck and its range together: 128px above the right spring.
+        data['rails']=[[[c,r+1] for c,r in rail] for rail in data['rails']]
+        data['markers']=[[c,r+1] for c,r in data['markers']]
+    if data['number']==8:
+        # The source only records the elevator rail. Keep the horizontal deck
+        # on the left, bridging the starting bank and the x=768 island.
+        data['rails'].append([[3.5,13.5],[11.5,13.5]])
+        data['markers'].extend([[3,13],[11,13]])
+    data['tiles'].extend(copy.deepcopy(TILE_ADDITIONS.get(data['number'], [])))
     return data
 
 
@@ -142,4 +174,4 @@ def make_campaign_level(index):
                  tuple(data['spawn']), (gx, gy - 4, gw, gh),
                  height=data['height'], width=data['width'], time_limit=180.,
                  preview=f'assets/stages/stage_{index:02d}.png', powerups=items, specials=devices,
-                 movement_markers=movement_markers,show_movement_rails=index!=3)
+                 movement_markers=movement_markers,show_movement_rails=index not in (3,6))

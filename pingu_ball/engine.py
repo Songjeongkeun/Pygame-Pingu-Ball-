@@ -280,6 +280,10 @@ class World:
         for q in self.platforms:
             if q.id != b.launch_source and q.active(self.time, self.switches):
                 rect = q.rect_at(self.time, p)
+                if (not rect[1]-1e-7<=b.y<=rect[1]+rect[3]+1e-7
+                        or (abs(b.x-(rect[0]-p.radius))>1e-5
+                            and abs(b.x-(rect[0]+rect[2]+p.radius))>1e-5)):
+                    continue
                 probe = min(duration, 1e-6)
                 speed = (q.rect_at(self.time+probe, p)[0]-rect[0])/probe
                 walls.append((rect, speed))
@@ -357,7 +361,7 @@ class World:
             if spike.near(b.x, b.y, p.radius) and any(circle_polygon_overlap(b.x,b.y,p.radius,t) for t in spike.triangles):
                 self.fail('가시에 닿았어요'); return False
         end_time = self.time+duration
-        old_active = {q.id:q.active(self.time, self.switches) for q in self.platforms}
+        old_active = {q.id:q.active(self.time, self.switches) for q in self.platforms if q.kind=='timed'}
         for q in self.platforms:
             if q.break_at is not None and self.time >= q.break_at-EPS:
                 q.destroyed = True
