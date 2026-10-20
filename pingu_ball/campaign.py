@@ -24,12 +24,13 @@ HINTS = ('가시를 피해 내려가고 발사 블록을 이용해 오른쪽 이
          '발판 둘레를 도는 바다사자를 피해 오른쪽 아래로 가세요.',
          '블록과 아이템을 조합해 오른쪽 아래 이글루에 도착하세요.')
 
-# Keep the fixed 96/144px jump heights. Append stage 5's extra tiles so existing
-# device IDs and timer phases stay stable.
+# Keep the fixed 96/144px jump heights. Append extra tiles so existing device
+# IDs and timer phases stay stable.
 TILE_REMOVALS = {4: {('spike', 3, 13)}}
 TILE_ADDITIONS = {5: [{'kind': 'spring', 'c': 18, 'r': 7},
                       {'kind': 'spring', 'c': 16, 'r': 5},
-                      {'kind': 'normal', 'c': 15, 'r': 7}]}
+                      {'kind': 'normal', 'c': 15, 'r': 7}],
+                  11: [{'kind': 'normal', 'c': 23, 'r': 8}]}
 POSITION_ADJUSTMENTS = {
     3: {('spring',23,10):(21,9), ('spring',20,12):(19,11),
         ('spring',17,14):(17,13)},
@@ -48,10 +49,11 @@ POSITION_ADJUSTMENTS = {
     9: {('breakable',13,9):(13,10), ('breakable',15,9):(15,10),
         ('breakable',17,9):(17,10), ('breakable',20,9):(19,10),
         ('spring',23,9):(21,9), ('launcher_left',21,6):(20,7), ('normal',1,7):(1,8)},
-    # Keep the block below spawn; the neighboring roof tile becomes a 64px
-    # step, leaving a vertical opening above the igloo approach.
+    # Keep the block below spawn and the neighboring 64px approach step.
+    # The added roof tile closes the direct drop from spawn to the igloo.
     11: {('spring',6,9):(6,10), ('spring',10,12):(10,11),
          ('normal',20,12):(19,11), ('normal',23,8):(21,9)},
+    12: {('spring',13,12.5):(13,11.5)},
 }
 
 
