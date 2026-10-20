@@ -98,15 +98,24 @@ class App:
                                        round(580*title_scale), round(166*title_scale))
         self.skin = WinterSkin(ROOT)
         self.ice_ui = IceUI(ROOT)
-        # Render above bitmap-font sizes, then downsample once for smooth Korean
-        # lettering without the heavy outline used by the old mute label.
-        sound_font=pygame.font.Font(self.font_path,48)
-        sound_font.set_bold(True)
+        # Render the lettering directly on the seamless button face. A real
+        # bold font and a thin antialiased edge match the surrounding ice UI.
+        bold_font=Path(self.font_path).with_name('malgunbd.ttf') if self.font_path else None
+        sound_font=pygame.font.Font(str(bold_font) if bold_font and bold_font.exists() else self.font_path,69)
+        if not bold_font or not bold_font.exists():sound_font.set_bold(True)
         self.sound_labels={}
         for enabled,label in ((True,'소리 켜짐'),(False,'소리 꺼짐')):
-            image=sound_font.render(label,True,WHITE)
+            letters=sound_font.render(label,True,WHITE)
+            edge=sound_font.render(label,True,(7,44,104))
+            image=pygame.Surface((letters.get_width()+6,letters.get_height()+6),pygame.SRCALPHA)
+            for dx,dy in ((-3,0),(3,0),(0,-3),(0,3),(-2,-2),(2,-2),(-2,2),(2,2)):
+                image.blit(edge,(3+dx,3+dy))
+            image.blit(letters,(3,3))
+            width=min(rect.w-4 for rect in self.ice_ui.sound_labels.values())
+            height=min(rect.h-2 for rect in self.ice_ui.sound_labels.values())
+            scale=min(1/3,width/image.get_width(),height/image.get_height())
             self.sound_labels[enabled]=pygame.transform.smoothscale(image,
-                (round(image.get_width()/2),round(image.get_height()/2)))
+                (round(image.get_width()*scale),round(image.get_height()*scale)))
         self.map_canvas = None
         self._scaled_map = None
         self._scaled_window = None
@@ -395,7 +404,8 @@ class App:
     def draw_sound_label(self,name):
         ui=self.ice_ui
         rect=ui.sound_labels[name]
-        self.canvas.blit(ui.sound_label_backgrounds[name],rect)
+        face,target=ui.sound_faces[name]
+        self.canvas.blit(face,target)
         image=self.sound_labels[self.sound_on]
         self.canvas.blit(image,image.get_rect(center=rect.center))
 

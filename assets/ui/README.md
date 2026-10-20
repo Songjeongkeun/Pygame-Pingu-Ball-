@@ -22,6 +22,14 @@ Regular card clicks compress and darken the play button, then ease it back
 over 140 ms before starting the selected stage. Repeated clicks during that
 effect are ignored; leaving the menu or losing focus cancels the pending start.
 
+`menu_sound_face.png`, `tutorial_menu_sound_face.png` and
+`regular_menu_sound_face.png` are cropped from built-in imagegen edits of the
+corresponding supplied screen. Prompt: remove the painted sound wording or
+flat label patch, restore a seamless glossy blue ice button face, and preserve
+the snowy outer frame, speaker icon, position and all other artwork. Runtime
+text is drawn directly on that face in both states, with no inset rectangle;
+the cached Korean bold lettering has a thin antialiased navy edge.
+
 `pause.png` uses the approved transparent image with the bottom
 “ESC 또는 P로 돌아가기” line removed using the built-in imagegen editor.
 Edit request: remove that line and both short dashes, fill with the surrounding
