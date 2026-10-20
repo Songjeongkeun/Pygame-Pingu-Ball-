@@ -278,33 +278,36 @@ class App:
         self.help = False
 
     def draw_normal_menu(self):
-        self.backdrop()
-        self.text('일반 스테이지',64,48,48,INK,True)
-        self.text(f'새 일반 스테이지 {REGULAR_STAGE_COUNT}개',68,116,24,MUTED)
-        self.button('스테이지 선택',(1280,48,250,50),self.menu)
+        ui=self.ice_ui;name='regular_menu'
+        ui.blit(self.canvas,name)
+        self.art_button(ui.list_back[name],self.menu)
         completed = sum(str(i) in self.progress.records for i in range(1, REGULAR_STAGE_COUNT+1))
-        self.text(f'{completed} / {REGULAR_STAGE_COUNT}개 완료 · 차례대로 도전하세요.',64,170,24,INK,True)
-        for index, level in enumerate(self.levels[1:],1):
-            col, row = (index-1) % 4, (index-1) // 4
-            rect = pygame.Rect(64+col*372, 220+row*160, 350, 146)
+        counter=ui.list_rect(name,(756,127,211,43))
+        pygame.draw.rect(self.canvas,(197,243,255),counter,border_radius=12)
+        self.fitted_text(f'{completed} / {REGULAR_STAGE_COUNT} 완료',counter,24,(3,40,98))
+        for index, rect in enumerate(ui.regular_cards,1):
             unlocked = index <= self.progress.unlocked
-            self.panel(rect)
-            self.text(f'STAGE {index}', rect.x+22, rect.y+16, 18, BLUE if unlocked else MUTED, True)
-            self.text(level.title, rect.x+22, rect.y+49, 23, INK if unlocked else MUTED, True)
-            if index in self.previews:
-                self.canvas.blit(self.previews[index], (rect.right-138, rect.y+15))
             record = self.progress.records.get(str(index))
-            if record:
-                detail = f"{GRADES[record['score']]} · {record['score']}점 · {record['time']:.2f}초"
-            else:
-                detail = '플레이 →' if unlocked else '앞 스테이지 클리어 필요'
-            self.text(detail, rect.x+22, rect.y+111, 20, TEAL if record else MUTED)
             if unlocked:
-                self.buttons.append((rect, lambda n=index: self.start(n)))
-        self.text('← → 이동    ·    입장 즉시 자동 반동    ·    R 재시작', 64, 726, 22)
-        self.button('소리 켜짐' if self.sound_on else '소리 꺼짐', (1320, 710, 200, 48), self.toggle_sound)
+                x,y,w,h=ui.regular_native_cards[index-1]
+                if index>1:
+                    footer=ui.list_rect(name,(x+23,y+126,w-46,49))
+                    pygame.draw.rect(self.canvas,(231,250,255),footer,border_radius=10)
+                    play=ui.list_rect(name,(x+27,y+127,164,45))
+                    self.canvas.blit(ui.list_play_button,play.topleft)
+                if record:
+                    detail=f"{GRADES[record['score']]} · {record['score']}점"
+                    record_x=267 if index==1 else 203
+                    if index==1:
+                        field=ui.list_rect(name,(x+record_x,y+126,w-record_x-23,49))
+                        pygame.draw.rect(self.canvas,(231,250,255),field,border_radius=6)
+                    self.fitted_text(detail,ui.list_rect(name,(x+record_x,y+126,w-record_x-26,23)),18,TEAL)
+                    self.fitted_text(f"{record['time']:.2f}초",ui.list_rect(name,(x+record_x,y+150,w-record_x-26,23)),18,(3,40,98))
+                self.art_button(rect,lambda n=index:self.start(n))
+        self.draw_list_sound(name)
         if self.progress.error:
-            self.text(self.progress.error, 64, 782, 20, CORAL)
+            self.panel((30,778,1260,40),(249,253,255,245),8)
+            self.fitted_text(self.progress.error,(40,780,1240,36),18,CORAL,False)
 
     def start(self, index):
         self.lab_id = None
@@ -343,24 +346,21 @@ class App:
         self.help = False
 
     def draw_lab_menu(self):
-        from .special_lab import HINTS, TITLES, LAB_TYPES, LAB_NUMBERS
-        self.backdrop()
-        self.text('튜토리얼 스테이지',64,48,48,INK,True)
-        self.text('블록과 아이템을 배우는 10개 튜토리얼 · R 재시작 · ← → 이동',68,116,24,MUTED)
-        for n,code in enumerate(LAB_TYPES):
-            col,row=n%4,n//4
-            rect=pygame.Rect(64+col*372,188+row*164,350,144)
-            self.panel(rect)
-            self.text(f'{LAB_NUMBERS[code]:02d}',rect.x+18,rect.y+12,18,BLUE,True)
-            self.text(TITLES[code],rect.x+18,rect.y+43,24,INK,True)
-            hint=HINTS[code]
-            font=pygame.font.Font(self.font_path,17)
-            shown=hint
-            while shown and font.size(shown+'…')[0]>rect.w-36: shown=shown[:-1]
-            self.text(shown+('…' if shown!=hint else ''),rect.x+18,rect.y+99,17,MUTED)
-            self.buttons.append((rect,lambda c=code:self.start_special(c)))
-        self.button('스테이지 선택',(1280,48,250,50),self.menu)
-        self.text('점프와 대시는 마지막 튜토리얼에서 함께 배웁니다.',64,728,22,MUTED)
+        from .special_lab import LAB_TYPES
+        ui=self.ice_ui;name='tutorial_menu'
+        ui.blit(self.canvas,name)
+        for rect,code in zip(ui.tutorial_cards,LAB_TYPES):
+            self.art_button(rect,lambda c=code:self.start_special(c))
+        self.art_button(ui.list_back[name],self.menu)
+        self.draw_list_sound(name)
+
+    def draw_list_sound(self,name):
+        ui=self.ice_ui
+        self.art_button(ui.list_sound[name],self.toggle_sound)
+        if not self.sound_on:
+            rect=ui.list_sound_label[name]
+            pygame.draw.rect(self.canvas,(54,178,229),rect,border_radius=8)
+            self.fitted_text('소리 꺼짐',rect,23,WHITE,outline=(7,44,104))
 
     def quit(self):
         self.running = False
