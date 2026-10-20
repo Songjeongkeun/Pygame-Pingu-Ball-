@@ -71,7 +71,8 @@ class CampaignTests(unittest.TestCase):
         for source in campaign_layouts():
             level=make_level(source['number'])
             self.assertEqual(len(level.platforms)+len(level.specials),
-                             len(source['tiles'])+len(source.get('patrols',[])))
+                             len(source['tiles'])+len(source.get('patrols',[]))
+                             - (1 if source['number']==4 else 0))
             self.assertEqual(len(level.powerups),len(source['items']))
             self.assertFalse(any(q.id.startswith('approach') for q in level.platforms+level.specials))
             w=World(level)
@@ -146,6 +147,34 @@ class CampaignTests(unittest.TestCase):
             if w.cleared or w.failed: break
         self.assertTrue(w.cleared,w.last_failure)
         self.assertEqual(w.level.goal[:2],(1408,512))
+
+    def test_fourth_map_full_route_requires_fixed_spring_heights(self):
+        from tools.verify_stage4 import route
+        replay=route()
+        self.assertTrue(replay.world.cleared)
+        self.assertEqual(replay.world.failures,0)
+        for regression in ('fixed','old_spring_height'):
+            with self.subTest(regression=regression):
+                level=make_level(4)
+                if regression=='old_spring_height':
+                    next(d for d in level.specials if d.id=='spring-35').y=576
+                world=World(level,auto_reset=False)
+                for direction in replay.inputs:
+                    self.assertIn(direction,(-1,0,1))
+                    world.step(direction)
+                    if world.failed or world.cleared: break
+                self.assertEqual(world.cleared,regression=='fixed')
+                self.assertEqual(world.failed,regression!='fixed')
+
+    def test_fourth_map_breakable_has_no_spike_inside_its_tile(self):
+        level=make_level(4)
+        tile=next(d for d in level.specials if d.type_id==301)
+        self.assertEqual((tile.x,tile.y),(192,768))
+        spikes=[d for d in level.specials if d.type_id==201]
+        self.assertEqual(len(spikes),11)
+        for spike in spikes:
+            self.assertFalse(tile.x<spike.x+spike.w and spike.x<tile.x+tile.w
+                             and tile.y<spike.y+spike.h and spike.y<tile.y+tile.h)
 
     def test_ninth_map_repositioned_tiles_reach_the_launcher_and_goal(self):
         w=World(make_level(9),auto_reset=False)

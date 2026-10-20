@@ -30,6 +30,10 @@ def main():
             from tools.verify_stage3 import route
             witness=route().world
             full_route=witness.cleared and not witness.failures
+        elif level.index==4:
+            from tools.verify_stage4 import route
+            witness=route().world
+            full_route=witness.cleared and not witness.failures
         item={'stage':level.index,'spawn_safe':spawn_safe,'normal_goal_support':supported,
               'goal_sensor_clears':world.cleared,'finite':finite,'moving_devices_run':moved,
               'platforms':len(world.platforms),'devices':len(level.specials),'powerups':len(level.powerups),

@@ -24,11 +24,14 @@ HINTS = ('가시를 피해 내려가고 발사 블록을 이용해 오른쪽 이
          '발판 둘레를 도는 바다사자를 피해 오른쪽 아래로 가세요.',
          '블록과 아이템을 조합해 오른쪽 아래 이글루에 도착하세요.')
 
-# Keep the original block counts and mechanics. Reposition the existing tiles
-# instead of adding support blocks or changing the fixed 96/144px jump heights.
+# Reposition existing tiles instead of adding support blocks or changing the
+# fixed 96/144px jump heights. Only explicitly removed hazards change counts.
+TILE_REMOVALS = {4: {('spike', 3, 13)}}
 POSITION_ADJUSTMENTS = {
     3: {('spring',23,10):(21,9), ('spring',20,12):(19,11),
         ('spring',17,14):(17,13)},
+    4: {('spring',23,9):(23,10), ('normal',21,6):(21,8),
+        ('normal',20,5):(20,7), ('normal',19,5):(18,6)},
     6: {('normal',10,7):(10,9), ('normal',22,7):(22,9)},
     7: {('spring',7,14):(5,12), ('spring',11,14):(7,10),
         ('spring',15,14):(9,8), ('spring',5,8):(11,6),
@@ -43,6 +46,9 @@ POSITION_ADJUSTMENTS = {
 def fit_jump_layout(source):
     """Return gameplay positions without modifying the retained document data."""
     data=copy.deepcopy(source)
+    removed=TILE_REMOVALS.get(data['number'],set())
+    data['tiles']=[tile for tile in data['tiles']
+                   if (tile['kind'],tile['c'],tile['r']) not in removed]
     changes=POSITION_ADJUSTMENTS.get(data['number'],{})
     goal_support=(data['goal'][0]/64,(data['goal'][1]+60)/64)
     for tile in data['tiles']:
@@ -57,6 +63,10 @@ def fit_jump_layout(source):
             tile['c']+=9
     if data['number']==7:
         data['items']=[[13.5,3.5,kind] if kind=='up' else [c,r,kind]
+                       for c,r,kind in data['items']]
+    if data['number']==4:
+        # Keep the dash pickup above the repositioned top approach platform.
+        data['items']=[[18.5,5.5,kind] if kind=='forward' else [c,r,kind]
                        for c,r,kind in data['items']]
     if data['number']==3:
         # The two-tile deck must extend below the upper ledge's exit (x=768).
