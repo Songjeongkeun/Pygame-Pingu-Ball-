@@ -7,7 +7,8 @@ from dataclasses import dataclass, field
 import math
 
 from .engine import Platform
-from .geometry import circle_rect_overlap, circle_polygon_overlap, sweep_circle_polygon, sweep_circle_rect
+from .geometry import (circle_rect_overlap, circle_polygon_overlap, sweep_circle_polygon,
+                       sweep_circle_rect, swept_bounds_overlap)
 
 
 CATALOG = {
@@ -376,7 +377,7 @@ class SpecialRuntime:
             t,o,s = d.type_id,d.options,self.state[d.id]
             # Large image maps contain long spike/spark grids. Stationary
             # shapes outside the complete swept bounds cannot be contacts.
-            if t in (303,201,202,211,221,306):
+            if t in (303,201,202,211,221,306,701):
                 end=(start[0]+delta[0],start[1]+delta[1])
                 margin=p.radius+1.
                 if (max(start[0],end[0])+margin<d.x or min(start[0],end[0])-margin>d.x+d.w
@@ -417,6 +418,9 @@ class SpecialRuntime:
                 for poly in polys:
                     relative = (delta[0]-mx,delta[1]-my)
                     radius = p.radius+(.1 if t == 306 else 0.)
+                    xs,ys=zip(*poly)
+                    if not swept_bounds_overlap(start,relative,(min(xs),min(ys),max(xs),max(ys)),radius):
+                        continue
                     hit = sweep_circle_polygon(start,relative,poly,radius)
                     if circle_polygon_overlap(*start,radius,poly): hits.append((0.,overlap_normal(start,poly)))
                     elif hit: hits.append(hit)

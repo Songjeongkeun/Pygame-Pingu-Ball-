@@ -307,6 +307,25 @@ class InterfaceTests(unittest.TestCase):
         app.update(.5, 0)
         self.assertAlmostEqual(app.world.time, .5)
 
+    def test_render_buffers_reuse_resize_and_keep_the_same_pixels(self):
+        app=self.app;app.start(12);app.render()
+        map_buffer,window_buffer=app._scaled_map,app._scaled_window
+        pixels=pygame.image.tobytes(app.canvas,'RGB')
+        app.render()
+        self.assertIs(app._scaled_map,map_buffer)
+        self.assertIs(app._scaled_window,window_buffer)
+        self.assertEqual(pygame.image.tobytes(app.canvas,'RGB'),pixels)
+        expected=pygame.transform.smoothscale(app.map_canvas,app.map_view.size)
+        self.assertEqual(pygame.image.tobytes(map_buffer,'RGBA'),pygame.image.tobytes(expected,'RGBA'))
+        app.window=pygame.display.set_mode((1200,700),pygame.RESIZABLE);app.render()
+        self.assertIsNot(app._scaled_window,window_buffer)
+        expected=pygame.transform.smoothscale(app.canvas,app._scaled_window.get_size())
+        self.assertEqual(pygame.image.tobytes(app._scaled_window,'RGB'),pygame.image.tobytes(expected,'RGB'))
+        for i in range(160): app.text(f'cache {i}',0,0)
+        for i in range(24): app.panel((0,0,8+i,8))
+        self.assertLessEqual(len(app._text_cache),128)
+        self.assertLessEqual(len(app._panel_cache),16)
+
 
 if __name__ == '__main__':
     unittest.main()

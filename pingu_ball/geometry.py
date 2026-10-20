@@ -15,6 +15,9 @@ def dot(a, b):
 
 def circle_rect_overlap(x, y, r, rect, tolerance=0.0):
     left, top, w, h = rect
+    reach=abs(r-tolerance)
+    if x+reach<left-EPS or x-reach>left+w+EPS or y+reach<top-EPS or y-reach>top+h+EPS:
+        return False
     qx = max(left, min(x, left + w))
     qy = max(top, min(y, top + h))
     return (x-qx)**2 + (y-qy)**2 < (r-tolerance)**2
@@ -58,9 +61,20 @@ def ray_circle(p, d, center, r):
     return None
 
 
+def swept_bounds_overlap(p, d, bounds, radius):
+    """Conservative broad phase; keep grazing and slightly late CCD contacts."""
+    left,top,right,bottom=bounds
+    end_x,end_y=p[0]+d[0],p[1]+d[1]
+    margin=radius+EPS*(1+abs(d[0])+abs(d[1])+right-left+bottom-top)
+    return not (max(p[0],end_x)+margin<left or min(p[0],end_x)-margin>right
+                or max(p[1],end_y)+margin<top or min(p[1],end_y)-margin>bottom)
+
+
 def sweep_circle_rect(p, d, rect, r):
     l, top, w, h = rect
     right, bottom = l+w, top+h
+    if not swept_bounds_overlap(p,d,(l,top,right,bottom),r):
+        return None
     candidates = []
     for boundary, axis, normal, lo, hi in [
         (l-r, 0, (-1., 0.), top, bottom),

@@ -186,6 +186,10 @@ Windows 실행파일을 다시 빌드하려면 다음 명령을 사용합니다.
 
 ## 검증과 무화면 학습
 
+블록이 많은 맵에서는 먼 장애물의 정밀 충돌 검사를 먼저 제외하고, 지형 검색과 화면 버퍼·글자·패널을 재사용합니다.
+120Hz 물리 계산과 기존 점프·이동 규칙은 유지합니다. 같은 PC에서 12번 맵의 평균 프레임 처리 시간을
+약 29.3ms에서 15.2ms로 줄였습니다. 측정 조건과 재현 방법은 [성능 측정 기록](docs/performance.md)에 있습니다.
+
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 .\.venv\Scripts\python.exe tools/verify_campaign.py
