@@ -318,6 +318,8 @@ class CampaignTests(unittest.TestCase):
             d=next(d for d in level.specials if d.id==name)
             self.assertEqual((d.x,d.y),position)
         self.assertEqual((replay.world.physics.bounce_height,replay.world.physics.pad_height),(96,144))
+        self.assertTrue(any(q.kind=='normal' and (q.x,q.y)==(1408,576)
+                            for q in level.platforms))
         for regression in ('fixed','old_left_spring','old_center_spring','old_return_path'):
             level=make_level(11)
             if regression=='old_left_spring': next(d for d in level.specials if d.id=='spring-26').y=576
@@ -325,7 +327,7 @@ class CampaignTests(unittest.TestCase):
             if regression=='old_return_path':
                 for q in level.platforms:
                     if q.id=='normal-50': q.x,q.y=1280,768
-                    if q.id=='normal-56': q.x,q.y=1408,576
+                    if q.id=='normal-57': q.x,q.y=1472,512
             world=World(level,auto_reset=False)
             for direction,use,power_direction in replay.inputs:
                 world.step(direction,use_power=use,power_direction=power_direction)

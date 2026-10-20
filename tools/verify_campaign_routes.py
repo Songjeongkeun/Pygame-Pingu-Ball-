@@ -171,7 +171,7 @@ def route(number):
         for name,x in [('normal-27',480),('normal-28',544),('normal-29',608),
                        ('spring-33',672),('normal-34',736),('normal-35',800),
                        ('normal-39',976),('normal-40',1080),('normal-50',1232),
-                       ('normal-51',1312),('normal-53',1376),('normal-54',1440)]: r.land(name,x)
+                       ('normal-51',1312),('normal-57',1376),('normal-55',1440)]: r.land(name,x)
         r.until(lambda:w.cleared,1504,label='goal')
     elif number==12:
         r.land('normal-41',1440)
