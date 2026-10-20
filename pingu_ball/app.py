@@ -78,6 +78,14 @@ class App:
         self.font_path = self.find_font()
         self.background = pygame.image.load(str(ROOT/'assets'/'antarctica.png')).convert()
         self.background = pygame.transform.smoothscale(self.background, self.canvas.get_size())
+        stage_background = pygame.image.load(str(ROOT/'assets'/'stage_background.png')).convert()
+        stage_scale = max(self.canvas.get_width()/stage_background.get_width(),
+                          self.canvas.get_height()/stage_background.get_height())
+        stage_background = pygame.transform.smoothscale(stage_background,
+            (round(stage_background.get_width()*stage_scale),round(stage_background.get_height()*stage_scale)))
+        self.stage_background = pygame.Surface(self.canvas.get_size()).convert()
+        self.stage_background.blit(stage_background,
+            stage_background.get_rect(center=self.canvas.get_rect().center))
         title = pygame.image.load(str(ROOT/'assets'/'title_screen.png')).convert()
         title_scale = max(self.canvas.get_width()/title.get_width(), self.canvas.get_height()/title.get_height())
         self.title_image = pygame.transform.smoothscale(title, (round(title.get_width()*title_scale), round(title.get_height()*title_scale)))
@@ -459,7 +467,7 @@ class App:
 
     def draw_play(self):
         world = self.world
-        self.backdrop()
+        self.canvas.blit(self.stage_background,(0,0))
         screen = self.canvas
         self.canvas = self.map_canvas
         try:
