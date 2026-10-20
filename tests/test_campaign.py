@@ -176,6 +176,22 @@ class CampaignTests(unittest.TestCase):
             self.assertFalse(tile.x<spike.x+spike.w and spike.x<tile.x+tile.w
                              and tile.y<spike.y+spike.h and spike.y<tile.y+tile.h)
 
+    def test_fifth_map_full_route_and_original_spring_height_regression(self):
+        from tools.verify_campaign_routes import route
+        replay=route(5)
+        self.assertTrue(replay.world.cleared)
+        self.assertEqual(replay.world.failures,0)
+        for old_height in (False,True):
+            level=make_level(5)
+            if old_height:
+                next(d for d in level.specials if d.id=='spring-32').y=640
+            world=World(level,auto_reset=False)
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                if world.failed or world.cleared: break
+            self.assertEqual(world.cleared,not old_height)
+            if not old_height: self.assertEqual(world.failures,0)
+
     def test_ninth_map_repositioned_tiles_reach_the_launcher_and_goal(self):
         w=World(make_level(9),auto_reset=False)
         # The icicles have already passed; begin at the original first spring.
