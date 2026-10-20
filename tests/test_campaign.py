@@ -304,5 +304,34 @@ class CampaignTests(unittest.TestCase):
             data=json.loads(path.read_text(encoding='utf-8'))
             self.assertEqual((data['version'],data['campaign']),(4,CAMPAIGN_ID))
 
+    def test_eleventh_map_all_springs_and_return_path_reach_goal_from_spawn(self):
+        from tools.verify_campaign_routes import route
+        replay=route(11)
+        self.assertTrue(replay.world.cleared)
+        self.assertEqual(replay.world.failures,0)
+        labels=[m['label'] for m in replay.milestones]
+        self.assertEqual([label for label in labels if label.startswith('spring-')],
+                         ['spring-33','spring-26','spring-23','spring-26','spring-33'])
+        level=make_level(11)
+        for name,position in [('spring-23',(256,768)),('spring-26',(384,640)),
+                              ('spring-33',(640,704))]:
+            d=next(d for d in level.specials if d.id==name)
+            self.assertEqual((d.x,d.y),position)
+        self.assertEqual((replay.world.physics.bounce_height,replay.world.physics.pad_height),(96,144))
+        for regression in ('fixed','old_left_spring','old_center_spring','old_return_path'):
+            level=make_level(11)
+            if regression=='old_left_spring': next(d for d in level.specials if d.id=='spring-26').y=576
+            if regression=='old_center_spring': next(d for d in level.specials if d.id=='spring-33').y=768
+            if regression=='old_return_path':
+                for q in level.platforms:
+                    if q.id=='normal-50': q.x,q.y=1280,768
+                    if q.id=='normal-56': q.x,q.y=1408,576
+            world=World(level,auto_reset=False)
+            for direction,use,power_direction in replay.inputs:
+                world.step(direction,use_power=use,power_direction=power_direction)
+                if world.failed or world.cleared: break
+            self.assertEqual(world.cleared,regression=='fixed',regression)
+            if regression=='fixed': self.assertEqual(world.failures,0)
+
 
 if __name__=='__main__': unittest.main()

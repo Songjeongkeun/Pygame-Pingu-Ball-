@@ -48,6 +48,8 @@ POSITION_ADJUSTMENTS = {
     9: {('breakable',13,9):(13,10), ('breakable',15,9):(15,10),
         ('breakable',17,9):(17,10), ('breakable',20,9):(19,10),
         ('spring',23,9):(21,9), ('launcher_left',21,6):(20,7), ('normal',1,7):(1,8)},
+    11: {('spring',6,9):(6,10), ('spring',10,12):(10,11),
+         ('normal',20,12):(19,11), ('normal',22,9):(21,11)},
 }
 
 

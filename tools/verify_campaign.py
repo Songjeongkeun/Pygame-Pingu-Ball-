@@ -34,7 +34,7 @@ def main():
             from tools.verify_stage4 import route
             witness=route().world
             full_route=witness.cleared and not witness.failures
-        elif level.index in (5,6):
+        elif level.index in (5,6,11):
             from tools.verify_campaign_routes import route
             witness=route(level.index).world
             full_route=witness.cleared and not witness.failures

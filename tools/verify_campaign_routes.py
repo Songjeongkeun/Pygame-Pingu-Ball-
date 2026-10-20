@@ -15,8 +15,6 @@ from tools.verify_stage3 import Replay
 REVIEW_NOTES={
     8: ['왼쪽 이동 발판·점프 블록·파괴 블록 다리 7개는 tools/verify_stage8.py로 실제 시작점부터 검증했다.',
         '오른쪽 상하 이동 발판의 범위는 y=192~896px이다. 이글루까지의 전체 완주 경로는 미확인이다.'],
-    11: ['오른쪽 640px 발판에서 512px 기둥 위로 복귀하려면 128px 상승이 필요하지만 일반 반동은 96px이다.',
-         '왼쪽 점프 발판의 768→576px 구간과 중앙 상승 구간도 192px로, 144px 점프 반동과 맞지 않는다.'],
 }
 
 
@@ -156,9 +154,24 @@ def route(number):
         r.until(lambda:w.cleared,None,label='goal')
     elif number==11:
         r.land('normal-55',1440)
-        r.land('normal-53',1376)
-        r.land('normal-54',1450)
-        r.until(lambda:w.ball.y>735,1504,label='drop-to-goal')
+        # Wait one bounce so the sea lion is clear when crossing its island.
+        r.land('normal-55',1440)
+        for name,x in [('normal-51',1312),('normal-50',1248),('breakable-41',1184),
+                       ('normal-40',1056),('normal-39',992),('breakable-36',864),
+                       ('normal-35',800),('normal-34',736),('spring-33',672)]: r.land(name,x)
+        r.until(lambda:w.ball.y<562 and w.ball.vy<0,672,label='above-center-wall')
+        for name,x in [('normal-29',608),('normal-28',544),('normal-27',480),('spring-26',416)]: r.land(name,x)
+        # The collected jump item reaches the top of the original breakable column.
+        r.until(lambda:w.ball.vy>=-8 and w.ball.y<485,416,label='upper-spring-apex')
+        r.tick(-1,True)
+        for n in (4,5,6,7,8): r.land(f'breakable-{n}',352)
+        r.land('breakable-24',352)
+        r.land('spring-23',288)
+        r.land('spring-26',416)
+        for name,x in [('normal-27',480),('normal-28',544),('normal-29',608),
+                       ('spring-33',672),('normal-34',736),('normal-35',800),
+                       ('normal-39',976),('normal-40',1080),('normal-50',1232),
+                       ('normal-51',1312),('normal-53',1376),('normal-54',1440)]: r.land(name,x)
         r.until(lambda:w.cleared,1504,label='goal')
     elif number==12:
         r.land('normal-41',1440)
