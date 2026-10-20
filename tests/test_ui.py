@@ -155,10 +155,10 @@ class InterfaceTests(unittest.TestCase):
         app.progress.unlocked=12;app.render()
         # All twelve document maps are separate from the tutorial list.
         for index in range(1,13):
-            self.click(200+(index-1)%4*372,280+(index-1)//4*160)
+            self.click(*app.ice_ui.regular_cards[index-1].center)
             self.assertEqual(app.world.level.index,index)
             app.menu();app.render();self.assertEqual(app.scene,'normal_menu')
-        self.click(200,705);self.assertEqual(app.scene,'normal_menu')
+        self.click(30,800);self.assertEqual(app.scene,'normal_menu')
         self.key(pygame.K_ESCAPE);app.render();self.assertEqual(app.scene,'menu')
         self.click(650,670);self.assertEqual(app.scene,'lab_menu')
         self.click(200,240);self.assertIsNotNone(app.lab_id)
@@ -168,6 +168,42 @@ class InterfaceTests(unittest.TestCase):
         app.world.cleared=True;app.update(.02,0);app.next_stage()
         self.assertEqual(app.scene,'play')
         self.assertEqual(app.lab_id,401)
+
+    def test_list_artwork_tracks_saved_progress_and_locked_cards(self):
+        app=self.app
+        app.progress.complete(1,9,12.34)
+        app.progress.complete(2,8,23.45)
+        app.progress.complete_tutorial(1,1.)
+        app.show_normal_menu()
+        with patch.object(app,'fitted_text',wraps=app.fitted_text) as rendered:
+            app.render()
+        labels=[call.args[0] for call in rendered.call_args_list]
+        self.assertIn('2 / 12 완료',labels)
+        self.assertIn('SS · 9점',labels)
+        self.assertIn('12.34초',labels)
+        self.assertIn('S · 8점',labels)
+        self.assertIn('23.45초',labels)
+        self.assertEqual(len(app.buttons),5)  # Three unlocked cards, back, sound.
+        for rect in app.ice_ui.regular_cards[3:]:
+            self.click(*rect.center)
+            self.assertEqual(app.scene,'normal_menu')
+        self.click(*app.ice_ui.regular_cards[2].center)
+        self.assertEqual(app.world.level.index,3)
+
+    def test_artwork_list_sound_and_back_buttons_after_resize(self):
+        app=self.app
+        app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        for name,show in [('regular_menu',app.show_normal_menu),('tutorial_menu',app.show_lab_menu)]:
+            show();app.render()
+            self.assertTrue(app.sound_on)
+            self.click(*app.ice_ui.list_sound[name].center)
+            self.assertFalse(app.sound_on)
+            self.assertFalse(pygame.mixer.music.get_busy())
+            self.click(*app.ice_ui.list_sound[name].center)
+            self.assertTrue(app.sound_on)
+            self.assertTrue(pygame.mixer.music.get_busy())
+            self.click(*app.ice_ui.list_back[name].center)
+            self.assertEqual(app.scene,'menu')
 
     def test_title_artwork_start_button_after_resize_and_return(self):
         app = self.app

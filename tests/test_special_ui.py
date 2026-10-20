@@ -56,15 +56,15 @@ class SpecialInterfaceTests(unittest.TestCase):
     def test_menu_has_exactly_ten_enabled_cards_without_disabled_rooms(self):
         app=self.app
         app.show_lab_menu()
-        with patch.object(app,'text',wraps=app.text) as rendered:
-            app.render()
-        numbers=[int(call.args[0]) for call in rendered.call_args_list
-                 if isinstance(call.args[0],str) and call.args[0].isdigit()]
-        self.assertEqual(numbers,list(range(1,11)))
-        self.assertEqual(len(app.buttons),11)
-        for i in range(10):
-            callbacks=[cb for rect,cb in app.buttons if rect.collidepoint(200+i%4*372,240+i//4*164)]
+        app.render()
+        self.assertEqual(len(app.buttons),12)
+        for rect,code in zip(app.ice_ui.tutorial_cards,LAB_TYPES):
+            callbacks=[cb for hit,cb in app.buttons if hit.collidepoint(rect.center)]
             self.assertEqual(len(callbacks),1)
+            callbacks[0]()
+            self.assertEqual(app.scene,'play')
+            self.assertEqual(app.lab_id,code)
+            app.menu();app.render()
 
     def test_old_rooms_and_image_map_cli_are_removed(self):
         for code in (11,37,403,416,606):

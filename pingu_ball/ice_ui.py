@@ -18,6 +18,23 @@ class IceUI:
             'restart':(210,814,488,144),'select':(752,814,494,144)}.items()}
         self.result_buttons={name:self.native_rect('result',rect,(1199,1312)) for name,rect in {
             'next':(247,929,711,145),'retry':(183,1090,402,120),'select':(610,1090,410,120)}.items()}
+        for name in ('tutorial_menu','regular_menu'):
+            image=pygame.image.load(str(root/'assets/ui'/f'{name}.png')).convert_alpha()
+            self.images[name]=pygame.transform.smoothscale(image,(1600,832))
+            self.positions[name]=(0,0)
+        self.tutorial_cards=[self.list_rect('tutorial_menu',(68+(n%4)*402,168+(n//4)*228,394,214))
+                             for n in range(10)]
+        self.regular_native_cards=[(58+(n%4)*406,239+(n//4)*194,402,185) for n in range(12)]
+        self.regular_cards=[self.list_rect('regular_menu',rect) for rect in self.regular_native_cards]
+        self.list_back={name:self.list_rect(name,rect) for name,rect in {
+            'tutorial_menu':(1382,28,310,90),'regular_menu':(1382,57,310,92)}.items()}
+        self.list_sound={name:self.list_rect(name,rect) for name,rect in {
+            'tutorial_menu':(1513,823,205,73),'regular_menu':(1467,830,250,69)}.items()}
+        self.list_sound_label={name:self.list_rect(name,rect) for name,rect in {
+            'tutorial_menu':(1570,843,126,35),'regular_menu':(1534,846,160,35)}.items()}
+        source=self.images['regular_menu']
+        button=source.subsurface(self.list_rect('regular_menu',(91,345,222,58))).copy()
+        self.list_play_button=pygame.transform.smoothscale(button,(151,41))
 
     def native_rect(self,name,rect,original_size):
         im=self.images[name];x,y=self.positions[name];sx=im.get_width()/original_size[0];sy=im.get_height()/original_size[1]
@@ -26,6 +43,9 @@ class IceUI:
 
     def blit(self,canvas,name):
         canvas.blit(self.images[name],self.positions[name])
+
+    def list_rect(self,name,rect):
+        return self.native_rect(name,rect,(1737,906))
 
     def next_label_patch(self):
         # Use only when the painted "next stage" wording needs to change.
