@@ -11,6 +11,9 @@ def run_route(level, collect_all, seconds=None):
     seconds = level.time_limit if seconds is None else seconds
     world=World(level, auto_reset=False)
     path=level.fish_waypoints if collect_all else level.no_fish_waypoints
+    if not path:
+        return {'stage':level.index, 'passed':False, 'cleared':False,
+                'reason':'no_route_witness', 'route':'all_fish' if collect_all else 'no_fish'}
     point=0
     trace=[]
     driver=RouteDriver(world, path)

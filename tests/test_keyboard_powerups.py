@@ -24,7 +24,7 @@ class KeyboardPowerUpTests(unittest.TestCase):
 
     def setUp(self):
         self.app.help = False
-        self.app.start(1)
+        self.app.start(7)
         pygame.event.clear()
 
     def equip(self,kind='forward'):
@@ -46,7 +46,7 @@ class KeyboardPowerUpTests(unittest.TestCase):
     def test_actual_pickup_then_double_left_or_right_uses_one_directional_jump(self):
         for key,sign in ((pygame.K_LEFT,-1),(pygame.K_RIGHT,1)):
             with self.subTest(sign=sign):
-                self.app.start(1)
+                self.app.start(7)
                 self.equip()
                 self.tap(key,100)
                 self.assertIsNone(self.app.pending_power_direction)
@@ -65,6 +65,23 @@ class KeyboardPowerUpTests(unittest.TestCase):
         self.app.update(P.dt,0)
         self.assertIsNone(self.app.world.ball.power_up)
         self.assertAlmostEqual(self.app.world.ball.vx,0.)
+        self.assertAlmostEqual(self.app.world.ball.vy,-P.power_up_speed+P.gravity*P.dt)
+
+    def test_real_pickups_allow_dash_then_jump_with_their_arrow_inputs(self):
+        self.equip('up')
+        self.equip('forward')
+        self.assertEqual(self.app.world.ball.held_powerups,('forward','up'))
+        self.tap(pygame.K_RIGHT,100)
+        self.key(pygame.K_RIGHT,220)
+        self.app.update(P.dt,1)
+        self.assertEqual(self.app.world.ball.held_powerups,('up',))
+        self.assertIsNotNone(self.app.world.ball.forward_target_x)
+        self.key(pygame.K_RIGHT,240,pressed=False)
+        self.tap(pygame.K_UP,400)
+        self.key(pygame.K_UP,520)
+        self.app.update(P.dt,0)
+        self.assertEqual(self.app.world.ball.held_powerups,())
+        self.assertIsNone(self.app.world.ball.forward_target_x)
         self.assertAlmostEqual(self.app.world.ball.vy,-P.power_up_speed+P.gravity*P.dt)
 
     def test_keys_keep_normal_movement_without_an_item(self):
@@ -112,7 +129,7 @@ class KeyboardPowerUpTests(unittest.TestCase):
     def test_pause_focus_loss_and_restart_clear_first_tap(self):
         for transition in ('pause','focus','restart'):
             with self.subTest(transition=transition):
-                self.app.start(1)
+                self.app.start(7)
                 self.equip()
                 self.tap(pygame.K_RIGHT,100)
                 if transition=='pause':

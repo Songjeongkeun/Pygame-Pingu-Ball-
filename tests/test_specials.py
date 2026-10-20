@@ -25,18 +25,21 @@ def land(world,name):
 
 class PlatformAndMovementTests(unittest.TestCase):
     def test_catalog_has_all_37_and_rejects_unknown_ids(self):
-        self.assertEqual(len(CATALOG),37)
+        self.assertEqual(len(CATALOG),40)
         with self.assertRaises(ValueError): Device('bad',999,0,0)
         with self.assertRaises(ValueError): Device('bad',302,0,0,options={'period':0})
         with self.assertRaises(ValueError): make_world(Device('same',401,0,0),Device('same',403,64,0))
 
-    def test_301_breaks_after_landing_even_after_player_leaves(self):
+    def test_301_disappears_immediately_on_landing_and_resets(self):
         w = make_world(Device('block',301,64,500))
         q = land(w,'block')
         self.assertIsNotNone(q.break_at)
-        w.ball.x,w.ball.y = 300.,100.
-        w.step(0,.51)
         self.assertTrue(q.destroyed)
+        self.assertFalse(q.active(w.time,w.switches))
+        self.assertLess(w.ball.vy,0.)
+        w.reset()
+        self.assertFalse(w.special.platforms['block'].destroyed)
+        self.assertIsNone(w.special.platforms['block'].break_at)
 
     def test_401_provides_actual_144px_spring(self):
         w = make_world(Device('block',401,64,500))
@@ -138,9 +141,12 @@ class SwitchTests(unittest.TestCase):
         land(w,'linked'); self.assertEqual(w.last_landing,'linked')
 
     def test_inactive_platform_lab_switch_is_reachable_with_ordinary_input(self):
-        from pingu_ball.special_lab import make_lab
         from pingu_ball.route_driver import RouteDriver
-        w=World(make_lab(416),auto_reset=False)
+        blocks=[Platform(f'floor-{i}',i*64,704) for i in range(25)]
+        blocks += [Platform('step-1',256,640),Platform('step-2',320,576)]
+        w=make_world(Device('switch',415,192,640,group='demo'),
+                     Device('linked',416,640,512,group='demo'),blocks=blocks)
+        w.ball.x,w.ball.y=288,594
         driver=RouteDriver(w,[(352.,'land:step-2'),(224.,'land:switch')])
         for _ in range(1200):
             w.step(driver.direction())
