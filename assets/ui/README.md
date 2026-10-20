@@ -29,6 +29,12 @@ flat label patch, restore a seamless glossy blue ice button face, and preserve
 the snowy outer frame, speaker icon, position and all other artwork. Runtime
 text is drawn directly on that face in both states, with no inset rectangle;
 the cached Korean bold lettering has a thin antialiased navy edge.
+The lettering is cropped to its visible alpha bounds before placement, so
+font ascent/descent whitespace cannot shift either state below center.
+`title_sound_face.png` is a transparent cutout of the same snowy blue button,
+edited with built-in imagegen: remove only exterior scenery while preserving
+the frame, speaker icon, proportions and blank face. The title now uses this
+ice artwork and the shared sound labels instead of a plain white UI button.
 
 `pause.png` uses the approved transparent image with the bottom
 “ESC 또는 P로 돌아가기” line removed using the built-in imagegen editor.

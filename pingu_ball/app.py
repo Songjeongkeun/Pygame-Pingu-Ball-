@@ -111,11 +111,14 @@ class App:
             for dx,dy in ((-3,0),(3,0),(0,-3),(0,3),(-2,-2),(2,-2),(-2,2),(2,2)):
                 image.blit(edge,(3+dx,3+dy))
             image.blit(letters,(3,3))
+            # Center visible glyphs, not the font's uneven ascent/descent box.
+            image=image.subsurface(image.get_bounding_rect()).copy()
             width=min(rect.w-4 for rect in self.ice_ui.sound_labels.values())
             height=min(rect.h-2 for rect in self.ice_ui.sound_labels.values())
             scale=min(1/3,width/image.get_width(),height/image.get_height())
-            self.sound_labels[enabled]=pygame.transform.smoothscale(image,
+            image=pygame.transform.smoothscale(image,
                 (round(image.get_width()*scale),round(image.get_height()*scale)))
+            self.sound_labels[enabled]=image.subsurface(image.get_bounding_rect()).copy()
         self.map_canvas = None
         self._scaled_map = None
         self._scaled_window = None
@@ -275,7 +278,8 @@ class App:
     def draw_title(self):
         self.canvas.blit(self.title_image, self.title_rect)
         self.buttons.append((self.title_start, self.menu))
-        self.button('소리 켜짐' if self.sound_on else '소리 꺼짐', (1320, 710, 200, 48), self.toggle_sound)
+        self.art_button(self.ice_ui.sound_faces['title'][1],self.toggle_sound)
+        self.draw_sound_label('title')
 
     def draw_menu(self):
         self.canvas.fill((114,180,225))

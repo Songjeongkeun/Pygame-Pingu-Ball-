@@ -208,6 +208,26 @@ class InterfaceTests(unittest.TestCase):
             self.click(*app.ice_ui.list_back[name].center)
             self.assertEqual(app.scene,'menu')
 
+    def test_sound_glyphs_have_equal_vertical_padding_and_title_uses_ice_art(self):
+        app=self.app
+        app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        for name,show in [('title',app.show_title),('menu',app.menu),
+                          ('tutorial_menu',app.show_lab_menu),('regular_menu',app.show_normal_menu)]:
+            show();app.render()
+            field=app.ice_ui.sound_labels[name]
+            for enabled in (True,False):
+                image=app.sound_labels[enabled]
+                drawn=image.get_rect(center=field.center)
+                visible=image.get_bounding_rect().move(drawn.topleft)
+                self.assertLessEqual(abs((visible.top-field.top)-(field.bottom-visible.bottom)),1)
+                self.assertTrue(field.contains(visible))
+            self.click(*app.ice_ui.sound_faces[name][1].center)
+            self.assertFalse(app.sound_on)
+            self.click(*app.ice_ui.sound_faces[name][1].center)
+            self.assertTrue(app.sound_on)
+        title_face=app.ice_ui.sound_faces['title'][0]
+        self.assertEqual(title_face.get_at((0,0)).a,0)
+
     def test_play_press_animates_before_one_stage_start_and_can_be_cancelled(self):
         app=self.app
         app.progress.unlocked=3

@@ -34,15 +34,18 @@ class IceUI:
             'tutorial_menu':(1513,823,205,73),'regular_menu':(1467,830,250,69)}.items()}
         self.sound_labels={name:self.list_rect(name,rect) for name,rect in {
             'tutorial_menu':(1590,842,114,36),'regular_menu':(1555,845,140,36)}.items()}
-        self.sound_labels['menu']=pygame.Rect(1439,749,114,40)
+        self.sound_labels['menu']=pygame.Rect(1439,746,114,40)
+        self.sound_labels['title']=pygame.Rect(1419,729,114,40)
         self.sound_faces={}
         for name,rect in (
+            ('title',(1320,710,240,78)),
             ('menu',(1340,724,240,78)),
             ('tutorial_menu',(1508,817,216,85)),
             ('regular_menu',(1463,823,258,81)),
         ):
             face=pygame.image.load(str(root/'assets/ui'/f'{name}_sound_face.png')).convert_alpha()
-            target=pygame.Rect(rect).move(0,1) if name=='menu' else self.list_rect(name,rect)
+            target=(pygame.Rect(rect).move(0,1) if name=='menu' else pygame.Rect(rect)
+                    if name=='title' else self.list_rect(name,rect))
             self.sound_faces[name]=(pygame.transform.smoothscale(face,target.size),target)
         source=self.images['regular_menu']
         button=source.subsurface(self.list_rect('regular_menu',(91,345,222,58))).copy()
