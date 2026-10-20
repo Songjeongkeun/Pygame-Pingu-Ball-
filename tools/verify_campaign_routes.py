@@ -13,8 +13,6 @@ from pingu_ball.levels import make_level
 from tools.verify_stage3 import Replay
 
 REVIEW_NOTES={
-    6: ['오른쪽 점프 블록(832px)에서 이동 발판(640px)까지 192px 상승이 필요하지만 점프 반동은 144px이다.',
-        '아이템이 없는 맵이며, 왼쪽에서 중앙 점프 발판으로 넘어가는 경로도 벽과 태양 배치의 재검토가 필요하다.'],
     8: ['오른쪽 바닥(832px)에서 점프 아이템 발판(576px)까지 256px 상승이 필요하지만 일반 반동은 96px이다.',
         '상하 이동 발판의 가장 낮은 높이도 576px이고, 왼쪽 점프 블록 768→576px 구간은 192px로 144px 반동보다 높다.'],
     11: ['오른쪽 640px 발판에서 512px 기둥 위로 복귀하려면 128px 상승이 필요하지만 일반 반동은 96px이다.',
@@ -85,6 +83,7 @@ def route(number):
         r.until(lambda:w.cleared,800,label='goal')
     elif number==6:
         r.land('normal-1',96)
+        for _ in range(2): r.land('normal-1',96)
         r.land('breakable-9',160)
         r.land('breakable-10',352)
         r.land('breakable-11',160)
@@ -93,7 +92,18 @@ def route(number):
         r.tick(-1)
         r.land('normal-24',1440)
         r.land('spring-28',1504)
+        ferry=[q for q in w.platforms if q.kind=='moving']
+        flight=(w.physics.pad_speed+math.sqrt(w.physics.pad_speed**2-2*w.physics.gravity*128))/w.physics.gravity
+        def ready_to_board():
+            now=[q.rect_at(w.time,w.physics) for q in ferry]
+            future=[q.rect_at(w.time+flight,w.physics) for q in ferry]
+            # Rise beside the approaching deck, then land on its top.
+            return (w.last_landing=='spring-28' and w.time-w.last_landing_time<w.physics.dt*1.1
+                    and max(q[0]+q[2] for q in now)<1486
+                    and min(q[0] for q in future)+20<1504<max(q[0]+q[2] for q in future)-20)
+        r.until(ready_to_board,1504,seconds=40,label='wait-for-ferry')
         r.until(lambda:(w.last_landing or '').startswith('ferry'),1504,label='spring-to-ferry')
+        r.until(lambda:w.cleared,1440,label='goal')
     elif number==7:
         for name,x in [('spring-3',224),('spring-7',352),('spring-11',480),
                        ('spring-15',608),('spring-34',736),('spring-41',864)]: r.land(name,x)

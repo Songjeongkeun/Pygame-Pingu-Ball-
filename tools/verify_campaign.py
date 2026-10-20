@@ -34,9 +34,9 @@ def main():
             from tools.verify_stage4 import route
             witness=route().world
             full_route=witness.cleared and not witness.failures
-        elif level.index==5:
+        elif level.index in (5,6):
             from tools.verify_campaign_routes import route
-            witness=route(5).world
+            witness=route(level.index).world
             full_route=witness.cleared and not witness.failures
         item={'stage':level.index,'spawn_safe':spawn_safe,'normal_goal_support':supported,
               'goal_sensor_clears':world.cleared,'finite':finite,'moving_devices_run':moved,

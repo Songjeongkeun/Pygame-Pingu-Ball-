@@ -36,7 +36,8 @@ POSITION_ADJUSTMENTS = {
     4: {('spring',23,9):(23,10), ('normal',21,6):(21,8),
         ('normal',20,5):(20,7), ('normal',19,5):(18,6)},
     5: {('spring',18,10):(18,11), ('spring',16,7):(16,9)},
-    6: {('normal',10,7):(10,9), ('normal',22,7):(22,9)},
+    6: {('normal',10,7):(10,9), ('normal',22,7):(22,10),
+        ('moving',12.15,10):(12.15,11), ('moving',13.15,10):(13.15,11)},
     7: {('spring',7,14):(5,12), ('spring',11,14):(7,10),
         ('spring',15,14):(9,8), ('spring',5,8):(11,6),
         ('spring',2,5):(13,4), ('breakable',7,8):(8,12),
@@ -76,6 +77,10 @@ def fit_jump_layout(source):
         # The two-tile deck must extend below the upper ledge's exit (x=768).
         # End its right edge at x=832, before the next spike column begins.
         data['rails'][0]=[[4.5,8.5],[11.5,8.5]]
+    if data['number']==6:
+        # Lower the full deck and its range together: 128px above the right spring.
+        data['rails']=[[[c,r+1] for c,r in rail] for rail in data['rails']]
+        data['markers']=[[c,r+1] for c,r in data['markers']]
     data['tiles'].extend(copy.deepcopy(TILE_ADDITIONS.get(data['number'], [])))
     return data
 
