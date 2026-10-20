@@ -49,7 +49,24 @@ class IceUI:
             self.sound_label_backgrounds[name]=face
         source=self.images['regular_menu']
         button=source.subsurface(self.list_rect('regular_menu',(91,345,222,58))).copy()
-        self.list_play_button=pygame.transform.smoothscale(button,(151,41))
+        # Keep the rounded gold artwork, with no rectangular piece of the source
+        # card around it. Antialias the silhouette before its one-time resize.
+        mask=pygame.Surface((button.get_width()*4,button.get_height()*4),pygame.SRCALPHA)
+        pygame.draw.rect(mask,(255,255,255),mask.get_rect(),border_radius=mask.get_height()//2)
+        mask=pygame.transform.smoothscale(mask,button.get_size())
+        button.blit(mask,(0,0),special_flags=pygame.BLEND_RGBA_MULT)
+        self.list_play_button=pygame.transform.smoothscale(button,self.list_rect('regular_menu',(0,0,200,53)).size)
+        # Use the card's own blank ice texture to cover the baked lock wording.
+        # Feather the edges so unlocked cards have no flat rectangular panel.
+        blank=source.subsurface(self.list_rect('regular_menu',(500,344,150,18))).copy()
+        size=self.list_rect('regular_menu',(0,0,356,49)).size
+        face=pygame.transform.smoothscale(blank,size)
+        mask=pygame.Surface(size,pygame.SRCALPHA)
+        for inset in range(4):
+            pygame.draw.rect(mask,(255,255,255,min(255,64*(inset+1))),
+                             mask.get_rect().inflate(-2*inset,-2*inset),border_radius=8)
+        face.blit(mask,(0,0),special_flags=pygame.BLEND_RGBA_MULT)
+        self.regular_unlocked_footer=face
 
     def native_rect(self,name,rect,original_size):
         im=self.images[name];x,y=self.positions[name];sx=im.get_width()/original_size[0];sy=im.get_height()/original_size[1]

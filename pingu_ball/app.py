@@ -301,17 +301,15 @@ class App:
                 x,y,w,h=ui.regular_native_cards[index-1]
                 if index>1:
                     footer=ui.list_rect(name,(x+23,y+126,w-46,49))
-                    pygame.draw.rect(self.canvas,(231,250,255),footer,border_radius=10)
-                    play=ui.list_rect(name,(x+27,y+127,164,45))
+                    self.canvas.blit(ui.regular_unlocked_footer,footer)
+                    play=ui.list_rect(name,(x+27,y+125,200,53))
                     self.canvas.blit(ui.list_play_button,play.topleft)
                 if record:
                     detail=f"{GRADES[record['score']]} · {record['score']}점"
-                    record_x=267 if index==1 else 203
-                    if index==1:
-                        field=ui.list_rect(name,(x+record_x,y+126,w-record_x-23,49))
-                        pygame.draw.rect(self.canvas,(231,250,255),field,border_radius=6)
-                    self.fitted_text(detail,ui.list_rect(name,(x+record_x,y+126,w-record_x-26,23)),18,TEAL)
-                    self.fitted_text(f"{record['time']:.2f}초",ui.list_rect(name,(x+record_x,y+150,w-record_x-26,23)),18,(3,40,98))
+                    record_x=267 if index==1 else 244
+                    record_y,size,line_height=(145,16,18) if index==1 else (126,18,23)
+                    self.fitted_text(detail,ui.list_rect(name,(x+record_x,y+record_y,w-record_x-26,line_height)),size,TEAL)
+                    self.fitted_text(f"{record['time']:.2f}초",ui.list_rect(name,(x+record_x,y+record_y+line_height,w-record_x-26,line_height)),size,(3,40,98))
                 self.art_button(rect,lambda n=index:self.start(n))
         self.draw_list_sound(name)
         if self.progress.error:
