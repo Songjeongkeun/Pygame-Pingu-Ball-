@@ -92,10 +92,11 @@ class SpecialInterfaceTests(unittest.TestCase):
     def test_breakable_contact_removes_sprite_and_restart_restores_it(self):
         app=self.app;app.start_special(1)
         app.render()
-        point=(352,416)
+        q=app.world.special.platforms['break-0']
+        point=(round(q.x+q.w/2),round(q.y+q.h/2))
         self.assertGreater(app.map_canvas.get_at(point).a,0)
         for _ in range(600):
-            app.update(1/120,waypoint_direction(app.world,352))
+            app.update(1/120,waypoint_direction(app.world,point[0]))
             if app.world.special.platforms['break-0'].destroyed: break
         app.render()
         self.assertTrue(app.world.special.platforms['break-0'].destroyed)

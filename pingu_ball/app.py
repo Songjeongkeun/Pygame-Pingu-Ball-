@@ -14,6 +14,8 @@ from .engine import World
 from .levels import make_levels
 from .storage import Progress
 from .skin import WinterSkin
+from .ice_ui import IceUI
+from .playfield import expand_playfield, VIEW_LEFT, VIEW_TOP, VIEW_WIDTH, VIEW_HEIGHT
 
 ROOT = Path(__file__).resolve().parent.parent
 INK = (23, 48, 70)
@@ -85,6 +87,7 @@ class App:
                                        round(self.title_rect.y+470*title_scale),
                                        round(580*title_scale), round(166*title_scale))
         self.skin = WinterSkin(ROOT)
+        self.ice_ui = IceUI(ROOT)
         self.map_canvas = None
         self._scaled_map = None
         self._scaled_window = None
@@ -143,6 +146,30 @@ class App:
         pygame.draw.rect(self.canvas, color, rect, border_radius=12)
         self.text(label, *rect.center, 22, WHITE if primary else INK, True, True)
         self.buttons.append((rect, callback))
+
+    def art_button(self, rect, callback):
+        """Artwork already paints the button; register the same visible region."""
+        rect = pygame.Rect(rect)
+        if rect.collidepoint(self.hover):
+            pygame.draw.rect(self.canvas, (215, 253, 255), rect, 2, border_radius=16)
+        self.buttons.append((rect, callback))
+
+    def fitted_text(self, label, rect, size=30, color=INK, bold=True, outline=None):
+        rect = pygame.Rect(rect)
+        while size > 12:
+            key=(size,bold)
+            if key not in self._font_cache:
+                font=pygame.font.Font(self.font_path,size)
+                font.set_bold(bold)
+                self._font_cache[key]=font
+            font=self._font_cache[key]
+            if font.size(label)[0] <= rect.w:
+                break
+            size -= 1
+        if outline:
+            for dx,dy in ((-2,0),(2,0),(0,-2),(0,2),(-1,-1),(1,-1),(-1,1),(1,1)):
+                self.text(label,rect.centerx+dx,rect.centery+dy,size,outline,bold,True)
+        return self.text(label, *rect.center, size, color, bold, True)
 
     def prepare_sounds(self):
         if not pygame.mixer.get_init():
@@ -223,23 +250,14 @@ class App:
         self.button('소리 켜짐' if self.sound_on else '소리 꺼짐', (1320, 710, 200, 48), self.toggle_sound)
 
     def draw_menu(self):
-        self.backdrop()
-        self.text('Pingu Ball', 64, 64, 68, INK, True)
-        self.text('자동으로 튀는 핑구 공을 이글루까지 안내하세요.', 68, 160, 25, MUTED)
-        self.draw_pingu(1480, 168, 124)
-        self.button('메인 화면', (920, 36, 180, 48), self.show_title)
-        self.button('플레이 방법', (1120, 36, 190, 48), lambda: setattr(self, 'help', True))
-        self.button('종료', (1330, 36, 190, 48), self.quit)
-        self.text('스테이지 선택',64,232,30,INK,True)
-        for x,title,detail,count,callback in [
-                (64,'튜토리얼 스테이지','블록과 아이템을 차례대로 배워 보세요.','새 튜토리얼 10개 · 모두 선택 가능',self.show_lab_menu),
-                (822,'일반 스테이지','다양한 맵에서 이글루까지 도전해요.',f'문서 스테이지 {REGULAR_STAGE_COUNT}개',self.show_normal_menu)]:
-            self.panel((x,300,714,316))
-            self.text(title,x+32,332,38,BLUE,True)
-            self.text(detail,x+32,402,25,INK)
-            self.text(count,x+32,450,22,MUTED)
-            self.button('들어가기',(x+32,522,650,58),callback,True)
-        self.button('소리 켜짐' if self.sound_on else '소리 꺼짐',(1320,710,200,48),self.toggle_sound)
+        self.canvas.fill((114,180,225))
+        self.ice_ui.blit(self.canvas,'menu')
+        actions={'title':self.show_title,'help':lambda:setattr(self,'help',True),
+                 'quit':self.quit,'practice':self.show_lab_menu,'adventure':self.show_normal_menu,
+                 'sound':self.toggle_sound}
+        for name,callback in actions.items():
+            self.art_button(self.ice_ui.menu_buttons[name],callback)
+        self.fitted_text('소리 켜짐' if self.sound_on else '소리 꺼짐',(1442,748,110,40),25,(247,252,255))
         if self.progress.error:self.text(self.progress.error,64,782,20,CORAL)
 
     def show_normal_menu(self):
@@ -282,7 +300,7 @@ class App:
 
     def start(self, index):
         self.lab_id = None
-        self.world = World(self.levels[index])
+        self.world = World(expand_playfield(self.levels[index]))
         self.map_canvas = pygame.Surface((self.world.physics.width, self.world.physics.height), pygame.SRCALPHA).convert_alpha()
         self.map_view = self.map_viewport()
         self.scene = 'play'
@@ -305,7 +323,7 @@ class App:
         from .special_lab import make_lab, resolve_lab_type
         type_id = resolve_lab_type(type_id)
         self.lab_id = type_id
-        self.world = World(make_lab(type_id))
+        self.world = World(expand_playfield(make_lab(type_id)))
         self.map_canvas = pygame.Surface((self.world.physics.width,self.world.physics.height),pygame.SRCALPHA).convert_alpha()
         self.map_view = self.map_viewport()
         self.scene = 'play'
@@ -416,9 +434,10 @@ class App:
 
     def map_viewport(self):
         p = self.world.physics
-        scale = min(1568/p.width, 704/p.height)
+        scale = min(VIEW_WIDTH/p.width, VIEW_HEIGHT/p.height)
         size = (round(p.width*scale), round(p.height*scale))
-        return pygame.Rect((1600-size[0])//2, 72, *size)
+        return pygame.Rect(VIEW_LEFT+(VIEW_WIDTH-size[0])//2,
+                           VIEW_TOP+(VIEW_HEIGHT-size[1])//2, *size)
 
     def pointer_down(self, position, timestamp):
         at = ((position[0]-self.offset[0])/self.scale, (position[1]-self.offset[1])/self.scale)
@@ -513,21 +532,25 @@ class App:
         self.draw_pingu(world.ball.x, world.ball.y, 28, charged=world.ball.power_up or False)
 
     def draw_play_hud(self, world):
-        # Top row belongs to UI; the map never scrolls.
-        self.panel((0, 0, 1600, 64), (249, 253, 255, 245), 0)
-        label = '튜토리얼' if self.lab_id is not None or world.level.index == 0 else f'STAGE {world.level.index}'
-        self.text(label+' / '+world.level.title, 24, 18, 24, INK, True)
+        ui=self.ice_ui
+        ui.blit(self.canvas,'hud_stage')
+        tutorial=self.lab_id is not None or world.level.index==0
+        label='TUTORIAL' if tutorial else f'STAGE {world.level.index:02d}'
+        self.fitted_text(label,(124,34,166,30),21,WHITE)
+        self.fitted_text(world.level.title,(96,66,203,48),34,WHITE,outline=(7,44,104))
         total = sum(fish.value > 0 for fish in world.level.collectibles)
-        if total:
-            self.fish(530, 32)
-            self.text(f'{world.plus}/{total}', 554, 18, 24)
-        if any(fish.value < 0 for fish in world.level.collectibles):
-            self.fish(640, 32, bone=True)
-            self.text(str(world.minus), 664, 18, 24)
-        self.text(f'{world.time:.2f}초', 750, 20, 22, MUTED)
-        self.button('일시정지', (1000, 10, 170, 44), self.toggle_pause)
-        self.button('재시작 R', (1180, 10, 170, 44), self.restart)
-        self.button('튜토리얼 목록' if self.lab_id is not None else '스테이지', (1360, 10, 216, 44), self.menu)
+        if total or any(fish.value<0 for fish in world.level.collectibles):
+            self.panel((399,29,226,52),(223,250,255,250),18)
+            self.fish(432,55,42)
+            self.text(f'{world.plus}/{total}',459,39,22,INK,True)
+            self.fish(544,55,42,bone=True)
+            self.text(str(world.minus),571,39,22,INK,True)
+        ui.blit(self.canvas,'hud_timer')
+        self.fitted_text(f'{world.time:.2f}초',(783,42,143,39),28,INK)
+        for name,callback in [('pause',self.toggle_pause),('restart',self.restart),('select',self.menu)]:
+            key='hud_'+name
+            ui.blit(self.canvas,key)
+            self.art_button(ui.images[key].get_rect(topleft=ui.positions[key]),callback)
         if self.toast and self.wall_time < self.toast_until:
             self.text(self.toast, 800, 146, 24, CORAL, True, True)
         if world.paused:
@@ -543,36 +566,47 @@ class App:
         self.panel(rect, (249, 253, 255, 250), 24)
 
     def draw_pause(self):
-        self.overlay((500, 240, 600, 340))
-        self.text('일시정지', 800, 300, 40, INK, True, True)
-        self.text('공과 모든 블록의 시간이 멈췄습니다.', 800, 360, 22, MUTED, False, True)
-        self.button('계속하기', (540, 416, 520, 54), self.toggle_pause, True)
-        self.button('다시 시작', (540, 492, 250, 48), self.restart)
-        self.button('스테이지 선택', (810, 492, 250, 48), self.menu)
+        self.shade_play()
+        self.ice_ui.blit(self.canvas,'pause')
+        for name,callback in [('close',self.toggle_pause),('continue',self.toggle_pause),
+                              ('restart',self.restart),('select',self.menu)]:
+            self.art_button(self.ice_ui.pause_buttons[name],callback)
+
+    def shade_play(self):
+        self.panel((0,0,1600,832),(4,23,50,125),0)
+        self.buttons=[]
 
     def draw_result(self):
         world = self.world
-        self.overlay((480, 164, 640, 500))
+        ui=self.ice_ui
+        self.shade_play()
+        ui.blit(self.canvas,'result')
+        field=lambda rect:ui.native_rect('result',rect,(1199,1312))
+        tutorial=self.lab_id is not None or world.level.index==0
+        self.fitted_text('CLEAR' if tutorial else world.grade,field((516,564,170,135)),
+                         35 if tutorial else 42,(7,93,175))
+        detail=f'{world.time:.2f}초' if tutorial else f'{world.score}점  ·  {world.time:.2f}초'
+        self.fitted_text(detail,field((320,780,570,63)),28,(6,23,64))
+        status='튜토리얼 완료' if tutorial else '최고 기록 갱신' if self.new_record else '기존 최고 기록 유지'
+        self.fitted_text(status,field((394,852,420,63)),21,(0,158,145))
+        label='다음 스테이지'
         if self.lab_id is not None:
-            self.text('튜토리얼 CLEAR',800,260,40,BLUE,True,True)
-            self.text(f'{world.level.title} · {world.time:.2f}초',800,350,26,INK,True,True)
-            self.button('다시 시험',(520,516,270,54),self.restart)
             from .special_lab import ENABLED_LAB_TYPES
-            self.button('다음 튜토리얼' if self.lab_id!=ENABLED_LAB_TYPES[-1] else '튜토리얼 목록',
-                        (810,516,270,54),self.next_stage,True)
-            self.button('튜토리얼 목록',(620,594,360,44),self.show_lab_menu)
-            return
-        tutorial = world.level.index == 0
-        self.text('튜토리얼 완료!' if tutorial else '집에 도착했어요!', 800, 224, 36, INK, True, True)
-        self.text('CLEAR' if tutorial else world.grade, 800, 320, 68, BLUE, True, True)
-        if not tutorial:
-            self.text(f'{world.score}점 · {world.time:.2f}초', 800, 396, 28, INK, True, True)
-            self.text('최고 기록 갱신' if self.new_record else '기존 최고 기록 유지', 800, 446, 22, TEAL, True, True)
+            label='다음 튜토리얼' if self.lab_id!=ENABLED_LAB_TYPES[-1] else '튜토리얼 목록'
+        elif tutorial:label='특수블록 배우기'
+        elif world.level.index==REGULAR_STAGE_COUNT:label='여행 완료'
+        if label!='다음 스테이지':
+            rect=ui.next_label_patch()
+            # Only replace the button's lettering area, preserving live values.
+            origin=ui.positions['result_next']
+            area=rect.move(-origin[0],-origin[1]).inflate(12,4)
+            self.canvas.blit(ui.images['result_next'],area.move(origin).topleft,area)
+            self.fitted_text(label,rect.inflate(-12,0),30,(85,36,2),outline=(255,248,218))
         if self.progress.error:
-            self.text(self.progress.error, 800, 484, 18, CORAL, False, True)
-        self.button('다시 도전', (520, 516, 270, 54), self.restart)
-        self.button('특수블록 배우기' if tutorial else '여행 완료' if world.level.index == REGULAR_STAGE_COUNT else '다음 스테이지', (810, 516, 270, 54), self.next_stage, True)
-        self.button('스테이지 선택', (620, 594, 360, 44), self.menu)
+            self.panel((320,792,960,36),(249,253,255,248),8)
+            self.fitted_text(self.progress.error,(330,794,940,30),18,CORAL,False)
+        for name,callback in [('next',self.next_stage),('retry',self.restart),('select',self.menu)]:
+            self.art_button(ui.result_buttons[name],callback)
 
     def next_stage(self):
         if self.lab_id is not None:
@@ -696,6 +730,9 @@ class App:
                     self.show_title()
                 elif self.scene in ('lab_menu','normal_menu') and event.key == pygame.K_ESCAPE:
                     self.menu()
+                elif (event.key in (pygame.K_ESCAPE,pygame.K_p) and self.scene=='play'
+                      and not self.help and not getattr(event,'repeat',False)):
+                    self.toggle_pause()
                 elif event.key == pygame.K_r and self.scene in ('play', 'result') and not self.help:
                     self.restart()
                 elif event.key in (pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN) and self.scene == 'play' and not self.world.paused and not self.help:
