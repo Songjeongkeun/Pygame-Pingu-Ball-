@@ -4,6 +4,17 @@ The four screen references were supplied and approved by the user. These
 runtime PNGs are extracted by `tools/prepare_ui_assets.py`; the game needs
 only Pygame, not Pillow. All hit regions use the 1600×832 logical canvas.
 
+`hud_stage.png` and `hud_timer.png` use the approved seamless ice design.
+Built-in imagegen edit prompts: remove the flat inner text patches, restore
+continuous illuminated faceted ice, and preserve the snowy frame, flag or
+stopwatch, empty live-text areas and transparent exterior. The approved
+comparison is `output/hud-natural-preview/comparison.png` (local review output).
+`regular_counter_blank.png` similarly removes the baked completion count from
+the original list panel while preserving its rim and subtitle. Live stage,
+timer and count lettering is antialiased and centered by visible glyph bounds;
+no solid rectangles are drawn beneath it. `prepare_ui_assets.py` preserves
+these separately maintained HUD panels when preparing the other controls.
+
 `tutorial_menu.png` and `regular_menu.png` are the two supplied stage-list
 screens (1737×906), scaled once to the logical canvas. Their ten tutorial
 cards, twelve regular cards, back buttons and sound buttons use matching
