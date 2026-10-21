@@ -67,22 +67,26 @@ class KeyboardPowerUpTests(unittest.TestCase):
         self.assertAlmostEqual(self.app.world.ball.vx,0.)
         self.assertAlmostEqual(self.app.world.ball.vy,-P.power_up_speed+P.gravity*P.dt)
 
-    def test_real_pickups_allow_dash_then_jump_with_their_arrow_inputs(self):
-        self.equip('up')
-        self.equip('forward')
-        self.assertEqual(self.app.world.ball.held_powerups,('forward','up'))
-        self.tap(pygame.K_RIGHT,100)
-        self.key(pygame.K_RIGHT,220)
-        self.app.update(P.dt,1)
-        self.assertEqual(self.app.world.ball.held_powerups,('up',))
-        self.assertIsNotNone(self.app.world.ball.forward_target_x)
-        self.key(pygame.K_RIGHT,240,pressed=False)
-        self.tap(pygame.K_UP,400)
-        self.key(pygame.K_UP,520)
-        self.app.update(P.dt,0)
-        self.assertEqual(self.app.world.ball.held_powerups,())
-        self.assertIsNone(self.app.world.ball.forward_target_x)
-        self.assertAlmostEqual(self.app.world.ball.vy,-P.power_up_speed+P.gravity*P.dt)
+    def test_real_pickup_replacement_uses_only_latest_items_arrow_input(self):
+        for first,last,key,direction in (('up','forward',pygame.K_RIGHT,1),
+                                         ('forward','up',pygame.K_UP,0)):
+            with self.subTest(first=first,last=last):
+                self.app.start(7);pygame.event.clear()
+                self.equip(first)
+                self.tap(pygame.K_RIGHT if first=='forward' else pygame.K_UP,50)
+                self.equip(last)
+                self.assertIsNone(self.app.last_key_tap)
+                self.assertEqual(self.app.world.ball.held_powerups,(last,))
+                self.tap(key,100);self.key(key,220)
+                self.app.update(P.dt,direction)
+                self.assertEqual(self.app.world.ball.held_powerups,())
+                self.assertEqual([kind for event,kind in self.app.world.events if event=='power_use'],[last])
+                if last=='forward':self.assertIsNotNone(self.app.world.ball.forward_target_x)
+                else:self.assertAlmostEqual(self.app.world.ball.vy,-P.power_up_speed+P.gravity*P.dt)
+                self.key(key,240,pressed=False)
+                self.tap(pygame.K_UP,400);self.key(pygame.K_UP,520)
+                self.app.update(P.dt,0)
+                self.assertFalse(any(event=='power_use' for event,_ in self.app.world.events))
 
     def test_keys_keep_normal_movement_without_an_item(self):
         self.tap(pygame.K_RIGHT,100)

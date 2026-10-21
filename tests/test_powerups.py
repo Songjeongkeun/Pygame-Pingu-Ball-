@@ -17,48 +17,53 @@ def world_with(items=(), blocks=(), spikes=(), devices=()):
 
 
 class PowerUpTests(unittest.TestCase):
-    def test_two_distinct_items_are_held_together_and_dash_is_used_first(self):
-        w = world_with([PowerUp(128., 400., 'forward'), PowerUp(160., 400., 'up')])
-        w.step(0)
-        self.assertEqual(w.ball.power_up, 'forward')
-        self.assertEqual(w.collected_powerups, {0})
-        self.assertEqual(w.score, 7)
-        w.ball.x = 160.
-        w.step(0)
-        self.assertEqual(w.collected_powerups, {0,1})
-        self.assertEqual(w.ball.held_powerups,('forward','up'))
-        self.assertTrue(w.use_power_up(-1))
-        self.assertEqual(w.ball.power_up, 'up')
-        self.assertTrue(w.use_power_up(1))
-        self.assertIsNone(w.ball.power_up)
-        self.assertFalse(w.use_power_up(1))
-        self.assertEqual(w.collected_powerups, {0, 1})
+    def test_last_pickup_replaces_previous_kind_and_only_one_charge_can_be_used(self):
+        for first,last in (('forward','up'),('up','forward')):
+            with self.subTest(first=first,last=last):
+                w=world_with([PowerUp(128.,400.,first),PowerUp(160.,400.,last)])
+                w.step(0)
+                self.assertEqual(w.ball.power_up,first)
+                self.assertEqual(w.collected_powerups,{0})
+                w.ball.x=160.
+                w.step(0)
+                self.assertEqual(w.ball.held_powerups,(last,))
+                self.assertEqual(w.score,7)
+                self.assertTrue(w.use_power_up(-1))
+                self.assertEqual(w.events[-1],('power_use',last))
+                self.assertEqual(w.ball.held_powerups,())
+                self.assertFalse(w.use_power_up(1))
+                self.assertEqual(w.collected_powerups,{0,1})
 
-    def test_dash_has_priority_even_when_jump_is_picked_up_first(self):
-        w=world_with([PowerUp(128.,400.,'up'),PowerUp(128.,400.,'forward')])
-        w.step(0)
-        self.assertEqual(w.ball.held_powerups,('forward','up'))
-        w.step(0,use_power=True,power_direction=-1)
-        self.assertLess(w.ball.vx,0.)
-        self.assertEqual(w.ball.held_powerups,('up',))
-        w.step(0,use_power=True)
-        self.assertEqual(w.ball.held_powerups,())
-        self.assertIsNone(w.ball.forward_target_x)
-        self.assertAlmostEqual(w.ball.vx,0.)
+    def test_fast_pickups_in_one_tick_follow_contact_order_not_item_list_order(self):
+        for direction in (-1,1):
+            with self.subTest(direction=direction):
+                # The item list puts the later collision first.
+                first_x,last_x=(160.,208.) if direction>0 else (208.,160.)
+                w=world_with([PowerUp(last_x,400.,'up',8.),PowerUp(first_x,400.,'forward',8.)])
+                w.ball.x=128. if direction>0 else 240.
+                w.ball.vx=direction*1000.;w.ball.launch=True
+                w.step(0,.1)
+                self.assertEqual([kind for event,kind in w.events if event=='powerup'],['forward','up'])
+                self.assertEqual(w.ball.held_powerups,('up',))
+                self.assertTrue(w.use_power_up())
+                self.assertFalse(w.use_power_up())
 
     def test_duplicate_items_do_not_stack_extra_charges(self):
-        w=world_with([PowerUp(128.,400.,'forward'),PowerUp(128.,400.,'forward')])
-        w.step(0)
-        self.assertEqual(w.collected_powerups,{0,1})
-        self.assertEqual(w.ball.held_powerups,('forward',))
-        self.assertTrue(w.use_power_up(1))
-        self.assertFalse(w.use_power_up(1))
+        for kind in ('forward','up'):
+            with self.subTest(kind=kind):
+                w=world_with([PowerUp(128.,400.,kind),PowerUp(160.,400.,kind)])
+                w.step(0)
+                w.ball.x=160.;w.step(0)
+                self.assertEqual(w.collected_powerups,{0,1})
+                self.assertEqual(w.ball.held_powerups,(kind,))
+                self.assertTrue(w.use_power_up(1))
+                self.assertFalse(w.use_power_up(1))
 
-    def test_failure_clears_both_held_items_and_restores_both_pickups(self):
+    def test_failure_clears_latest_item_and_restores_replaced_pickup_too(self):
         w=world_with([PowerUp(128.,400.,'up'),PowerUp(128.,400.,'forward')])
         w.auto_reset=True
         w.step(0)
-        self.assertEqual(w.ball.held_powerups,('forward','up'))
+        self.assertEqual(w.ball.held_powerups,('forward',))
         w.ball.y=w.physics.height+P.radius+1
         w.step(0)
         self.assertEqual(w.failures,1)

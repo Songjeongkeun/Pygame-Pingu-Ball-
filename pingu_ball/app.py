@@ -716,7 +716,7 @@ class App:
                 ('금 간 얼음', '밟는 즉시 사라짐 · 착지 반동은 유지'),
                 ('점프 화살표 ↑', '일반 발판보다 더 높이 튕깁니다.'),
                 ('이동 ↔ / 시간 발판', '표시 구간 왕복 이동 / 주기적 등장과 소멸'),
-                ('파랑 » / 노랑 ↑↑', '대시 / 점프 · 함께 보유하면 대시부터 사용'),
+                ('파랑 » / 노랑 ↑↑', '대시 / 점프 · 마지막에 먹은 아이템만 보유'),
                 ('아이템 사용', '←←·→→ / ↑↑ 또는 화면 더블 클릭·터치'),
                 ('빨간 스위치', '연결 다리 전환 · 완전히 벗어난 뒤 재작동'),
                 ('좌우 발사 화살표', '중심 높이에서 발사 · 방향키 또는 벽 충돌로 해제'),
@@ -753,6 +753,8 @@ class App:
             for kind, payload in self.world.events:
                 if kind in self.sounds:
                     self.sound(kind)
+                if kind == 'powerup':
+                    self.clear_taps()
                 if kind == 'fail':
                     self.held_keys.clear()
                     self.clear_taps()

@@ -129,19 +129,14 @@ class Ball:
     boost_direction: int = 0
     forward_direction: int = 0
     forward_target_x: float | None = None
-    reserve_power_up: str | None = None
 
     @property
     def held_powerups(self):
-        return tuple(kind for kind in (self.power_up,self.reserve_power_up) if kind is not None)
+        return (self.power_up,) if self.power_up is not None else ()
 
     def collect_power_up(self,kind):
-        held=set(self.held_powerups)
-        held.add(kind)
-        # Dash precedes jump, independent of pickup order. Duplicates do not
-        # add charges; each distinct kind can be used once.
-        self.power_up='forward' if 'forward' in held else 'up'
-        self.reserve_power_up='up' if len(held)==2 else None
+        # Every pickup replaces the held charge, including a repeated kind.
+        self.power_up=kind
 
 
 def advance_x(v, target, acceleration, time):
@@ -244,7 +239,7 @@ class World:
             raise ValueError('power direction must be -1, 0 or 1')
         b, p = self.ball, self.physics
         kind = b.power_up
-        b.power_up,b.reserve_power_up = b.reserve_power_up,None
+        b.power_up = None
         b.launch = False
         b.boost_until = self.time
         b.forward_target_x = None
