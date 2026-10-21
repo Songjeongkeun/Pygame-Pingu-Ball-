@@ -42,8 +42,7 @@ POSITION_ADJUSTMENTS = {
         ('moving',12.15,10):(12.15,11), ('moving',13.15,10):(13.15,11)},
     7: {('spring',7,14):(5,12), ('spring',11,14):(7,10),
         ('spring',15,14):(9,8), ('spring',5,8):(11,6),
-        ('spring',2,5):(13,4), ('breakable',7,8):(8,12),
-        ('breakable',9,8):(10,12)},
+        ('spring',2,5):(13,4)},
     8: {('spring',4,9):(4,10), ('breakable',6,6):(6,8),
         ('breakable',7,6):(7,7)},
     9: {('breakable',13,9):(13,10), ('breakable',15,9):(15,10),
@@ -138,6 +137,10 @@ def make_campaign_level(index):
         phase = (initial - low) * 64
     for n, q in enumerate(data['tiles']):
         c, r, kind = q['c'], q['r'], q['kind']
+        # Remove the pair above the stage-7 bone without renumbering later
+        # devices or changing the timed blocks' phases.
+        if index==7 and kind=='breakable' and (c,r) in ((7,8),(9,8)):
+            continue
         x, y = c * 64., r * 64.
         name = f'{kind}-{n}'
         if kind == 'normal':

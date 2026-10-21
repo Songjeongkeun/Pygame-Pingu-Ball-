@@ -113,7 +113,7 @@ class CampaignTests(unittest.TestCase):
             self.assertEqual(len(level.platforms)+len(level.specials),
                              len(source['tiles'])+len(source.get('patrols',[]))
                              + len(TILE_ADDITIONS.get(source['number'], []))
-                             - (1 if source['number']==4 else 0))
+                             - {4:1,7:2}.get(source['number'],0))
             self.assertEqual(len(level.powerups),len(source['items'])+(1 if source['number']==7 else 0))
             self.assertFalse(any(q.id.startswith('approach') for q in level.platforms+level.specials))
             w=World(level)
