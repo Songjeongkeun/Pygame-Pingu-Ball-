@@ -196,6 +196,11 @@ class InterfaceTests(unittest.TestCase):
     def test_artwork_list_sound_and_back_buttons_after_resize(self):
         app=self.app
         app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        tutorial_face,tutorial_rect=app.ice_ui.sound_faces['tutorial_menu']
+        regular_face,regular_rect=app.ice_ui.sound_faces['regular_menu']
+        self.assertEqual(tutorial_rect,regular_rect)
+        self.assertEqual(tutorial_face.get_bounding_rect(),regular_face.get_bounding_rect())
+        self.assertEqual(app.ice_ui.sound_labels['tutorial_menu'],app.ice_ui.sound_labels['regular_menu'])
         for name,show in [('regular_menu',app.show_normal_menu),('tutorial_menu',app.show_lab_menu)]:
             show();app.render()
             self.assertTrue(app.sound_on)

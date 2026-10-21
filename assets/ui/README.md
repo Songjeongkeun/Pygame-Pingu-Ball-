@@ -22,9 +22,8 @@ Regular card clicks compress and darken the play button, then ease it back
 over 140 ms before starting the selected stage. Repeated clicks during that
 effect are ignored; leaving the menu or losing focus cancels the pending start.
 
-`menu_sound_face.png`, `tutorial_menu_sound_face.png` and
-`regular_menu_sound_face.png` are cropped from built-in imagegen edits of the
-corresponding supplied screen. Prompt: remove the painted sound wording or
+`menu_sound_face.png` is cropped from a built-in imagegen edit of the
+supplied mode-selection screen. Prompt: remove the painted sound wording or
 flat label patch, restore a seamless glossy blue ice button face, and preserve
 the snowy outer frame, speaker icon, position and all other artwork. Runtime
 text is drawn directly on that face in both states, with no inset rectangle;
@@ -35,6 +34,12 @@ font ascent/descent whitespace cannot shift either state below center.
 edited with built-in imagegen: remove only exterior scenery while preserving
 the frame, speaker icon, proportions and blank face. The title now uses this
 ice artwork and the shared sound labels instead of a plain white UI button.
+Both stage lists reuse that exact transparent sprite at 240×78 logical pixels,
+with the same bottom-right position, text field and hit region. Their formerly
+different sound artwork is cleared with `tutorial_menu_sound_cleared.png` and
+`regular_menu_sound_cleared.png`, cropped from built-in imagegen edits. Prompt:
+remove only the entire old sound control and restore the snow/lake behind it,
+preserving all cards, characters, lettering and other scenery.
 
 `pause.png` uses the approved transparent image with the bottom
 “ESC 또는 P로 돌아가기” line removed using the built-in imagegen editor.
