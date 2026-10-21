@@ -22,8 +22,8 @@ class CampaignTests(unittest.TestCase):
         from pingu_ball.campaign import collectible_layouts
         for source in collectible_layouts():
             level=make_level(source['number'])
-            self.assertEqual([(q.x,q.y,q.value,q.size) for q in level.collectibles],
-                             [(q['x'],q['y'],q['value'],32) for q in source['collectibles']])
+            self.assertEqual([(q.x,q.y,q.value,q.size,q.height) for q in level.collectibles],
+                             [(q['x'],q['y'],q['value'],64,48) for q in source['collectibles']])
             self.assertEqual([q.value for q in level.collectibles],[1,1,1,-1])
             world=World(level)
             for collected,score in [(set(),7),({3},6),({0,1,2},10),({0,1,2,3},9)]:

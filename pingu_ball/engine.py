@@ -50,10 +50,12 @@ class Collectible:
     y: float
     value: int = 1
     size: float = 32.
+    height: float | None = None
 
     @property
     def rect(self):
-        return self.x-self.size/2, self.y-self.size/2, self.size, self.size
+        height=self.size if self.height is None else self.height
+        return self.x-self.size/2, self.y-height/2, self.size, height
 
 
 @dataclass(frozen=True)
