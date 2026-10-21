@@ -62,10 +62,7 @@ class App:
         self.hover = (0, 0)
         self.offset = (0, 0)
         self.scale = .625
-        self.wall_time = 0.
         self.accumulator = 0.
-        self.toast = ''
-        self.toast_until = 0.
         self.new_record = False
         self.help = False
         self.lab_id = None
@@ -243,8 +240,8 @@ class App:
         self.canvas.blit(self.skin.image(name, (size, size)),
                          (round(x-size/2), round(y-size/2)))
 
-    def fish(self, x, y, size=32, bone=False, collected=False):
-        image = self.skin.collectible(bone,size)
+    def fish(self, x, y, size=32, bone=False, collected=False, *, height=None):
+        image = self.skin.collectible(bone,size,height)
         if collected:
             image = image.copy(); image.set_alpha(90)
         self.canvas.blit(image, (round(x-image.get_width()/2), round(y-image.get_height()/2)))
@@ -362,7 +359,6 @@ class App:
         self.accumulator = 0.
         self.held_keys.clear()
         self.clear_taps()
-        self.toast = ''
         self.new_record = False
 
     def show_lab_menu(self):
@@ -387,7 +383,6 @@ class App:
         self.accumulator = 0.
         self.held_keys.clear()
         self.clear_taps()
-        self.toast = ''
         self.help = False
 
     def draw_lab_menu(self):
@@ -573,7 +568,7 @@ class App:
         draw_runtime(self.canvas,world,self.skin,platform_rects=platform_rects.values())
         for index, fish in enumerate(world.level.collectibles):
             if index not in world.collected:
-                self.fish(fish.x, fish.y, int(fish.size), fish.value < 0)
+                self.fish(fish.x, fish.y, int(fish.size), fish.value < 0,height=fish.height)
         for index, item in enumerate(world.level.powerups):
             if index not in world.collected_powerups:
                 self.canvas.blit(self.skin.image('power_'+item.kind, (item.size, item.size)),
@@ -602,8 +597,6 @@ class App:
             key='hud_'+name
             ui.blit(self.canvas,key)
             self.art_button(ui.images[key].get_rect(topleft=ui.positions[key]),callback)
-        if self.toast and self.wall_time < self.toast_until:
-            self.text(self.toast, 800, 146, 24, CORAL, True, True)
         if world.paused:
             self.draw_pause()
         if self.scene == 'result':
@@ -702,7 +695,6 @@ class App:
         self.button('알겠어요', (1000, 680, 200, 50), lambda: setattr(self, 'help', False), True)
 
     def update(self, seconds, direction):
-        self.wall_time += seconds
         if self.play_press is not None:
             index,elapsed=self.play_press
             if self.scene!='normal_menu':
@@ -730,8 +722,6 @@ class App:
                 if kind in self.sounds:
                     self.sound(kind)
                 if kind == 'fail':
-                    self.toast = payload
-                    self.toast_until = self.wall_time+1.7
                     self.held_keys.clear()
                     self.clear_taps()
                     self.accumulator = 0.

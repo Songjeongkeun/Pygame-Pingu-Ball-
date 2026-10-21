@@ -89,11 +89,11 @@ class WinterSkin:
             self.cache[key] = pygame.transform.smoothscale(self.originals[name], size)
         return self.cache[key]
 
-    def collectible(self, bone=False, width=32):
-        """Fit the supplied fish artwork by width without stretching its body."""
+    def collectible(self, bone=False, width=32, height=None):
+        """Use exact map dimensions, or retain aspect ratio for HUD icons."""
         name='bone' if bone else 'fish'
         source=self.originals[name]
-        height=round(width*source.get_height()/source.get_width())
+        if height is None:height=round(width*source.get_height()/source.get_width())
         return self.image(name,(width,height))
 
     def platform(self, block, time, switches):

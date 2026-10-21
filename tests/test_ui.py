@@ -113,6 +113,11 @@ class InterfaceTests(unittest.TestCase):
         self.key(pygame.K_RIGHT)
         app.world.ball.y = app.world.physics.height+20.
         app.update(.05, 1)
+        self.assertEqual(app.world.failures,1)
+        self.assertTrue(app.world.last_failure)
+        with patch.object(app,'text',wraps=app.text) as rendered:
+            app.render()
+        self.assertNotIn(app.world.last_failure,[call.args[0] for call in rendered.call_args_list])
         self.assertFalse(app.held_keys)
         self.assertEqual(app.world.time, 0.)
         self.assertEqual(app.progress.unlocked, 1)

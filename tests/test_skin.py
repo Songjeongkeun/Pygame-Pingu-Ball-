@@ -63,6 +63,9 @@ class SkinTests(unittest.TestCase):
             self.assertEqual(image.get_size(),expected_size)
             self.assertLess(image.get_height(),image.get_width())
             self.assert_reference(image,filename)
+            map_image=self.skin.collectible(bone,64,48)
+            self.assertEqual(map_image.get_size(),(64,48))
+            self.assert_reference(map_image,filename)
 
     def test_moving_platform_has_the_same_two_arrow_heads_in_both_directions(self):
         expected=self.skin.image('moving')

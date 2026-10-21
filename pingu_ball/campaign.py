@@ -106,9 +106,13 @@ def campaign_layouts():
     return data['maps']
 
 
+def collectible_spec():
+    return json.loads((ROOT / 'assets/stages/collectibles.json').read_text(encoding='utf-8'))
+
+
 def collectible_layouts():
     """Approved center coordinates, including pickups inside breakable tiles."""
-    return json.loads((ROOT / 'assets/stages/collectibles.json').read_text(encoding='utf-8'))['maps']
+    return collectible_spec()['maps']
 
 
 def make_campaign_level(index):
@@ -177,8 +181,9 @@ def make_campaign_level(index):
         movement_markers=[(left,deck[0].y),(right-64,deck[0].y)]
     # Rendering adds the same 4px snow overlap as the document image.
     gx, gy, gw, gh = data['goal']
-    collectibles=[Collectible(q['x'],q['y'],q['value'],32)
-                  for q in collectible_layouts()[index-1]['collectibles']]
+    pickups=collectible_spec()
+    collectibles=[Collectible(q['x'],q['y'],q['value'],pickups['size'],pickups['height'])
+                  for q in pickups['maps'][index-1]['collectibles']]
     return Level(index, TITLES[index - 1], HINTS[index - 1], blocks, collectibles, [],
                  tuple(data['spawn']), (gx, gy - 4, gw, gh),
                  height=data['height'], width=data['width'], time_limit=180.,
