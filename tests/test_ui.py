@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import pygame
-from pingu_ball.app import App, ROOT, default_save_path
+from pingu_ball.app import App, ROOT, PLAY_PRESS_SECONDS, default_save_path
 from pingu_ball.storage import Progress
 
 
@@ -40,7 +40,7 @@ class InterfaceTests(unittest.TestCase):
         pygame.quit()
         self.temp.cleanup()
 
-    def click(self, x, y, timestamp=None):
+    def click(self, x, y, timestamp=None, settle=True):
         app = self.app
         at = (round(x*app.scale+app.offset[0]), round(y*app.scale+app.offset[1]))
         data = {'button': 1, 'pos': at}
@@ -49,6 +49,9 @@ class InterfaceTests(unittest.TestCase):
         pygame.event.post(pygame.event.Event(pygame.MOUSEBUTTONDOWN, data))
         app.process_events()
         app.render()
+        if settle and app.play_press is not None:
+            app.update(PLAY_PRESS_SECONDS,0)
+            app.render()
 
     def key(self, key, pressed=True):
         event = pygame.KEYDOWN if pressed else pygame.KEYUP
@@ -155,7 +158,7 @@ class InterfaceTests(unittest.TestCase):
         app.progress.unlocked=12;app.render()
         # All twelve document maps are separate from the tutorial list.
         for index in range(1,13):
-            self.click(*app.ice_ui.regular_cards[index-1].center)
+            self.click(*app.ice_ui.regular_play_buttons[index-1].center)
             self.assertEqual(app.world.level.index,index)
             app.menu();app.render();self.assertEqual(app.scene,'normal_menu')
         self.click(30,800);self.assertEqual(app.scene,'normal_menu')
@@ -193,6 +196,11 @@ class InterfaceTests(unittest.TestCase):
     def test_artwork_list_sound_and_back_buttons_after_resize(self):
         app=self.app
         app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        tutorial_face,tutorial_rect=app.ice_ui.sound_faces['tutorial_menu']
+        regular_face,regular_rect=app.ice_ui.sound_faces['regular_menu']
+        self.assertEqual(tutorial_rect,regular_rect)
+        self.assertEqual(tutorial_face.get_bounding_rect(),regular_face.get_bounding_rect())
+        self.assertEqual(app.ice_ui.sound_labels['tutorial_menu'],app.ice_ui.sound_labels['regular_menu'])
         for name,show in [('regular_menu',app.show_normal_menu),('tutorial_menu',app.show_lab_menu)]:
             show();app.render()
             self.assertTrue(app.sound_on)
@@ -204,6 +212,63 @@ class InterfaceTests(unittest.TestCase):
             self.assertTrue(pygame.mixer.music.get_busy())
             self.click(*app.ice_ui.list_back[name].center)
             self.assertEqual(app.scene,'menu')
+
+    def test_sound_glyphs_have_equal_vertical_padding_and_title_uses_ice_art(self):
+        app=self.app
+        app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        for name,show in [('title',app.show_title),('menu',app.menu),
+                          ('tutorial_menu',app.show_lab_menu),('regular_menu',app.show_normal_menu)]:
+            show();app.render()
+            field=app.ice_ui.sound_labels[name]
+            for enabled in (True,False):
+                image=app.sound_labels[enabled]
+                drawn=image.get_rect(center=field.center)
+                visible=image.get_bounding_rect().move(drawn.topleft)
+                self.assertLessEqual(abs((visible.top-field.top)-(field.bottom-visible.bottom)),1)
+                self.assertTrue(field.contains(visible))
+            self.click(*app.ice_ui.sound_faces[name][1].center)
+            self.assertFalse(app.sound_on)
+            self.click(*app.ice_ui.sound_faces[name][1].center)
+            self.assertTrue(app.sound_on)
+        title_face=app.ice_ui.sound_faces['title'][0]
+        self.assertEqual(title_face.get_at((0,0)).a,0)
+
+    def test_play_press_animates_before_one_stage_start_and_can_be_cancelled(self):
+        app=self.app
+        app.progress.unlocked=3
+        app.show_normal_menu()
+        app.window=pygame.display.set_mode((800,700),pygame.RESIZABLE)
+        app.render()
+        selected=app.ice_ui.regular_play_buttons[1]
+        other=app.ice_ui.regular_play_buttons[2]
+        before=pygame.image.tobytes(app.canvas.subsurface(selected),'RGB')
+        untouched=pygame.image.tobytes(app.canvas.subsurface(other),'RGB')
+        self.click(*selected.center,settle=False)
+        self.assertEqual(app.scene,'normal_menu')
+        self.assertIsNone(app.world)
+        self.assertNotEqual(pygame.image.tobytes(app.canvas.subsurface(selected),'RGB'),before)
+        self.assertEqual(pygame.image.tobytes(app.canvas.subsurface(other),'RGB'),untouched)
+        app.update(.05,0)
+        self.click(*other.center,settle=False)
+        self.assertEqual(app.play_press,(2,.05))
+        app.update(PLAY_PRESS_SECONDS-.05,0)
+        self.assertEqual(app.scene,'play')
+        self.assertEqual(app.world.level.index,2)
+        self.assertEqual(app.world.time,0.)
+        app.update(1/60,0)
+        self.assertGreater(app.world.time,0.)
+        app.menu();app.render()
+        self.click(*selected.center,settle=False)
+        self.key(pygame.K_ESCAPE)
+        app.update(.2,0)
+        self.assertEqual(app.scene,'menu')
+        self.assertIsNone(app.play_press)
+        app.show_normal_menu();app.render()
+        self.click(*selected.center,settle=False)
+        pygame.event.post(pygame.event.Event(pygame.WINDOWFOCUSLOST))
+        app.process_events();app.update(.2,0)
+        self.assertEqual(app.scene,'normal_menu')
+        self.assertIsNone(app.play_press)
 
     def test_title_artwork_start_button_after_resize_and_return(self):
         app = self.app

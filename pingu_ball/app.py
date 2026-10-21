@@ -27,6 +27,7 @@ CORAL = (212, 90, 101)
 TEAL = (39, 166, 172)
 GRADES = {6: 'B', 7: 'A', 8: 'S', 9: 'SS', 10: 'SSS'}
 DOUBLE_TAP_MS = 300
+PLAY_PRESS_SECONDS = .14
 
 
 def default_save_path():
@@ -69,6 +70,7 @@ class App:
         self.help = False
         self.lab_id = None
         self.sound_on = True
+        self.play_press = None
         self.sounds = {}
         self.music_ready = False
         self.music_playing = False
@@ -96,6 +98,27 @@ class App:
                                        round(580*title_scale), round(166*title_scale))
         self.skin = WinterSkin(ROOT)
         self.ice_ui = IceUI(ROOT)
+        # Render the lettering directly on the seamless button face. A real
+        # bold font and a thin antialiased edge match the surrounding ice UI.
+        bold_font=Path(self.font_path).with_name('malgunbd.ttf') if self.font_path else None
+        sound_font=pygame.font.Font(str(bold_font) if bold_font and bold_font.exists() else self.font_path,69)
+        if not bold_font or not bold_font.exists():sound_font.set_bold(True)
+        self.sound_labels={}
+        for enabled,label in ((True,'소리 켜짐'),(False,'소리 꺼짐')):
+            letters=sound_font.render(label,True,WHITE)
+            edge=sound_font.render(label,True,(7,44,104))
+            image=pygame.Surface((letters.get_width()+6,letters.get_height()+6),pygame.SRCALPHA)
+            for dx,dy in ((-3,0),(3,0),(0,-3),(0,3),(-2,-2),(2,-2),(-2,2),(2,2)):
+                image.blit(edge,(3+dx,3+dy))
+            image.blit(letters,(3,3))
+            # Center visible glyphs, not the font's uneven ascent/descent box.
+            image=image.subsurface(image.get_bounding_rect()).copy()
+            width=min(rect.w-4 for rect in self.ice_ui.sound_labels.values())
+            height=min(rect.h-2 for rect in self.ice_ui.sound_labels.values())
+            scale=min(1/3,width/image.get_width(),height/image.get_height())
+            image=pygame.transform.smoothscale(image,
+                (round(image.get_width()*scale),round(image.get_height()*scale)))
+            self.sound_labels[enabled]=image.subsurface(image.get_bounding_rect()).copy()
         self.map_canvas = None
         self._scaled_map = None
         self._scaled_window = None
@@ -255,7 +278,8 @@ class App:
     def draw_title(self):
         self.canvas.blit(self.title_image, self.title_rect)
         self.buttons.append((self.title_start, self.menu))
-        self.button('소리 켜짐' if self.sound_on else '소리 꺼짐', (1320, 710, 200, 48), self.toggle_sound)
+        self.art_button(self.ice_ui.sound_faces['title'][1],self.toggle_sound)
+        self.draw_sound_label('title')
 
     def draw_menu(self):
         self.canvas.fill((114,180,225))
@@ -265,10 +289,11 @@ class App:
                  'sound':self.toggle_sound}
         for name,callback in actions.items():
             self.art_button(self.ice_ui.menu_buttons[name],callback)
-        self.fitted_text('소리 켜짐' if self.sound_on else '소리 꺼짐',(1442,748,110,40),25,(247,252,255))
+        self.draw_sound_label('menu')
         if self.progress.error:self.text(self.progress.error,64,782,20,CORAL)
 
     def show_normal_menu(self):
+        self.play_press = None
         self.lab_id = None
         self.scene = 'normal_menu'
         self.sync_music()
@@ -279,6 +304,7 @@ class App:
 
     def draw_normal_menu(self):
         ui=self.ice_ui;name='regular_menu'
+        self.canvas.fill((114,180,225))
         ui.blit(self.canvas,name)
         self.art_button(ui.list_back[name],self.menu)
         completed = sum(str(i) in self.progress.records for i in range(1, REGULAR_STAGE_COUNT+1))
@@ -290,26 +316,43 @@ class App:
             record = self.progress.records.get(str(index))
             if unlocked:
                 x,y,w,h=ui.regular_native_cards[index-1]
-                if index>1:
-                    footer=ui.list_rect(name,(x+23,y+126,w-46,49))
-                    pygame.draw.rect(self.canvas,(231,250,255),footer,border_radius=10)
-                    play=ui.list_rect(name,(x+27,y+127,164,45))
-                    self.canvas.blit(ui.list_play_button,play.topleft)
+                footer=ui.list_rect(name,(x+23,y+126,w-46,49))
+                self.canvas.blit(ui.regular_unlocked_footer,footer)
+                self.draw_stage_play_button(index)
                 if record:
                     detail=f"{GRADES[record['score']]} · {record['score']}점"
-                    record_x=267 if index==1 else 203
-                    if index==1:
-                        field=ui.list_rect(name,(x+record_x,y+126,w-record_x-23,49))
-                        pygame.draw.rect(self.canvas,(231,250,255),field,border_radius=6)
-                    self.fitted_text(detail,ui.list_rect(name,(x+record_x,y+126,w-record_x-26,23)),18,TEAL)
-                    self.fitted_text(f"{record['time']:.2f}초",ui.list_rect(name,(x+record_x,y+150,w-record_x-26,23)),18,(3,40,98))
-                self.art_button(rect,lambda n=index:self.start(n))
+                    record_x=244
+                    record_y,size,line_height=126,18,23
+                    self.fitted_text(detail,ui.list_rect(name,(x+record_x,y+record_y,w-record_x-26,line_height)),size,TEAL)
+                    self.fitted_text(f"{record['time']:.2f}초",ui.list_rect(name,(x+record_x,y+record_y+line_height,w-record_x-26,line_height)),size,(3,40,98))
+                self.art_button(rect,lambda n=index:self.press_stage_play(n))
         self.draw_list_sound(name)
         if self.progress.error:
             self.panel((30,778,1260,40),(249,253,255,245),8)
             self.fitted_text(self.progress.error,(40,780,1240,36),18,CORAL,False)
 
+    def press_stage_play(self,index):
+        if self.scene=='normal_menu' and 1<=index<=self.progress.unlocked and self.play_press is None:
+            self.play_press=(index,0.)
+            self.held_keys.clear()
+            self.clear_taps()
+
+    def draw_stage_play_button(self,index):
+        ui=self.ice_ui
+        rect=ui.regular_play_buttons[index-1]
+        image=ui.list_play_button
+        if self.play_press and self.play_press[0]==index:
+            # Release smoothly from a compressed, slightly darker button.
+            amount=(1-min(1,self.play_press[1]/PLAY_PRESS_SECONDS))**2
+            size=(round(rect.w*(1-.04*amount)),round(rect.h*(1-.10*amount)))
+            image=pygame.transform.smoothscale(image,size)
+            shade=round(255-24*amount)
+            image.fill((shade,shade,shade,255),special_flags=pygame.BLEND_RGBA_MULT)
+            rect=image.get_rect(center=(rect.centerx,rect.centery+round(3*amount)))
+        self.canvas.blit(image,rect)
+
     def start(self, index):
+        self.play_press = None
         self.lab_id = None
         self.world = World(expand_playfield(self.levels[index]))
         self.map_canvas = pygame.Surface((self.world.physics.width, self.world.physics.height), pygame.SRCALPHA).convert_alpha()
@@ -323,6 +366,7 @@ class App:
         self.new_record = False
 
     def show_lab_menu(self):
+        self.play_press = None
         self.scene = 'lab_menu'
         self.sync_music()
         self.lab_id = None
@@ -331,6 +375,7 @@ class App:
         self.help = False
 
     def start_special(self, type_id):
+        self.play_press = None
         from .special_lab import make_lab, resolve_lab_type
         type_id = resolve_lab_type(type_id)
         self.lab_id = type_id
@@ -348,6 +393,7 @@ class App:
     def draw_lab_menu(self):
         from .special_lab import LAB_TYPES
         ui=self.ice_ui;name='tutorial_menu'
+        self.canvas.fill((114,180,225))
         ui.blit(self.canvas,name)
         for rect,code in zip(ui.tutorial_cards,LAB_TYPES):
             self.art_button(rect,lambda c=code:self.start_special(c))
@@ -357,12 +403,18 @@ class App:
     def draw_list_sound(self,name):
         ui=self.ice_ui
         self.art_button(ui.list_sound[name],self.toggle_sound)
-        if not self.sound_on:
-            rect=ui.list_sound_label[name]
-            pygame.draw.rect(self.canvas,(54,178,229),rect,border_radius=8)
-            self.fitted_text('소리 꺼짐',rect,23,WHITE,outline=(7,44,104))
+        self.draw_sound_label(name)
+
+    def draw_sound_label(self,name):
+        ui=self.ice_ui
+        rect=ui.sound_labels[name]
+        face,target=ui.sound_faces[name]
+        self.canvas.blit(face,target)
+        image=self.sound_labels[self.sound_on]
+        self.canvas.blit(image,image.get_rect(center=rect.center))
 
     def quit(self):
+        self.play_press = None
         self.running = False
         self.sync_music()
 
@@ -381,6 +433,7 @@ class App:
             self.clear_taps()
 
     def menu(self):
+        self.play_press = None
         if self.lab_id is not None:
             self.show_lab_menu()
             return
@@ -398,6 +451,7 @@ class App:
         self.clear_taps()
 
     def show_title(self):
+        self.play_press = None
         self.scene = 'title'
         self.sync_music()
         self.accumulator = 0.
@@ -448,6 +502,8 @@ class App:
                            VIEW_TOP+(VIEW_HEIGHT-size[1])//2, *size)
 
     def pointer_down(self, position, timestamp):
+        if self.play_press is not None:
+            return
         at = ((position[0]-self.offset[0])/self.scale, (position[1]-self.offset[1])/self.scale)
         for rect, callback in reversed(self.buttons):
             if rect.collidepoint(at):
@@ -647,6 +703,16 @@ class App:
 
     def update(self, seconds, direction):
         self.wall_time += seconds
+        if self.play_press is not None:
+            index,elapsed=self.play_press
+            if self.scene!='normal_menu':
+                self.play_press=None
+            elif elapsed+seconds>=PLAY_PRESS_SECONDS:
+                self.start(index)
+                return  # Gameplay starts with its own first frame, after the effect.
+            else:
+                self.play_press=(index,elapsed+seconds)
+                return
         if self.scene != 'play' or not self.world or self.world.paused or self.help:
             self.accumulator = 0.
             self.clear_taps()
@@ -744,11 +810,13 @@ class App:
                                   getattr(event, 'timestamp', pygame.time.get_ticks()))
             elif event.type == pygame.FINGERUP and event.finger_id == self.active_finger:
                 self.active_finger = None
-            elif event.type == pygame.WINDOWFOCUSLOST and self.world and self.scene == 'play':
-                self.world.paused = True
-                self.accumulator = 0.
-                self.held_keys.clear()
-                self.clear_taps()
+            elif event.type == pygame.WINDOWFOCUSLOST:
+                self.play_press = None
+                if self.world and self.scene == 'play':
+                    self.world.paused = True
+                    self.accumulator = 0.
+                    self.held_keys.clear()
+                    self.clear_taps()
 
     def run(self, frames=0):
         self.render()
