@@ -114,7 +114,7 @@ class CampaignTests(unittest.TestCase):
                              len(source['tiles'])+len(source.get('patrols',[]))
                              + len(TILE_ADDITIONS.get(source['number'], []))
                              - (1 if source['number']==4 else 0))
-            self.assertEqual(len(level.powerups),len(source['items']))
+            self.assertEqual(len(level.powerups),len(source['items'])+(1 if source['number']==7 else 0))
             self.assertFalse(any(q.id.startswith('approach') for q in level.platforms+level.specials))
             w=World(level)
             self.assertEqual((w.physics.bounce_height,w.physics.pad_height),(96,144))
@@ -136,6 +136,50 @@ class CampaignTests(unittest.TestCase):
         self.assertFalse(w.failed)
         self.assertEqual(w.ball.power_up,'up')
         self.assertFalse(any(d.type_id==508 for d in w.level.specials))
+
+    def test_fourth_map_extends_only_left_turnaround_and_endpoint_guides(self):
+        from pingu_ball.movement import movement_endpoints
+        level=make_level(4)
+        deck=[d for d in level.specials if d.type_id==501]
+        self.assertEqual(len(deck),2)
+        world=World(level,auto_reset=False)
+        for offset,d in enumerate(deck):
+            self.assertAlmostEqual(d.x,414.4+64*offset)
+            self.assertAlmostEqual(d.options['travel'],545.6)
+            block=world.special.platforms[d.id]
+            self.assertAlmostEqual(block.rect_at(0)[0],478.4+64*offset)
+            turn=(d.options['travel']-d.options['phase'])/96
+            self.assertAlmostEqual(block.rect_at(turn)[0],960+64*offset)
+            left_turn=(2*d.options['travel']-d.options['phase'])/96
+            self.assertAlmostEqual(block.rect_at(left_turn)[0],414.4+64*offset)
+        self.assertEqual(movement_endpoints(level),tuple(sorted(
+            (d.x+distance,d.y,64.,64.) for d in deck for distance in (0,d.options['travel']))))
+
+    def test_seventh_map_extra_dash_can_be_collected_beside_lower_right_fish(self):
+        level=make_level(7)
+        dashes=[q for q in level.powerups if q.kind=='forward']
+        self.assertEqual([(q.x,q.y) for q in dashes],[(1056,864),(1440,864)])
+        world=World(replace(level,spawn=(1440,810)),auto_reset=False)
+        for _ in range(100):
+            world.step(0)
+            if world.ball.power_up=='forward':break
+        self.assertEqual(world.failures,0)
+        self.assertEqual(world.ball.power_up,'forward')
+
+    def test_eleventh_map_fish_requires_breaking_lower_right_block(self):
+        level=make_level(11)
+        self.assertEqual((level.collectibles[2].x,level.collectibles[2].y),(1184,864))
+        world=World(replace(level,spawn=(1184,650)),auto_reset=False)
+        upper=world.special.platforms['breakable-41']
+        lower=world.special.platforms['breakable-42']
+        for _ in range(600):
+            world.step(0)
+            self.assertEqual(world.failures,0,world.last_failure)
+            if not lower.destroyed:self.assertNotIn(2,world.collected)
+            if 2 in world.collected:break
+        self.assertTrue(upper.destroyed)
+        self.assertTrue(lower.destroyed)
+        self.assertIn(2,world.collected)
 
     def test_third_map_repositioned_springs_reach_the_original_goal(self):
         w=World(make_level(3),auto_reset=False)

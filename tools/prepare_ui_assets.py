@@ -3,6 +3,8 @@
 Usage: python tools/prepare_ui_assets.py --source-dir SOURCE_DIRECTORY
 SOURCE_DIRECTORY contains menu.png, pause-no-hint.png, result.png and
 play-reference.png from the approved UI review.
+The standalone hud_stage.png and hud_timer.png are maintained separately;
+keep their approved seamless ice artwork when extracting the other controls.
 """
 import argparse
 from pathlib import Path
@@ -15,6 +17,9 @@ def main():
     args = parser.parse_args()
     target = Path(__file__).resolve().parents[1]/'assets/ui'
     target.mkdir(parents=True, exist_ok=True)
+    for name in ('hud_stage.png','hud_timer.png'):
+        if not (target/name).is_file():
+            raise FileNotFoundError(f'Restore the approved standalone HUD artwork: {target/name}')
     def save(image,name):
         destination=target/(name+'.png')
         temporary=destination.with_suffix('.png.tmp')
@@ -56,14 +61,6 @@ def main():
         else:d.rounded_rectangle((1,1,patch.width-2,patch.height-2),radius=radius,fill=255)
         patch.putalpha(mask)
         return patch
-    stage=element((18,10,355,155),[(30,125),(24,89),(38,54),(43,26),(77,24),(115,26),(150,16),(193,18),(220,18),(262,21),(290,32),(323,49),(339,76),(347,114),(335,142),(294,151),(61,153)])
-    d=ImageDraw.Draw(stage)
-    d.rounded_rectangle((118,32,300,66),radius=9,fill='#0b83c5')
-    d.rounded_rectangle((89,68,320,125),radius=13,fill='#4fbeeb')
-    save(stage.resize((297,128),Image.Resampling.LANCZOS),'hud_stage')
-    timer=element((725,24,1009,111),[(730,56),(750,33),(778,28),(793,25),(823,29),(857,31),(953,32),(979,39),(997,51),(1005,69),(994,92),(972,105),(751,107),(737,94)])
-    ImageDraw.Draw(timer).rounded_rectangle((108,29,254,69),radius=10,fill='#b9f0fa')
-    save(timer.resize((250,77),Image.Resampling.LANCZOS),'hud_timer')
     for name,box in [('pause',(1161,29,1349,130)),('restart',(1355,29,1536,130)),('select',(1542,29,1722,130))]:
         patch=element(box,radius=31)
         save(patch.resize((round(patch.width*.88),round(patch.height*.88)),Image.Resampling.LANCZOS),'hud_'+name)

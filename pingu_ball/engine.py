@@ -279,19 +279,24 @@ class World:
             else:
                 target=b.forward_direction*p.forward_jump_speed
                 interval=min(interval,distance/p.forward_jump_speed)
-        walls = [((-40., -40., 40., p.height+100.), 0.),
-                 ((p.width, -40., 40., p.height+100.), 0.)]
+        walls = [((-40., -40., 40., p.height+100.), 0., 0.),
+                 ((p.width, -40., 40., p.height+100.), 0., 0.)]
         for q in self.platforms:
             if q.id != b.launch_source and q.active(self.time, self.switches):
                 rect = q.rect_at(self.time, p)
-                if (not rect[1]-1e-7<=b.y<=rect[1]+rect[3]+1e-7
+                # A moving corner is separated horizontally just like its
+                # face. Keep that contact constrained until the whole circle
+                # clears the corner, so the deck cannot catch it at t=0 again.
+                margin=p.radius if q.kind=='moving' else 0.
+                if (not rect[1]-margin-1e-7<=b.y<=rect[1]+rect[3]+margin+1e-7
                         or (abs(b.x-(rect[0]-p.radius))>1e-5
                             and abs(b.x-(rect[0]+rect[2]+p.radius))>1e-5)):
                     continue
                 probe = min(duration, 1e-6)
                 speed = (q.rect_at(self.time+probe, p)[0]-rect[0])/probe
-                walls.append((rect, speed))
-        for (x, y, w, h), speed in walls:
+                walls.append((rect, speed, margin))
+        for (x, y, w, h), speed, margin in walls:
+            y-=margin;h+=2*margin
             if not y-1e-7 <= b.y <= y+h+1e-7:
                 continue
             if (b.y <= y+1e-7 and b.vy < 0) or (b.y >= y+h-1e-7 and b.vy >= 0):
@@ -518,7 +523,14 @@ class World:
                             b.x = x-p.radius-1e-6 if side < 0 else x+w+p.radius+1e-6
                         else:
                             b.x = p.radius+1e-6 if side > 0 else p.width-p.radius-1e-6
-                        if b.vx*side < 0: b.vx = 0.
+                        speed=0.
+                        if q is not None and q.kind=='moving':
+                            probe=1e-6
+                            speed=(q.rect_at(self.time+probe,p)[0]-x)/probe
+                        # Match an approaching face's horizontal speed while
+                        # leaving vertical flight untouched; zeroing vx lets
+                        # that face repeatedly overtake a rounded-corner hit.
+                        b.vx=min(b.vx,speed) if side<0 else max(b.vx,speed)
                         b.launch = False
                         if q: self.special.wall_slide(q)
             # Collected sensor events vanish, so remaining time can continue.

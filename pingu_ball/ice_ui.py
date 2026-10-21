@@ -73,6 +73,7 @@ class IceUI:
             ('menu','menu_tutorial_count_removed',(603,586,183,43)),
             ('menu','menu_regular_count_removed',(1088,585,181,44)),
             ('regular_menu','regular_first_button_removed',(83,339,241,70)),
+            ('regular_menu','regular_counter_blank',(741,125,235,48)),
             ('tutorial_menu','tutorial_menu_sound_cleared',(1504,812,225,92)),
             ('regular_menu','regular_menu_sound_cleared',(1455,816,275,87)),
         ):

@@ -98,8 +98,9 @@ class App:
         # Render the lettering directly on the seamless button face. A real
         # bold font and a thin antialiased edge match the surrounding ice UI.
         bold_font=Path(self.font_path).with_name('malgunbd.ttf') if self.font_path else None
-        sound_font=pygame.font.Font(str(bold_font) if bold_font and bold_font.exists() else self.font_path,69)
-        if not bold_font or not bold_font.exists():sound_font.set_bold(True)
+        self.bold_font_path=str(bold_font) if bold_font and bold_font.exists() else None
+        sound_font=pygame.font.Font(self.bold_font_path or self.font_path,69)
+        if not self.bold_font_path:sound_font.set_bold(True)
         self.sound_labels={}
         for enabled,label in ((True,'소리 켜짐'),(False,'소리 꺼짐')):
             letters=sound_font.render(label,True,WHITE)
@@ -182,8 +183,10 @@ class App:
             pygame.draw.rect(self.canvas, (215, 253, 255), rect, 2, border_radius=16)
         self.buttons.append((rect, callback))
 
-    def fitted_text(self, label, rect, size=30, color=INK, bold=True, outline=None):
+    def fitted_text(self, label, rect, size=30, color=INK, bold=True, outline=None, natural=False):
         rect = pygame.Rect(rect)
+        if natural:
+            return self.ice_text(label,rect,size,color,bold,outline)
         while size > 12:
             key=(size,bold)
             if key not in self._font_cache:
@@ -198,6 +201,37 @@ class App:
             for dx,dy in ((-2,0),(2,0),(0,-2),(0,2),(-1,-1),(1,-1),(-1,1),(1,1)):
                 self.text(label,rect.centerx+dx,rect.centery+dy,size,outline,bold,True)
         return self.text(label, *rect.center, size, color, bold, True)
+
+    def ice_text(self,label,rect,size,color,bold,outline):
+        """Cache smooth live lettering, centered by visible glyphs on the ice."""
+        key=('ice',str(label),size,tuple(color),bold,outline,rect.size)
+        image=self._text_cache.get(key)
+        if image is None:
+            font_key=('ice',size,bold)
+            if font_key not in self._font_cache:
+                font=pygame.font.Font(self.bold_font_path if bold and self.bold_font_path else self.font_path,size*3)
+                if bold and not self.bold_font_path:font.set_bold(True)
+                self._font_cache[font_key]=font
+            font=self._font_cache[font_key]
+            letters=font.render(str(label),True,color)
+            padding=4 if outline else 0
+            image=pygame.Surface((letters.get_width()+padding*2,letters.get_height()+padding*2),pygame.SRCALPHA)
+            if outline:
+                edge=font.render(str(label),True,outline)
+                for dx,dy in ((-4,0),(4,0),(0,-4),(0,4),(-3,-3),(3,-3),(-3,3),(3,3)):
+                    image.blit(edge,(padding+dx,padding+dy))
+            image.blit(letters,(padding,padding))
+            image=image.subsurface(image.get_bounding_rect()).copy()
+            scale=min(1/3,rect.w/image.get_width(),rect.h/image.get_height())
+            image=pygame.transform.smoothscale(image,(max(1,round(image.get_width()*scale)),max(1,round(image.get_height()*scale))))
+            image=image.subsurface(image.get_bounding_rect()).copy()
+            self._text_cache[key]=image
+            if len(self._text_cache)>128:self._text_cache.popitem(last=False)
+        else:
+            self._text_cache.move_to_end(key)
+        target=image.get_rect(center=rect.center)
+        self.canvas.blit(image,target)
+        return target
 
     def prepare_sounds(self):
         if not pygame.mixer.get_init():
@@ -305,9 +339,8 @@ class App:
         ui.blit(self.canvas,name)
         self.art_button(ui.list_back[name],self.menu)
         completed = sum(str(i) in self.progress.records for i in range(1, REGULAR_STAGE_COUNT+1))
-        counter=ui.list_rect(name,(756,127,211,43))
-        pygame.draw.rect(self.canvas,(197,243,255),counter,border_radius=12)
-        self.fitted_text(f'{completed} / {REGULAR_STAGE_COUNT} 완료',counter,24,(3,40,98))
+        counter=ui.list_rect(name,(737,126,240,46))
+        self.fitted_text(f'{completed} / {REGULAR_STAGE_COUNT} 완료',counter,24,(3,40,98),natural=True)
         for index, rect in enumerate(ui.regular_cards,1):
             unlocked = index <= self.progress.unlocked
             record = self.progress.records.get(str(index))
@@ -582,8 +615,8 @@ class App:
         ui.blit(self.canvas,'hud_stage')
         tutorial=self.lab_id is not None or world.level.index==0
         label='TUTORIAL' if tutorial else f'STAGE {world.level.index:02d}'
-        self.fitted_text(label,(124,34,166,30),21,WHITE)
-        self.fitted_text(world.level.title,(96,66,203,48),34,WHITE,outline=(7,44,104))
+        self.fitted_text(label,(124,34,166,30),21,WHITE,outline=(7,44,104),natural=True)
+        self.fitted_text(world.level.title,(96,66,203,48),34,WHITE,outline=(7,44,104),natural=True)
         total = sum(fish.value > 0 for fish in world.level.collectibles)
         if total or any(fish.value<0 for fish in world.level.collectibles):
             self.panel((399,29,226,52),(223,250,255,250),18)
@@ -592,7 +625,7 @@ class App:
             self.fish(544,55,42,bone=True)
             self.text(str(world.minus),571,39,22,INK,True)
         ui.blit(self.canvas,'hud_timer')
-        self.fitted_text(f'{world.time:.2f}초',(783,42,143,39),28,INK)
+        self.fitted_text(f'{world.time:.2f}초',(782,32,144,46),28,(3,40,98),natural=True)
         for name,callback in [('pause',self.toggle_pause),('restart',self.restart),('select',self.menu)]:
             key='hud_'+name
             ui.blit(self.canvas,key)
