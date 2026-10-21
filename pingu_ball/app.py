@@ -32,6 +32,8 @@ PLAY_PRESS_SECONDS = .14
 
 def default_save_path():
     # One-file builds unpack assets into a temporary directory, but saves persist.
+    if getattr(sys,'frozen',False) and sys.platform=='darwin':
+        return Path.home()/'Library'/'Application Support'/'PinguBall'/'progress.json'
     root = Path(sys.executable).resolve().parent if getattr(sys, 'frozen', False) else ROOT
     return root/'save_data'/'progress.json'
 
@@ -97,8 +99,9 @@ class App:
         self.ice_ui = IceUI(ROOT)
         # Render the lettering directly on the seamless button face. A real
         # bold font and a thin antialiased edge match the surrounding ice UI.
-        bold_font=Path(self.font_path).with_name('malgunbd.ttf') if self.font_path else None
-        self.bold_font_path=str(bold_font) if bold_font and bold_font.exists() else None
+        bold_fonts=[Path(self.font_path).with_name(name) for name in
+                    ('malgunbd.ttf','NanumGothic-Bold.ttf')] if self.font_path else []
+        self.bold_font_path=next((str(path) for path in bold_fonts if path.is_file()),None)
         sound_font=pygame.font.Font(self.bold_font_path or self.font_path,69)
         if not self.bold_font_path:sound_font.set_bold(True)
         self.sound_labels={}
@@ -131,6 +134,7 @@ class App:
     @staticmethod
     def find_font():
         for path in ['C:/Windows/Fonts/malgun.ttf',
+                     str(ROOT/'assets'/'fonts'/'NanumGothic-Regular.ttf'),
                      '/System/Library/Fonts/AppleSDGothicNeo.ttc',
                      '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc']:
             if Path(path).exists():

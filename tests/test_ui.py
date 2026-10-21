@@ -17,15 +17,30 @@ class SavePathTests(unittest.TestCase):
         with patch('pingu_ball.app.sys.frozen', False, create=True):
             self.assertEqual(default_save_path(), ROOT/'save_data'/'progress.json')
 
-    def test_executable_uses_persistent_directory_next_to_exe(self):
+    def test_windows_executable_uses_persistent_directory_next_to_exe(self):
         with tempfile.TemporaryDirectory() as temporary:
             executable = Path(temporary)/'PinguBall.exe'
             with patch('pingu_ball.app.sys.frozen', True, create=True), \
+                 patch('pingu_ball.app.sys.platform','win32'), \
                  patch('pingu_ball.app.sys.executable', str(executable)):
                 path = default_save_path()
                 self.assertEqual(path, executable.resolve().parent/'save_data'/'progress.json')
                 Progress(path).complete(0, None, 1.)
                 self.assertEqual(Progress(default_save_path()).records['0'], {'cleared': True})
+
+    def test_mac_app_keeps_writable_records_outside_the_application_bundle(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            home=Path(temporary)
+            executable=home/'Applications'/'PinguBall.app'/'Contents'/'MacOS'/'PinguBall'
+            with patch('pingu_ball.app.sys.frozen',True,create=True), \
+                 patch('pingu_ball.app.sys.platform','darwin'), \
+                 patch('pingu_ball.app.sys.executable',str(executable)), \
+                 patch('pingu_ball.app.Path.home',return_value=home):
+                path=default_save_path()
+                self.assertEqual(path,home/'Library'/'Application Support'/'PinguBall'/'progress.json')
+                Progress(path).complete(0,None,1.)
+                self.assertEqual(Progress(default_save_path()).records['0'],{'cleared':True})
+                self.assertFalse((home/'Applications').exists())
 
 
 class InterfaceTests(unittest.TestCase):
