@@ -78,10 +78,17 @@ def fit_jump_layout(source):
     if data['number']==7:
         data['items']=[[13.5,3.5,kind] if kind=='up' else [c,r,kind]
                        for c,r,kind in data['items']]
+        # A second dash charge beside the lower-right fish.
+        data['items'].append([22.5,13.5,'forward'])
     if data['number']==4:
         # Keep the dash pickup above the repositioned top approach platform.
         data['items']=[[18.5,5.5,kind] if kind=='forward' else [c,r,kind]
                        for c,r,kind in data['items']]
+        # Extend only the left turnaround by one tile. Deriving phase from
+        # the original deck position keeps its starting position unchanged.
+        rail=next(rail for rail in data['rails'] if rail[0][1]==rail[-1][1])
+        left=min(rail,key=lambda point:point[0])
+        left[0]-=1
     if data['number']==3:
         # The two-tile deck must extend below the upper ledge's exit (x=768).
         # End its right edge at x=832, before the next spike column begins.
