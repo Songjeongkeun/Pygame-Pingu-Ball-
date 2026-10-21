@@ -270,9 +270,8 @@ class App:
             self.sounds[name].play()
 
     def draw_pingu(self, x, y, size, charged=False):
-        name='ball_'+charged if isinstance(charged,str) else 'ball_charged' if charged else 'ball'
-        self.canvas.blit(self.skin.image(name, (size, size)),
-                         (round(x-size/2), round(y-size/2)))
+        image=self.skin.ball(size,charged)
+        self.canvas.blit(image,image.get_rect(center=(round(x),round(y))))
 
     def fish(self, x, y, size=32, bone=False, collected=False, *, height=None):
         image = self.skin.collectible(bone,size,height)

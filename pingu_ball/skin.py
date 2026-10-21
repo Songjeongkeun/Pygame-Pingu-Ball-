@@ -38,17 +38,8 @@ class WinterSkin:
             icon=pygame.Surface((side,side),pygame.SRCALPHA)
             icon.blit(image,image.get_rect(center=(side//2,side//2)))
             self.originals['power_'+kind]=icon
-        for kind,color,rim in [('forward',(3,15,30),(25,221,250)),('up',(91,46,25),(255,204,69))]:
-            ball=pygame.transform.smoothscale(self.originals['ball'],(64,64)).copy()
-            # Recolor only the dark head; red beak and white eyes stay intact.
-            for y in range(64):
-                for x in range(64):
-                    c=ball.get_at((x,y))
-                    if c.a and max(c.r,c.g,c.b)<130:
-                        shade=(c.r+c.g+c.b)/3/130
-                        ball.set_at((x,y),(*[round(v*(.6+.4*shade)) for v in color],c.a))
-            pygame.draw.circle(ball,rim,(32,32),30,2)
-            self.originals['ball_'+kind]=ball
+        for kind in ('forward','up'):
+            self.originals['ball_'+kind]=self.power_ball_art(kind)
         image = pygame.transform.smoothscale(self.originals['normal'], (64, 64))
         # One cyan double-headed arrow for every horizontal moving deck.
         # Build it on the plain reference block, with neither one-way icon
@@ -61,6 +52,39 @@ class WinterSkin:
         pygame.draw.lines(image, (204, 253, 255), True, points, 2)
         pygame.draw.line(image, (146, 247, 255), (23,34), (41,34), 2)
         self.originals['moving'] = image
+
+    def power_ball_art(self,kind):
+        """Approved outline and glow, rendered once at eight times native size."""
+        factor=8;center=(20*factor,20*factor)
+        image=pygame.Surface((40*factor,40*factor),pygame.SRCALPHA)
+        rim=(25,221,250) if kind=='forward' else (255,204,69)
+        base=(3,15,30) if kind=='forward' else (119,47,24)
+        for radius,alpha in ((20,12),(19,19),(18,35)):
+            layer=pygame.Surface(image.get_size(),pygame.SRCALPHA)
+            pygame.draw.circle(layer,(*rim,alpha),center,radius*factor)
+            image.blit(layer,(0,0))
+        pygame.draw.circle(image,(5,34,61,245),center,round(16.7*factor))
+        body=pygame.transform.smoothscale(self.originals['ball'],(112,112)).copy()
+        for y in range(112):
+            for x in range(112):
+                color=body.get_at((x,y))
+                is_beak=color.r>color.g*1.5 and color.r>color.b*1.5
+                if color.a and max(color.r,color.g,color.b)<145 and not is_beak:
+                    value=(color.r+color.g+color.b)/3/145
+                    body.set_at((x,y),(*(min(255,round(c*(.72+.5*value))) for c in base),color.a))
+        body=pygame.transform.smoothscale(body,(28*factor,28*factor))
+        image.blit(body,(6*factor,6*factor))
+        pygame.draw.circle(image,(*rim,255),center,round(15.2*factor),round(2.6*factor))
+        light=(195,255,255) if kind=='forward' else (255,246,192)
+        pygame.draw.arc(image,(*light,255),pygame.Rect(5*factor,5*factor,30*factor,30*factor),
+                        .55,2.5,round(.65*factor))
+        return image
+
+    def ball(self,size=28,charged=False):
+        """Keep the body size; only powered artwork extends beyond its hitbox."""
+        name='ball_'+charged if isinstance(charged,str) else 'ball_charged' if charged else 'ball'
+        diameter=round(size*40/28) if charged in ('forward','up') else size
+        return self.image(name,(diameter,diameter))
 
     def column(self, height):
         """Repeat native stone below a single exposed cap for stacked terrain."""

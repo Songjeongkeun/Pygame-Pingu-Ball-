@@ -307,7 +307,7 @@ class InterfaceTests(unittest.TestCase):
             b = app.world.ball
             rect = pygame.Rect(round(b.x-14), round(b.y-14), 28, 28)
             self.assertEqual(app.map_canvas.subsurface(rect).get_at((14, 14)),
-                             app.skin.image('ball_forward', (28, 28)).get_at((14, 14)))
+                             app.skin.ball(28,'forward').get_at((20, 20)))
             x = app.map_view.left+30 if sign < 0 else app.map_view.right-30
             self.click(x, 300, 100)
             self.assertIsNone(app.pending_power_direction)
