@@ -137,23 +137,76 @@ class CampaignTests(unittest.TestCase):
         self.assertEqual(w.ball.power_up,'up')
         self.assertFalse(any(d.type_id==508 for d in w.level.specials))
 
-    def test_fourth_map_extends_only_left_turnaround_and_endpoint_guides(self):
+    def test_fourth_map_aligns_left_turnaround_without_moving_start_or_right_end(self):
         from pingu_ball.movement import movement_endpoints
         level=make_level(4)
         deck=[d for d in level.specials if d.type_id==501]
         self.assertEqual(len(deck),2)
         world=World(level,auto_reset=False)
         for offset,d in enumerate(deck):
-            self.assertAlmostEqual(d.x,414.4+64*offset)
-            self.assertAlmostEqual(d.options['travel'],545.6)
+            self.assertEqual(d.x,416+64*offset)
+            self.assertEqual(d.options['travel'],544)
             block=world.special.platforms[d.id]
             self.assertAlmostEqual(block.rect_at(0)[0],478.4+64*offset)
             turn=(d.options['travel']-d.options['phase'])/96
             self.assertAlmostEqual(block.rect_at(turn)[0],960+64*offset)
             left_turn=(2*d.options['travel']-d.options['phase'])/96
-            self.assertAlmostEqual(block.rect_at(left_turn)[0],414.4+64*offset)
+            self.assertAlmostEqual(block.rect_at(left_turn)[0],416+64*offset)
         self.assertEqual(movement_endpoints(level),tuple(sorted(
             (d.x+distance,d.y,64.,64.) for d in deck for distance in (0,d.options['travel']))))
+
+    def test_seventh_map_restores_floor_under_the_relocated_springs(self):
+        world=World(make_level(7),auto_reset=False)
+        for x in (448,704,960):
+            block=next(q for q in world.platforms if (q.x,q.y)==(x,896))
+            self.assertEqual(block.kind,'normal')
+            world.reset()
+            world.ball.x,world.ball.y,world.ball.vy=x+32,870,100
+            for _ in range(30):
+                world.step(0)
+                if world.last_landing==block.id: break
+            self.assertEqual(world.last_landing,block.id)
+            self.assertFalse(world.failed)
+
+    def test_seventh_map_ferry_turns_directly_below_upper_spring(self):
+        world=World(make_level(7),auto_reset=False)
+        ferry=[q for q in world.platforms if q.kind=='moving']
+        spring=next(d for d in world.level.specials if d.id=='spring-41')
+        self.assertEqual((spring.x,spring.y),(832,256))
+        self.assertEqual(len(ferry),2)
+        for offset,block in enumerate(ferry):
+            self.assertEqual(block.rect_at(0),(832+64*offset,320,64,64))
+            self.assertEqual(block.travel,448)
+            turn=block.travel/block.device.options['speed']
+            self.assertAlmostEqual(block.rect_at(turn)[0],1280+64*offset)
+            self.assertAlmostEqual(block.rect_at(2*turn)[0],spring.x+64*offset)
+        self.assertEqual(world.movement_endpoints,
+                         ((832,320,64,64),(896,320,64,64),
+                          (1280,320,64,64),(1344,320,64,64)))
+
+    def test_twelfth_map_central_columns_retain_reachable_half_tile_height(self):
+        level=make_level(12)
+        for x in (896,1024,1152,1280,1408):
+            for y in (608,672):
+                self.assertTrue(any((q.x,q.y)==(x,y) for q in level.platforms))
+            spring=next(d for d in level.specials if d.type_id==401 and d.x==x-64 and d.y==736)
+            world=World(replace(level,spawn=(spring.x+32,spring.y-20)),auto_reset=False)
+            self.land(world,x+32,608)
+            self.assertFalse(world.failed)
+
+    def test_realigned_seventh_and_twelfth_maps_clear_from_spawn_with_recorded_inputs(self):
+        from tools.verify_campaign_routes import route
+        for number in (7,12):
+            with self.subTest(stage=number):
+                replay=route(number)
+                self.assertTrue(replay.world.cleared)
+                self.assertEqual(replay.world.failures,0)
+                world=World(make_level(number),auto_reset=False)
+                for direction,use,power_direction in replay.inputs:
+                    world.step(direction,use_power=use,power_direction=power_direction)
+                    if world.failed or world.cleared: break
+                self.assertTrue(world.cleared,world.last_failure)
+                self.assertEqual(world.failures,0)
 
     def test_seventh_map_extra_dash_can_be_collected_beside_lower_right_fish(self):
         level=make_level(7)

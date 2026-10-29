@@ -1,0 +1,81 @@
+name: Build macOS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, 'design-수정']
+    paths:
+      - '.github/workflows/build-macos.yml'
+      - 'tools/build_macos.py'
+      - 'tools/verify_macos.py'
+      - 'pingu_ball/**'
+      - 'assets/**'
+      - 'main.py'
+      - 'requirements*.txt'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: macos-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: macOS ${{ matrix.label }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-14
+            arch: arm64
+            python-arch: arm64
+            label: AppleSilicon
+          - runner: macos-15-intel
+            arch: x86_64
+            python-arch: x64
+            label: Intel
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 25
+    env:
+      SDL_VIDEODRIVER: dummy
+      SDL_AUDIODRIVER: dummy
+      PYGAME_HIDE_SUPPORT_PROMPT: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+          architecture: ${{ matrix.python-arch }}
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Install dependencies
+        run: python -m pip install -r requirements-build.txt
+      - name: Test on macOS
+        run: python -B -m unittest discover -s tests -q
+      - name: Build application
+        run: python tools/build_macos.py --arch '${{ matrix.arch }}'
+      - name: Verify packaged application
+        run: >-
+          python tools/verify_macos.py --arch '${{ matrix.arch }}'
+          --app 'output/macos/PinguBall-macOS-${{ matrix.label }}/PinguBall.app'
+      - name: Upload application ZIP
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: PinguBall-macOS-${{ matrix.label }}
+          path: |
+            output/macos/PinguBall-macOS-${{ matrix.label }}.zip
+            output/macos/build-${{ matrix.arch }}.json
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Upload verification screenshots
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: macOS-verification-${{ matrix.label }}
+          path: output/macos/verification-${{ matrix.arch }}
+          if-no-files-found: ignore
+          retention-days: 7

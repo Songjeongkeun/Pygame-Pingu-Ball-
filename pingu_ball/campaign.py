@@ -30,6 +30,7 @@ TILE_REMOVALS = {4: {('spike', 3, 13)}}
 TILE_ADDITIONS = {5: [{'kind': 'spring', 'c': 18, 'r': 7},
                       {'kind': 'spring', 'c': 16, 'r': 5},
                       {'kind': 'normal', 'c': 15, 'r': 7}],
+                  7: [{'kind': 'normal', 'c': c, 'r': 14} for c in (7,11,15)],
                   11: [{'kind': 'normal', 'c': 23, 'r': 8}]}
 POSITION_ADJUSTMENTS = {
     3: {('spring',23,10):(21,9), ('spring',20,12):(19,11),
@@ -42,7 +43,8 @@ POSITION_ADJUSTMENTS = {
         ('moving',12.15,10):(12.15,11), ('moving',13.15,10):(13.15,11)},
     7: {('spring',7,14):(5,12), ('spring',11,14):(7,10),
         ('spring',15,14):(9,8), ('spring',5,8):(11,6),
-        ('spring',2,5):(13,4)},
+        ('spring',2,5):(13,4),
+        ('moving',12.8,5):(13,5), ('moving',13.8,5):(14,5)},
     8: {('spring',4,9):(4,10), ('breakable',6,6):(6,8),
         ('breakable',7,6):(7,7)},
     9: {('breakable',13,9):(13,10), ('breakable',15,9):(15,10),
@@ -52,7 +54,11 @@ POSITION_ADJUSTMENTS = {
     # The added roof tile closes the direct drop from spawn to the igloo.
     11: {('spring',6,9):(6,10), ('spring',10,12):(10,11),
          ('normal',20,12):(19,11), ('normal',23,8):(21,9)},
-    12: {('spring',13,12.5):(13,11.5), ('spring',34,6.25):(34,5)},
+    12: {('spring',13,12.5):(13,11.5), ('spring',34,6.25):(34,5),
+         # Preserve the intentional half-tile height while aligning all five
+         # columns 128px above the adjacent springs.
+         **{('normal',c,r):(c,aligned_r) for c in (14,16,18,20,22)
+            for r,aligned_r in ((9.4,9.5),(10.4,10.5))}},
 }
 
 
@@ -79,15 +85,18 @@ def fit_jump_layout(source):
                        for c,r,kind in data['items']]
         # A second dash charge beside the lower-right fish.
         data['items'].append([22.5,13.5,'forward'])
+        # Align the joined deck's left turnaround with the upper spring.
+        rail=next(rail for rail in data['rails'] if rail[0][1]==rail[-1][1])
+        min(rail,key=lambda point:point[0])[0]=13.5
     if data['number']==4:
         # Keep the dash pickup above the repositioned top approach platform.
         data['items']=[[18.5,5.5,kind] if kind=='forward' else [c,r,kind]
                        for c,r,kind in data['items']]
-        # Extend only the left turnaround by one tile. Deriving phase from
-        # the original deck position keeps its starting position unchanged.
+        # Keep the extended left turnaround on the 32px half-tile grid.
+        # Deriving phase from the original deck preserves its start position.
         rail=next(rail for rail in data['rails'] if rail[0][1]==rail[-1][1])
         left=min(rail,key=lambda point:point[0])
-        left[0]-=1
+        left[0]=7
     if data['number']==3:
         # The two-tile deck must extend below the upper ledge's exit (x=768).
         # End its right edge at x=832, before the next spike column begins.

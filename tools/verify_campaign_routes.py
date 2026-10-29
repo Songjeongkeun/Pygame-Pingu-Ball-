@@ -179,6 +179,9 @@ def route(number):
         r.until(lambda:w.cleared,None,label='goal')
     elif number==12:
         r.land('normal-41',1440)
+        # The aligned central column changes the initial landing height.
+        # Wait on the safe ledge for the sun to clear the launcher's exit.
+        for _ in range(3): r.land('normal-41',1440)
         r.until(lambda:w.ball.launch,1632,label='right-launcher')
         r.until(lambda:w.ball.x>=2110,None,label='fly-right')
         r.tick(1)

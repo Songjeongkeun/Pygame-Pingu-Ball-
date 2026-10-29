@@ -34,6 +34,12 @@ class SkinTests(unittest.TestCase):
     def world(self,device):
         return World(Level(1,'art','',[],[],[],(32.,32.),(1500.,700.,64.,64.),specials=[device]),auto_reset=False)
 
+    def test_bundled_regular_and_bold_fonts_contain_korean_game_labels(self):
+        for name in ('NanumGothic-Regular.ttf','NanumGothic-Bold.ttf'):
+            font=pygame.font.Font(str(ROOT/'assets'/'fonts'/name),28)
+            self.assertTrue(all(metric is not None for metric in font.metrics('핑구볼대시점프스테이지')))
+            self.assertGreater(font.render('소리 꺼짐',True,(255,255,255)).get_bounding_rect().width,0)
+
     def test_reference_sprites_match_for_terrain_and_special_devices(self):
         cases=[('normal',None,'block_basic.png',0,{}),
                ('breakable',301,'block_cracked.png',0,{}),
