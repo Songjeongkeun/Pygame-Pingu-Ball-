@@ -62,7 +62,6 @@ def make_lab(number):
         row('upper', 896, 448, 2)
         row('spring-3', 1024, 448, 1, 'spring')
         row('finish', 1152, 320, 4)
-        for i in range(3): row(f'left-wall-{i}', 128, 512 + i * 64, 1)
         for i in range(2): row(f'right-wall-{i}', 1344, 192 + i * 64, 1)
         spawn, goal = apex(288, 704), (1280, 256, 64, 64)
     elif stage == 3:
