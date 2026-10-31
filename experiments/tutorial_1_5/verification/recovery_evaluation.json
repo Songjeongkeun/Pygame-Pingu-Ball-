@@ -1,0 +1,30 @@
+{
+  "experiment": "recovery",
+  "action": "evaluate",
+  "results": [
+    {
+      "model": "recovery-ppo-stage-02-seed-2-hold",
+      "evaluation_seed": 20261101,
+      "stage": 2,
+      "seed": 20261101,
+      "mode": "sampled",
+      "episodes": 1,
+      "successes": 1,
+      "success_rate": 1.0,
+      "mean_success_seconds": 13.316037741502212,
+      "mean_return": 130.0,
+      "mean_milestones": 3.0,
+      "milestone_rate": 1.0,
+      "source_landing_rate": 1.0,
+      "mean_sources": 3.0,
+      "mean_seconds": 13.316037741502212,
+      "failures": {},
+      "mean_entropy": 0.8205528260389371,
+      "action_counts": [
+        17,
+        51,
+        66
+      ]
+    }
+  ]
+}

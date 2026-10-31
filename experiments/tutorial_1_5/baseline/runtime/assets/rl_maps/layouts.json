@@ -1,0 +1,7681 @@
+{
+  "version": 2,
+  "preview_only": false,
+  "all_five_in_every_map": true,
+  "tile_size": 64,
+  "no_fish": true,
+  "no_authored_actions_or_route_in_training_data": true,
+  "maps": [
+    {
+      "number": 1,
+      "title": "얼음 계곡 왕복길",
+      "description": "다섯 특수 블록을 모두 사용하는 2층 왕복 코스",
+      "width": 3776,
+      "height": 1152,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 128,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 192,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 256,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 640,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 704,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02spring-0",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z02upper-0",
+          "x": 960,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-1",
+          "x": 1024,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-2",
+          "x": 1088,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 1216,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 1280,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 1344,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 1600,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 1664,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 1728,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 2176,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 2240,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 2304,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-0",
+          "x": 2560,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-1",
+          "x": 2624,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 2752,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 2816,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 2880,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 2944,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 3072,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 3200,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 3328,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 3456,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 3520,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 3584,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 3264,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06spring-0",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z06upper-0",
+          "x": 2816,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-1",
+          "x": 2880,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-2",
+          "x": 2944,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 2688,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 2048,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 2176,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-0",
+          "x": 1728,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-1",
+          "x": 1792,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 1472,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 1536,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 1600,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 896,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 960,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 640,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01break-a-0",
+          "type_id": 301,
+          "x": 384,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z01break-b-0",
+          "type_id": 301,
+          "x": 512,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z03clock-0",
+          "type_id": 302,
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 2.3999999999999995
+          }
+        },
+        {
+          "id": "z04ferry-0",
+          "type_id": 501,
+          "x": 1856,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z04ferry-1",
+          "type_id": 501,
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z05lift-0",
+          "type_id": 508,
+          "x": 2432,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z07break-a-0",
+          "type_id": 301,
+          "x": 2432,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z07break-b-0",
+          "type_id": 301,
+          "x": 2304,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z08lift-0",
+          "type_id": 508,
+          "x": 1920,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z09ferry-0",
+          "type_id": 501,
+          "x": 1216.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z09ferry-1",
+          "type_id": 501,
+          "x": 1152.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z10clock-0",
+          "type_id": 302,
+          "x": 768,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 0.8999999999999995
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 2,
+      "all_five_present": true,
+      "spawn": [
+        160.0,
+        786.0
+      ],
+      "goal": [
+        512,
+        320,
+        64,
+        64
+      ],
+      "section_count": 10
+    },
+    {
+      "number": 2,
+      "title": "시계 빙하 대장정",
+      "description": "다섯 특수 블록을 모두 사용하는 2층 왕복 코스",
+      "width": 3776,
+      "height": 1152,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 3200,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 3136,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 3072,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 2624,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 2560,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-0",
+          "x": 2240,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-1",
+          "x": 2176,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 2048,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 1984,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 1408,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05spring-0",
+          "x": 1344,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z05upper-0",
+          "x": 1216,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-1",
+          "x": 1152,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-2",
+          "x": 1088,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 1152,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 1536,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 1472,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 1408,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08spring-0",
+          "x": 1600,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z08upper-0",
+          "x": 1856,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-1",
+          "x": 1792,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-2",
+          "x": 1728,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 2048,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 1984,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 2496,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-0",
+          "x": 2944,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-1",
+          "x": 2880,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01clock-0",
+          "type_id": 302,
+          "x": 3328.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 1.2999999999999998
+          }
+        },
+        {
+          "id": "z02ferry-0",
+          "type_id": 501,
+          "x": 2816.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z02ferry-1",
+          "type_id": 501,
+          "x": 2752.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z03lift-0",
+          "type_id": 508,
+          "x": 2368.0,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z04break-a-0",
+          "type_id": 301,
+          "x": 1792.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z04break-b-0",
+          "type_id": 301,
+          "x": 1664.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z06ferry-0",
+          "type_id": 501,
+          "x": 704.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z06ferry-1",
+          "type_id": 501,
+          "x": 768.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z07clock-0",
+          "type_id": 302,
+          "x": 1280.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 5.499999999999999
+          }
+        },
+        {
+          "id": "z09break-a-0",
+          "type_id": 301,
+          "x": 2240.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z09break-b-0",
+          "type_id": 301,
+          "x": 2368.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z10lift-0",
+          "type_id": 508,
+          "x": 2752.0,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 2,
+      "all_five_present": true,
+      "spawn": [
+        3616.0,
+        786.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 10
+    },
+    {
+      "number": 3,
+      "title": "승강기 눈꽃 미로",
+      "description": "다섯 특수 블록을 모두 사용하는 3층 왕복 코스",
+      "width": 4096,
+      "height": 1664,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 448,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 512,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 576,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01spring-0",
+          "x": 640,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z01upper-0",
+          "x": 768,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01upper-1",
+          "x": 832,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01upper-2",
+          "x": 896,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 1024,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 1088,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 1152,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 1536,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 1600,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 1664,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 1920,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 1984,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 2048,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 2496,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 2560,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 2624,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-0",
+          "x": 2880,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-1",
+          "x": 2944,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 3072,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 3136,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 3200,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 3264,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 3392,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 3520,
+          "y": 1152,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 3648,
+          "y": 1024,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 3776,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 3840,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 3904,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 2944,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 3008,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 3072,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07spring-0",
+          "x": 2880,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z07upper-0",
+          "x": 2624,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07upper-1",
+          "x": 2688,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07upper-2",
+          "x": 2752,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 2368,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 2432,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-0",
+          "x": 2048,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-1",
+          "x": 2112,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 1792,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 1856,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 1216,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 1280,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 1344,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1landing-0",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-2",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-0",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-2",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-0",
+          "x": 832,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-1",
+          "x": 896,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-0",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-1",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-2",
+          "x": 1152,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12spring-0",
+          "x": 1216,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z12upper-0",
+          "x": 1344,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12upper-1",
+          "x": 1408,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12upper-2",
+          "x": 1472,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-0",
+          "x": 1600,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-1",
+          "x": 1664,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-2",
+          "x": 1728,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-0",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-1",
+          "x": 2176,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-2",
+          "x": 2240,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-0",
+          "x": 2496,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-1",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-2",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-0",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-2",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z02break-a-0",
+          "type_id": 301,
+          "x": 1280,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z02break-b-0",
+          "type_id": 301,
+          "x": 1408,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z03clock-0",
+          "type_id": 302,
+          "x": 1792,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 2.9999999999999996
+          }
+        },
+        {
+          "id": "z04ferry-0",
+          "type_id": 501,
+          "x": 2176,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z04ferry-1",
+          "type_id": 501,
+          "x": 2240,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z05lift-0",
+          "type_id": 508,
+          "x": 2752,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z06break-a-0",
+          "type_id": 301,
+          "x": 3328,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z06break-b-0",
+          "type_id": 301,
+          "x": 3200,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z08lift-0",
+          "type_id": 508,
+          "x": 2240,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z09ferry-0",
+          "type_id": 501,
+          "x": 1536.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z09ferry-1",
+          "type_id": 501,
+          "x": 1472.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z10clock-0",
+          "type_id": 302,
+          "x": 1088,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 1.5
+          }
+        },
+        {
+          "id": "z11lift-0",
+          "type_id": 508,
+          "x": 704,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z13break-a-0",
+          "type_id": 301,
+          "x": 1856,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z13break-b-0",
+          "type_id": 301,
+          "x": 1984,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z14clock-0",
+          "type_id": 302,
+          "x": 2368,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 4.299999999999999
+          }
+        },
+        {
+          "id": "z15ferry-0",
+          "type_id": 501,
+          "x": 2752,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z15ferry-1",
+          "type_id": 501,
+          "x": 2816,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 3,
+      "all_five_present": true,
+      "spawn": [
+        480.0,
+        1298.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 15
+    },
+    {
+      "number": 4,
+      "title": "얼음 성채 왕복길",
+      "description": "다섯 특수 블록을 모두 사용하는 2층 왕복 코스",
+      "width": 3776,
+      "height": 1152,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 3072,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 3008,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 2944,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02spring-0",
+          "x": 2880,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z02upper-0",
+          "x": 2752,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-1",
+          "x": 2688,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-2",
+          "x": 2624,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 2432,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 2368,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-0",
+          "x": 2112,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-1",
+          "x": 2048,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 1856,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 1792,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 1408,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06spring-0",
+          "x": 640,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z06upper-0",
+          "x": 896,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-1",
+          "x": 832,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-2",
+          "x": 768,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 1152,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 1664,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 1600,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 1536,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 2240,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 2176,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 2496,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-0",
+          "x": 2944,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-1",
+          "x": 2880,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01break-a-0",
+          "type_id": 301,
+          "x": 3328.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z01break-b-0",
+          "type_id": 301,
+          "x": 3200.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z03lift-0",
+          "type_id": 508,
+          "x": 2240.0,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z04clock-0",
+          "type_id": 302,
+          "x": 1664.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 4.0
+          }
+        },
+        {
+          "id": "z05ferry-0",
+          "type_id": 501,
+          "x": 1152.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z05ferry-1",
+          "type_id": 501,
+          "x": 1088.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z07break-a-0",
+          "type_id": 301,
+          "x": 1280.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z07break-b-0",
+          "type_id": 301,
+          "x": 1408.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z08ferry-0",
+          "type_id": 501,
+          "x": 1792.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z08ferry-1",
+          "type_id": 501,
+          "x": 1856.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z09clock-0",
+          "type_id": 302,
+          "x": 2368.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 1.0999999999999996
+          }
+        },
+        {
+          "id": "z10lift-0",
+          "type_id": 508,
+          "x": 2752.0,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 2,
+      "all_five_present": true,
+      "spawn": [
+        3616.0,
+        786.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 10
+    },
+    {
+      "number": 5,
+      "title": "금 간 빙하 회랑",
+      "description": "다섯 특수 블록을 모두 사용하는 3층 왕복 코스",
+      "width": 4096,
+      "height": 1664,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 448,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 512,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 576,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 832,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 896,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 960,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-0",
+          "x": 1216,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-1",
+          "x": 1280,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 1408,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 1472,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 1536,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 1984,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 2048,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 2112,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 2496,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 2560,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 2624,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05spring-0",
+          "x": 2688,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z05upper-0",
+          "x": 2816,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-1",
+          "x": 2880,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-2",
+          "x": 2944,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 3072,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 3136,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 3200,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 3264,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 3392,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 3520,
+          "y": 1152,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 3648,
+          "y": 1024,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 3776,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 3840,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 3904,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-0",
+          "x": 3136,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-1",
+          "x": 3200,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 2880,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 2944,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 3008,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 2560,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 2624,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08spring-0",
+          "x": 2432,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z08upper-0",
+          "x": 2176,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-1",
+          "x": 2240,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-2",
+          "x": 2304,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 1984,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 2048,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 1408,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1landing-0",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-2",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-0",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-2",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11spring-0",
+          "x": 640,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z11upper-0",
+          "x": 768,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-1",
+          "x": 832,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-2",
+          "x": 896,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-0",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-1",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-2",
+          "x": 1152,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-0",
+          "x": 1408,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-1",
+          "x": 1472,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-2",
+          "x": 1536,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13upper-0",
+          "x": 1792,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13upper-1",
+          "x": 1856,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-0",
+          "x": 1984,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-1",
+          "x": 2048,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-2",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-0",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-1",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-2",
+          "x": 2688,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-0",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-2",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01clock-0",
+          "type_id": 302,
+          "x": 704,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 2.2
+          }
+        },
+        {
+          "id": "z02lift-0",
+          "type_id": 508,
+          "x": 1088,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z03ferry-0",
+          "type_id": 501,
+          "x": 1664,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z03ferry-1",
+          "type_id": 501,
+          "x": 1728,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z04break-a-0",
+          "type_id": 301,
+          "x": 2240,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z04break-b-0",
+          "type_id": 301,
+          "x": 2368,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z06lift-0",
+          "type_id": 508,
+          "x": 3328,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z07clock-0",
+          "type_id": 302,
+          "x": 2752,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 6.3999999999999995
+          }
+        },
+        {
+          "id": "z09break-a-0",
+          "type_id": 301,
+          "x": 1792,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z09break-b-0",
+          "type_id": 301,
+          "x": 1664,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z10ferry-0",
+          "type_id": 501,
+          "x": 1152.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z10ferry-1",
+          "type_id": 501,
+          "x": 1088.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z12clock-0",
+          "type_id": 302,
+          "x": 1280,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 3.4999999999999982
+          }
+        },
+        {
+          "id": "z13lift-0",
+          "type_id": 508,
+          "x": 1664,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z14ferry-0",
+          "type_id": 501,
+          "x": 2240,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z14ferry-1",
+          "type_id": 501,
+          "x": 2304,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z15break-a-0",
+          "type_id": 301,
+          "x": 2816,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z15break-b-0",
+          "type_id": 301,
+          "x": 2944,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 3,
+      "all_five_present": true,
+      "spawn": [
+        480.0,
+        1298.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 15
+    },
+    {
+      "number": 6,
+      "title": "리듬 점프 순환로",
+      "description": "다섯 특수 블록을 모두 사용하는 2층 왕복 코스",
+      "width": 3776,
+      "height": 1152,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 3200,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 3136,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 3072,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02spring-0",
+          "x": 3008,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z02upper-0",
+          "x": 2880,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-1",
+          "x": 2816,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02upper-2",
+          "x": 2752,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 2624,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 2560,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-0",
+          "x": 2240,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-1",
+          "x": 2176,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 2048,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 1984,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 1408,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06spring-0",
+          "x": 640,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z06upper-0",
+          "x": 896,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-1",
+          "x": 832,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06upper-2",
+          "x": 768,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 1152,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 1536,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 1472,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 1408,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 2048,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 1984,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 2496,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-0",
+          "x": 2944,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-1",
+          "x": 2880,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01clock-0",
+          "type_id": 302,
+          "x": 3328.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 2.5
+          }
+        },
+        {
+          "id": "z03lift-0",
+          "type_id": 508,
+          "x": 2368.0,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z04break-a-0",
+          "type_id": 301,
+          "x": 1792.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z04break-b-0",
+          "type_id": 301,
+          "x": 1664.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z05ferry-0",
+          "type_id": 501,
+          "x": 1152.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z05ferry-1",
+          "type_id": 501,
+          "x": 1088.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z07clock-0",
+          "type_id": 302,
+          "x": 1280.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 0.29999999999999893
+          }
+        },
+        {
+          "id": "z08ferry-0",
+          "type_id": 501,
+          "x": 1664.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z08ferry-1",
+          "type_id": 501,
+          "x": 1728.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z09break-a-0",
+          "type_id": 301,
+          "x": 2240.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z09break-b-0",
+          "type_id": 301,
+          "x": 2368.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z10lift-0",
+          "type_id": 508,
+          "x": 2752.0,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 2,
+      "all_five_present": true,
+      "spawn": [
+        3616.0,
+        786.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 10
+    },
+    {
+      "number": 7,
+      "title": "얼음 배 연결 항로",
+      "description": "다섯 특수 블록을 모두 사용하는 3층 왕복 코스",
+      "width": 4096,
+      "height": 1664,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 448,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 512,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 576,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01spring-0",
+          "x": 640,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z01upper-0",
+          "x": 768,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01upper-1",
+          "x": 832,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01upper-2",
+          "x": 896,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 1024,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 1088,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 1152,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 1536,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 1600,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 1664,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 2112,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 2176,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 2240,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 2496,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 2560,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 2624,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-0",
+          "x": 2880,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-1",
+          "x": 2944,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 3072,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 3136,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 3200,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 3264,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 3392,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 3520,
+          "y": 1152,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 3648,
+          "y": 1024,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 3776,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 3840,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 3904,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 2944,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 3008,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 3072,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07spring-0",
+          "x": 2880,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z07upper-0",
+          "x": 2624,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07upper-1",
+          "x": 2688,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07upper-2",
+          "x": 2752,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 2368,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 2432,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-0",
+          "x": 2048,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-1",
+          "x": 2112,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 1792,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 1856,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 1408,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1landing-0",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-2",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-0",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-2",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-0",
+          "x": 832,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-1",
+          "x": 896,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-0",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-1",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-2",
+          "x": 1152,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12spring-0",
+          "x": 1216,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z12upper-0",
+          "x": 1344,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12upper-1",
+          "x": 1408,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12upper-2",
+          "x": 1472,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-0",
+          "x": 1600,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-1",
+          "x": 1664,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-2",
+          "x": 1728,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-0",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-1",
+          "x": 2176,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-2",
+          "x": 2240,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-0",
+          "x": 2688,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-1",
+          "x": 2752,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-2",
+          "x": 2816,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-0",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-2",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z02break-a-0",
+          "type_id": 301,
+          "x": 1280,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z02break-b-0",
+          "type_id": 301,
+          "x": 1408,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z03ferry-0",
+          "type_id": 501,
+          "x": 1792,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z03ferry-1",
+          "type_id": 501,
+          "x": 1856,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z04clock-0",
+          "type_id": 302,
+          "x": 2368,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 4.9
+          }
+        },
+        {
+          "id": "z05lift-0",
+          "type_id": 508,
+          "x": 2752,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z06break-a-0",
+          "type_id": 301,
+          "x": 3328,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z06break-b-0",
+          "type_id": 301,
+          "x": 3200,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z08lift-0",
+          "type_id": 508,
+          "x": 2240,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z09clock-0",
+          "type_id": 302,
+          "x": 1664,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 2.0
+          }
+        },
+        {
+          "id": "z10ferry-0",
+          "type_id": 501,
+          "x": 1152.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z10ferry-1",
+          "type_id": 501,
+          "x": 1088.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z11lift-0",
+          "type_id": 508,
+          "x": 704,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z13break-a-0",
+          "type_id": 301,
+          "x": 1856,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z13break-b-0",
+          "type_id": 301,
+          "x": 1984,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z14ferry-0",
+          "type_id": 501,
+          "x": 2368,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z14ferry-1",
+          "type_id": 501,
+          "x": 2432,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z15clock-0",
+          "type_id": 302,
+          "x": 2944,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 6.199999999999999
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 3,
+      "all_five_present": true,
+      "spawn": [
+        480.0,
+        1298.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 15
+    },
+    {
+      "number": 8,
+      "title": "북극 승강 타워",
+      "description": "다섯 특수 블록을 모두 사용하는 2층 왕복 코스",
+      "width": 3776,
+      "height": 1152,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 3200,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 3136,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 3072,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 2688,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 2624,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 2560,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03spring-0",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z03upper-0",
+          "x": 2368,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-1",
+          "x": 2304,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-2",
+          "x": 2240,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 2112,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 2048,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 1984,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04upper-0",
+          "x": 1728,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04upper-1",
+          "x": 1664,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 1408,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 960,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 1472,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 1408,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 1344,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 2048,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 1984,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 1920,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09upper-0",
+          "x": 2368,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09upper-1",
+          "x": 2304,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 2496,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10spring-0",
+          "x": 2688,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z10upper-0",
+          "x": 2944,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-1",
+          "x": 2880,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-2",
+          "x": 2816,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01clock-0",
+          "type_id": 302,
+          "x": 3328.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 3.0999999999999996
+          }
+        },
+        {
+          "id": "z02break-a-0",
+          "type_id": 301,
+          "x": 2944.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z02break-b-0",
+          "type_id": 301,
+          "x": 2816.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z04lift-0",
+          "type_id": 508,
+          "x": 1856.0,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z05ferry-0",
+          "type_id": 501,
+          "x": 1152.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z05ferry-1",
+          "type_id": 501,
+          "x": 1088.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z06break-a-0",
+          "type_id": 301,
+          "x": 704.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z06break-b-0",
+          "type_id": 301,
+          "x": 832.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z07clock-0",
+          "type_id": 302,
+          "x": 1216.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 0.8999999999999986
+          }
+        },
+        {
+          "id": "z08ferry-0",
+          "type_id": 501,
+          "x": 1600.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z08ferry-1",
+          "type_id": 501,
+          "x": 1664.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z09lift-0",
+          "type_id": 508,
+          "x": 2176.0,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 2,
+      "all_five_present": true,
+      "spawn": [
+        3616.0,
+        786.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 10
+    },
+    {
+      "number": 9,
+      "title": "다섯 블록 횡단길",
+      "description": "다섯 특수 블록을 모두 사용하는 3층 왕복 코스",
+      "width": 4096,
+      "height": 1664,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 448,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 512,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 576,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 832,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 896,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 960,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 1408,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 1472,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 1536,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03spring-0",
+          "x": 1600,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z03upper-0",
+          "x": 1728,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-1",
+          "x": 1792,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03upper-2",
+          "x": 1856,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 1984,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 2048,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 2112,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 2496,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 2560,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 2624,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-0",
+          "x": 2880,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-1",
+          "x": 2944,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 3072,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 3136,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 3200,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 3264,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 3392,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 3520,
+          "y": 1152,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 3648,
+          "y": 1024,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 3776,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 3840,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 3904,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 3456,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 3520,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 3584,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 2880,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 2944,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 3008,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 2560,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 2624,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-0",
+          "x": 2176,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-1",
+          "x": 2240,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 1920,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 1984,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 2048,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 1408,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 1472,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10spring-0",
+          "x": 1344,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z10upper-0",
+          "x": 1088,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-1",
+          "x": 1152,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10upper-2",
+          "x": 1216,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 832,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 896,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1-spring0-0",
+          "x": 768,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring1-0",
+          "x": 640,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring2-0",
+          "x": 512,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring3-0",
+          "x": 384,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1landing-0",
+          "x": 128,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-1",
+          "x": 192,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-2",
+          "x": 256,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-0",
+          "x": 448,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-1",
+          "x": 512,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-2",
+          "x": 576,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-0",
+          "x": 832,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-1",
+          "x": 896,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-0",
+          "x": 1024,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-1",
+          "x": 1088,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-2",
+          "x": 1152,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-0",
+          "x": 1408,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-1",
+          "x": 1472,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-2",
+          "x": 1536,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-0",
+          "x": 1984,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-1",
+          "x": 2048,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-2",
+          "x": 2112,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14spring-0",
+          "x": 2176,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z14upper-0",
+          "x": 2304,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14upper-1",
+          "x": 2368,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14upper-2",
+          "x": 2432,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-0",
+          "x": 2560,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-1",
+          "x": 2624,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-2",
+          "x": 2688,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-0",
+          "x": 3072,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-1",
+          "x": 3136,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-2",
+          "x": 3200,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01clock-0",
+          "type_id": 302,
+          "x": 704,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 3.3999999999999995
+          }
+        },
+        {
+          "id": "z02ferry-0",
+          "type_id": 501,
+          "x": 1088,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z02ferry-1",
+          "type_id": 501,
+          "x": 1152,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z04break-a-0",
+          "type_id": 301,
+          "x": 2240,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z04break-b-0",
+          "type_id": 301,
+          "x": 2368,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z05lift-0",
+          "type_id": 508,
+          "x": 2752,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z06ferry-0",
+          "type_id": 501,
+          "x": 3200.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z06ferry-1",
+          "type_id": 501,
+          "x": 3136.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z07clock-0",
+          "type_id": 302,
+          "x": 2752,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 1.1999999999999993
+          }
+        },
+        {
+          "id": "z08lift-0",
+          "type_id": 508,
+          "x": 2368,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z09break-a-0",
+          "type_id": 301,
+          "x": 1792,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z09break-b-0",
+          "type_id": 301,
+          "x": 1664,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z11lift-0",
+          "type_id": 508,
+          "x": 704,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z12clock-0",
+          "type_id": 302,
+          "x": 1280,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 4.6999999999999975
+          }
+        },
+        {
+          "id": "z13ferry-0",
+          "type_id": 501,
+          "x": 1664,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z13ferry-1",
+          "type_id": 501,
+          "x": 1728,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z15break-a-0",
+          "type_id": 301,
+          "x": 2816,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z15break-b-0",
+          "type_id": 301,
+          "x": 2944,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 3,
+      "all_five_present": true,
+      "spawn": [
+        480.0,
+        1298.0
+      ],
+      "goal": [
+        3200,
+        320,
+        64,
+        64
+      ],
+      "section_count": 15
+    },
+    {
+      "number": 10,
+      "title": "남극 귀환 대모험",
+      "description": "다섯 특수 블록을 모두 사용하는 3층 왕복 코스",
+      "width": 4096,
+      "height": 1664,
+      "platforms": [
+        {
+          "id": "start-0",
+          "x": 3584,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-1",
+          "x": 3520,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "start-2",
+          "x": 3456,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01upper-0",
+          "x": 3200,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01upper-1",
+          "x": 3136,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-0",
+          "x": 3008,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-1",
+          "x": 2944,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z01dock-2",
+          "x": 2880,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-0",
+          "x": 2496,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-1",
+          "x": 2432,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z02dock-2",
+          "x": 2368,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-0",
+          "x": 1920,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-1",
+          "x": 1856,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z03dock-2",
+          "x": 1792,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-0",
+          "x": 1536,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-1",
+          "x": 1472,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z04dock-2",
+          "x": 1408,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05spring-0",
+          "x": 1344,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z05upper-0",
+          "x": 1216,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-1",
+          "x": 1152,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05upper-2",
+          "x": 1088,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-0",
+          "x": 960,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-1",
+          "x": 896,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z05dock-2",
+          "x": 832,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0-spring0-0",
+          "x": 768,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring1-0",
+          "x": 640,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring2-0",
+          "x": 512,
+          "y": 1152,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0-spring3-0",
+          "x": 384,
+          "y": 1024,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn0landing-0",
+          "x": 256,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-1",
+          "x": 192,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0landing-2",
+          "x": 128,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-0",
+          "x": 576,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-1",
+          "x": 512,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn0buffer-2",
+          "x": 448,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-0",
+          "x": 1088,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-1",
+          "x": 1024,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z06dock-2",
+          "x": 960,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07upper-0",
+          "x": 1408,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07upper-1",
+          "x": 1344,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-0",
+          "x": 1664,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-1",
+          "x": 1600,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z07dock-2",
+          "x": 1536,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08spring-0",
+          "x": 1728,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z08upper-0",
+          "x": 1984,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-1",
+          "x": 1920,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08upper-2",
+          "x": 1856,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-0",
+          "x": 2240,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-1",
+          "x": 2176,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z08dock-2",
+          "x": 2112,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-0",
+          "x": 2624,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-1",
+          "x": 2560,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z09dock-2",
+          "x": 2496,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-0",
+          "x": 3200,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-1",
+          "x": 3136,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z10dock-2",
+          "x": 3072,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1-spring0-0",
+          "x": 3264,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring1-0",
+          "x": 3392,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring2-0",
+          "x": 3520,
+          "y": 640,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1-spring3-0",
+          "x": 3648,
+          "y": 512,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "turn1landing-0",
+          "x": 3904,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-1",
+          "x": 3840,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1landing-2",
+          "x": 3776,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-0",
+          "x": 3584,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-1",
+          "x": 3520,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "turn1buffer-2",
+          "x": 3456,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11spring-0",
+          "x": 3392,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "spring"
+        },
+        {
+          "id": "z11upper-0",
+          "x": 3264,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-1",
+          "x": 3200,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11upper-2",
+          "x": 3136,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-0",
+          "x": 3008,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-1",
+          "x": 2944,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z11dock-2",
+          "x": 2880,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12upper-0",
+          "x": 2624,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12upper-1",
+          "x": 2560,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-0",
+          "x": 2432,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-1",
+          "x": 2368,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z12dock-2",
+          "x": 2304,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-0",
+          "x": 1920,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-1",
+          "x": 1856,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z13dock-2",
+          "x": 1792,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-0",
+          "x": 1344,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-1",
+          "x": 1280,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z14dock-2",
+          "x": 1216,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-0",
+          "x": 960,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-1",
+          "x": 896,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        },
+        {
+          "id": "z15dock-2",
+          "x": 832,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "kind": "normal"
+        }
+      ],
+      "devices": [
+        {
+          "id": "z01lift-0",
+          "type_id": 508,
+          "x": 3328.0,
+          "y": 1280,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z02break-a-0",
+          "type_id": 301,
+          "x": 2752.0,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z02break-b-0",
+          "type_id": 301,
+          "x": 2624.0,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z03ferry-0",
+          "type_id": 501,
+          "x": 2112.0,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z03ferry-1",
+          "type_id": 501,
+          "x": 2048.0,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z04clock-0",
+          "type_id": 302,
+          "x": 1664.0,
+          "y": 1408,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 5.8
+          }
+        },
+        {
+          "id": "z06break-a-0",
+          "type_id": 301,
+          "x": 704.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z06break-b-0",
+          "type_id": 301,
+          "x": 832.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z07lift-0",
+          "type_id": 508,
+          "x": 1216.0,
+          "y": 768,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z09clock-0",
+          "type_id": 302,
+          "x": 2368.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 2.9000000000000004
+          }
+        },
+        {
+          "id": "z10ferry-0",
+          "type_id": 501,
+          "x": 2752.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z10ferry-1",
+          "type_id": 501,
+          "x": 2816.0,
+          "y": 896,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 0.0
+          }
+        },
+        {
+          "id": "z12lift-0",
+          "type_id": 508,
+          "x": 2752.0,
+          "y": 256,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 64.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z13break-a-0",
+          "type_id": 301,
+          "x": 2176.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z13break-b-0",
+          "type_id": 301,
+          "x": 2048.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {}
+        },
+        {
+          "id": "z14ferry-0",
+          "type_id": 501,
+          "x": 1536.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z14ferry-1",
+          "type_id": 501,
+          "x": 1472.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "travel": 128.0,
+            "speed": 96.0,
+            "phase": 128.0
+          }
+        },
+        {
+          "id": "z15clock-0",
+          "type_id": 302,
+          "x": 1088.0,
+          "y": 384,
+          "w": 64,
+          "h": 64,
+          "options": {
+            "period": 6.4,
+            "active_for": 5.2,
+            "phase": 0.6999999999999993
+          }
+        }
+      ],
+      "collectibles": [],
+      "powerups": [],
+      "time_limit": 180.0,
+      "status": "preview_only_not_installed",
+      "tier_count": 3,
+      "all_five_present": true,
+      "spawn": [
+        3616.0,
+        1298.0
+      ],
+      "goal": [
+        832,
+        320,
+        64,
+        64
+      ],
+      "section_count": 15
+    }
+  ],
+  "map_set": "tutorial-five-2to3-20261031-v1"
+}
