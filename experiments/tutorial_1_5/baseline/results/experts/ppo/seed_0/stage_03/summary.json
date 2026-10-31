@@ -1,0 +1,4598 @@
+{
+  "config": {
+    "algorithm": "ppo",
+    "stage": 3,
+    "seed": 0,
+    "decisions_budget": 400000,
+    "reward_mode": "milestone",
+    "from_scratch": true,
+    "original_spawn": true,
+    "action_count": 3,
+    "observation_size": 1664,
+    "sources": {
+      "rl/five_env.py": "74439e9edf7a6e2a360017cc653c4131f5f5cea5409def7d9ff9e72b58c32124",
+      "rl/five_models.py": "675dff756c09d92812fd2e3b9caecf5aedfed9ebc06a8ab81e526f2bccc4a4b4",
+      "rl/five_train.py": "dbe5eb91d749d97f313eb6731ba80e5de45a5e671a612f440c2e6c1aebd73e4c",
+      "rl/all_tutorial_env.py": "7af28d9c4c5c63ae3e54ec2e73cdb3f7e4c5b51a369df12177e72df570b9ba91",
+      "rl/map_input_env.py": "603d39374341225bb4c06a5931ad5f766f83bc1e6850749df0506717d7bca146",
+      "pingu_ball/engine.py": "3ba8d58df0dd9124ee38b962c5329a42abbf8d131d46e1e523792795fef766d1",
+      "pingu_ball/special_lab.py": "233185284024ba10035c75e260627279d4557e64e1d987ba52f7877ab52bd352",
+      "pingu_ball/specials.py": "f73ee464e13804a5664b2728047bba7ce0a289dc96c5a9d1fefe4e8b1d1c75cb",
+      "pingu_ball/playfield.py": "576cd4e2b5e0d68235702777c243e1ff4c921b0861d6a0aefe75181780ec1794",
+      "pingu_ball/config.py": "2704d0df8c0ceb3a22698cb276b9590d9138e387c33f40a36b164683d402cdf6",
+      "pingu_ball/geometry.py": "f9e6b225951e03e1a2b4f4292ef85fc442fb1f8fe9811c63b395906c502cd1b9",
+      "rl/milestone_env.py": "43d022e143179c57e7953d98fb89271b1d30cd6aeb4d800ee4cca7960df16c3e",
+      "rl/milestone_models.py": "abceb7864eabff1b6ac57a80fd6392bb594508c92fbabd32856cef28210bc0fd",
+      "rl/milestone_train.py": "5295995256cf5d0d6b6a91a68516f9debaae566cfb257809e725463eb4055f4d",
+      "rl/five_report.py": "a813f9a2d1ec0dc82dec239e0b4c7c34415bac4acfe57068328cd5c38c2d4925"
+    },
+    "protocol": {
+      "success": 100.0,
+      "failure": -25.0,
+      "timeout": -25.0,
+      "milestone": 10.0,
+      "reward_scale": 0.01,
+      "deadline_seconds": 180.0,
+      "action_seconds": 0.05,
+      "physics_hz": 120,
+      "action_repeat": 6,
+      "gamma": 1.0,
+      "learning_rate": 0.0003,
+      "joint_learning_rate": 0.0001,
+      "milestone_condition": "native source landing followed by native target-group landing",
+      "milestone_once_per_episode": true,
+      "failure_timeout_penalty_once": true,
+      "no_distance_or_contact_or_survival_reward": true,
+      "authored_intermediate_targets": true,
+      "raw_points_in_logs": true
+    },
+    "test_count": 100,
+    "validation_count": 20,
+    "validation_seed": 11000,
+    "primary_evaluation": "sampled_policy",
+    "previous_models_loaded": [],
+    "reward": "success +100, death-or-180s-timeout -25 once; first source-to-target landing +10; learning /100"
+  },
+  "decisions": 400384,
+  "physics_ticks": 2397332,
+  "episodes": 2219,
+  "training_successes": 1152,
+  "elapsed_seconds": 3517.673187599983,
+  "best_step": 360448,
+  "best_validation": {
+    "step": 360448,
+    "evaluation": {
+      "protocol": "sampled_policy",
+      "seed": 11000,
+      "maps": [
+        {
+          "stage": 3,
+          "episodes": 20,
+          "successes": 20,
+          "success_rate": 1.0,
+          "mean_success_seconds": 11.32102100642342,
+          "mean_return": 100.0,
+          "failures": {},
+          "greedy": {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.221719877387564,
+            "min_goal_distance": 33.221719877387564,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          "raw": [
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021005411744,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 42.323572160590366,
+              "min_goal_distance": 42.323572160590366,
+              "visited_cells": 56,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021005411757,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 34.4339063429534,
+              "min_goal_distance": 34.4339063429534,
+              "visited_cells": 53,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 34.43390646051433,
+              "min_goal_distance": 34.43390646051433,
+              "visited_cells": 57,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 34.43390646207498,
+              "min_goal_distance": 34.43390646207498,
+              "visited_cells": 57,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383315,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 44.21413742955184,
+              "min_goal_distance": 44.21413742955184,
+              "visited_cells": 55,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383319,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 35.40979290716256,
+              "min_goal_distance": 35.40979290716256,
+              "visited_cells": 56,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 34.433906462305785,
+              "min_goal_distance": 34.433906462305785,
+              "visited_cells": 57,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 12.131021008727464,
+              "ticks": 1456,
+              "tick_delta": 4,
+              "decisions": 243,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 32.44772986867485,
+              "min_goal_distance": 32.44772986867485,
+              "visited_cells": 56,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 33.41373921221616,
+              "min_goal_distance": 33.41373921221616,
+              "visited_cells": 57,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383324,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 40.10362263882055,
+              "min_goal_distance": 40.10362263882055,
+              "visited_cells": 56,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 34.433906461844,
+              "min_goal_distance": 34.433906461844,
+              "visited_cells": 57,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.23102100638331,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 43.6608973091704,
+              "min_goal_distance": 43.6608973091704,
+              "visited_cells": 56,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021005411757,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 34.43390634361232,
+              "min_goal_distance": 34.43390634361232,
+              "visited_cells": 54,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.23102100638331,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 37.2342967051322,
+              "min_goal_distance": 37.2342967051322,
+              "visited_cells": 57,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 38.99510367958548,
+              "min_goal_distance": 38.99510367958548,
+              "visited_cells": 58,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 12.131021008727451,
+              "ticks": 1456,
+              "tick_delta": 4,
+              "decisions": 243,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 32.094274411482765,
+              "min_goal_distance": 32.094274411482765,
+              "visited_cells": 56,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 40.10362263888113,
+              "min_goal_distance": 40.10362263888113,
+              "visited_cells": 55,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021006383328,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 34.43390646116989,
+              "min_goal_distance": 34.43390646116989,
+              "visited_cells": 57,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.231021005411751,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 37.23429654378945,
+              "min_goal_distance": 37.23429654378945,
+              "visited_cells": 55,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            },
+            {
+              "stage": 3,
+              "success": true,
+              "is_success": true,
+              "reason": "success",
+              "seconds": 11.23102100638332,
+              "ticks": 1348,
+              "tick_delta": 4,
+              "decisions": 225,
+              "base_return": 100.0,
+              "shaping_return": 0.0,
+              "bonus_return": 0.0,
+              "episode_return": 100.0,
+              "goal_distance": 43.12725998730693,
+              "min_goal_distance": 43.12725998730693,
+              "visited_cells": 56,
+              "pickups": 0,
+              "power_uses": 0,
+              "milestones": [],
+              "armed": [
+                "ferry-to-finish"
+              ],
+              "milestone_events": [],
+              "reward_events": [
+                {
+                  "kind": "success",
+                  "points": 100.0
+                }
+              ],
+              "learning_return": 1.0
+            }
+          ]
+        }
+      ],
+      "mean_success_rate": 1.0,
+      "min_success_rate": 1.0
+    }
+  },
+  "final": {
+    "protocol": "sampled_policy",
+    "seed": 910000,
+    "maps": [
+      {
+        "stage": 3,
+        "episodes": 100,
+        "successes": 99,
+        "success_rate": 0.99,
+        "mean_success_seconds": 11.303104839530492,
+        "mean_return": 98.95,
+        "failures": {
+          "얼음 바다로 떨어졌어요": 1
+        },
+        "greedy": {
+          "stage": 3,
+          "success": true,
+          "is_success": true,
+          "reason": "success",
+          "seconds": 12.131021008727464,
+          "ticks": 1456,
+          "tick_delta": 4,
+          "decisions": 243,
+          "base_return": 100.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": 100.0,
+          "goal_distance": 33.221719877387564,
+          "min_goal_distance": 33.221719877387564,
+          "visited_cells": 54,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [
+            "ferry-to-finish"
+          ],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "success",
+              "points": 100.0
+            }
+          ],
+          "learning_return": 1.0
+        },
+        "raw": [
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.103622444697464,
+            "min_goal_distance": 40.103622444697464,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383315,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.10362263706047,
+            "min_goal_distance": 40.10362263706047,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 35.97243962516972,
+            "min_goal_distance": 35.97243962516972,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727458,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.321668709197965,
+            "min_goal_distance": 34.321668709197965,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383324,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.10362263523487,
+            "min_goal_distance": 40.10362263523487,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.23102100638332,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 43.127259988303074,
+            "min_goal_distance": 43.127259988303074,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646053297,
+            "min_goal_distance": 34.43390646053297,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727458,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.05215693667491,
+            "min_goal_distance": 33.05215693667491,
+            "visited_cells": 59,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 37.11325037066104,
+            "min_goal_distance": 37.11325037066104,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727451,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 35.76105631419047,
+            "min_goal_distance": 35.76105631419047,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.830280323041116,
+            "min_goal_distance": 34.830280323041116,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.283027052569004,
+            "min_goal_distance": 34.283027052569004,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.475416463602706,
+            "min_goal_distance": 40.475416463602706,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646005238,
+            "min_goal_distance": 34.43390646005238,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383324,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.10362263888195,
+            "min_goal_distance": 40.10362263888195,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 37.900956314759135,
+            "min_goal_distance": 37.900956314759135,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 9.431021001695056,
+            "ticks": 1132,
+            "tick_delta": 4,
+            "decisions": 189,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.73943760677361,
+            "min_goal_distance": 40.73943760677361,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 36.30560813543648,
+            "min_goal_distance": 36.30560813543648,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383319,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.954070595518054,
+            "min_goal_distance": 34.954070595518054,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.782523573166934,
+            "min_goal_distance": 33.782523573166934,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.610824597433684,
+            "min_goal_distance": 34.610824597433684,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411748,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.2071847965597,
+            "min_goal_distance": 34.2071847965597,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646095739,
+            "min_goal_distance": 34.43390646095739,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383315,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 43.45251268051008,
+            "min_goal_distance": 43.45251268051008,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.071543822048014,
+            "min_goal_distance": 32.071543822048014,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021124669548,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 38.603794278787724,
+            "min_goal_distance": 38.603794278787724,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646161311,
+            "min_goal_distance": 34.43390646161311,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906460976274,
+            "min_goal_distance": 34.433906460976274,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646140078,
+            "min_goal_distance": 34.43390646140078,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.475416464353685,
+            "min_goal_distance": 40.475416464353685,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.72356550958581,
+            "min_goal_distance": 33.72356550958581,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.967320261436628,
+            "ticks": 1557,
+            "tick_delta": 3,
+            "decisions": 260,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 10.0,
+            "episode_return": 110.0,
+            "goal_distance": 40.391504080985015,
+            "min_goal_distance": 38.76446234051043,
+            "visited_cells": 59,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "ferry-to-finish"
+            ],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [
+              {
+                "id": "ferry-to-finish",
+                "target": "finish-2",
+                "tick": 1354
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.1
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646095755,
+            "min_goal_distance": 34.43390646095755,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906459845666,
+            "min_goal_distance": 34.433906459845666,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906342282555,
+            "min_goal_distance": 34.433906342282555,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646052314,
+            "min_goal_distance": 34.43390646052314,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390634183933,
+            "min_goal_distance": 34.43390634183933,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383324,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.10362263595752,
+            "min_goal_distance": 40.10362263595752,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906462089844,
+            "min_goal_distance": 34.433906462089844,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390645943435,
+            "min_goal_distance": 34.43390645943435,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646162101,
+            "min_goal_distance": 34.43390646162101,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.65798204879289,
+            "min_goal_distance": 33.65798204879289,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.6151531296011,
+            "min_goal_distance": 34.6151531296011,
+            "visited_cells": 52,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 37.90095642567748,
+            "min_goal_distance": 37.90095642567748,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646050442,
+            "min_goal_distance": 34.43390646050442,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.46645916472814,
+            "min_goal_distance": 34.46645916472814,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727446,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.07648995825475,
+            "min_goal_distance": 32.07648995825475,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646155762,
+            "min_goal_distance": 34.43390646155762,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.767700577924124,
+            "min_goal_distance": 34.767700577924124,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 35.761056091322565,
+            "min_goal_distance": 35.761056091322565,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 37.900956314758886,
+            "min_goal_distance": 37.900956314758886,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390645984869,
+            "min_goal_distance": 34.43390645984869,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390645966524,
+            "min_goal_distance": 34.43390645966524,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 35.24795602865866,
+            "min_goal_distance": 35.24795602865866,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390645985885,
+            "min_goal_distance": 34.43390645985885,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390634292729,
+            "min_goal_distance": 34.43390634292729,
+            "visited_cells": 52,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.475416279224895,
+            "min_goal_distance": 40.475416279224895,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646142672,
+            "min_goal_distance": 34.43390646142672,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646049569,
+            "min_goal_distance": 34.43390646049569,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.52470780820965,
+            "min_goal_distance": 33.52470780820965,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 9.431021001695056,
+            "ticks": 1132,
+            "tick_delta": 4,
+            "decisions": 189,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.579561922443574,
+            "min_goal_distance": 40.579561922443574,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.38962531304504,
+            "min_goal_distance": 40.38962531304504,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.9851578209602,
+            "min_goal_distance": 33.9851578209602,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646031081,
+            "min_goal_distance": 34.43390646031081,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 36.685428049166546,
+            "min_goal_distance": 36.685428049166546,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.911210323005236,
+            "min_goal_distance": 33.911210323005236,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646118853,
+            "min_goal_distance": 34.43390646118853,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.23102100638332,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 43.127259988077626,
+            "min_goal_distance": 43.127259988077626,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646140523,
+            "min_goal_distance": 34.43390646140523,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646161311,
+            "min_goal_distance": 34.43390646161311,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 36.88021927053554,
+            "min_goal_distance": 36.88021927053554,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906342089024,
+            "min_goal_distance": 34.433906342089024,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906462780165,
+            "min_goal_distance": 34.433906462780165,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646140632,
+            "min_goal_distance": 34.43390646140632,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.767700497046874,
+            "min_goal_distance": 34.767700497046874,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727448,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.782523733059385,
+            "min_goal_distance": 33.782523733059385,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646171362,
+            "min_goal_distance": 34.43390646171362,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646005229,
+            "min_goal_distance": 34.43390646005229,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383319,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 35.409792903887805,
+            "min_goal_distance": 35.409792903887805,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646116989,
+            "min_goal_distance": 34.43390646116989,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 39.45196293464877,
+            "min_goal_distance": 39.45196293464877,
+            "visited_cells": 52,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646116972,
+            "min_goal_distance": 34.43390646116972,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906460976196,
+            "min_goal_distance": 34.433906460976196,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 36.30560813543659,
+            "min_goal_distance": 36.30560813543659,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.103622637608375,
+            "min_goal_distance": 40.103622637608375,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "얼음 바다로 떨어졌어요",
+            "seconds": 11.519215653287397,
+            "ticks": 1383,
+            "tick_delta": 3,
+            "decisions": 231,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 10.0,
+            "episode_return": -15.0,
+            "goal_distance": 174.1738035155323,
+            "min_goal_distance": 46.21149203469542,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "ferry-to-finish"
+            ],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [
+              {
+                "id": "ferry-to-finish",
+                "target": "finish-2",
+                "tick": 1246
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.15
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 36.68542804916621,
+            "min_goal_distance": 36.68542804916621,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390645980285,
+            "min_goal_distance": 34.43390645980285,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383319,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 37.23429670739108,
+            "min_goal_distance": 37.23429670739108,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646270897,
+            "min_goal_distance": 34.43390646270897,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411744,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.10362244553441,
+            "min_goal_distance": 40.10362244553441,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906461393896,
+            "min_goal_distance": 34.433906461393896,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383315,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.10362263737663,
+            "min_goal_distance": 40.10362263737663,
+            "visited_cells": 57,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.782523573166785,
+            "min_goal_distance": 33.782523573166785,
+            "visited_cells": 58,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021122323982,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.90831910597019,
+            "min_goal_distance": 32.90831910597019,
+            "visited_cells": 56,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646273188,
+            "min_goal_distance": 34.43390646273188,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390634208911,
+            "min_goal_distance": 34.43390634208911,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021005411757,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.433906343422734,
+            "min_goal_distance": 34.433906343422734,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755864,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 40.15666104940169,
+            "min_goal_distance": 40.15666104940169,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 11.231021006383328,
+            "ticks": 1348,
+            "tick_delta": 4,
+            "decisions": 225,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.43390646140523,
+            "min_goal_distance": 34.43390646140523,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          }
+        ]
+      }
+    ],
+    "mean_success_rate": 0.99,
+    "min_success_rate": 0.99
+  },
+  "robustness": {
+    "protocol": "greedy_plus_0.05_input_noise",
+    "seed": 1910000,
+    "maps": [
+      {
+        "stage": 3,
+        "episodes": 20,
+        "successes": 20,
+        "success_rate": 1.0,
+        "mean_success_seconds": 12.13102100833883,
+        "mean_return": 100.0,
+        "failures": {},
+        "greedy": {
+          "stage": 3,
+          "success": true,
+          "is_success": true,
+          "reason": "success",
+          "seconds": 12.131021008727464,
+          "ticks": 1456,
+          "tick_delta": 4,
+          "decisions": 243,
+          "base_return": 100.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": 100.0,
+          "goal_distance": 33.221719877387564,
+          "min_goal_distance": 33.221719877387564,
+          "visited_cells": 54,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [
+            "ferry-to-finish"
+          ],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "success",
+              "points": 100.0
+            }
+          ],
+          "learning_return": 1.0
+        },
+        "raw": [
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727451,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.37355880148904,
+            "min_goal_distance": 32.37355880148904,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727451,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.140578933930335,
+            "min_goal_distance": 32.140578933930335,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727451,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.03176848114608,
+            "min_goal_distance": 32.03176848114608,
+            "visited_cells": 55,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727446,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.61515339876218,
+            "min_goal_distance": 34.61515339876218,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.68068447515515,
+            "min_goal_distance": 33.68068447515515,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.321668634430644,
+            "min_goal_distance": 34.321668634430644,
+            "visited_cells": 50,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.2217199332394,
+            "min_goal_distance": 33.2217199332394,
+            "visited_cells": 51,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.06898056963106,
+            "min_goal_distance": 34.06898056963106,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727451,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.22391985045184,
+            "min_goal_distance": 32.22391985045184,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.33003013919666,
+            "min_goal_distance": 33.33003013919666,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.664787541191366,
+            "min_goal_distance": 32.664787541191366,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727467,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 42.92075962184378,
+            "min_goal_distance": 42.92075962184378,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.51544380218529,
+            "min_goal_distance": 32.51544380218529,
+            "visited_cells": 52,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.018216830627225,
+            "min_goal_distance": 33.018216830627225,
+            "visited_cells": 50,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 35.27862995272914,
+            "min_goal_distance": 35.27862995272914,
+            "visited_cells": 51,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727457,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 35.586459380642864,
+            "min_goal_distance": 35.586459380642864,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 34.49364710889771,
+            "min_goal_distance": 34.49364710889771,
+            "visited_cells": 51,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021007755892,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.730935697062975,
+            "min_goal_distance": 32.730935697062975,
+            "visited_cells": 52,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 33.4426568036438,
+            "min_goal_distance": 33.4426568036438,
+            "visited_cells": 54,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          },
+          {
+            "stage": 3,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 12.131021008727464,
+            "ticks": 1456,
+            "tick_delta": 4,
+            "decisions": 243,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": 100.0,
+            "goal_distance": 32.478889842159774,
+            "min_goal_distance": 32.478889842159774,
+            "visited_cells": 53,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "ferry-to-finish"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.0
+          }
+        ]
+      }
+    ],
+    "mean_success_rate": 1.0,
+    "min_success_rate": 1.0
+  },
+  "sources_after": {
+    "rl/five_env.py": "74439e9edf7a6e2a360017cc653c4131f5f5cea5409def7d9ff9e72b58c32124",
+    "rl/five_models.py": "675dff756c09d92812fd2e3b9caecf5aedfed9ebc06a8ab81e526f2bccc4a4b4",
+    "rl/five_train.py": "dbe5eb91d749d97f313eb6731ba80e5de45a5e671a612f440c2e6c1aebd73e4c",
+    "rl/all_tutorial_env.py": "7af28d9c4c5c63ae3e54ec2e73cdb3f7e4c5b51a369df12177e72df570b9ba91",
+    "rl/map_input_env.py": "603d39374341225bb4c06a5931ad5f766f83bc1e6850749df0506717d7bca146",
+    "pingu_ball/engine.py": "3ba8d58df0dd9124ee38b962c5329a42abbf8d131d46e1e523792795fef766d1",
+    "pingu_ball/special_lab.py": "233185284024ba10035c75e260627279d4557e64e1d987ba52f7877ab52bd352",
+    "pingu_ball/specials.py": "f73ee464e13804a5664b2728047bba7ce0a289dc96c5a9d1fefe4e8b1d1c75cb",
+    "pingu_ball/playfield.py": "576cd4e2b5e0d68235702777c243e1ff4c921b0861d6a0aefe75181780ec1794",
+    "pingu_ball/config.py": "2704d0df8c0ceb3a22698cb276b9590d9138e387c33f40a36b164683d402cdf6",
+    "pingu_ball/geometry.py": "f9e6b225951e03e1a2b4f4292ef85fc442fb1f8fe9811c63b395906c502cd1b9",
+    "rl/milestone_env.py": "43d022e143179c57e7953d98fb89271b1d30cd6aeb4d800ee4cca7960df16c3e",
+    "rl/milestone_models.py": "abceb7864eabff1b6ac57a80fd6392bb594508c92fbabd32856cef28210bc0fd",
+    "rl/milestone_train.py": "5295995256cf5d0d6b6a91a68516f9debaae566cfb257809e725463eb4055f4d",
+    "rl/five_report.py": "a813f9a2d1ec0dc82dec239e0b4c7c34415bac4acfe57068328cd5c38c2d4925"
+  },
+  "per_map": {
+    "3": {
+      "episodes": 2219,
+      "successes": 1152,
+      "transitions": 400384
+    }
+  },
+  "final_test_used_for_selection": false
+}

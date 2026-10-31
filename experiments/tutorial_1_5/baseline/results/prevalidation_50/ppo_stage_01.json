@@ -1,0 +1,3077 @@
+{
+  "algorithm": "ppo",
+  "stage": 1,
+  "seed": 0,
+  "checkpoint": "D:\\바탕 화면\\파이썬게임\\Pygame-Pingu-Ball-\\output\\rl_user_reward_20261030\\results\\experts\\ppo\\seed_0\\stage_01\\best.zip",
+  "checkpoint_sha256": "f61530e2bf902ac7c5958f77972fb1a655c039edbf0f893e36687eb55964b774",
+  "validation": {
+    "protocol": "sampled_policy",
+    "seed": 3510000,
+    "maps": [
+      {
+        "stage": 1,
+        "episodes": 50,
+        "successes": 49,
+        "success_rate": 0.98,
+        "mean_success_seconds": 5.735230353395465,
+        "mean_return": 136.7,
+        "failures": {
+          "얼음 바다로 떨어졌어요": 1
+        },
+        "greedy": {
+          "stage": 1,
+          "success": true,
+          "is_success": true,
+          "reason": "success",
+          "seconds": 5.711496670624728,
+          "ticks": 686,
+          "tick_delta": 2,
+          "decisions": 115,
+          "base_return": 100.0,
+          "shaping_return": 0.0,
+          "bonus_return": 40.0,
+          "episode_return": 140.0,
+          "goal_distance": 32.349768163812804,
+          "min_goal_distance": 32.349768163812804,
+          "visited_cells": 41,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [
+            "break-crossing-0",
+            "break-crossing-1",
+            "break-crossing-2",
+            "break-crossing-3"
+          ],
+          "armed": [
+            "break-crossing-0",
+            "break-crossing-1",
+            "break-crossing-2",
+            "break-crossing-3"
+          ],
+          "milestone_events": [
+            {
+              "id": "break-crossing-0",
+              "target": "break-1",
+              "tick": 271
+            },
+            {
+              "id": "break-crossing-1",
+              "target": "break-2",
+              "tick": 379
+            },
+            {
+              "id": "break-crossing-2",
+              "target": "break-3",
+              "tick": 487
+            },
+            {
+              "id": "break-crossing-3",
+              "target": "finish-1",
+              "tick": 595
+            }
+          ],
+          "reward_events": [
+            {
+              "kind": "success",
+              "points": 100.0
+            }
+          ],
+          "learning_return": 1.4
+        },
+        "raw": [
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.96152886590713,
+            "min_goal_distance": 32.96152886590713,
+            "visited_cells": 47,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 44.425057001126824,
+            "min_goal_distance": 44.425057001126824,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.781103988672484,
+            "min_goal_distance": 32.781103988672484,
+            "visited_cells": 46,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.488559712137985,
+            "min_goal_distance": 32.488559712137985,
+            "visited_cells": 40,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": false,
+            "is_success": false,
+            "reason": "얼음 바다로 떨어졌어요",
+            "seconds": 2.69529977069492,
+            "ticks": 324,
+            "tick_delta": 6,
+            "decisions": 54,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 551.8043941423891,
+            "min_goal_distance": 462.51651314917905,
+            "visited_cells": 25,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "break-crossing-0"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 38.724762691993476,
+            "min_goal_distance": 38.724762691993476,
+            "visited_cells": 45,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 37.400080179501025,
+            "min_goal_distance": 37.400080179501025,
+            "visited_cells": 40,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 43.343890432838585,
+            "min_goal_distance": 43.343890432838585,
+            "visited_cells": 39,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 37.81508629213509,
+            "min_goal_distance": 37.81508629213509,
+            "visited_cells": 40,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 35.34690085802235,
+            "min_goal_distance": 35.34690085802235,
+            "visited_cells": 44,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 38.24191542383934,
+            "min_goal_distance": 38.24191542383934,
+            "visited_cells": 45,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 37.81508629213497,
+            "min_goal_distance": 37.81508629213497,
+            "visited_cells": 40,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.025485647011976,
+            "min_goal_distance": 32.025485647011976,
+            "visited_cells": 47,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.781103988672434,
+            "min_goal_distance": 32.781103988672434,
+            "visited_cells": 39,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 33.37561038491029,
+            "min_goal_distance": 33.37561038491029,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 6.611496672968717,
+            "ticks": 794,
+            "tick_delta": 2,
+            "decisions": 133,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.06142108058981,
+            "min_goal_distance": 32.06142108058981,
+            "visited_cells": 48,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 36.230005200264785,
+            "min_goal_distance": 36.230005200264785,
+            "visited_cells": 42,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 39.82334047709876,
+            "min_goal_distance": 39.82334047709876,
+            "visited_cells": 42,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.11978350135831,
+            "min_goal_distance": 32.11978350135831,
+            "visited_cells": 44,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 43.934969243167785,
+            "min_goal_distance": 43.934969243167785,
+            "visited_cells": 39,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 36.997294951638615,
+            "min_goal_distance": 36.997294951638615,
+            "visited_cells": 44,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 43.343890432838585,
+            "min_goal_distance": 43.343890432838585,
+            "visited_cells": 37,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.965679012345572,
+            "ticks": 716,
+            "tick_delta": 2,
+            "decisions": 120,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 40.61966386228175,
+            "min_goal_distance": 33.20164285582029,
+            "visited_cells": 42,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 44.9767162055433,
+            "min_goal_distance": 44.9767162055433,
+            "visited_cells": 37,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 34.12476036251542,
+            "min_goal_distance": 34.12476036251542,
+            "visited_cells": 44,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.061421080674855,
+            "min_goal_distance": 32.061421080674855,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 35.866319626893144,
+            "min_goal_distance": 35.866319626893144,
+            "visited_cells": 45,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 40.832903013994155,
+            "min_goal_distance": 40.832903013994155,
+            "visited_cells": 38,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.781103988672434,
+            "min_goal_distance": 32.781103988672434,
+            "visited_cells": 41,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 36.60713400688321,
+            "min_goal_distance": 36.60713400688321,
+            "visited_cells": 42,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 35.68964707404381,
+            "min_goal_distance": 35.68964707404381,
+            "visited_cells": 46,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 38.68017618161077,
+            "min_goal_distance": 38.68017618161077,
+            "visited_cells": 41,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 35.018630504618656,
+            "min_goal_distance": 35.018630504618656,
+            "visited_cells": 44,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 33.858451124760684,
+            "min_goal_distance": 33.858451124760684,
+            "visited_cells": 47,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.01961773923434,
+            "min_goal_distance": 32.01961773923434,
+            "visited_cells": 42,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 34.70524678957222,
+            "min_goal_distance": 34.70524678957222,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 37.40008017950114,
+            "min_goal_distance": 37.40008017950114,
+            "visited_cells": 45,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.720264782326076,
+            "ticks": 687,
+            "tick_delta": 3,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 43.44102731358895,
+            "min_goal_distance": 43.44102731358895,
+            "visited_cells": 38,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 33.37561038491035,
+            "min_goal_distance": 33.37561038491035,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 34.407156482120584,
+            "min_goal_distance": 34.407156482120584,
+            "visited_cells": 45,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 33.159803705616255,
+            "min_goal_distance": 33.159803705616255,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 44.42505700112667,
+            "min_goal_distance": 44.42505700112667,
+            "visited_cells": 40,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.51633468906575,
+            "min_goal_distance": 32.51633468906575,
+            "visited_cells": 46,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 36.9972949516385,
+            "min_goal_distance": 36.9972949516385,
+            "visited_cells": 40,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 33.20095109083254,
+            "min_goal_distance": 33.20095109083254,
+            "visited_cells": 41,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 37.81508629213509,
+            "min_goal_distance": 37.81508629213509,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 32.02548564701198,
+            "min_goal_distance": 32.02548564701198,
+            "visited_cells": 44,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 40.63574605713184,
+            "min_goal_distance": 40.63574605713184,
+            "visited_cells": 43,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 33.159803705616135,
+            "min_goal_distance": 33.159803705616135,
+            "visited_cells": 40,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-1",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          },
+          {
+            "stage": 1,
+            "success": true,
+            "is_success": true,
+            "reason": "success",
+            "seconds": 5.711496670624728,
+            "ticks": 686,
+            "tick_delta": 2,
+            "decisions": 115,
+            "base_return": 100.0,
+            "shaping_return": 0.0,
+            "bonus_return": 40.0,
+            "episode_return": 140.0,
+            "goal_distance": 43.88069015668143,
+            "min_goal_distance": 43.88069015668143,
+            "visited_cells": 42,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "armed": [
+              "break-crossing-0",
+              "break-crossing-1",
+              "break-crossing-2",
+              "break-crossing-3"
+            ],
+            "milestone_events": [
+              {
+                "id": "break-crossing-0",
+                "target": "break-1",
+                "tick": 271
+              },
+              {
+                "id": "break-crossing-1",
+                "target": "break-2",
+                "tick": 379
+              },
+              {
+                "id": "break-crossing-2",
+                "target": "break-3",
+                "tick": 487
+              },
+              {
+                "id": "break-crossing-3",
+                "target": "finish-0",
+                "tick": 595
+              }
+            ],
+            "reward_events": [
+              {
+                "kind": "success",
+                "points": 100.0
+              }
+            ],
+            "learning_return": 1.4
+          }
+        ]
+      }
+    ],
+    "mean_success_rate": 0.98,
+    "min_success_rate": 0.98
+  },
+  "final_test_read": false,
+  "sources": {
+    "rl/five_env.py": "74439e9edf7a6e2a360017cc653c4131f5f5cea5409def7d9ff9e72b58c32124",
+    "rl/five_models.py": "675dff756c09d92812fd2e3b9caecf5aedfed9ebc06a8ab81e526f2bccc4a4b4",
+    "rl/five_train.py": "dbe5eb91d749d97f313eb6731ba80e5de45a5e671a612f440c2e6c1aebd73e4c",
+    "rl/all_tutorial_env.py": "7af28d9c4c5c63ae3e54ec2e73cdb3f7e4c5b51a369df12177e72df570b9ba91",
+    "rl/map_input_env.py": "603d39374341225bb4c06a5931ad5f766f83bc1e6850749df0506717d7bca146",
+    "pingu_ball/engine.py": "3ba8d58df0dd9124ee38b962c5329a42abbf8d131d46e1e523792795fef766d1",
+    "pingu_ball/special_lab.py": "233185284024ba10035c75e260627279d4557e64e1d987ba52f7877ab52bd352",
+    "pingu_ball/specials.py": "f73ee464e13804a5664b2728047bba7ce0a289dc96c5a9d1fefe4e8b1d1c75cb",
+    "pingu_ball/playfield.py": "576cd4e2b5e0d68235702777c243e1ff4c921b0861d6a0aefe75181780ec1794",
+    "pingu_ball/config.py": "2704d0df8c0ceb3a22698cb276b9590d9138e387c33f40a36b164683d402cdf6",
+    "pingu_ball/geometry.py": "f9e6b225951e03e1a2b4f4292ef85fc442fb1f8fe9811c63b395906c502cd1b9",
+    "rl/milestone_env.py": "43d022e143179c57e7953d98fb89271b1d30cd6aeb4d800ee4cca7960df16c3e",
+    "rl/milestone_models.py": "abceb7864eabff1b6ac57a80fd6392bb594508c92fbabd32856cef28210bc0fd",
+    "rl/milestone_train.py": "5295995256cf5d0d6b6a91a68516f9debaae566cfb257809e725463eb4055f4d",
+    "rl/five_report.py": "a813f9a2d1ec0dc82dec239e0b4c7c34415bac4acfe57068328cd5c38c2d4925"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "decisions": 402944,
+  "physics_ticks": 2400134,
+  "episodes": 6008,
+  "training_successes": 55,
+  "entropy_coefficient": 0.03,
+  "diagnostics": {
+    "train/learning_rate": 0.0001,
+    "train/entropy_loss": -0.8677745858828226,
+    "train/policy_gradient_loss": -0.0021036084120472274,
+    "train/value_loss": 0.026204316255946953,
+    "train/approx_kl": 0.0044207083992660046,
+    "train/clip_fraction": 0.08658854166666667,
+    "train/loss": -0.010375669226050377,
+    "train/explained_variance": -0.16648709774017334,
+    "train/n_updates": 2361.0,
+    "train/clip_range": 0.1
+  },
+  "elapsed_seconds": 1317.0701236000168,
+  "validation": {
+    "stage": 2,
+    "seed": 11000,
+    "mode": "sampled",
+    "episodes": 20,
+    "successes": 1,
+    "success_rate": 0.05,
+    "mean_success_seconds": 9.720370370370459,
+    "mean_return": -14.75,
+    "mean_milestones": 0.4,
+    "milestone_rate": 0.3,
+    "source_landing_rate": 0.85,
+    "mean_sources": 1.2,
+    "mean_seconds": 4.854169256114682,
+    "failures": {
+      "얼음 바다로 떨어졌어요": 19
+    },
+    "mean_entropy": 0.9105712318579193,
+    "action_counts": [
+      324,
+      487,
+      1141
+    ]
+  }
+}

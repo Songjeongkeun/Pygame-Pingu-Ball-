@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "models": 18,
+  "stages": [
+    2,
+    4
+  ],
+  "old_checkpoints_preserved": 30,
+  "frozen_files_unchanged": 138,
+  "all_native_passed": true,
+  "reward_unchanged": true,
+  "shared_policy_trained": false,
+  "git_actions": false,
+  "selected_models": {
+    "2": {
+      "checkpoint": "D:\\바탕 화면\\파이썬게임\\Pygame-Pingu-Ball-\\output\\rl_recovery_20261030\\results\\hold\\stage_02\\seed_2\\best_success.zip",
+      "variant": "hold",
+      "seed": 2,
+      "validation_success_rate": 0.8,
+      "independent_test_success_rate": 0.86,
+      "repeat": 12
+    },
+    "4": {
+      "checkpoint": "D:\\바탕 화면\\파이썬게임\\Pygame-Pingu-Ball-\\output\\rl_recovery_20261030\\results\\hold\\stage_04\\seed_2\\best_success.zip",
+      "variant": "hold",
+      "seed": 2,
+      "validation_success_rate": 0.0,
+      "independent_test_success_rate": 0.0,
+      "repeat": 12
+    }
+  },
+  "selected_model_training_steps": {
+    "2": {
+      "step": 182272,
+      "ticks": 2163577,
+      "is_initial_untrained_snapshot": false
+    },
+    "4": {
+      "step": 61440,
+      "ticks": 727822,
+      "is_initial_untrained_snapshot": false
+    }
+  },
+  "unresolved_validation_gate_stages": [
+    2,
+    4
+  ],
+  "analysis_script_sha256": "623249382f8aa68d9d20b866c7352c3df20cd003f70585c9d5cadca747bd5cd4",
+  "actual_training_decisions": 6061568,
+  "actual_training_physics_ticks": 43345064
+}
