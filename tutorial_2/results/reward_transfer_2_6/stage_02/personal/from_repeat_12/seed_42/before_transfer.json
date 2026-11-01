@@ -1,0 +1,91 @@
+{
+  "source_checkpoint": "tutorial_2/results/reward_repeat_2_4/stage_02/personal/repeat_12/seed_42/best.zip",
+  "source_sha256": "bc8f21dcc0bb3383b6fb6c6b44b8f74451159efca35fffe0db543634a7d4ee1b",
+  "eval_seed": 120000,
+  "trials": 200,
+  "repeat_12": {
+    "stage": 2,
+    "repeat": 12,
+    "reward_mode": "personal",
+    "trials": 200,
+    "seed": 120000,
+    "wins": 151,
+    "mean_return": 96.595,
+    "mean_bonus": 27.22,
+    "mean_seconds": 9.468597369364737,
+    "mean_max_x": 1170.331479522816,
+    "mean_policy_entropy": 0.822444491388309,
+    "mean_action_probabilities": [
+      0.14916,
+      0.26278,
+      0.58806
+    ],
+    "actual_action_counts": [
+      2858,
+      4981,
+      11228
+    ],
+    "mean_decisions_per_episode": 95.335,
+    "reward_parts_mean": {
+      "target_height": 1.285,
+      "target_horizontal": 1.285,
+      "target_landing": 24.65
+    },
+    "failure_reasons": {
+      "얼음 바다로 떨어졌어요": 49
+    },
+    "protocol": "team_sampled_4_streams",
+    "success_rate": 0.755,
+    "first_spring_rate": 0.925,
+    "middle_rate": 0.875,
+    "spring2_rate": 0.845,
+    "upper_rate": 0.825,
+    "spring3_rate": 0.8,
+    "finish_rate": 0.765,
+    "mean_target_landings": 2.465,
+    "mean_springs_seen": 2.57
+  },
+  "repeat_6_without_training": {
+    "stage": 2,
+    "repeat": 6,
+    "reward_mode": "personal",
+    "trials": 200,
+    "seed": 120000,
+    "wins": 191,
+    "mean_return": 126.43,
+    "mean_bonus": 32.055,
+    "mean_seconds": 10.662905096557818,
+    "mean_max_x": 1274.280646405191,
+    "mean_policy_entropy": 0.8237361674149962,
+    "mean_action_probabilities": [
+      0.14571,
+      0.2604,
+      0.59389
+    ],
+    "actual_action_counts": [
+      6342,
+      11232,
+      25201
+    ],
+    "mean_decisions_per_episode": 213.875,
+    "reward_parts_mean": {
+      "target_height": 1.4775,
+      "target_horizontal": 1.4775,
+      "target_landing": 29.1
+    },
+    "failure_reasons": {
+      "얼음 바다로 떨어졌어요": 9
+    },
+    "protocol": "team_sampled_4_streams",
+    "success_rate": 0.955,
+    "first_spring_rate": 1.0,
+    "middle_rate": 0.985,
+    "spring2_rate": 0.985,
+    "upper_rate": 0.97,
+    "spring3_rate": 0.97,
+    "finish_rate": 0.955,
+    "mean_target_landings": 2.91,
+    "mean_springs_seen": 2.955
+  },
+  "important": "These two tests use EXACTLY the same PPO weights."
+}

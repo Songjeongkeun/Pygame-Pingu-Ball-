@@ -1,0 +1,80 @@
+{
+  "experiment": "baseline",
+  "action": "evaluate",
+  "results": [
+    {
+      "model": "baseline-ppo-stage-01-seed-0",
+      "evaluation_seed": 120000,
+      "stage": 1,
+      "episodes": 100,
+      "successes": 96,
+      "success_rate": 0.96,
+      "mean_success_seconds": 5.7652061102825884,
+      "mean_return": 135.0,
+      "failures": {
+        "얼음 바다로 떨어졌어요": 4
+      },
+      "greedy": {
+        "stage": 1,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 5.711496670624728,
+        "ticks": 686,
+        "tick_delta": 2,
+        "decisions": 115,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 40.0,
+        "episode_return": 140.0,
+        "goal_distance": 32.349768163812804,
+        "min_goal_distance": 32.349768163812804,
+        "visited_cells": 41,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "break-crossing-0",
+          "break-crossing-1",
+          "break-crossing-2",
+          "break-crossing-3"
+        ],
+        "armed": [
+          "break-crossing-0",
+          "break-crossing-1",
+          "break-crossing-2",
+          "break-crossing-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "break-crossing-0",
+            "target": "break-1",
+            "tick": 271
+          },
+          {
+            "id": "break-crossing-1",
+            "target": "break-2",
+            "tick": 379
+          },
+          {
+            "id": "break-crossing-2",
+            "target": "break-3",
+            "tick": 487
+          },
+          {
+            "id": "break-crossing-3",
+            "target": "finish-1",
+            "tick": 595
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.4
+      },
+      "mode": "sampled"
+    }
+  ]
+}

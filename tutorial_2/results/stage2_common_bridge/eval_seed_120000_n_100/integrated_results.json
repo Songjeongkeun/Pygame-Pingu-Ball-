@@ -1,0 +1,88 @@
+{
+  "kind": "stage_dispatch_individual_expert_PPO_NOT_single_joint_network",
+  "note": "Stage 4 remains original team PPO baseline; no retraining or reward change",
+  "seed": 120000,
+  "episodes_per_stage": 100,
+  "stage2_model": "C:\\Users\\0078y\\OneDrive\\Desktop\\Pygame-Pingu-Ball-\\tutorial_2\\results\\reward_transfer_2_6\\stage_02\\personal\\from_repeat_12\\seed_42\\best.zip",
+  "stages": [
+    {
+      "stage": 1,
+      "policy": "archived_team_ppo_unmodified",
+      "algorithm": "ppo",
+      "evaluation_seed": 120000,
+      "episodes": 100,
+      "successes": 96,
+      "success_rate": 0.96,
+      "mean_return": 135.0,
+      "model": "baseline-ppo-stage-01-seed-0",
+      "protocol": "team_archived_sampled"
+    },
+    {
+      "stage": 2,
+      "policy": "personal_PPO_6frame",
+      "algorithm": "ppo",
+      "observation": "team_MilestoneEnv_flat",
+      "actions": 3,
+      "repeat": 6,
+      "evaluation_seed": 120000,
+      "episodes": 100,
+      "successes": 95,
+      "success_rate": 0.95,
+      "mean_return": 125.57,
+      "mean_bonus": 31.82,
+      "mean_seconds": 7.257731873939746,
+      "first_spring_rate": 1.0,
+      "middle_rate": 0.97,
+      "spring2_rate": 0.97,
+      "upper_rate": 0.97,
+      "spring3_rate": 0.95,
+      "finish_rate": 0.95,
+      "failures": {
+        "얼음 바다로 떨어졌어요": 5
+      },
+      "action_counts": [
+        926,
+        3249,
+        10402
+      ],
+      "protocol": "team_sampled_4_streams",
+      "model": "C:\\Users\\0078y\\OneDrive\\Desktop\\Pygame-Pingu-Ball-\\tutorial_2\\results\\reward_transfer_2_6\\stage_02\\personal\\from_repeat_12\\seed_42\\best.zip"
+    },
+    {
+      "stage": 3,
+      "policy": "archived_team_ppo_unmodified",
+      "algorithm": "ppo",
+      "evaluation_seed": 120000,
+      "episodes": 100,
+      "successes": 99,
+      "success_rate": 0.99,
+      "mean_return": 98.95,
+      "model": "baseline-ppo-stage-03-seed-0",
+      "protocol": "team_archived_sampled"
+    },
+    {
+      "stage": 4,
+      "policy": "archived_team_ppo_unmodified",
+      "algorithm": "ppo",
+      "evaluation_seed": 120000,
+      "episodes": 100,
+      "successes": 0,
+      "success_rate": 0.0,
+      "mean_return": -25.0,
+      "model": "baseline-ppo-stage-04-seed-0",
+      "protocol": "team_archived_sampled"
+    },
+    {
+      "stage": 5,
+      "policy": "archived_team_ppo_unmodified",
+      "algorithm": "ppo",
+      "evaluation_seed": 120000,
+      "episodes": 100,
+      "successes": 99,
+      "success_rate": 0.99,
+      "mean_return": 128.65,
+      "model": "baseline-ppo-stage-05-seed-0",
+      "protocol": "team_archived_sampled"
+    }
+  ]
+}
