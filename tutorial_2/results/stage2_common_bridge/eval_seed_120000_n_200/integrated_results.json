@@ -1,0 +1,40 @@
+{
+  "kind": "stage_dispatch_individual_expert_PPO_NOT_single_joint_network",
+  "note": "Stage 4 remains original team PPO baseline; no retraining or reward change",
+  "seed": 120000,
+  "episodes_per_stage": 200,
+  "stage2_model": "C:\\Users\\0078y\\OneDrive\\Desktop\\Pygame-Pingu-Ball-\\tutorial_2\\results\\reward_transfer_2_6\\stage_02\\personal\\from_repeat_12\\seed_42\\best.zip",
+  "stages": [
+    {
+      "stage": 2,
+      "policy": "personal_PPO_6frame",
+      "algorithm": "ppo",
+      "observation": "team_MilestoneEnv_flat",
+      "actions": 3,
+      "repeat": 6,
+      "evaluation_seed": 120000,
+      "episodes": 200,
+      "successes": 192,
+      "success_rate": 0.96,
+      "mean_return": 127.035,
+      "mean_bonus": 32.035,
+      "mean_seconds": 7.27645240514274,
+      "first_spring_rate": 1.0,
+      "middle_rate": 0.975,
+      "spring2_rate": 0.975,
+      "upper_rate": 0.975,
+      "spring3_rate": 0.96,
+      "finish_rate": 0.96,
+      "failures": {
+        "얼음 바다로 떨어졌어요": 8
+      },
+      "action_counts": [
+        1857,
+        6497,
+        20879
+      ],
+      "protocol": "team_sampled_4_streams",
+      "model": "C:\\Users\\0078y\\OneDrive\\Desktop\\Pygame-Pingu-Ball-\\tutorial_2\\results\\reward_transfer_2_6\\stage_02\\personal\\from_repeat_12\\seed_42\\best.zip"
+    }
+  ]
+}

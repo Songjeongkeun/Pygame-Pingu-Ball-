@@ -1,0 +1,89 @@
+{
+  "config": {
+    "stage": 2,
+    "reward": "personal",
+    "source_repeat": 12,
+    "target_repeat": 6,
+    "source_checkpoint": "tutorial_2/results/reward_repeat_2_4/stage_02/personal/repeat_12/seed_42/best.zip",
+    "source_sha256": "bc8f21dcc0bb3383b6fb6c6b44b8f74451159efca35fffe0db543634a7d4ee1b",
+    "source_training_seed": 42,
+    "adaptation_seed": 42,
+    "action_count": 3,
+    "common_observation": 1664,
+    "model": "rl.milestone_models.MilestonePPO",
+    "from_scratch": false,
+    "PPO_checkpoint_warm_start": true,
+    "BC": false,
+    "DAgger": false,
+    "teacher": false,
+    "demonstrations": false,
+    "pretrained_external": false,
+    "physics_hz": 120,
+    "ppo": {
+      "gamma": 1.0,
+      "gae_lambda": 0.98,
+      "n_steps": 128,
+      "batch_size": 256,
+      "n_epochs": 5,
+      "clip_range": 0.2,
+      "target_kl": 0.02,
+      "learning_rate": 0.0001,
+      "ent_coef": 0.01
+    },
+    "validation_trials": 20,
+    "validation_seed": 50000,
+    "eval_every_frames": 60000
+  },
+  "completed_decisions": 40092,
+  "completed_physics_frames": 240022,
+  "best_validation": {
+    "decisions": 40092,
+    "physical_frames": 240022,
+    "episodes": 167,
+    "training_wins": 140,
+    "entropy_coefficient": 0.01,
+    "validation": {
+      "stage": 2,
+      "repeat": 6,
+      "reward_mode": "personal",
+      "trials": 20,
+      "seed": 50000,
+      "wins": 20,
+      "mean_return": 133.0,
+      "mean_bonus": 33.0,
+      "mean_seconds": 7.375969331670821,
+      "mean_max_x": 1303.9393152705647,
+      "mean_policy_entropy": 0.5930461542761324,
+      "mean_action_probabilities": [
+        0.06393,
+        0.21957,
+        0.7165
+      ],
+      "actual_action_counts": [
+        191,
+        633,
+        2139
+      ],
+      "mean_decisions_per_episode": 148.15,
+      "reward_parts_mean": {
+        "target_height": 1.5,
+        "target_horizontal": 1.5,
+        "target_landing": 30.0
+      },
+      "failure_reasons": {},
+      "protocol": "team_sampled_4_streams",
+      "success_rate": 1.0,
+      "first_spring_rate": 1.0,
+      "middle_rate": 1.0,
+      "spring2_rate": 1.0,
+      "upper_rate": 1.0,
+      "spring3_rate": 1.0,
+      "finish_rate": 1.0,
+      "mean_target_landings": 3.0,
+      "mean_springs_seen": 3.0
+    },
+    "elapsed_s": 144.9
+  },
+  "stopped_for_budget": true,
+  "stopped_for_collapse": false
+}

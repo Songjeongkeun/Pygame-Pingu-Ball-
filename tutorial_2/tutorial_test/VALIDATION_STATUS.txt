@@ -1,0 +1,17 @@
+tutorial_test v3 (2026-11-01)
+
+인증 범위:
+  - 실제 GitHub main의 rl/milestone_env.py, rl/recovery_train.py,
+    tutorial_2_4/tutorial2/tutorial2_ppo_setting/spring_rewards.py,
+    tutorial_2_4/tutorial4/tutorial4_ppo_setting/environment.py와 비교하여 보상 규칙 재작성.
+  - Python AST/컴파일 검사 통과.
+  - 단위 테스트 15/15 통과.
+  - 실제 게임/팀 공통환경 통합 테스트 2개는 현재 제작 환경에서
+    gymnasium/stable-baselines3가 없어서 실행 불가(skip).
+  - 실제 PPO 훈련/평가: 여기서는 수행하지 못함(미검증).
+
+특히 주의:
+  - 최종 100%/99.8% PPO는 9행동/단계 전용 관측. 팀원 코드는 3행동/공통 관측.
+  - 네 최종 보상 중 일반화 가능한 부분만 이식했으며, 원본 성공률 재현 보장은 없음.
+  - v1/v2 0%의 유일한 원인이 보상 버그라는 증거는 없음.
+  - 충분한 실험은 Windows에서 parity + smoke 이후 수행해야 함.

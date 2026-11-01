@@ -1,0 +1,50 @@
+{
+  "decisions": 70632,
+  "physical_frames": 842158,
+  "episodes": 905,
+  "training_wins": 135,
+  "entropy_coefficient": 0.05,
+  "validation": {
+    "stage": 2,
+    "repeat": 12,
+    "reward_mode": "personal",
+    "trials": 20,
+    "seed": 50000,
+    "wins": 16,
+    "mean_return": 103.7,
+    "mean_bonus": 28.7,
+    "mean_seconds": 9.672252063821329,
+    "mean_max_x": 1207.4008169627175,
+    "mean_policy_entropy": 0.8219808379220762,
+    "mean_action_probabilities": [
+      0.14789,
+      0.26006,
+      0.59205
+    ],
+    "actual_action_counts": [
+      293,
+      495,
+      1161
+    ],
+    "mean_decisions_per_episode": 97.45,
+    "reward_parts_mean": {
+      "target_height": 1.35,
+      "target_horizontal": 1.35,
+      "target_landing": 26.0
+    },
+    "failure_reasons": {
+      "얼음 바다로 떨어졌어요": 4
+    },
+    "protocol": "team_sampled_4_streams",
+    "success_rate": 0.8,
+    "first_spring_rate": 0.95,
+    "middle_rate": 0.95,
+    "spring2_rate": 0.9,
+    "upper_rate": 0.85,
+    "spring3_rate": 0.85,
+    "finish_rate": 0.8,
+    "mean_target_landings": 2.6,
+    "mean_springs_seen": 2.7
+  },
+  "elapsed_s": 53.9
+}

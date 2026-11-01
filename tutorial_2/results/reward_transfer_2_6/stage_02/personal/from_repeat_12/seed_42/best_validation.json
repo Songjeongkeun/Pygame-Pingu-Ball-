@@ -1,0 +1,48 @@
+{
+  "decisions": 40092,
+  "physical_frames": 240022,
+  "episodes": 167,
+  "training_wins": 140,
+  "entropy_coefficient": 0.01,
+  "validation": {
+    "stage": 2,
+    "repeat": 6,
+    "reward_mode": "personal",
+    "trials": 20,
+    "seed": 50000,
+    "wins": 20,
+    "mean_return": 133.0,
+    "mean_bonus": 33.0,
+    "mean_seconds": 7.375969331670821,
+    "mean_max_x": 1303.9393152705647,
+    "mean_policy_entropy": 0.5930461542761324,
+    "mean_action_probabilities": [
+      0.06393,
+      0.21957,
+      0.7165
+    ],
+    "actual_action_counts": [
+      191,
+      633,
+      2139
+    ],
+    "mean_decisions_per_episode": 148.15,
+    "reward_parts_mean": {
+      "target_height": 1.5,
+      "target_horizontal": 1.5,
+      "target_landing": 30.0
+    },
+    "failure_reasons": {},
+    "protocol": "team_sampled_4_streams",
+    "success_rate": 1.0,
+    "first_spring_rate": 1.0,
+    "middle_rate": 1.0,
+    "spring2_rate": 1.0,
+    "upper_rate": 1.0,
+    "spring3_rate": 1.0,
+    "finish_rate": 1.0,
+    "mean_target_landings": 3.0,
+    "mean_springs_seen": 3.0
+  },
+  "elapsed_s": 144.9
+}
