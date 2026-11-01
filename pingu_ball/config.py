@@ -65,3 +65,5 @@ class Physics:
 PHYSICS = Physics()
 REGULAR_STAGE_COUNT = 12
 CAMPAIGN_ID = 'document-stages-v1'
+RL_MAP_COUNT = 10
+RL_MAPS_ID = 'tutorial-five-2to3-20261031-v1'

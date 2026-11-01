@@ -1,0 +1,370 @@
+{
+  "1": [
+    {
+      "id": "break-crossing-0",
+      "source_ids": [
+        "break-0"
+      ],
+      "target_group": [
+        "break-1"
+      ],
+      "source_world_rect_t0": [
+        523.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        651.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        320.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    },
+    {
+      "id": "break-crossing-1",
+      "source_ids": [
+        "break-1"
+      ],
+      "target_group": [
+        "break-2"
+      ],
+      "source_world_rect_t0": [
+        651.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        779.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        448.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    },
+    {
+      "id": "break-crossing-2",
+      "source_ids": [
+        "break-2"
+      ],
+      "target_group": [
+        "break-3"
+      ],
+      "source_world_rect_t0": [
+        779.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        907.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        576.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    },
+    {
+      "id": "break-crossing-3",
+      "source_ids": [
+        "break-3"
+      ],
+      "target_group": [
+        "finish-0",
+        "finish-1",
+        "finish-2"
+      ],
+      "source_world_rect_t0": [
+        907.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        1035.0,
+        384,
+        192.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        704.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    }
+  ],
+  "2": [
+    {
+      "id": "spring-to-middle",
+      "source_ids": [
+        "spring-1-0"
+      ],
+      "target_group": [
+        "middle-0",
+        "middle-1",
+        "middle-2"
+      ],
+      "source_world_rect_t0": [
+        698.0,
+        704,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        826.0,
+        576,
+        192.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        448.0,
+        704,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    },
+    {
+      "id": "spring-to-upper",
+      "source_ids": [
+        "spring-2-0"
+      ],
+      "target_group": [
+        "upper-0",
+        "upper-1"
+      ],
+      "source_world_rect_t0": [
+        1018.0,
+        576,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        1146.0,
+        448,
+        128.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        768.0,
+        576,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    },
+    {
+      "id": "spring-to-finish",
+      "source_ids": [
+        "spring-3-0"
+      ],
+      "target_group": [
+        "finish-0",
+        "finish-1",
+        "finish-2",
+        "finish-3"
+      ],
+      "source_world_rect_t0": [
+        1274.0,
+        448,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        1402.0,
+        320,
+        256.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        1024.0,
+        448,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    }
+  ],
+  "3": [
+    {
+      "id": "ferry-to-finish",
+      "source_ids": [
+        "ferry-0",
+        "ferry-1",
+        "ferry-2"
+      ],
+      "target_group": [
+        "finish-0",
+        "finish-1",
+        "finish-2"
+      ],
+      "source_world_rect_t0": [
+        578.0,
+        360.0,
+        192.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        1530.0,
+        800,
+        192.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        328.0,
+        360.0,
+        192.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    }
+  ],
+  "4": [
+    {
+      "id": "lift-to-finish",
+      "source_ids": [
+        "lift"
+      ],
+      "target_group": [
+        "finish-0",
+        "finish-1",
+        "finish-2",
+        "finish-3",
+        "finish-4",
+        "finish-5",
+        "finish-6",
+        "finish-7"
+      ],
+      "source_world_rect_t0": [
+        587.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        715.0,
+        256,
+        512.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        384.0,
+        384.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    }
+  ],
+  "5": [
+    {
+      "id": "clock-crossing-0",
+      "source_ids": [
+        "clock-0"
+      ],
+      "target_group": [
+        "clock-1"
+      ],
+      "source_world_rect_t0": [
+        751.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        943.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        384.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    },
+    {
+      "id": "clock-crossing-1",
+      "source_ids": [
+        "clock-1"
+      ],
+      "target_group": [
+        "clock-2"
+      ],
+      "source_world_rect_t0": [
+        943.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        1135.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        576.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    },
+    {
+      "id": "clock-crossing-2",
+      "source_ids": [
+        "clock-2"
+      ],
+      "target_group": [
+        "finish-0",
+        "finish-1",
+        "finish-2",
+        "finish-3"
+      ],
+      "source_world_rect_t0": [
+        1135.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "target_world_rect_t0": [
+        1327.0,
+        480,
+        256.0,
+        64.0
+      ],
+      "source_document_rect_t0": [
+        768.0,
+        480.0,
+        64.0,
+        64.0
+      ],
+      "moving_supports_follow_ids": true
+    }
+  ]
+}

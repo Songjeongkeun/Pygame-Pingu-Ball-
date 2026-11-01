@@ -1,0 +1,4597 @@
+{
+  "config": {
+    "algorithm": "ppo",
+    "variant": "hold",
+    "stage": 4,
+    "seed": 0,
+    "reward_mode": "milestone",
+    "from_scratch": true,
+    "previous_models_loaded": [],
+    "original_spawn": true,
+    "limit": 180.0,
+    "settings": {
+      "n_steps": 512,
+      "gae_lambda": 0.995,
+      "repeat": 12
+    },
+    "sources": {
+      "pingu_ball/__init__.py": "56bf0f4072a20f8758808ded4373cdbc64c0096ae0921c9c65ef38d655675eac",
+      "pingu_ball/app.py": "d3af1d93521d7664c451df5ba97c09dcf55124051eb77f25fd57c4baf6fd04ef",
+      "pingu_ball/campaign.py": "1a82c98d1d6505de23c3461e5c7c0c45756b6cb21f461ca1875a3e2e1b254a7d",
+      "pingu_ball/config.py": "2704d0df8c0ceb3a22698cb276b9590d9138e387c33f40a36b164683d402cdf6",
+      "pingu_ball/engine.py": "6a832f5b7f9883b58a91b91b649dd72fee331779da046d282ea5817fa96dee3a",
+      "pingu_ball/environment.py": "85815e317d8249183039413dcfa35c26cac1bec27743a9a7fef57372f1d02681",
+      "pingu_ball/geometry.py": "2ddb34e3b990624eb3f1aed2523c746b249d828f133de7feb08e1a6dd5cbaa07",
+      "pingu_ball/ice_ui.py": "99b2aea38285a43dc4513cb0c27b3487988288dd24c3c6b984d2c9f31e5d08a9",
+      "pingu_ball/levels.py": "d51b6c824311871283d55c0c6ea75bbb871e499592f7d50e30928f81965d5869",
+      "pingu_ball/movement.py": "b432c9728e200aa4862edd4fe60f392f8c877f9f1b9a809a800acf0ae34e6ebd",
+      "pingu_ball/playfield.py": "c024f20ce8c565056698ff404524c6176b2360f56f07672b9eb946159c11f54d",
+      "pingu_ball/route_driver.py": "991450932299b009f2e2e762ad19677aec7692dde97eca75954e58e00cb9f080",
+      "pingu_ball/skin.py": "58ed62e8c6513fdb286185097334a7ac7f4ea08a05c0a382a91f9b3ae061d1b2",
+      "pingu_ball/special_draw.py": "59da3050a04484d3ca6d898ed6577ee35ab459189be77060a516d06d33cda905",
+      "pingu_ball/special_lab.py": "69cf92916cb964db8406177f4fdf38525c9b83a0a257d3f389695ba7b32abae2",
+      "pingu_ball/specials.py": "5f5145fa000afb8d55a75ef0374b536a786d4876c6e32ef0437e5471cb4c4718",
+      "pingu_ball/storage.py": "ab3c43890c6713034bb54348e13e355a775d3269a3832df4ea6a23daf41b091c",
+      "pingu_ball/validate.py": "f9d1b0a5ff856de46b744e2a75ad511a1470131598bfa365b5eba6cc9d7b7073",
+      "rl/__init__.py": "20b282ca2b4dad011304ca531755cb0a1e50185bdffd6ce9c716fb3f8244f67c",
+      "rl/all_tutorial_env.py": "77cb85c22ff4a10d3915669005d9d369b072cc18b1d804ac14c0d5f9ede569ee",
+      "rl/five_env.py": "3b440ab8bc166c0709879a8e421a8e735dab9d9fb00dc1854a16b09c0fdb544b",
+      "rl/five_models.py": "b14d4aeae5d97b22df1f4772522670aa320dc8a9fac75724123e01c4c97e1ce7",
+      "rl/five_report.py": "80c8c72c980e519b2776b55f72614850438062b5508cce12cba464e5d5a1b2e5",
+      "rl/five_train.py": "c923b4ef0d8540620367408f1ce922e2c45bc429c4cfbd8eadbef5c09ae74985",
+      "rl/five_watch.py": "85297301c80f16c0c3aaa0750f3d39f0e80acde7cfd03671b822fd9821f40592",
+      "rl/map_input_env.py": "a62959e5edabfd10218c90bf8c1be821bfff178a976e1e0f601bc93d38d7127e",
+      "rl/milestone_env.py": "f92695e154506056d78f1291350a7368ef69f0687179969ee6d24e4b50c3ebdc",
+      "rl/milestone_finish.py": "fa02e297bb72d4b575838b8d60c71ede25bcbc905fdd630abbc7aaf2a86ab1fc",
+      "rl/milestone_map.py": "19bc85d6ab33a593e1fef836d4aa6846a84cc65190f6be335cfaab554ca185f8",
+      "rl/milestone_models.py": "d9feb18b629f5cb067cf283d39287beebf51b4e6ea2cd0c300e73a297e54b2be",
+      "rl/milestone_play.py": "ebe76e091485d13e02a6ee631fae3ca307aed3721e3f3ed102a8b99b999c6ad1",
+      "rl/milestone_prevalidate.py": "e2a8dedb837b9f032a93cc7767d6407857844d7e927d785b8c50376c5e6acc21",
+      "rl/milestone_report.py": "b55947f90b4ed1e5011a9fe0eecd3b133f10e69929a73aacfa5db8ba30ba4be4",
+      "rl/milestone_train.py": "bddf8d19f4cd2931c54099140523a75b74e493ca321845ee5e0f08ffe311c68f",
+      "rl/milestone_watch.py": "95f77cf3deed0b3d393b5367a85cab9e54e707fa1bc7d08da3fe2e7b0737ad63",
+      "rl/recovery_report.py": "9d6e8f3943b6fdf144ab947bb7c435f2c484f4cd9fa2065976cbe62ce4b42309",
+      "rl/recovery_train.py": "20453ede3c34d51debe9a8d52ad03e7be56d05258c7267e77425a3998a9c7ed8",
+      "rl/recovery_watch.py": "0f99750f82cb0245357e6de6df336640a1f0fe261b34a7a98a284ddd1cec0812"
+    },
+    "gamma": 1.0,
+    "learning_rate": 0.0001,
+    "n_epochs": 3,
+    "clip_range": 0.1,
+    "target_kl": 0.01,
+    "entropy_initial": 0.03,
+    "entropy_min": 0.01,
+    "entropy_decay": "3 consecutive validations >=60%",
+    "physics_tick_budget": 2400000,
+    "physics_hz": 120,
+    "action_seconds": 0.1,
+    "validation_count": 20,
+    "selection_validation_count": 50,
+    "test_count": 100,
+    "reward": {
+      "success": 100,
+      "failure_or_timeout": -25,
+      "milestone": 10,
+      "scale": 0.01
+    },
+    "initial_parameter_hash": "39530e8c5db6e984adf41de06e0d238075cc326c3eb9bbae3727ff6a3ad6011a",
+    "final_test_used_for_selection": false
+  },
+  "decisions": 204800,
+  "physics_ticks": 2423069,
+  "simulated_seconds": 20192.241666666665,
+  "episodes": 3479,
+  "training_successes": 0,
+  "selection": {
+    "name": "best_success",
+    "checkpoint": "D:\\바탕 화면\\파이썬게임\\Pygame-Pingu-Ball-\\output\\rl_recovery_20261030\\results\\hold\\stage_04\\seed_0\\best_success.zip",
+    "sha256": "fe3a277457fe087cdd96a7abe24320c77d20ff113933d8c050b521fd1d7dfd6a",
+    "validation": {
+      "stage": 4,
+      "seed": 3510000,
+      "mode": "sampled",
+      "episodes": 50,
+      "successes": 0,
+      "success_rate": 0.0,
+      "mean_success_seconds": null,
+      "mean_return": -25.0,
+      "mean_milestones": 0.0,
+      "milestone_rate": 0.0,
+      "source_landing_rate": 0.02,
+      "mean_sources": 0.02,
+      "mean_seconds": 8.502372957906983,
+      "failures": {
+        "얼음 바다로 떨어졌어요": 50
+      },
+      "mean_entropy": 1.0973894807138893,
+      "action_counts": [
+        1384,
+        1371,
+        1538
+      ],
+      "raw": [
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325257716406,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1056.231281642863,
+          "min_goal_distance": 864.289363296376,
+          "visited_cells": 12,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 0.8164325244785015,
+          "ticks": 98,
+          "tick_delta": 2,
+          "decisions": 9,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 998.6846068153717,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 7,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 4.416432532809738,
+          "ticks": 530,
+          "tick_delta": 2,
+          "decisions": 45,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1098.9744663040067,
+          "min_goal_distance": 780.274165406389,
+          "visited_cells": 19,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 2.616432587907924,
+          "ticks": 314,
+          "tick_delta": 2,
+          "decisions": 27,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1148.931781995657,
+          "min_goal_distance": 861.6976727432353,
+          "visited_cells": 14,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 2.6164325281176923,
+          "ticks": 314,
+          "tick_delta": 2,
+          "decisions": 27,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1037.5012292848248,
+          "min_goal_distance": 883.833394072234,
+          "visited_cells": 11,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325855624714,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1033.3578997028844,
+          "min_goal_distance": 864.289363296376,
+          "visited_cells": 12,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325855624716,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1055.9160800210195,
+          "min_goal_distance": 885.362312556227,
+          "visited_cells": 10,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 14.316432618398434,
+          "ticks": 1718,
+          "tick_delta": 2,
+          "decisions": 144,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1075.5023448644329,
+          "min_goal_distance": 737.3800227595241,
+          "visited_cells": 19,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 5.316432535155767,
+          "ticks": 638,
+          "tick_delta": 2,
+          "decisions": 54,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1074.314401572096,
+          "min_goal_distance": 796.8202111614248,
+          "visited_cells": 16,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 12.516432553923941,
+          "ticks": 1502,
+          "tick_delta": 2,
+          "decisions": 126,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 801.4632249910961,
+          "min_goal_distance": 635.0432324710468,
+          "visited_cells": 24,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 24.2164325844292,
+          "ticks": 2906,
+          "tick_delta": 2,
+          "decisions": 243,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 750.8215287735378,
+          "min_goal_distance": 677.6939440211237,
+          "visited_cells": 24,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 13.416432556269964,
+          "ticks": 1610,
+          "tick_delta": 2,
+          "decisions": 135,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 781.9445586665408,
+          "min_goal_distance": 670.6394353329085,
+          "visited_cells": 21,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325257716406,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1132.6606061273826,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 11,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 7.116432539847804,
+          "ticks": 854,
+          "tick_delta": 2,
+          "decisions": 72,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 762.53372058697,
+          "min_goal_distance": 644.7183310668992,
+          "visited_cells": 21,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 2.616432528117693,
+          "ticks": 314,
+          "tick_delta": 2,
+          "decisions": 27,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1073.7378067870407,
+          "min_goal_distance": 864.289363296376,
+          "visited_cells": 12,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.716432525771641,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1019.155613623892,
+          "min_goal_distance": 883.2330113134958,
+          "visited_cells": 8,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325257716404,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1072.550272076252,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 10,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 4.4164325925987775,
+          "ticks": 530,
+          "tick_delta": 2,
+          "decisions": 45,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1142.4331086763004,
+          "min_goal_distance": 833.5890098327567,
+          "visited_cells": 16,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 20.616432634820285,
+          "ticks": 2474,
+          "tick_delta": 2,
+          "decisions": 207,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 741.5091631634536,
+          "min_goal_distance": 669.8021694202496,
+          "visited_cells": 23,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 4.4164325925987775,
+          "ticks": 530,
+          "tick_delta": 2,
+          "decisions": 45,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 746.6678066383408,
+          "min_goal_distance": 668.4055993391613,
+          "visited_cells": 20,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 4.416432532809742,
+          "ticks": 530,
+          "tick_delta": 2,
+          "decisions": 45,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 712.987623053174,
+          "min_goal_distance": 615.8248540033093,
+          "visited_cells": 21,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 27.81643259381636,
+          "ticks": 3338,
+          "tick_delta": 2,
+          "decisions": 279,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 820.3542898155987,
+          "min_goal_distance": 632.8468305948913,
+          "visited_cells": 26,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 10.71643260901674,
+          "ticks": 1286,
+          "tick_delta": 2,
+          "decisions": 108,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 712.2106812491719,
+          "min_goal_distance": 612.3368840183482,
+          "visited_cells": 21,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 16.116432563308095,
+          "ticks": 1934,
+          "tick_delta": 2,
+          "decisions": 162,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 720.1976482532589,
+          "min_goal_distance": 663.8779031188502,
+          "visited_cells": 21,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 3.5164325304637147,
+          "ticks": 422,
+          "tick_delta": 2,
+          "decisions": 36,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1056.953013713028,
+          "min_goal_distance": 883.0684045470936,
+          "visited_cells": 10,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 12.516432613707586,
+          "ticks": 1502,
+          "tick_delta": 2,
+          "decisions": 126,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 786.5604316411907,
+          "min_goal_distance": 676.2460528290277,
+          "visited_cells": 23,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 5.316432535155764,
+          "ticks": 638,
+          "tick_delta": 2,
+          "decisions": 54,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 754.7225034990812,
+          "min_goal_distance": 652.7894450960579,
+          "visited_cells": 20,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325257716406,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1074.3144010912342,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 8,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 11.616432611362164,
+          "ticks": 1394,
+          "tick_delta": 2,
+          "decisions": 117,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1015.1048641100823,
+          "min_goal_distance": 788.8757075426441,
+          "visited_cells": 18,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325257716406,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1114.1146838996897,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 11,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 0.8164325244785005,
+          "ticks": 98,
+          "tick_delta": 2,
+          "decisions": 9,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1041.7161308973841,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 8,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 9.816432546885874,
+          "ticks": 1178,
+          "tick_delta": 2,
+          "decisions": 99,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 768.4069031898262,
+          "min_goal_distance": 659.9131890834278,
+          "visited_cells": 23,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 22.41643257962188,
+          "ticks": 2690,
+          "tick_delta": 2,
+          "decisions": 225,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1066.4009739986914,
+          "min_goal_distance": 717.49171478667,
+          "visited_cells": 22,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 0.8164325842696631,
+          "ticks": 98,
+          "tick_delta": 2,
+          "decisions": 9,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1058.2393676964755,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 8,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 4.416432532809738,
+          "ticks": 530,
+          "tick_delta": 2,
+          "decisions": 45,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1089.2681409777695,
+          "min_goal_distance": 870.6571031970396,
+          "visited_cells": 12,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325257716406,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1088.0773929368306,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 8,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 10.716432549231897,
+          "ticks": 1286,
+          "tick_delta": 2,
+          "decisions": 108,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1032.4703068865895,
+          "min_goal_distance": 810.9705555740402,
+          "visited_cells": 16,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 19.716432632398256,
+          "ticks": 2366,
+          "tick_delta": 2,
+          "decisions": 198,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1058.239358326407,
+          "min_goal_distance": 703.5875516710549,
+          "visited_cells": 22,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 7.116432599635047,
+          "ticks": 854,
+          "tick_delta": 2,
+          "decisions": 72,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 756.9343100622972,
+          "min_goal_distance": 646.7068458095686,
+          "visited_cells": 24,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 20.61643257504204,
+          "ticks": 2474,
+          "tick_delta": 2,
+          "decisions": 207,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1037.6476579404468,
+          "min_goal_distance": 737.3596517188454,
+          "visited_cells": 19,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 16.116432623089334,
+          "ticks": 1934,
+          "tick_delta": 2,
+          "decisions": 162,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 821.994627394798,
+          "min_goal_distance": 689.7596811555004,
+          "visited_cells": 22,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 14.313452141007037,
+          "ticks": 1718,
+          "tick_delta": 2,
+          "decisions": 144,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 781.4077594389888,
+          "min_goal_distance": 604.9414063531175,
+          "visited_cells": 25,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [
+            "lift-to-finish"
+          ],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325855624716,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1015.1048690897057,
+          "min_goal_distance": 892.3489099925491,
+          "visited_cells": 11,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 11.61643261135133,
+          "ticks": 1394,
+          "tick_delta": 2,
+          "decisions": 117,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 789.022396945917,
+          "min_goal_distance": 679.9795079107926,
+          "visited_cells": 22,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 0.816432524478501,
+          "ticks": 98,
+          "tick_delta": 2,
+          "decisions": 9,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 998.6846068153717,
+          "min_goal_distance": 903.2231175075182,
+          "visited_cells": 8,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 30.516432600786295,
+          "ticks": 3662,
+          "tick_delta": 2,
+          "decisions": 306,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 755.680922027046,
+          "min_goal_distance": 634.0154182139291,
+          "visited_cells": 26,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 1.7164325855624716,
+          "ticks": 206,
+          "tick_delta": 2,
+          "decisions": 18,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1033.7505369338614,
+          "min_goal_distance": 902.8167849307722,
+          "visited_cells": 10,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 14.316432618398434,
+          "ticks": 1718,
+          "tick_delta": 2,
+          "decisions": 144,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 798.4229648430498,
+          "min_goal_distance": 649.3845235974792,
+          "visited_cells": 25,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 6.216432597289623,
+          "ticks": 746,
+          "tick_delta": 2,
+          "decisions": 63,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1019.4012386600721,
+          "min_goal_distance": 846.1133615953312,
+          "visited_cells": 13,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        {
+          "stage": 4,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 4.416432532809742,
+          "ticks": 530,
+          "tick_delta": 2,
+          "decisions": 45,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1054.2244809740898,
+          "min_goal_distance": 871.4864155622026,
+          "visited_cells": 13,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        }
+      ]
+    },
+    "score": [
+      0.0,
+      0.0,
+      0.0,
+      0.02,
+      -180.0
+    ]
+  },
+  "final": {
+    "stage": 4,
+    "seed": 910000,
+    "mode": "sampled",
+    "episodes": 100,
+    "successes": 0,
+    "success_rate": 0.0,
+    "mean_success_seconds": null,
+    "mean_return": -25.0,
+    "mean_milestones": 0.0,
+    "milestone_rate": 0.0,
+    "source_landing_rate": 0.0,
+    "mean_sources": 0.0,
+    "mean_seconds": 5.559432549792648,
+    "failures": {
+      "얼음 바다로 떨어졌어요": 100
+    },
+    "mean_entropy": 1.0973927182929852,
+    "action_counts": [
+      1888,
+      1764,
+      1991
+    ],
+    "raw": [
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325855624716,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1075.502338436076,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 11,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176923,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1039.8053875896815,
+        "min_goal_distance": 872.3705220199078,
+        "visited_cells": 12,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716413,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1034.3227682817312,
+        "min_goal_distance": 869.4106360657298,
+        "visited_cells": 11,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785013,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1054.7990158757827,
+        "min_goal_distance": 883.0684045470936,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716406,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1056.2312816428632,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 11,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.216432597289622,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 821.9946284794158,
+        "min_goal_distance": 670.5062029726297,
+        "visited_cells": 19,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 3.5164325304637147,
+        "ticks": 422,
+        "tick_delta": 2,
+        "decisions": 36,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1016.849271714621,
+        "min_goal_distance": 882.4498173775337,
+        "visited_cells": 11,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.416432532809742,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 768.5501538142249,
+        "min_goal_distance": 685.3871039126677,
+        "visited_cells": 19,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 8.91643254453443,
+        "ticks": 1070,
+        "tick_delta": 2,
+        "decisions": 90,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 767.8542823553395,
+        "min_goal_distance": 678.7365307580175,
+        "visited_cells": 21,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785015,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 998.6846068153717,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.416432532809738,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 759.0402819179676,
+        "min_goal_distance": 655.8959286598027,
+        "visited_cells": 22,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325842696631,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1067.7157015670502,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325842696631,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1015.1048693392204,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 7,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 5.316432535139509,
+        "ticks": 638,
+        "tick_delta": 2,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 754.9051414460813,
+        "min_goal_distance": 656.6046446749167,
+        "visited_cells": 21,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 5.316432535155764,
+        "ticks": 638,
+        "tick_delta": 2,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1094.7612213220357,
+        "min_goal_distance": 830.6563060632622,
+        "visited_cells": 18,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785009,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1016.2791106713797,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785015,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1054.7990158757827,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 9,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.416432532809738,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1044.2358893694466,
+        "min_goal_distance": 850.8675375063981,
+        "visited_cells": 13,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 3.5164325902533475,
+        "ticks": 422,
+        "tick_delta": 2,
+        "decisions": 36,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1074.711288044325,
+        "min_goal_distance": 823.0578339295407,
+        "visited_cells": 15,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 8.916432544539854,
+        "ticks": 1070,
+        "tick_delta": 2,
+        "decisions": 90,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1076.6235935700377,
+        "min_goal_distance": 835.1543599742655,
+        "visited_cells": 13,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.416432532809742,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1041.4285739561697,
+        "min_goal_distance": 883.6315144509651,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 5.316432535134091,
+        "ticks": 638,
+        "tick_delta": 2,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 764.2165088281306,
+        "min_goal_distance": 675.9251787853528,
+        "visited_cells": 21,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.216432597289624,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1055.982724382403,
+        "min_goal_distance": 809.6716373797194,
+        "visited_cells": 15,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 11.616432551577919,
+        "ticks": 1394,
+        "tick_delta": 2,
+        "decisions": 117,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1059.4237987527204,
+        "min_goal_distance": 654.362093117496,
+        "visited_cells": 25,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176937,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1063.193132329834,
+        "min_goal_distance": 885.362312556227,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 9.816432546885872,
+        "ticks": 1178,
+        "tick_delta": 2,
+        "decisions": 99,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1035.5017263982866,
+        "min_goal_distance": 801.9318379115319,
+        "visited_cells": 15,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325842696631,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1074.7112892128616,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785011,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1055.04755070575,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 11.616432551577919,
+        "ticks": 1394,
+        "tick_delta": 2,
+        "decisions": 117,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 781.4190907335217,
+        "min_goal_distance": 659.0111575898381,
+        "visited_cells": 19,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.416432532809742,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 752.9077650900894,
+        "min_goal_distance": 633.0576960474826,
+        "visited_cells": 21,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.416432532804319,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1086.726004272109,
+        "min_goal_distance": 745.1820174843854,
+        "visited_cells": 18,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785011,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1094.8745348316352,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325855624716,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1032.156567538461,
+        "min_goal_distance": 883.0684045470936,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325842696631,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1055.9827218424757,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 9,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 15.216432560962014,
+        "ticks": 1826,
+        "tick_delta": 2,
+        "decisions": 153,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 803.8501232299143,
+        "min_goal_distance": 662.5140919303383,
+        "visited_cells": 20,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.2164325375017855,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1041.9640384986883,
+        "min_goal_distance": 783.6337399869974,
+        "visited_cells": 19,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325842696631,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1110.209305817771,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 3.5164325304637147,
+        "ticks": 422,
+        "tick_delta": 2,
+        "decisions": 36,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 760.4446452717981,
+        "min_goal_distance": 681.6416650135205,
+        "visited_cells": 19,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.4164325925987775,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1055.982723467308,
+        "min_goal_distance": 728.8570214746576,
+        "visited_cells": 18,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 8.916432604325895,
+        "ticks": 1070,
+        "tick_delta": 2,
+        "decisions": 90,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 705.0362197750889,
+        "min_goal_distance": 635.7133030590605,
+        "visited_cells": 25,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 10.716432549231893,
+        "ticks": 1286,
+        "tick_delta": 2,
+        "decisions": 108,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 777.1874901674801,
+        "min_goal_distance": 658.6550840128631,
+        "visited_cells": 24,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716406,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1041.2443863064618,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 11,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 3.5164325304637147,
+        "ticks": 422,
+        "tick_delta": 2,
+        "decisions": 36,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1089.5291842319218,
+        "min_goal_distance": 844.6428192126093,
+        "visited_cells": 16,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 10.716432549231897,
+        "ticks": 1286,
+        "tick_delta": 2,
+        "decisions": 108,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1008.1089059290791,
+        "min_goal_distance": 788.0430821224595,
+        "visited_cells": 18,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325842696631,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1053.7516014906928,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716406,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1153.7422555188552,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 12,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 8.01643254219383,
+        "ticks": 962,
+        "tick_delta": 2,
+        "decisions": 81,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1128.7092094229906,
+        "min_goal_distance": 840.5744651863648,
+        "visited_cells": 13,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 10.716432549231897,
+        "ticks": 1286,
+        "tick_delta": 2,
+        "decisions": 108,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 781.4190907325332,
+        "min_goal_distance": 679.94761557461,
+        "visited_cells": 24,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 5.316432535155764,
+        "ticks": 638,
+        "tick_delta": 2,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 781.944557677456,
+        "min_goal_distance": 647.8290058691638,
+        "visited_cells": 23,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785006,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1016.8059630875235,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 5.316432535139509,
+        "ticks": 638,
+        "tick_delta": 2,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 803.8501220066805,
+        "min_goal_distance": 632.3606568958012,
+        "visited_cells": 21,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176923,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 773.1504389968436,
+        "min_goal_distance": 650.91935538006,
+        "visited_cells": 17,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785011,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1032.4703068786969,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716406,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1066.1971193113047,
+        "min_goal_distance": 883.7043839786791,
+        "visited_cells": 9,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785015,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1054.224480971488,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 9,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.216432537501785,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1093.8976754220407,
+        "min_goal_distance": 766.3368013896913,
+        "visited_cells": 16,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 8.016432542193828,
+        "ticks": 962,
+        "tick_delta": 2,
+        "decisions": 81,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1053.0411964561536,
+        "min_goal_distance": 813.9487685668893,
+        "visited_cells": 17,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716406,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1070.5369210504243,
+        "min_goal_distance": 886.6682146912133,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 7.116432599618797,
+        "ticks": 854,
+        "tick_delta": 2,
+        "decisions": 72,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 732.3854673929733,
+        "min_goal_distance": 691.2854730517312,
+        "visited_cells": 19,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.2164325375017855,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1086.625960079537,
+        "min_goal_distance": 811.9875181845682,
+        "visited_cells": 16,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 3.5164325902533475,
+        "ticks": 422,
+        "tick_delta": 2,
+        "decisions": 36,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1106.9027068087703,
+        "min_goal_distance": 887.5492623575485,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 18.81643257034849,
+        "ticks": 2258,
+        "tick_delta": 2,
+        "decisions": 189,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1079.3742228735312,
+        "min_goal_distance": 697.1364748792644,
+        "visited_cells": 27,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 4.41643253280974,
+        "ticks": 530,
+        "tick_delta": 2,
+        "decisions": 45,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 998.1167329353666,
+        "min_goal_distance": 797.2604357916106,
+        "visited_cells": 16,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 8.91643254453985,
+        "ticks": 1070,
+        "tick_delta": 2,
+        "decisions": 90,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 776.4344176149282,
+        "min_goal_distance": 688.520999056452,
+        "visited_cells": 22,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785011,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1057.415276187764,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785015,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1070.6842718140938,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.2164325375017855,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1036.0633028372804,
+        "min_goal_distance": 814.363192085441,
+        "visited_cells": 17,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 9.81643254688587,
+        "ticks": 1178,
+        "tick_delta": 2,
+        "decisions": 99,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 794.3812501618675,
+        "min_goal_distance": 677.0963442918763,
+        "visited_cells": 23,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325855624718,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 996.9472105968118,
+        "min_goal_distance": 867.2057001765975,
+        "visited_cells": 9,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785011,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1028.9517237637626,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 17.91643256800167,
+        "ticks": 2150,
+        "tick_delta": 2,
+        "decisions": 180,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 781.9445592160309,
+        "min_goal_distance": 667.8542998885895,
+        "visited_cells": 25,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716406,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1067.6433409938807,
+        "min_goal_distance": 883.7043839786791,
+        "visited_cells": 9,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785011,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1089.9941373072334,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 5.3164325949442,
+        "ticks": 638,
+        "tick_delta": 2,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 765.4313695156676,
+        "min_goal_distance": 651.232985044811,
+        "visited_cells": 18,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 34.11643267000957,
+        "ticks": 4094,
+        "tick_delta": 2,
+        "decisions": 342,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 783.9159205178926,
+        "min_goal_distance": 659.6980981986719,
+        "visited_cells": 25,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.616432587907924,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1074.7781607517795,
+        "min_goal_distance": 886.6682146912133,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 8.91643254453985,
+        "ticks": 1070,
+        "tick_delta": 2,
+        "decisions": 90,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1068.9771375906025,
+        "min_goal_distance": 788.4648870441968,
+        "visited_cells": 16,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785015,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1054.224480971488,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 9,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 5.3164325949442,
+        "ticks": 638,
+        "tick_delta": 2,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 720.5642845334098,
+        "min_goal_distance": 633.934233073426,
+        "visited_cells": 23,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176937,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1068.7739848152873,
+        "min_goal_distance": 883.0684045470936,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785011,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1069.960716019104,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 3.5164325304637156,
+        "ticks": 422,
+        "tick_delta": 2,
+        "decisions": 36,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1050.720193422936,
+        "min_goal_distance": 793.6321896604695,
+        "visited_cells": 14,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.216432597289624,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 771.9407912870064,
+        "min_goal_distance": 632.2142392825838,
+        "visited_cells": 19,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176937,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1022.4239555993111,
+        "min_goal_distance": 894.7313510394307,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 6.216432597289623,
+        "ticks": 746,
+        "tick_delta": 2,
+        "decisions": 63,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1033.7505346615044,
+        "min_goal_distance": 785.6539578034981,
+        "visited_cells": 17,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176937,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1034.1655741224954,
+        "min_goal_distance": 834.371677887177,
+        "visited_cells": 12,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 7.116432539847808,
+        "ticks": 854,
+        "tick_delta": 2,
+        "decisions": 72,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1045.8539614724223,
+        "min_goal_distance": 844.8716827420479,
+        "visited_cells": 13,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176923,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1034.9293511153119,
+        "min_goal_distance": 897.769629522949,
+        "visited_cells": 11,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 15.216432560962009,
+        "ticks": 1826,
+        "tick_delta": 2,
+        "decisions": 153,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 768.4168010406577,
+        "min_goal_distance": 684.6438860741804,
+        "visited_cells": 20,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785009,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1016.8059630875234,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716406,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1103.1906328086527,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.716432525771641,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1061.7480878582562,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 11,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785015,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1076.476087910604,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 8,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 18.81643257034846,
+        "ticks": 2258,
+        "tick_delta": 2,
+        "decisions": 189,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1034.9293489937882,
+        "min_goal_distance": 799.5872491722223,
+        "visited_cells": 16,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 10.716432549231893,
+        "ticks": 1286,
+        "tick_delta": 2,
+        "decisions": 108,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1067.3166829705285,
+        "min_goal_distance": 795.5575239856971,
+        "visited_cells": 17,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 2.6164325281176923,
+        "ticks": 314,
+        "tick_delta": 2,
+        "decisions": 27,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1030.4619844981041,
+        "min_goal_distance": 890.1836004967699,
+        "visited_cells": 10,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 26.01643258912278,
+        "ticks": 3122,
+        "tick_delta": 2,
+        "decisions": 261,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1104.0664997468787,
+        "min_goal_distance": 648.3072810228152,
+        "visited_cells": 25,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 12.516432553923941,
+        "ticks": 1502,
+        "tick_delta": 2,
+        "decisions": 126,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1031.1800796714358,
+        "min_goal_distance": 815.1451733266872,
+        "visited_cells": 15,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 29.61643265828219,
+        "ticks": 3554,
+        "tick_delta": 2,
+        "decisions": 297,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 772.7200397478973,
+        "min_goal_distance": 653.9865740540226,
+        "visited_cells": 25,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      },
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 0.8164325244785015,
+        "ticks": 98,
+        "tick_delta": 2,
+        "decisions": 9,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 1031.6074313626925,
+        "min_goal_distance": 903.2231175075182,
+        "visited_cells": 7,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      }
+    ]
+  },
+  "greedy": {
+    "stage": 4,
+    "seed": 1910000,
+    "mode": "greedy",
+    "episodes": 1,
+    "successes": 0,
+    "success_rate": 0.0,
+    "mean_success_seconds": null,
+    "mean_return": -25.0,
+    "mean_milestones": 0.0,
+    "milestone_rate": 0.0,
+    "source_landing_rate": 0.0,
+    "mean_sources": 0.0,
+    "mean_seconds": 1.7164325257716408,
+    "failures": {
+      "얼음 바다로 떨어졌어요": 1
+    },
+    "mean_entropy": 1.0967576172616746,
+    "action_counts": [
+      1,
+      0,
+      17
+    ],
+    "raw": [
+      {
+        "stage": 4,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 1.7164325257716408,
+        "ticks": 206,
+        "tick_delta": 2,
+        "decisions": 18,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 0.0,
+        "episode_return": -25.0,
+        "goal_distance": 713.6070964181072,
+        "min_goal_distance": 648.6512969943099,
+        "visited_cells": 14,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [],
+        "armed": [],
+        "milestone_events": [],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.25
+      }
+    ]
+  },
+  "elapsed_seconds": 1125.5068742000149,
+  "sources_after": {
+    "pingu_ball/__init__.py": "56bf0f4072a20f8758808ded4373cdbc64c0096ae0921c9c65ef38d655675eac",
+    "pingu_ball/app.py": "d3af1d93521d7664c451df5ba97c09dcf55124051eb77f25fd57c4baf6fd04ef",
+    "pingu_ball/campaign.py": "1a82c98d1d6505de23c3461e5c7c0c45756b6cb21f461ca1875a3e2e1b254a7d",
+    "pingu_ball/config.py": "2704d0df8c0ceb3a22698cb276b9590d9138e387c33f40a36b164683d402cdf6",
+    "pingu_ball/engine.py": "6a832f5b7f9883b58a91b91b649dd72fee331779da046d282ea5817fa96dee3a",
+    "pingu_ball/environment.py": "85815e317d8249183039413dcfa35c26cac1bec27743a9a7fef57372f1d02681",
+    "pingu_ball/geometry.py": "2ddb34e3b990624eb3f1aed2523c746b249d828f133de7feb08e1a6dd5cbaa07",
+    "pingu_ball/ice_ui.py": "99b2aea38285a43dc4513cb0c27b3487988288dd24c3c6b984d2c9f31e5d08a9",
+    "pingu_ball/levels.py": "d51b6c824311871283d55c0c6ea75bbb871e499592f7d50e30928f81965d5869",
+    "pingu_ball/movement.py": "b432c9728e200aa4862edd4fe60f392f8c877f9f1b9a809a800acf0ae34e6ebd",
+    "pingu_ball/playfield.py": "c024f20ce8c565056698ff404524c6176b2360f56f07672b9eb946159c11f54d",
+    "pingu_ball/route_driver.py": "991450932299b009f2e2e762ad19677aec7692dde97eca75954e58e00cb9f080",
+    "pingu_ball/skin.py": "58ed62e8c6513fdb286185097334a7ac7f4ea08a05c0a382a91f9b3ae061d1b2",
+    "pingu_ball/special_draw.py": "59da3050a04484d3ca6d898ed6577ee35ab459189be77060a516d06d33cda905",
+    "pingu_ball/special_lab.py": "69cf92916cb964db8406177f4fdf38525c9b83a0a257d3f389695ba7b32abae2",
+    "pingu_ball/specials.py": "5f5145fa000afb8d55a75ef0374b536a786d4876c6e32ef0437e5471cb4c4718",
+    "pingu_ball/storage.py": "ab3c43890c6713034bb54348e13e355a775d3269a3832df4ea6a23daf41b091c",
+    "pingu_ball/validate.py": "f9d1b0a5ff856de46b744e2a75ad511a1470131598bfa365b5eba6cc9d7b7073",
+    "rl/__init__.py": "20b282ca2b4dad011304ca531755cb0a1e50185bdffd6ce9c716fb3f8244f67c",
+    "rl/all_tutorial_env.py": "77cb85c22ff4a10d3915669005d9d369b072cc18b1d804ac14c0d5f9ede569ee",
+    "rl/five_env.py": "3b440ab8bc166c0709879a8e421a8e735dab9d9fb00dc1854a16b09c0fdb544b",
+    "rl/five_models.py": "b14d4aeae5d97b22df1f4772522670aa320dc8a9fac75724123e01c4c97e1ce7",
+    "rl/five_report.py": "80c8c72c980e519b2776b55f72614850438062b5508cce12cba464e5d5a1b2e5",
+    "rl/five_train.py": "c923b4ef0d8540620367408f1ce922e2c45bc429c4cfbd8eadbef5c09ae74985",
+    "rl/five_watch.py": "85297301c80f16c0c3aaa0750f3d39f0e80acde7cfd03671b822fd9821f40592",
+    "rl/map_input_env.py": "a62959e5edabfd10218c90bf8c1be821bfff178a976e1e0f601bc93d38d7127e",
+    "rl/milestone_env.py": "f92695e154506056d78f1291350a7368ef69f0687179969ee6d24e4b50c3ebdc",
+    "rl/milestone_finish.py": "fa02e297bb72d4b575838b8d60c71ede25bcbc905fdd630abbc7aaf2a86ab1fc",
+    "rl/milestone_map.py": "19bc85d6ab33a593e1fef836d4aa6846a84cc65190f6be335cfaab554ca185f8",
+    "rl/milestone_models.py": "d9feb18b629f5cb067cf283d39287beebf51b4e6ea2cd0c300e73a297e54b2be",
+    "rl/milestone_play.py": "ebe76e091485d13e02a6ee631fae3ca307aed3721e3f3ed102a8b99b999c6ad1",
+    "rl/milestone_prevalidate.py": "e2a8dedb837b9f032a93cc7767d6407857844d7e927d785b8c50376c5e6acc21",
+    "rl/milestone_report.py": "b55947f90b4ed1e5011a9fe0eecd3b133f10e69929a73aacfa5db8ba30ba4be4",
+    "rl/milestone_train.py": "bddf8d19f4cd2931c54099140523a75b74e493ca321845ee5e0f08ffe311c68f",
+    "rl/milestone_watch.py": "95f77cf3deed0b3d393b5367a85cab9e54e707fa1bc7d08da3fe2e7b0737ad63",
+    "rl/recovery_report.py": "9d6e8f3943b6fdf144ab947bb7c435f2c484f4cd9fa2065976cbe62ce4b42309",
+    "rl/recovery_train.py": "20453ede3c34d51debe9a8d52ad03e7be56d05258c7267e77425a3998a9c7ed8",
+    "rl/recovery_watch.py": "0f99750f82cb0245357e6de6df336640a1f0fe261b34a7a98a284ddd1cec0812"
+  }
+}

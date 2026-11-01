@@ -1,0 +1,26 @@
+{
+  "decisions": 400128,
+  "physics_ticks": 2391899,
+  "episodes": 4722,
+  "training_successes": 0,
+  "per_map": {
+    "3": {
+      "episodes": 4722,
+      "successes": 0,
+      "transitions": 400128
+    }
+  },
+  "diagnostics": {
+    "train/learning_rate": 0.0003,
+    "train/n_updates": 1563.0,
+    "train/explained_variance": -0.8807679414749146,
+    "train/entropy_loss": -1.064637541770935,
+    "train/policy_loss": -0.00574679858982563,
+    "train/value_loss": 1.2732100913126487e-05
+  },
+  "entropy": 0.0010000000000000009,
+  "elapsed_seconds": 3183.6439074000227,
+  "validation": {
+    "3": 0.0
+  }
+}

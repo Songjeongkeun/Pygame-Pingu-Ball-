@@ -1,0 +1,674 @@
+{
+  "step": 400128,
+  "evaluation": {
+    "protocol": "sampled_policy",
+    "seed": 11000,
+    "maps": [
+      {
+        "stage": 2,
+        "episodes": 20,
+        "successes": 0,
+        "success_rate": 0.0,
+        "mean_success_seconds": null,
+        "mean_return": -25.0,
+        "failures": {
+          "training_time_limit": 18,
+          "얼음 바다로 떨어졌어요": 2
+        },
+        "greedy": {
+          "stage": 2,
+          "success": false,
+          "is_success": false,
+          "reason": "training_time_limit",
+          "seconds": 179.9999999998774,
+          "ticks": 21600,
+          "tick_delta": 6,
+          "decisions": 3600,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1068.7431868264998,
+          "min_goal_distance": 1068.7431868264703,
+          "visited_cells": 3,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        "raw": [
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 916.1316657931515,
+            "min_goal_distance": 877.6520721575499,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 955.5731526306184,
+            "min_goal_distance": 869.2109812155178,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 921.1612420870341,
+            "min_goal_distance": 874.2882882087154,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 907.1008809601974,
+            "min_goal_distance": 862.9319942530753,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 916.4146417230899,
+            "min_goal_distance": 885.8923702781408,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 921.3031551492553,
+            "min_goal_distance": 871.0704235694222,
+            "visited_cells": 15,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 911.4526152986932,
+            "min_goal_distance": 878.3327343755494,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 918.1777952614212,
+            "min_goal_distance": 869.9161081446252,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "얼음 바다로 떨어졌어요",
+            "seconds": 79.05029717149453,
+            "ticks": 9487,
+            "tick_delta": 1,
+            "decisions": 1582,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1036.0903782247674,
+            "min_goal_distance": 879.6212341706153,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "얼음 바다로 떨어졌어요",
+            "seconds": 153.4487250698813,
+            "ticks": 18414,
+            "tick_delta": 6,
+            "decisions": 3069,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1017.2328082457807,
+            "min_goal_distance": 876.9773031055868,
+            "visited_cells": 17,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 950.082992850562,
+            "min_goal_distance": 879.856791046296,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 911.7388476215928,
+            "min_goal_distance": 850.128889965705,
+            "visited_cells": 15,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 913.466934108128,
+            "min_goal_distance": 874.3489277017883,
+            "visited_cells": 15,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 924.481355591967,
+            "min_goal_distance": 868.4934096336535,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 917.4298414168453,
+            "min_goal_distance": 865.1533787543117,
+            "visited_cells": 15,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 939.6552265575227,
+            "min_goal_distance": 877.2379280913083,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 934.3706733648991,
+            "min_goal_distance": 871.456729791019,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 954.0625815644033,
+            "min_goal_distance": 879.0868517216055,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 915.9997151704176,
+            "min_goal_distance": 879.0321322878812,
+            "visited_cells": 14,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 2,
+            "success": false,
+            "is_success": false,
+            "reason": "training_time_limit",
+            "seconds": 179.9999999998774,
+            "ticks": 21600,
+            "tick_delta": 6,
+            "decisions": 3600,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 913.4592233467225,
+            "min_goal_distance": 874.1543812233092,
+            "visited_cells": 15,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [
+              "spring-to-middle"
+            ],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          }
+        ]
+      }
+    ],
+    "mean_success_rate": 0.0,
+    "min_success_rate": 0.0
+  }
+}

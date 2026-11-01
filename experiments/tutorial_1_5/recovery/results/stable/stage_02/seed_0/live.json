@@ -1,0 +1,44 @@
+{
+  "decisions": 401408,
+  "physics_ticks": 2401111,
+  "episodes": 2563,
+  "training_successes": 0,
+  "entropy_coefficient": 0.03,
+  "diagnostics": {
+    "train/learning_rate": 0.0001,
+    "train/entropy_loss": -1.074812392393748,
+    "train/policy_gradient_loss": -0.0009550177492201328,
+    "train/value_loss": 2.880987873747169e-05,
+    "train/approx_kl": 0.0023127442691475153,
+    "train/clip_fraction": 0.041015625,
+    "train/loss": -0.033722080290317535,
+    "train/explained_variance": 0.666075587272644,
+    "train/n_updates": 2352.0,
+    "train/clip_range": 0.1
+  },
+  "elapsed_seconds": 2482.6108930999762,
+  "validation": {
+    "stage": 2,
+    "seed": 11000,
+    "mode": "sampled",
+    "episodes": 20,
+    "successes": 0,
+    "success_rate": 0.0,
+    "mean_success_seconds": null,
+    "mean_return": -25.0,
+    "mean_milestones": 0.0,
+    "milestone_rate": 0.0,
+    "source_landing_rate": 0.1,
+    "mean_sources": 0.1,
+    "mean_seconds": 179.99999999987736,
+    "failures": {
+      "training_time_limit": 20
+    },
+    "mean_entropy": 1.0738786164075136,
+    "action_counts": [
+      22846,
+      26344,
+      22810
+    ]
+  }
+}

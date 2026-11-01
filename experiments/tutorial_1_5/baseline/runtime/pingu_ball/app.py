@@ -1,0 +1,894 @@
+"""Pygame UI with a 1600 by 832 logical canvas and proportional resizing."""
+import argparse
+from array import array
+from collections import OrderedDict
+import math
+import os
+from pathlib import Path
+import sys
+import tempfile
+
+import pygame
+from .config import PHYSICS, REGULAR_STAGE_COUNT
+from .engine import World
+from .levels import make_levels
+from .storage import Progress
+from .skin import WinterSkin
+from .ice_ui import IceUI
+from .playfield import expand_playfield, VIEW_LEFT, VIEW_TOP, VIEW_WIDTH, VIEW_HEIGHT
+
+ROOT = Path(__file__).resolve().parent.parent
+INK = (23, 48, 70)
+MUTED = (91, 116, 137)
+WHITE = (247, 252, 255)
+BLUE = (39, 119, 184)
+GOLD = (239, 173, 55)
+CORAL = (212, 90, 101)
+TEAL = (39, 166, 172)
+GRADES = {6: 'B', 7: 'A', 8: 'S', 9: 'SS', 10: 'SSS'}
+DOUBLE_TAP_MS = 300
+PLAY_PRESS_SECONDS = .14
+
+
+def default_save_path():
+    # One-file builds unpack assets into a temporary directory, but saves persist.
+    if getattr(sys,'frozen',False) and sys.platform=='darwin':
+        return Path.home()/'Library'/'Application Support'/'PinguBall'/'progress.json'
+    root = Path(sys.executable).resolve().parent if getattr(sys, 'frozen', False) else ROOT
+    return root/'save_data'/'progress.json'
+
+
+class App:
+    def __init__(self, save_path=None, headless=False):
+        self.headless = headless
+        if headless:
+            os.environ['SDL_VIDEODRIVER'] = 'dummy'
+            os.environ['SDL_AUDIODRIVER'] = 'dummy'
+        pygame.mixer.pre_init(44100, -16, 1, 512)
+        pygame.init()
+        self.window = pygame.display.set_mode((1000, 520), pygame.RESIZABLE)
+        pygame.display.set_caption('Pingu Ball')
+        self.canvas = pygame.Surface((PHYSICS.width, PHYSICS.height)).convert()
+        self.clock = pygame.time.Clock()
+        self.levels = make_levels()
+        self.progress = Progress(save_path or default_save_path())
+        self.scene = 'title'
+        self.world = None
+        self.running = True
+        self.buttons = []
+        self.held_keys = set()
+        self.last_tap = None
+        self.last_key_tap = None
+        self.pending_power_direction = None
+        self.active_finger = None
+        self.hover = (0, 0)
+        self.offset = (0, 0)
+        self.scale = .625
+        self.accumulator = 0.
+        self.new_record = False
+        self.help = False
+        self.lab_id = None
+        self.sound_on = True
+        self.play_press = None
+        self.sounds = {}
+        self.music_ready = False
+        self.music_playing = False
+        self._font_cache = {}
+        self._text_cache = OrderedDict()
+        self._panel_cache = OrderedDict()
+        self.font_path = self.find_font()
+        self.background = pygame.image.load(str(ROOT/'assets'/'antarctica.png')).convert()
+        self.background = pygame.transform.smoothscale(self.background, self.canvas.get_size())
+        stage_background = pygame.image.load(str(ROOT/'assets'/'stage_background.png')).convert()
+        stage_scale = max(self.canvas.get_width()/stage_background.get_width(),
+                          self.canvas.get_height()/stage_background.get_height())
+        stage_background = pygame.transform.smoothscale(stage_background,
+            (round(stage_background.get_width()*stage_scale),round(stage_background.get_height()*stage_scale)))
+        self.stage_background = pygame.Surface(self.canvas.get_size()).convert()
+        self.stage_background.blit(stage_background,
+            stage_background.get_rect(center=self.canvas.get_rect().center))
+        title = pygame.image.load(str(ROOT/'assets'/'title_screen.png')).convert()
+        title_scale = max(self.canvas.get_width()/title.get_width(), self.canvas.get_height()/title.get_height())
+        self.title_image = pygame.transform.smoothscale(title, (round(title.get_width()*title_scale), round(title.get_height()*title_scale)))
+        self.title_rect = self.title_image.get_rect(center=self.canvas.get_rect().center)
+        # Match the start button painted into the supplied artwork.
+        self.title_start = pygame.Rect(round(self.title_rect.x+734*title_scale),
+                                       round(self.title_rect.y+470*title_scale),
+                                       round(580*title_scale), round(166*title_scale))
+        self.skin = WinterSkin(ROOT)
+        self.ice_ui = IceUI(ROOT)
+        # Render the lettering directly on the seamless button face. A real
+        # bold font and a thin antialiased edge match the surrounding ice UI.
+        bold_fonts=[Path(self.font_path).with_name(name) for name in
+                    ('malgunbd.ttf','NanumGothic-Bold.ttf')] if self.font_path else []
+        self.bold_font_path=next((str(path) for path in bold_fonts if path.is_file()),None)
+        sound_font=pygame.font.Font(self.bold_font_path or self.font_path,69)
+        if not self.bold_font_path:sound_font.set_bold(True)
+        self.sound_labels={}
+        for enabled,label in ((True,'소리 켜짐'),(False,'소리 꺼짐')):
+            letters=sound_font.render(label,True,WHITE)
+            edge=sound_font.render(label,True,(7,44,104))
+            image=pygame.Surface((letters.get_width()+6,letters.get_height()+6),pygame.SRCALPHA)
+            for dx,dy in ((-3,0),(3,0),(0,-3),(0,3),(-2,-2),(2,-2),(-2,2),(2,2)):
+                image.blit(edge,(3+dx,3+dy))
+            image.blit(letters,(3,3))
+            # Center visible glyphs, not the font's uneven ascent/descent box.
+            image=image.subsurface(image.get_bounding_rect()).copy()
+            width=min(rect.w-4 for rect in self.ice_ui.sound_labels.values())
+            height=min(rect.h-2 for rect in self.ice_ui.sound_labels.values())
+            scale=min(1/3,width/image.get_width(),height/image.get_height())
+            image=pygame.transform.smoothscale(image,
+                (round(image.get_width()*scale),round(image.get_height()*scale)))
+            self.sound_labels[enabled]=image.subsurface(image.get_bounding_rect()).copy()
+        self.map_canvas = None
+        self._scaled_map = None
+        self._scaled_window = None
+        self.previews = {}
+        for level in self.levels:
+            if level.index>0 and level.preview:
+                image = pygame.image.load(str(ROOT/level.preview)).convert()
+                self.previews[level.index] = pygame.transform.smoothscale(image, (124, 78))
+        self.prepare_sounds()
+        self.sync_music()
+
+    @staticmethod
+    def find_font():
+        for path in ['C:/Windows/Fonts/malgun.ttf',
+                     str(ROOT/'assets'/'fonts'/'NanumGothic-Regular.ttf'),
+                     '/System/Library/Fonts/AppleSDGothicNeo.ttc',
+                     '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc']:
+            if Path(path).exists():
+                return path
+        return pygame.font.match_font('malgungothic,applesdgothicneo,notosanscjkkr,dejavusans')
+
+    def text(self, text, x, y, size=22, color=INK, bold=False, center=False):
+        key = (size, bold)
+        if key not in self._font_cache:
+            font = pygame.font.Font(self.font_path, size)
+            font.set_bold(bold)
+            self._font_cache[key] = font
+        render_key=(str(text),size,bold,tuple(color))
+        image=self._text_cache.get(render_key)
+        if image is None:
+            image=self._font_cache[key].render(str(text),True,color)
+            self._text_cache[render_key]=image
+            if len(self._text_cache)>128: self._text_cache.popitem(last=False)
+        else:
+            self._text_cache.move_to_end(render_key)
+        rect = image.get_rect(center=(x, y)) if center else image.get_rect(topleft=(x, y))
+        self.canvas.blit(image, rect)
+        return rect
+
+    def panel(self, rect, color=(249, 253, 255, 238), radius=20):
+        rect = pygame.Rect(rect)
+        key=(rect.size,tuple(color),radius)
+        surface=self._panel_cache.get(key)
+        if surface is None:
+            surface=pygame.Surface(rect.size,pygame.SRCALPHA)
+            pygame.draw.rect(surface,color,surface.get_rect(),border_radius=radius)
+            self._panel_cache[key]=surface
+            if len(self._panel_cache)>16: self._panel_cache.popitem(last=False)
+        else:
+            self._panel_cache.move_to_end(key)
+        self.canvas.blit(surface, rect)
+
+    def button(self, label, rect, callback, primary=False):
+        rect = pygame.Rect(rect)
+        hovered = rect.collidepoint(self.hover)
+        color = (31, 96, 146) if primary and hovered else BLUE if primary else (224, 240, 249) if hovered else WHITE
+        pygame.draw.rect(self.canvas, color, rect, border_radius=12)
+        self.text(label, *rect.center, 22, WHITE if primary else INK, True, True)
+        self.buttons.append((rect, callback))
+
+    def art_button(self, rect, callback):
+        """Artwork already paints the button; register the same visible region."""
+        rect = pygame.Rect(rect)
+        if rect.collidepoint(self.hover):
+            pygame.draw.rect(self.canvas, (215, 253, 255), rect, 2, border_radius=16)
+        self.buttons.append((rect, callback))
+
+    def fitted_text(self, label, rect, size=30, color=INK, bold=True, outline=None, natural=False):
+        rect = pygame.Rect(rect)
+        if natural:
+            return self.ice_text(label,rect,size,color,bold,outline)
+        while size > 12:
+            key=(size,bold)
+            if key not in self._font_cache:
+                font=pygame.font.Font(self.font_path,size)
+                font.set_bold(bold)
+                self._font_cache[key]=font
+            font=self._font_cache[key]
+            if font.size(label)[0] <= rect.w:
+                break
+            size -= 1
+        if outline:
+            for dx,dy in ((-2,0),(2,0),(0,-2),(0,2),(-1,-1),(1,-1),(-1,1),(1,1)):
+                self.text(label,rect.centerx+dx,rect.centery+dy,size,outline,bold,True)
+        return self.text(label, *rect.center, size, color, bold, True)
+
+    def ice_text(self,label,rect,size,color,bold,outline):
+        """Cache smooth live lettering, centered by visible glyphs on the ice."""
+        key=('ice',str(label),size,tuple(color),bold,outline,rect.size)
+        image=self._text_cache.get(key)
+        if image is None:
+            font_key=('ice',size,bold)
+            if font_key not in self._font_cache:
+                font=pygame.font.Font(self.bold_font_path if bold and self.bold_font_path else self.font_path,size*3)
+                if bold and not self.bold_font_path:font.set_bold(True)
+                self._font_cache[font_key]=font
+            font=self._font_cache[font_key]
+            letters=font.render(str(label),True,color)
+            padding=4 if outline else 0
+            image=pygame.Surface((letters.get_width()+padding*2,letters.get_height()+padding*2),pygame.SRCALPHA)
+            if outline:
+                edge=font.render(str(label),True,outline)
+                for dx,dy in ((-4,0),(4,0),(0,-4),(0,4),(-3,-3),(3,-3),(-3,3),(3,3)):
+                    image.blit(edge,(padding+dx,padding+dy))
+            image.blit(letters,(padding,padding))
+            image=image.subsurface(image.get_bounding_rect()).copy()
+            scale=min(1/3,rect.w/image.get_width(),rect.h/image.get_height())
+            image=pygame.transform.smoothscale(image,(max(1,round(image.get_width()*scale)),max(1,round(image.get_height()*scale))))
+            image=image.subsurface(image.get_bounding_rect()).copy()
+            self._text_cache[key]=image
+            if len(self._text_cache)>128:self._text_cache.popitem(last=False)
+        else:
+            self._text_cache.move_to_end(key)
+        target=image.get_rect(center=rect.center)
+        self.canvas.blit(image,target)
+        return target
+
+    def prepare_sounds(self):
+        if not pygame.mixer.get_init():
+            return
+        for name, hz, length in [('fish', 880, .10), ('switch', 440, .08),
+                                 ('powerup', 1040, .12), ('power_use', 720, .12)]:
+            frames = int(44100*length)
+            samples = array('h', (int(6000*math.sin(2*math.pi*hz*i/44100)*(1-i/frames)**2) for i in range(frames)))
+            self.sounds[name] = pygame.mixer.Sound(buffer=samples)
+        self.sounds['fail'] = pygame.mixer.Sound(str(ROOT/'assets'/'audio'/'fail_noot.mp3'))
+        self.sounds['bounce'] = pygame.mixer.Sound(str(ROOT/'assets'/'audio'/'bounce_seal.mp3'))
+        self.sounds['clear'] = pygame.mixer.Sound(str(ROOT/'assets'/'audio'/'goal_arrival.mp3'))
+        pygame.mixer.music.load(str(ROOT/'assets'/'audio'/'title_opening.mp3'))
+        pygame.mixer.music.set_volume(.5)
+        self.music_ready = True
+
+    def sync_music(self):
+        if not self.music_ready or not pygame.mixer.get_init():
+            return
+        wanted = self.running and self.sound_on and self.scene in ('title', 'menu', 'normal_menu', 'lab_menu')
+        if wanted:
+            if not self.music_playing or not pygame.mixer.music.get_busy():
+                pygame.mixer.music.play(loops=-1)
+                self.music_playing = True
+        elif self.music_playing:
+            pygame.mixer.music.stop()
+            self.music_playing = False
+
+    def sound(self, name):
+        if self.sound_on and name in self.sounds:
+            if name in ('fail', 'clear'):
+                for other in ('bounce', 'fail', 'clear'):
+                    self.sounds[other].stop()
+            elif name == 'bounce':
+                self.sounds[name].stop()
+            self.sounds[name].play()
+
+    def draw_pingu(self, x, y, size, charged=False):
+        image=self.skin.ball(size,charged)
+        self.canvas.blit(image,image.get_rect(center=(round(x),round(y))))
+
+    def fish(self, x, y, size=32, bone=False, collected=False, *, height=None):
+        image = self.skin.collectible(bone,size,height)
+        if collected:
+            image = image.copy(); image.set_alpha(90)
+        self.canvas.blit(image, (round(x-image.get_width()/2), round(y-image.get_height()/2)))
+
+    def igloo(self, rect):
+        x, y, w, h = rect
+        self.canvas.blit(self.skin.image('goal', (w, h)), (round(x), round(y)))
+
+    def tile(self, block, time, switches, occupied_tiles=None):
+        if block.id.startswith('spike-base-'):
+            return
+        image = self.skin.platform(block, time, switches)
+        if image is None:
+            return
+        x, y, width, height = block.rect_at(time)
+        if self.world and block.kind=='normal' and (width,height)==(64,64):
+            above=((x,y-64) in occupied_tiles if occupied_tiles is not None else
+                   any(q.id!=block.id and q.active(time,switches)
+                       and q.rect_at(time)[:2]==(x,y-64) and (q.w,q.h)==(64,64)
+                       for q in self.world.platforms))
+            if above:
+                image=self.skin.column(128).subsurface((0,64,64,64))
+        self.canvas.blit(image, (round(x), round(y)))
+        if block.kind == 'switch':
+            label = {'gate-left':'A','gate-right':'B'}.get(block.group,block.group)
+            self.text(label, x+width-12, y+height-16, 14, WHITE, True, True)
+
+    def backdrop(self):
+        self.canvas.blit(self.background, (0, 0))
+
+    def draw_title(self):
+        self.canvas.blit(self.title_image, self.title_rect)
+        self.buttons.append((self.title_start, self.menu))
+        self.art_button(self.ice_ui.sound_faces['title'][1],self.toggle_sound)
+        self.draw_sound_label('title')
+
+    def draw_menu(self):
+        self.canvas.fill((114,180,225))
+        self.ice_ui.blit(self.canvas,'menu')
+        actions={'title':self.show_title,'help':lambda:setattr(self,'help',True),
+                 'quit':self.quit,'practice':self.show_lab_menu,'adventure':self.show_normal_menu,
+                 'sound':self.toggle_sound}
+        for name,callback in actions.items():
+            self.art_button(self.ice_ui.menu_buttons[name],callback)
+        self.draw_sound_label('menu')
+        if self.progress.error:self.text(self.progress.error,64,782,20,CORAL)
+
+    def show_normal_menu(self):
+        self.play_press = None
+        self.lab_id = None
+        self.scene = 'normal_menu'
+        self.sync_music()
+        self.accumulator = 0.
+        self.held_keys.clear()
+        self.clear_taps()
+        self.help = False
+
+    def draw_normal_menu(self):
+        ui=self.ice_ui;name='regular_menu'
+        self.canvas.fill((114,180,225))
+        ui.blit(self.canvas,name)
+        self.art_button(ui.list_back[name],self.menu)
+        completed = sum(str(i) in self.progress.records for i in range(1, REGULAR_STAGE_COUNT+1))
+        counter=ui.list_rect(name,(737,126,240,46))
+        self.fitted_text(f'{completed} / {REGULAR_STAGE_COUNT} 완료',counter,24,(3,40,98),natural=True)
+        for index, rect in enumerate(ui.regular_cards,1):
+            unlocked = index <= self.progress.unlocked
+            record = self.progress.records.get(str(index))
+            if unlocked:
+                x,y,w,h=ui.regular_native_cards[index-1]
+                footer=ui.list_rect(name,(x+23,y+126,w-46,49))
+                self.canvas.blit(ui.regular_unlocked_footer,footer)
+                self.draw_stage_play_button(index)
+                if record:
+                    detail=f"{GRADES[record['score']]} · {record['score']}점"
+                    record_x=244
+                    record_y,size,line_height=126,18,23
+                    self.fitted_text(detail,ui.list_rect(name,(x+record_x,y+record_y,w-record_x-26,line_height)),size,TEAL)
+                    self.fitted_text(f"{record['time']:.2f}초",ui.list_rect(name,(x+record_x,y+record_y+line_height,w-record_x-26,line_height)),size,(3,40,98))
+                self.art_button(rect,lambda n=index:self.press_stage_play(n))
+        self.draw_list_sound(name)
+        if self.progress.error:
+            self.panel((30,778,1260,40),(249,253,255,245),8)
+            self.fitted_text(self.progress.error,(40,780,1240,36),18,CORAL,False)
+
+    def press_stage_play(self,index):
+        if self.scene=='normal_menu' and 1<=index<=self.progress.unlocked and self.play_press is None:
+            self.play_press=(index,0.)
+            self.held_keys.clear()
+            self.clear_taps()
+
+    def draw_stage_play_button(self,index):
+        ui=self.ice_ui
+        rect=ui.regular_play_buttons[index-1]
+        image=ui.list_play_button
+        if self.play_press and self.play_press[0]==index:
+            # Release smoothly from a compressed, slightly darker button.
+            amount=(1-min(1,self.play_press[1]/PLAY_PRESS_SECONDS))**2
+            size=(round(rect.w*(1-.04*amount)),round(rect.h*(1-.10*amount)))
+            image=pygame.transform.smoothscale(image,size)
+            shade=round(255-24*amount)
+            image.fill((shade,shade,shade,255),special_flags=pygame.BLEND_RGBA_MULT)
+            rect=image.get_rect(center=(rect.centerx,rect.centery+round(3*amount)))
+        self.canvas.blit(image,rect)
+
+    def start(self, index):
+        self.play_press = None
+        self.lab_id = None
+        self.world = World(expand_playfield(self.levels[index]))
+        self.map_canvas = pygame.Surface((self.world.physics.width, self.world.physics.height), pygame.SRCALPHA).convert_alpha()
+        self.map_view = self.map_viewport()
+        self.scene = 'play'
+        self.sync_music()
+        self.accumulator = 0.
+        self.held_keys.clear()
+        self.clear_taps()
+        self.new_record = False
+
+    def show_lab_menu(self):
+        self.play_press = None
+        self.scene = 'lab_menu'
+        self.sync_music()
+        self.lab_id = None
+        self.held_keys.clear()
+        self.clear_taps()
+        self.help = False
+
+    def start_special(self, type_id):
+        self.play_press = None
+        from .special_lab import make_lab, resolve_lab_type
+        type_id = resolve_lab_type(type_id)
+        self.lab_id = type_id
+        self.world = World(expand_playfield(make_lab(type_id)))
+        self.map_canvas = pygame.Surface((self.world.physics.width,self.world.physics.height),pygame.SRCALPHA).convert_alpha()
+        self.map_view = self.map_viewport()
+        self.scene = 'play'
+        self.sync_music()
+        self.accumulator = 0.
+        self.held_keys.clear()
+        self.clear_taps()
+        self.help = False
+
+    def draw_lab_menu(self):
+        from .special_lab import LAB_TYPES
+        ui=self.ice_ui;name='tutorial_menu'
+        self.canvas.fill((114,180,225))
+        ui.blit(self.canvas,name)
+        for rect,code in zip(ui.tutorial_cards,LAB_TYPES):
+            self.art_button(rect,lambda c=code:self.start_special(c))
+        self.art_button(ui.list_back[name],self.menu)
+        self.draw_list_sound(name)
+
+    def draw_list_sound(self,name):
+        ui=self.ice_ui
+        self.art_button(ui.list_sound[name],self.toggle_sound)
+        self.draw_sound_label(name)
+
+    def draw_sound_label(self,name):
+        ui=self.ice_ui
+        rect=ui.sound_labels[name]
+        face,target=ui.sound_faces[name]
+        self.canvas.blit(face,target)
+        image=self.sound_labels[self.sound_on]
+        self.canvas.blit(image,image.get_rect(center=rect.center))
+
+    def quit(self):
+        self.play_press = None
+        self.running = False
+        self.sync_music()
+
+    def toggle_sound(self):
+        self.sound_on = not self.sound_on
+        if not self.sound_on and pygame.mixer.get_init():
+            pygame.mixer.stop()
+        self.sync_music()
+
+    def restart(self):
+        if self.world:
+            self.world.reset()
+            self.scene = 'play'
+            self.accumulator = 0.
+            self.held_keys.clear()
+            self.clear_taps()
+
+    def menu(self):
+        self.play_press = None
+        if self.lab_id is not None:
+            self.show_lab_menu()
+            return
+        if (self.scene in ('play','result','ending') and self.world and self.world.level.index>0):
+            self.show_normal_menu()
+            return
+        if self.scene in ('play','result') and self.world and self.world.level.index==0:
+            self.show_lab_menu()
+            return
+        self.scene = 'menu'
+        self.sync_music()
+        self.accumulator = 0.
+        self.held_keys.clear()
+        self.help = False
+        self.clear_taps()
+
+    def show_title(self):
+        self.play_press = None
+        self.scene = 'title'
+        self.sync_music()
+        self.accumulator = 0.
+        self.held_keys.clear()
+        self.help = False
+        self.clear_taps()
+
+    def toggle_pause(self):
+        if self.world and self.scene == 'play':
+            self.world.paused = not self.world.paused
+            self.accumulator = 0.
+            self.held_keys.clear()
+            self.clear_taps()
+
+    def clear_taps(self):
+        self.last_tap = None
+        self.last_key_tap = None
+        self.pending_power_direction = None
+        self.active_finger = None
+
+    def arrow_down(self, key, timestamp, repeat=False):
+        # Only fresh presses count. The key must be released between taps.
+        if repeat or key in self.held_keys:
+            return
+        self.held_keys.add(key)
+        if (self.scene != 'play' or not self.world or self.world.paused or self.help
+                or self.world.cleared or self.world.failed):
+            self.last_key_tap = None
+            return
+        kind = self.world.ball.power_up
+        valid = ((kind == 'forward' and key in (pygame.K_LEFT, pygame.K_RIGHT))
+                 or (kind == 'up' and key == pygame.K_UP))
+        if not valid or {pygame.K_LEFT, pygame.K_RIGHT} <= self.held_keys:
+            self.last_key_tap = None
+            return
+        previous = self.last_key_tap
+        self.last_key_tap = (key, timestamp)
+        if previous and previous[0] == key and 0 <= timestamp-previous[1] <= DOUBLE_TAP_MS:
+            self.pending_power_direction = -1 if key == pygame.K_LEFT else 1 if key == pygame.K_RIGHT else 0
+            self.last_key_tap = None
+            self.last_tap = None
+
+    def map_viewport(self):
+        p = self.world.physics
+        scale = min(VIEW_WIDTH/p.width, VIEW_HEIGHT/p.height)
+        size = (round(p.width*scale), round(p.height*scale))
+        return pygame.Rect(VIEW_LEFT+(VIEW_WIDTH-size[0])//2,
+                           VIEW_TOP+(VIEW_HEIGHT-size[1])//2, *size)
+
+    def pointer_down(self, position, timestamp):
+        if self.play_press is not None:
+            return
+        at = ((position[0]-self.offset[0])/self.scale, (position[1]-self.offset[1])/self.scale)
+        for rect, callback in reversed(self.buttons):
+            if rect.collidepoint(at):
+                self.clear_taps()
+                callback()
+                return
+        if (self.scene != 'play' or self.world.paused or self.help
+                or not self.map_view.collidepoint(at) or self.world.ball.power_up is None):
+            self.last_tap = None
+            return
+        previous = self.last_tap
+        self.last_tap = (timestamp, at)
+        if previous and 0 <= timestamp-previous[0] <= DOUBLE_TAP_MS and math.dist(at, previous[1]) <= 64:
+            ball_x = self.map_view.x+self.world.ball.x*self.map_view.width/self.world.physics.width
+            self.pending_power_direction = 1 if at[0] >= ball_x else -1
+            self.last_tap = None
+
+    def draw_play(self):
+        world = self.world
+        self.canvas.blit(self.stage_background,(0,0))
+        screen = self.canvas
+        self.canvas = self.map_canvas
+        try:
+            self.draw_map(world)
+        finally:
+            self.canvas = screen
+        self.map_view = self.map_viewport()
+        if self._scaled_map is None or self._scaled_map.get_size()!=self.map_view.size:
+            self._scaled_map=pygame.Surface(self.map_view.size,pygame.SRCALPHA).convert_alpha()
+        pygame.transform.smoothscale(self.map_canvas,self.map_view.size,self._scaled_map)
+        self.canvas.blit(self._scaled_map,self.map_view)
+        self.draw_play_hud(world)
+
+    def draw_map(self, world):
+        self.canvas.fill((0, 0, 0, 0))
+        from .special_draw import draw_patrols, draw_movement_markers
+        draw_patrols(self.canvas,world,self.skin)
+        # Only a column's exposed upper tile has snow. Horizontal sprite
+        # edges remain native, preserving the approved natural seams.
+        positions={(q.x,q.y):q for q in world.platforms if q.kind=='normal' and (q.w,q.h)==(64,64)
+                   and not hasattr(q,'device')}
+        platform_rects={q.id:q.rect_at(world.time) for q in world.platforms}
+        occupied_tiles={platform_rects[q.id][:2] for q in world.platforms
+                        if (q.w,q.h)==(64,64) and q.active(world.time,world.switches)}
+        drawn=set()
+        movers=[]
+        for block in sorted(world.platforms,key=lambda q:q.y):
+            if block.id in drawn: continue
+            if block.kind=='moving' or (hasattr(block,'device') and block.device.type_id==508):
+                movers.append(block)
+                continue
+            column=[block]
+            if (block.x,block.y) in positions:
+                while (block.x,block.y+64*len(column)) in positions:
+                    column.append(positions[block.x,block.y+64*len(column)])
+            if len(column)>1:
+                self.canvas.blit(self.skin.column(64*len(column)),(round(block.x),round(block.y)))
+                drawn.update(q.id for q in column)
+            else:
+                self.tile(block, world.time, world.switches,occupied_tiles)
+        draw_movement_markers(self.canvas,world)
+        for block in movers:self.tile(block,world.time,world.switches,occupied_tiles)
+        for spike in world.level.spikes:
+            self.canvas.blit(self.skin.image('spike', (spike.w, spike.h+(16 if spike.teeth == 6 else 0)+4)),
+                             (round(spike.x), round(spike.y)))
+        from .special_draw import draw_runtime
+        draw_runtime(self.canvas,world,self.skin,platform_rects=platform_rects.values())
+        for index, fish in enumerate(world.level.collectibles):
+            if index not in world.collected:
+                self.fish(fish.x, fish.y, int(fish.size), fish.value < 0,height=fish.height)
+        for index, item in enumerate(world.level.powerups):
+            if index not in world.collected_powerups:
+                self.canvas.blit(self.skin.image('power_'+item.kind, (item.size, item.size)),
+                                 (round(item.x-item.size/2), round(item.y-item.size/2)))
+        gx,gy,gw,gh=world.level.goal
+        self.igloo((gx,gy+4,gw,gh))
+        self.draw_pingu(world.ball.x, world.ball.y, 28, charged=world.ball.power_up or False)
+
+    def draw_play_hud(self, world):
+        ui=self.ice_ui
+        ui.blit(self.canvas,'hud_stage')
+        tutorial=self.lab_id is not None or world.level.index==0
+        label='TUTORIAL' if tutorial else f'STAGE {world.level.index:02d}'
+        self.fitted_text(label,(124,34,166,30),21,WHITE,outline=(7,44,104),natural=True)
+        self.fitted_text(world.level.title,(96,66,203,48),34,WHITE,outline=(7,44,104),natural=True)
+        total = sum(fish.value > 0 for fish in world.level.collectibles)
+        if total or any(fish.value<0 for fish in world.level.collectibles):
+            self.panel((399,29,226,52),(223,250,255,250),18)
+            self.fish(432,55,42)
+            self.text(f'{world.plus}/{total}',459,39,22,INK,True)
+            self.fish(544,55,42,bone=True)
+            self.text(str(world.minus),571,39,22,INK,True)
+        ui.blit(self.canvas,'hud_timer')
+        self.fitted_text(f'{world.time:.2f}초',(782,32,144,46),28,(3,40,98),natural=True)
+        for name,callback in [('pause',self.toggle_pause),('restart',self.restart),('select',self.menu)]:
+            key='hud_'+name
+            ui.blit(self.canvas,key)
+            self.art_button(ui.images[key].get_rect(topleft=ui.positions[key]),callback)
+        if world.paused:
+            self.draw_pause()
+        if self.scene == 'result':
+            self.draw_result()
+
+    def overlay(self, rect):
+        shade = pygame.Surface(self.canvas.get_size(), pygame.SRCALPHA)
+        shade.fill((19, 43, 63, 128))
+        self.canvas.blit(shade, (0, 0))
+        self.buttons = []
+        self.panel(rect, (249, 253, 255, 250), 24)
+
+    def draw_pause(self):
+        self.shade_play()
+        self.ice_ui.blit(self.canvas,'pause')
+        for name,callback in [('close',self.toggle_pause),('continue',self.toggle_pause),
+                              ('restart',self.restart),('select',self.menu)]:
+            self.art_button(self.ice_ui.pause_buttons[name],callback)
+
+    def shade_play(self):
+        self.panel((0,0,1600,832),(4,23,50,125),0)
+        self.buttons=[]
+
+    def draw_result(self):
+        world = self.world
+        ui=self.ice_ui
+        self.shade_play()
+        ui.blit(self.canvas,'result')
+        field=lambda rect:ui.native_rect('result',rect,(1199,1312))
+        tutorial=self.lab_id is not None or world.level.index==0
+        self.fitted_text('CLEAR' if tutorial else world.grade,field((516,564,170,135)),
+                         35 if tutorial else 42,(7,93,175))
+        detail=f'{world.time:.2f}초' if tutorial else f'{world.score}점  ·  {world.time:.2f}초'
+        self.fitted_text(detail,field((320,780,570,63)),28,(6,23,64))
+        status='튜토리얼 완료' if tutorial else '최고 기록 갱신' if self.new_record else '기존 최고 기록 유지'
+        self.fitted_text(status,field((394,852,420,63)),21,(0,158,145))
+        label='다음 스테이지'
+        if self.lab_id is not None:
+            from .special_lab import ENABLED_LAB_TYPES
+            label='다음 튜토리얼' if self.lab_id!=ENABLED_LAB_TYPES[-1] else '튜토리얼 목록'
+        elif tutorial:label='특수블록 배우기'
+        elif world.level.index==REGULAR_STAGE_COUNT:label='여행 완료'
+        if label!='다음 스테이지':
+            rect=ui.next_label_patch()
+            # Only replace the button's lettering area, preserving live values.
+            origin=ui.positions['result_next']
+            area=rect.move(-origin[0],-origin[1]).inflate(12,4)
+            self.canvas.blit(ui.images['result_next'],area.move(origin).topleft,area)
+            self.fitted_text(label,rect.inflate(-12,0),30,(85,36,2),outline=(255,248,218))
+        if self.progress.error:
+            self.panel((320,792,960,36),(249,253,255,248),8)
+            self.fitted_text(self.progress.error,(330,794,940,30),18,CORAL,False)
+        for name,callback in [('next',self.next_stage),('retry',self.restart),('select',self.menu)]:
+            self.art_button(ui.result_buttons[name],callback)
+
+    def next_stage(self):
+        if self.lab_id is not None:
+            from .special_lab import ENABLED_LAB_TYPES
+            codes=ENABLED_LAB_TYPES
+            if self.lab_id in codes and codes.index(self.lab_id)+1<len(codes):
+                self.start_special(codes[codes.index(self.lab_id)+1])
+            else:
+                self.show_lab_menu()
+            return
+        if self.world.level.index == 0:
+            self.show_lab_menu()
+        elif self.world.level.index == REGULAR_STAGE_COUNT:
+            self.scene = 'ending'
+        else:
+            self.start(self.world.level.index+1)
+
+    def draw_ending(self):
+        self.backdrop()
+        self.panel((350, 150, 900, 540))
+        self.draw_pingu(800, 280, 140)
+        self.text('남극 여행을 마쳤어요!', 800, 416, 44, INK, True, True)
+        self.text('모든 스테이지에서 더 빠른 기록에 도전해 보세요.', 800, 490, 26, MUTED, False, True)
+        self.button('스테이지 선택', (550, 566, 500, 60), self.menu, True)
+
+    def draw_help(self):
+        self.overlay((340, 80, 920, 680))
+        self.text('플레이 방법', 390, 112, 36, INK, True)
+        rows = [('← → / R', '좌우 이동 / 처음부터 재시작 · 입장 즉시 자동 반동'),
+                ('생선 / 생선 가시', '+1점 / -1점 · 모두 선택 사항'),
+                ('금 간 얼음', '밟는 즉시 사라짐 · 착지 반동은 유지'),
+                ('점프 화살표 ↑', '일반 발판보다 더 높이 튕깁니다.'),
+                ('이동 ↔ / 시간 발판', '표시 구간 왕복 이동 / 주기적 등장과 소멸'),
+                ('파랑 » / 노랑 ↑↑', '대시 / 점프 · 마지막에 먹은 아이템만 보유'),
+                ('아이템 사용', '←←·→→ / ↑↑ 또는 화면 더블 클릭·터치'),
+                ('빨간 스위치', '연결 다리 전환 · 완전히 벗어난 뒤 재작동'),
+                ('좌우 발사 화살표', '중심 높이에서 발사 · 방향키 또는 벽 충돌로 해제'),
+                ('이글루', '생선 획득 여부와 관계없이 도착하면 클리어')]
+        for index, (label, body) in enumerate(rows):
+            self.text(label, 390, 180+index*46, 22, BLUE, True)
+            self.text(body, 610, 180+index*46, 21)
+        self.button('알겠어요', (1000, 680, 200, 50), lambda: setattr(self, 'help', False), True)
+
+    def update(self, seconds, direction):
+        if self.play_press is not None:
+            index,elapsed=self.play_press
+            if self.scene!='normal_menu':
+                self.play_press=None
+            elif elapsed+seconds>=PLAY_PRESS_SECONDS:
+                self.start(index)
+                return  # Gameplay starts with its own first frame, after the effect.
+            else:
+                self.play_press=(index,elapsed+seconds)
+                return
+        if self.scene != 'play' or not self.world or self.world.paused or self.help:
+            self.accumulator = 0.
+            self.clear_taps()
+            return
+        self.accumulator += seconds
+        while self.accumulator+1e-12 >= PHYSICS.dt:
+            power_direction = self.pending_power_direction
+            self.pending_power_direction = None
+            self.world.step(direction, use_power=power_direction is not None,
+                            power_direction=power_direction or 0)
+            if power_direction is not None:
+                self.clear_taps()
+            self.accumulator -= PHYSICS.dt
+            for kind, payload in self.world.events:
+                if kind in self.sounds:
+                    self.sound(kind)
+                if kind == 'powerup':
+                    self.clear_taps()
+                if kind == 'fail':
+                    self.held_keys.clear()
+                    self.clear_taps()
+                    self.accumulator = 0.
+                    return
+            if self.world.cleared:
+                score = None if self.world.level.index == 0 else self.world.score
+                if self.lab_id is not None:
+                    from .special_lab import LAB_NUMBERS
+                    self.new_record=self.progress.complete_tutorial(LAB_NUMBERS[self.lab_id],self.world.time)
+                else:
+                    self.new_record=self.progress.complete(self.world.level.index,score,self.world.time)
+                self.scene = 'result'
+                self.accumulator = 0.
+                break
+
+    def render(self):
+        self.sync_music()
+        self.buttons = []
+        if self.scene == 'title':
+            self.draw_title()
+        elif self.scene == 'menu':
+            self.draw_menu()
+        elif self.scene == 'normal_menu':
+            self.draw_normal_menu()
+        elif self.scene == 'lab_menu':
+            self.draw_lab_menu()
+        elif self.scene == 'ending':
+            self.draw_ending()
+        else:
+            self.draw_play()
+        if self.help:
+            self.draw_help()
+        width, height = self.window.get_size()
+        self.scale = min(width/PHYSICS.width, height/PHYSICS.height)
+        size = (max(1, round(PHYSICS.width*self.scale)), max(1, round(PHYSICS.height*self.scale)))
+        self.offset = ((width-size[0])//2, (height-size[1])//2)
+        self.window.fill((15, 35, 52))
+        if size==self.canvas.get_size():
+            self.window.blit(self.canvas,self.offset)
+        else:
+            if self._scaled_window is None or self._scaled_window.get_size()!=size:
+                self._scaled_window=pygame.Surface(size).convert()
+            pygame.transform.smoothscale(self.canvas,size,self._scaled_window)
+            self.window.blit(self._scaled_window,self.offset)
+        pygame.display.flip()
+
+    def process_events(self):
+        mx, my = pygame.mouse.get_pos()
+        self.hover = ((mx-self.offset[0])/self.scale, (my-self.offset[1])/self.scale)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.quit()
+            elif event.type == pygame.KEYDOWN:
+                if self.scene == 'title' and event.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    self.menu()
+                elif self.scene == 'menu' and event.key == pygame.K_ESCAPE and not self.help:
+                    self.show_title()
+                elif self.scene in ('lab_menu','normal_menu') and event.key == pygame.K_ESCAPE:
+                    self.menu()
+                elif (event.key in (pygame.K_ESCAPE,pygame.K_p) and self.scene=='play'
+                      and not self.help and not getattr(event,'repeat',False)):
+                    self.toggle_pause()
+                elif event.key == pygame.K_r and self.scene in ('play', 'result') and not self.help:
+                    self.restart()
+                elif event.key in (pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN) and self.scene == 'play' and not self.world.paused and not self.help:
+                    self.arrow_down(event.key, getattr(event,'timestamp',pygame.time.get_ticks()),
+                                    repeat=getattr(event,'repeat',False))
+            elif event.type == pygame.KEYUP:
+                self.held_keys.discard(event.key)
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and not getattr(event, 'touch', False):
+                self.pointer_down(event.pos, getattr(event, 'timestamp', pygame.time.get_ticks()))
+            elif event.type == pygame.FINGERDOWN and self.active_finger is None:
+                self.active_finger = event.finger_id
+                width, height = self.window.get_size()
+                self.pointer_down((event.x*width, event.y*height),
+                                  getattr(event, 'timestamp', pygame.time.get_ticks()))
+            elif event.type == pygame.FINGERUP and event.finger_id == self.active_finger:
+                self.active_finger = None
+            elif event.type == pygame.WINDOWFOCUSLOST:
+                self.play_press = None
+                if self.world and self.scene == 'play':
+                    self.world.paused = True
+                    self.accumulator = 0.
+                    self.held_keys.clear()
+                    self.clear_taps()
+
+    def run(self, frames=0):
+        self.render()
+        count = 0
+        while self.running:
+            seconds = 1/60 if self.headless else self.clock.tick(60)/1000
+            self.process_events()
+            direction = int(pygame.K_RIGHT in self.held_keys)-int(pygame.K_LEFT in self.held_keys)
+            self.update(seconds, direction)
+            self.render()
+            count += 1
+            if frames and count >= frames:
+                break
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Pingu Ball')
+    parser.add_argument('--headless', action='store_true')
+    parser.add_argument('--screenshot')
+    from .special_lab import LAB_NUMBERS, ENABLED_LAB_TYPES
+    parser.add_argument('--stage', type=int, choices=range(1,REGULAR_STAGE_COUNT+1))
+    parser.add_argument('--special', type=int, choices=tuple(LAB_NUMBERS[c] for c in ENABLED_LAB_TYPES)+ENABLED_LAB_TYPES,
+                        metavar='NUMBER',help='Open a document tutorial, numbered 1-10')
+    parser.add_argument('--lab',action='store_true',help='Open the ten document tutorials')
+    parser.add_argument('--frames', type=int, default=0)
+    parser.add_argument('--save-file')
+    args = parser.parse_args()
+    with tempfile.TemporaryDirectory(prefix='pingu-') as temporary:
+        save = args.save_file or (Path(temporary)/'progress.json' if args.headless else None)
+        app = App(save, args.headless)
+        try:
+            if args.special is not None:
+                app.start_special(args.special)
+            elif args.lab:
+                app.show_lab_menu()
+            elif args.stage is not None:
+                app.start(args.stage)
+            if args.headless and not args.frames:
+                app.render()
+            else:
+                app.run(args.frames)
+            if args.screenshot:
+                path = Path(args.screenshot)
+                path.parent.mkdir(parents=True, exist_ok=True)
+                pygame.image.save(app.canvas, str(path))
+        finally:
+            pygame.quit()

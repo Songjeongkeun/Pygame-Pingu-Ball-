@@ -1,0 +1,1065 @@
+{
+  "score": [
+    2.75,
+    1.0,
+    2.9,
+    0.8,
+    -11.362875978923368
+  ],
+  "step": 163840,
+  "ticks": 1943944,
+  "evaluation": {
+    "stage": 2,
+    "seed": 11000,
+    "mode": "sampled",
+    "episodes": 20,
+    "successes": 16,
+    "success_rate": 0.8,
+    "mean_success_seconds": 11.362875978923368,
+    "mean_return": 102.5,
+    "mean_milestones": 2.75,
+    "milestone_rate": 1.0,
+    "source_landing_rate": 1.0,
+    "mean_sources": 2.9,
+    "mean_seconds": 11.02324807460686,
+    "failures": {
+      "얼음 바다로 떨어졌어요": 4
+    },
+    "mean_entropy": 0.804254088805871,
+    "action_counts": [
+      232,
+      813,
+      1175
+    ],
+    "raw": [
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 9.716037732114966,
+        "ticks": 1166,
+        "tick_delta": 2,
+        "decisions": 98,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 36.253131768002255,
+        "min_goal_distance": 36.253131768002255,
+        "visited_cells": 28,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 251
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 879
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 1075
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 9.83148148148156,
+        "ticks": 1180,
+        "tick_delta": 4,
+        "decisions": 99,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 33.08754909942324,
+        "min_goal_distance": 33.08754909942324,
+        "visited_cells": 28,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 359
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 879
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 1075
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 11.516037736808588,
+        "ticks": 1382,
+        "tick_delta": 2,
+        "decisions": 116,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 35.20287968660875,
+        "min_goal_distance": 35.20287968660875,
+        "visited_cells": 30,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 467
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 1095
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-1",
+            "tick": 1291
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 14.21603774384902,
+        "ticks": 1706,
+        "tick_delta": 2,
+        "decisions": 143,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 44.06206601932687,
+        "min_goal_distance": 44.06206601932687,
+        "visited_cells": 30,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 575
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 1311
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-1",
+            "tick": 1615
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 9.723146447881224,
+        "ticks": 1167,
+        "tick_delta": 3,
+        "decisions": 98,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 5.0,
+        "goal_distance": 650.5385965787443,
+        "min_goal_distance": 141.4327112512806,
+        "visited_cells": 30,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 359
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 771
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 967
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": 0.05
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 11.516037736808588,
+        "ticks": 1382,
+        "tick_delta": 2,
+        "decisions": 116,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 34.856210231256156,
+        "min_goal_distance": 34.856210231256156,
+        "visited_cells": 29,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 467
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 1095
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 1291
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 10.61603920272272,
+        "ticks": 1274,
+        "tick_delta": 2,
+        "decisions": 107,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 36.71511901111035,
+        "min_goal_distance": 36.71511901111035,
+        "visited_cells": 35,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 467
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 879
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 1075
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 19.616039226162815,
+        "ticks": 2354,
+        "tick_delta": 2,
+        "decisions": 197,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 36.71511901111035,
+        "min_goal_distance": 36.71511901111035,
+        "visited_cells": 33,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 683
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 1959
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 2263
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 8.816037729768155,
+        "ticks": 1058,
+        "tick_delta": 2,
+        "decisions": 89,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 32.004809688449924,
+        "min_goal_distance": 32.004809688449924,
+        "visited_cells": 29,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 359
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 771
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 967
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 15.116037746195834,
+        "ticks": 1814,
+        "tick_delta": 2,
+        "decisions": 152,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 40.78364760526125,
+        "min_goal_distance": 40.78364760526125,
+        "visited_cells": 31,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 899
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 1527
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 1723
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 13.449999999999882,
+        "ticks": 1615,
+        "tick_delta": 7,
+        "decisions": 135,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 35.80950695531585,
+        "min_goal_distance": 35.80950695531585,
+        "visited_cells": 30,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 575
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 1311
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 1507
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 9.716037732114966,
+        "ticks": 1166,
+        "tick_delta": 2,
+        "decisions": 98,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 32.03942780119332,
+        "min_goal_distance": 32.03942780119332,
+        "visited_cells": 32,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 251
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 771
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 967
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 9.958845478723804,
+        "ticks": 1196,
+        "tick_delta": 8,
+        "decisions": 100,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 10.0,
+        "episode_return": -15.0,
+        "goal_distance": 723.5357453763521,
+        "min_goal_distance": 443.1712984761662,
+        "visited_cells": 26,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-middle"
+        ],
+        "armed": [
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 683
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.15
+      },
+      {
+        "stage": 2,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 9.058845476380842,
+        "ticks": 1088,
+        "tick_delta": 8,
+        "decisions": 91,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 10.0,
+        "episode_return": -15.0,
+        "goal_distance": 757.2089082416303,
+        "min_goal_distance": 447.71258046245606,
+        "visited_cells": 25,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-middle"
+        ],
+        "armed": [
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 575
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.15
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 7.916037727421345,
+        "ticks": 950,
+        "tick_delta": 2,
+        "decisions": 80,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 32.2448423793049,
+        "min_goal_distance": 32.2448423793049,
+        "visited_cells": 30,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 359
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 663
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 859
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 9.918108426377431,
+        "ticks": 1191,
+        "tick_delta": 3,
+        "decisions": 100,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 20.0,
+        "episode_return": -5.0,
+        "goal_distance": 630.3656690512892,
+        "min_goal_distance": 162.4951209511361,
+        "visited_cells": 30,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 359
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 879
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "learning_return": -0.05
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 13.316039209753825,
+        "ticks": 1598,
+        "tick_delta": 2,
+        "decisions": 134,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 36.71511901111035,
+        "min_goal_distance": 36.71511901111035,
+        "visited_cells": 34,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 683
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 1203
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 1399
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 8.816037729768155,
+        "ticks": 1058,
+        "tick_delta": 2,
+        "decisions": 89,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 37.92811449557581,
+        "min_goal_distance": 37.92811449557581,
+        "visited_cells": 32,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-1",
+            "tick": 467
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 771
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 967
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 8.816039198035318,
+        "ticks": 1058,
+        "tick_delta": 2,
+        "decisions": 89,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 36.71511901111035,
+        "min_goal_distance": 32.640664087150085,
+        "visited_cells": 33,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 359
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 663
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 859
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      {
+        "stage": 2,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 8.816037729768155,
+        "ticks": 1058,
+        "tick_delta": 2,
+        "decisions": 89,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 42.29408023438926,
+        "min_goal_distance": 42.29408023438926,
+        "visited_cells": 31,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "armed": [
+          "spring-to-finish",
+          "spring-to-middle",
+          "spring-to-upper"
+        ],
+        "milestone_events": [
+          {
+            "id": "spring-to-middle",
+            "target": "middle-0",
+            "tick": 467
+          },
+          {
+            "id": "spring-to-upper",
+            "target": "upper-0",
+            "tick": 771
+          },
+          {
+            "id": "spring-to-finish",
+            "target": "finish-0",
+            "tick": 967
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      }
+    ]
+  }
+}

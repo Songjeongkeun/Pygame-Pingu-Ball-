@@ -1,0 +1,1525 @@
+{
+  "algorithm": "a2c",
+  "stage": 3,
+  "seed": 0,
+  "checkpoint": "D:\\바탕 화면\\파이썬게임\\Pygame-Pingu-Ball-\\output\\rl_user_reward_20261030\\results\\experts\\a2c\\seed_0\\stage_03\\best.zip",
+  "checkpoint_sha256": "06d76309143936eb5b501bde28afecc9aeb53d68572a61ec6351af643bda515e",
+  "validation": {
+    "protocol": "sampled_policy",
+    "seed": 3510000,
+    "maps": [
+      {
+        "stage": 3,
+        "episodes": 50,
+        "successes": 0,
+        "success_rate": 0.0,
+        "mean_success_seconds": null,
+        "mean_return": -25.0,
+        "failures": {
+          "가시에 닿았어요": 50
+        },
+        "greedy": {
+          "stage": 3,
+          "success": false,
+          "is_success": false,
+          "reason": "얼음 바다로 떨어졌어요",
+          "seconds": 2.2374414571219368,
+          "ticks": 269,
+          "tick_delta": 5,
+          "decisions": 45,
+          "base_return": -25.0,
+          "shaping_return": 0.0,
+          "bonus_return": 0.0,
+          "episode_return": -25.0,
+          "goal_distance": 1543.5375563463622,
+          "min_goal_distance": 1290.6172941658576,
+          "visited_cells": 23,
+          "pickups": 0,
+          "power_uses": 0,
+          "milestones": [],
+          "armed": [],
+          "milestone_events": [],
+          "reward_events": [
+            {
+              "kind": "failure",
+              "points": -25.0
+            }
+          ],
+          "learning_return": -0.25
+        },
+        "raw": [
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 1.769647129880945,
+            "ticks": 213,
+            "tick_delta": 3,
+            "decisions": 36,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1282.9898629048441,
+            "min_goal_distance": 1282.9898629048441,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 2.669665279619284,
+            "ticks": 321,
+            "tick_delta": 3,
+            "decisions": 54,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1259.621320576057,
+            "min_goal_distance": 1259.621320576057,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.427483300563052,
+            "ticks": 532,
+            "tick_delta": 4,
+            "decisions": 89,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1301.0441936159323,
+            "min_goal_distance": 1220.3870880007903,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 2.5887047264327907,
+            "ticks": 311,
+            "tick_delta": 5,
+            "decisions": 52,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1341.0124290236056,
+            "min_goal_distance": 1271.4229439728813,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 5.346980767103879,
+            "ticks": 642,
+            "tick_delta": 6,
+            "decisions": 107,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1294.7552662336568,
+            "min_goal_distance": 1229.313424869068,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 5.287732102064317,
+            "ticks": 635,
+            "tick_delta": 5,
+            "decisions": 106,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1364.189360507705,
+            "min_goal_distance": 1276.3348191148668,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.469276706637879,
+            "ticks": 537,
+            "tick_delta": 3,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1253.5284056585754,
+            "min_goal_distance": 1253.5284056585754,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 5.369384873661951,
+            "ticks": 645,
+            "tick_delta": 3,
+            "decisions": 108,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1222.3355171825656,
+            "min_goal_distance": 1222.3355171825656,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.470258670049792,
+            "ticks": 537,
+            "tick_delta": 3,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1271.1759062450078,
+            "min_goal_distance": 1271.1759062450078,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 5.288058953172679,
+            "ticks": 635,
+            "tick_delta": 5,
+            "decisions": 106,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1349.1027648861893,
+            "min_goal_distance": 1251.719538442641,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 7.1693375667173,
+            "ticks": 861,
+            "tick_delta": 3,
+            "decisions": 144,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1253.265332213988,
+            "min_goal_distance": 1219.70132474116,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 6.269151471293573,
+            "ticks": 753,
+            "tick_delta": 3,
+            "decisions": 126,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1284.9789365596555,
+            "min_goal_distance": 1251.028243749653,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.5697339900898863,
+            "ticks": 429,
+            "tick_delta": 3,
+            "decisions": 72,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1280.3204677290403,
+            "min_goal_distance": 1220.7300174421096,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 15.269428363475699,
+            "ticks": 1833,
+            "tick_delta": 3,
+            "decisions": 306,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1248.6864535159561,
+            "min_goal_distance": 1225.5343258873036,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.469396543772249,
+            "ticks": 537,
+            "tick_delta": 3,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1232.5336474878761,
+            "min_goal_distance": 1232.5336474878761,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.469334971679469,
+            "ticks": 537,
+            "tick_delta": 3,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1248.3647299403397,
+            "min_goal_distance": 1237.9161158390234,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 6.269266595399957,
+            "ticks": 753,
+            "tick_delta": 3,
+            "decisions": 126,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1274.0998949258465,
+            "min_goal_distance": 1235.5054418486654,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 2.6691456170075023,
+            "ticks": 321,
+            "tick_delta": 3,
+            "decisions": 54,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1285.0180292719715,
+            "min_goal_distance": 1268.635832656352,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.469044370916505,
+            "ticks": 537,
+            "tick_delta": 3,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1275.5356393865186,
+            "min_goal_distance": 1244.1217691691766,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.5691757432429467,
+            "ticks": 429,
+            "tick_delta": 3,
+            "decisions": 72,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1284.8401070939294,
+            "min_goal_distance": 1284.8401070939294,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.469777272673056,
+            "ticks": 537,
+            "tick_delta": 3,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1280.4237103327062,
+            "min_goal_distance": 1280.4237103327062,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 6.269170903702315,
+            "ticks": 753,
+            "tick_delta": 3,
+            "decisions": 126,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1268.1692502183496,
+            "min_goal_distance": 1243.4317732600446,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 5.369171134308368,
+            "ticks": 645,
+            "tick_delta": 3,
+            "decisions": 108,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1274.591922989799,
+            "min_goal_distance": 1251.719538442641,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 20.60513707498833,
+            "ticks": 2473,
+            "tick_delta": 1,
+            "decisions": 413,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1308.2642572705095,
+            "min_goal_distance": 1198.1655549019315,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 14.36923761194568,
+            "ticks": 1725,
+            "tick_delta": 3,
+            "decisions": 288,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1263.9701053245446,
+            "min_goal_distance": 1221.0729803762435,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 20.6692666330727,
+            "ticks": 2481,
+            "tick_delta": 3,
+            "decisions": 414,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1274.0998938589373,
+            "min_goal_distance": 1182.5241781346765,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.5700291746888118,
+            "ticks": 429,
+            "tick_delta": 3,
+            "decisions": 72,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1250.1525861347268,
+            "min_goal_distance": 1250.1525861347268,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.387636443485881,
+            "ticks": 527,
+            "tick_delta": 5,
+            "decisions": 88,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1347.5700600137943,
+            "min_goal_distance": 1261.7563508869282,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 1.6886296546720596,
+            "ticks": 203,
+            "tick_delta": 5,
+            "decisions": 34,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1320.8582184995669,
+            "min_goal_distance": 1290.5470105587365,
+            "visited_cells": 9,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.389706235569236,
+            "ticks": 527,
+            "tick_delta": 5,
+            "decisions": 88,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1318.8974132176854,
+            "min_goal_distance": 1284.338980495173,
+            "visited_cells": 9,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.569435822558716,
+            "ticks": 429,
+            "tick_delta": 3,
+            "decisions": 72,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1273.4171530974756,
+            "min_goal_distance": 1271.4698432943437,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 13.469029761571758,
+            "ticks": 1617,
+            "tick_delta": 3,
+            "decisions": 270,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1277.3903920963578,
+            "min_goal_distance": 1215.5894040416397,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 2.6690128790162952,
+            "ticks": 321,
+            "tick_delta": 3,
+            "decisions": 54,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1277.1409707886714,
+            "min_goal_distance": 1247.918869475805,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 2.6698563057889584,
+            "ticks": 321,
+            "tick_delta": 3,
+            "decisions": 54,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1272.1318844965776,
+            "min_goal_distance": 1246.5376911093326,
+            "visited_cells": 13,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.469337559689868,
+            "ticks": 537,
+            "tick_delta": 3,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1284.0683101338982,
+            "min_goal_distance": 1225.1909577438716,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 2.6081064389086683,
+            "ticks": 313,
+            "tick_delta": 1,
+            "decisions": 53,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1307.306636593482,
+            "min_goal_distance": 1290.6172941658576,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 4.451987709410035,
+            "ticks": 535,
+            "tick_delta": 1,
+            "decisions": 90,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1293.1417121913573,
+            "min_goal_distance": 1289.9730247814964,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.569336278654814,
+            "ticks": 429,
+            "tick_delta": 3,
+            "decisions": 72,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1268.8883265956122,
+            "min_goal_distance": 1255.8697547399534,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 1.7689984495465403,
+            "ticks": 213,
+            "tick_delta": 3,
+            "decisions": 36,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1276.7340688429088,
+            "min_goal_distance": 1244.4668117816407,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.536938057126961,
+            "ticks": 425,
+            "tick_delta": 5,
+            "decisions": 71,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1297.9948505198795,
+            "min_goal_distance": 1289.9730247814964,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 14.3690756431612,
+            "ticks": 1725,
+            "tick_delta": 3,
+            "decisions": 288,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1275.2432205463085,
+            "min_goal_distance": 1215.5894025460666,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.5692871189832296,
+            "ticks": 429,
+            "tick_delta": 3,
+            "decisions": 72,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1237.9304039649821,
+            "min_goal_distance": 1237.9304039649821,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 16.169463367853044,
+            "ticks": 1941,
+            "tick_delta": 3,
+            "decisions": 324,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1259.0551597421536,
+            "min_goal_distance": 1213.192899797888,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 18.86942390914235,
+            "ticks": 2265,
+            "tick_delta": 3,
+            "decisions": 378,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1283.7323163758226,
+            "min_goal_distance": 1189.3159370601477,
+            "visited_cells": 15,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 2.5875618207506874,
+            "ticks": 311,
+            "tick_delta": 5,
+            "decisions": 52,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1326.7466915315963,
+            "min_goal_distance": 1239.6389327451332,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 5.339020326237813,
+            "ticks": 641,
+            "tick_delta": 5,
+            "decisions": 107,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1297.3228508167545,
+            "min_goal_distance": 1257.6002436999256,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.4879972384070097,
+            "ticks": 419,
+            "tick_delta": 5,
+            "decisions": 70,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1359.1071816162341,
+            "min_goal_distance": 1290.6172941658576,
+            "visited_cells": 10,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 6.270098282794168,
+            "ticks": 753,
+            "tick_delta": 3,
+            "decisions": 126,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1281.8103931402848,
+            "min_goal_distance": 1281.8103931402848,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 8.969558197084352,
+            "ticks": 1077,
+            "tick_delta": 3,
+            "decisions": 180,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1238.8177445549688,
+            "min_goal_distance": 1238.8177445549688,
+            "visited_cells": 11,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          },
+          {
+            "stage": 3,
+            "success": false,
+            "is_success": false,
+            "reason": "가시에 닿았어요",
+            "seconds": 3.569179605977198,
+            "ticks": 429,
+            "tick_delta": 3,
+            "decisions": 72,
+            "base_return": -25.0,
+            "shaping_return": 0.0,
+            "bonus_return": 0.0,
+            "episode_return": -25.0,
+            "goal_distance": 1284.8216348644978,
+            "min_goal_distance": 1249.6460058394016,
+            "visited_cells": 12,
+            "pickups": 0,
+            "power_uses": 0,
+            "milestones": [],
+            "armed": [],
+            "milestone_events": [],
+            "reward_events": [
+              {
+                "kind": "failure",
+                "points": -25.0
+              }
+            ],
+            "learning_return": -0.25
+          }
+        ]
+      }
+    ],
+    "mean_success_rate": 0.0,
+    "min_success_rate": 0.0
+  },
+  "final_test_read": false,
+  "sources": {
+    "rl/five_env.py": "74439e9edf7a6e2a360017cc653c4131f5f5cea5409def7d9ff9e72b58c32124",
+    "rl/five_models.py": "675dff756c09d92812fd2e3b9caecf5aedfed9ebc06a8ab81e526f2bccc4a4b4",
+    "rl/five_train.py": "dbe5eb91d749d97f313eb6731ba80e5de45a5e671a612f440c2e6c1aebd73e4c",
+    "rl/all_tutorial_env.py": "7af28d9c4c5c63ae3e54ec2e73cdb3f7e4c5b51a369df12177e72df570b9ba91",
+    "rl/map_input_env.py": "603d39374341225bb4c06a5931ad5f766f83bc1e6850749df0506717d7bca146",
+    "pingu_ball/engine.py": "3ba8d58df0dd9124ee38b962c5329a42abbf8d131d46e1e523792795fef766d1",
+    "pingu_ball/special_lab.py": "233185284024ba10035c75e260627279d4557e64e1d987ba52f7877ab52bd352",
+    "pingu_ball/specials.py": "f73ee464e13804a5664b2728047bba7ce0a289dc96c5a9d1fefe4e8b1d1c75cb",
+    "pingu_ball/playfield.py": "576cd4e2b5e0d68235702777c243e1ff4c921b0861d6a0aefe75181780ec1794",
+    "pingu_ball/config.py": "2704d0df8c0ceb3a22698cb276b9590d9138e387c33f40a36b164683d402cdf6",
+    "pingu_ball/geometry.py": "f9e6b225951e03e1a2b4f4292ef85fc442fb1f8fe9811c63b395906c502cd1b9",
+    "rl/milestone_env.py": "43d022e143179c57e7953d98fb89271b1d30cd6aeb4d800ee4cca7960df16c3e",
+    "rl/milestone_models.py": "abceb7864eabff1b6ac57a80fd6392bb594508c92fbabd32856cef28210bc0fd",
+    "rl/milestone_train.py": "5295995256cf5d0d6b6a91a68516f9debaae566cfb257809e725463eb4055f4d",
+    "rl/five_report.py": "a813f9a2d1ec0dc82dec239e0b4c7c34415bac4acfe57068328cd5c38c2d4925"
+  }
+}

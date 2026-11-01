@@ -1,0 +1,3296 @@
+{
+  "campaign": "document-stages-v1",
+  "source": "스테이지.docx",
+  "source_sha256": "b7366d1a7038b86431739c6f45987f749f20124c2e657cd7f4cdca433a010a4a",
+  "stage_count": 12,
+  "maps": [
+    {
+      "number": 1,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 0,
+          "r": 1,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "kind": "spike"
+        },
+        {
+          "c": 5,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 9,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 10,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 12,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 11,
+          "kind": "launcher_right"
+        },
+        {
+          "c": 15,
+          "r": 8,
+          "kind": "launcher_left"
+        }
+      ],
+      "markers": [],
+      "rails": [],
+      "stars": [],
+      "items": [],
+      "spawn": [
+        160.0,
+        210
+      ],
+      "goal": [
+        1408,
+        708,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 26,
+        "spike": 4,
+        "launcher_right": 1,
+        "launcher_left": 1
+      },
+      "reference": "assets/stages/references/stage_01.jpeg",
+      "reference_sha256": "acfe3449865869e4750446ee908f96a0129d1c84f0e4dc4b1816b92e05593853"
+    },
+    {
+      "number": 2,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 2,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 11,
+          "kind": "spike"
+        },
+        {
+          "c": 6,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 12,
+          "kind": "spike"
+        },
+        {
+          "c": 7,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 11,
+          "kind": "breakable"
+        },
+        {
+          "c": 11,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 10,
+          "kind": "breakable"
+        },
+        {
+          "c": 14,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 9,
+          "kind": "breakable"
+        },
+        {
+          "c": 22,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 8,
+          "kind": "spring"
+        },
+        {
+          "c": 21,
+          "r": 6,
+          "kind": "spring"
+        },
+        {
+          "c": 18,
+          "r": 5,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 3,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "kind": "normal"
+        }
+      ],
+      "markers": [],
+      "rails": [],
+      "stars": [],
+      "items": [],
+      "spawn": [
+        224.0,
+        530
+      ],
+      "goal": [
+        256,
+        324,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 17,
+        "spike": 2,
+        "breakable": 3,
+        "spring": 2,
+        "launcher_left": 1
+      },
+      "reference": "assets/stages/references/stage_02.jpeg",
+      "reference_sha256": "6815a03c3123c738eb5f887ad4ff51caa63911b76d8d3b3a847e998e554be64b"
+    },
+    {
+      "number": 3,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 3,
+          "r": 1,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 2,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 5,
+          "kind": "spike"
+        },
+        {
+          "c": 8,
+          "r": 5,
+          "kind": "spike"
+        },
+        {
+          "c": 9,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 10,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 8.575,
+          "r": 8,
+          "kind": "moving"
+        },
+        {
+          "c": 9.575,
+          "r": 8,
+          "kind": "moving"
+        },
+        {
+          "c": 11,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 10,
+          "kind": "spike"
+        },
+        {
+          "c": 12,
+          "r": 10,
+          "kind": "spike"
+        },
+        {
+          "c": 13,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 9,
+          "kind": "spike"
+        },
+        {
+          "c": 14,
+          "r": 9,
+          "kind": "spike"
+        },
+        {
+          "c": 15,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 8,
+          "kind": "spike"
+        },
+        {
+          "c": 16,
+          "r": 8,
+          "kind": "spike"
+        },
+        {
+          "c": 17,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 18,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 17,
+          "r": 7,
+          "kind": "spike"
+        },
+        {
+          "c": 18,
+          "r": 7,
+          "kind": "spike"
+        },
+        {
+          "c": 19,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 20,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 22,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 10,
+          "kind": "spring"
+        },
+        {
+          "c": 20,
+          "r": 12,
+          "kind": "spring"
+        },
+        {
+          "c": 17,
+          "r": 14,
+          "kind": "spring"
+        },
+        {
+          "c": 11,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 13,
+          "kind": "normal"
+        }
+      ],
+      "markers": [
+        [
+          4,
+          8
+        ]
+      ],
+      "rails": [
+        [
+          [
+            4.5,
+            8.5
+          ],
+          [
+            9.075,
+            8.5
+          ]
+        ]
+      ],
+      "stars": [],
+      "items": [
+        [
+          2.5,
+          9.5,
+          "forward"
+        ]
+      ],
+      "spawn": [
+        352.0,
+        146
+      ],
+      "goal": [
+        1408,
+        388,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 34,
+        "spike": 12,
+        "moving": 2,
+        "spring": 3
+      },
+      "reference": "assets/stages/references/stage_03.jpeg",
+      "reference_sha256": "1893a5b793cd313b4588a4cc440851c52b77aee04bd51b173a28383b0ba16b25"
+    },
+    {
+      "number": 4,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 1,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 7.475,
+          "r": 5,
+          "kind": "moving"
+        },
+        {
+          "c": 8.475,
+          "r": 5,
+          "kind": "moving"
+        },
+        {
+          "c": 19,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 21,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 7,
+          "kind": "spike"
+        },
+        {
+          "c": 6,
+          "r": 7,
+          "kind": "spike"
+        },
+        {
+          "c": 7,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 8,
+          "kind": "spike"
+        },
+        {
+          "c": 8,
+          "r": 8,
+          "kind": "spike"
+        },
+        {
+          "c": 9,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 10,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 9,
+          "kind": "spike"
+        },
+        {
+          "c": 10,
+          "r": 9,
+          "kind": "spike"
+        },
+        {
+          "c": 11,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 10,
+          "kind": "spike"
+        },
+        {
+          "c": 12,
+          "r": 10,
+          "kind": "spike"
+        },
+        {
+          "c": 13,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 11,
+          "kind": "spike"
+        },
+        {
+          "c": 14,
+          "r": 11,
+          "kind": "spike"
+        },
+        {
+          "c": 15,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 9,
+          "kind": "spring"
+        },
+        {
+          "c": 21,
+          "r": 12,
+          "kind": "spring"
+        },
+        {
+          "c": 6,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 12,
+          "kind": "breakable"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "kind": "spike"
+        },
+        {
+          "c": 3,
+          "r": 13,
+          "kind": "spike"
+        }
+      ],
+      "markers": [
+        [
+          15,
+          5
+        ]
+      ],
+      "rails": [
+        [
+          [
+            7.975,
+            5.5
+          ],
+          [
+            15.5,
+            5.5
+          ]
+        ]
+      ],
+      "stars": [],
+      "items": [
+        [
+          20.5,
+          4.5,
+          "forward"
+        ]
+      ],
+      "spawn": [
+        1504.0,
+        722
+      ],
+      "goal": [
+        448,
+        772,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 32,
+        "moving": 2,
+        "spike": 12,
+        "spring": 2,
+        "breakable": 1
+      },
+      "reference": "assets/stages/references/stage_04.jpeg",
+      "reference_sha256": "bd5ba4148b5b25f641ef4833efc6ce5ae69f01113b9d509e16f43b07a5dd8126"
+    },
+    {
+      "number": 5,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 2,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 10,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 6,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 9,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 10,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 11,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 12,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 13,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 14,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 15,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 7,
+          "kind": "spring"
+        },
+        {
+          "c": 18,
+          "r": 10,
+          "kind": "spring"
+        },
+        {
+          "c": 16,
+          "r": 13,
+          "kind": "spring"
+        },
+        {
+          "c": 17,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 18,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 4,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 22,
+          "r": 6,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 22,
+          "r": 8,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 22,
+          "r": 10,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 18,
+          "r": 4,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 19,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 3,
+          "kind": "spike"
+        },
+        {
+          "c": 20,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 5,
+          "kind": "spike"
+        },
+        {
+          "c": 19,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 6,
+          "kind": "spike"
+        },
+        {
+          "c": 20,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 7,
+          "kind": "spike"
+        },
+        {
+          "c": 19,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 8,
+          "kind": "spike"
+        },
+        {
+          "c": 20,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 9,
+          "kind": "spike"
+        },
+        {
+          "c": 19,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 10,
+          "kind": "spike"
+        },
+        {
+          "c": 20,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 11,
+          "kind": "spike"
+        },
+        {
+          "c": 0,
+          "r": 8,
+          "kind": "breakable"
+        },
+        {
+          "c": 0,
+          "r": 11,
+          "kind": "breakable"
+        },
+        {
+          "c": 21,
+          "r": 14,
+          "kind": "breakable"
+        },
+        {
+          "c": 4,
+          "r": 14,
+          "kind": "timed"
+        },
+        {
+          "c": 6,
+          "r": 13,
+          "kind": "timed"
+        },
+        {
+          "c": 8,
+          "r": 12,
+          "kind": "timed_off"
+        },
+        {
+          "c": 10,
+          "r": 11,
+          "kind": "timed_off"
+        },
+        {
+          "c": 12,
+          "r": 10,
+          "kind": "normal"
+        }
+      ],
+      "markers": [],
+      "rails": [],
+      "stars": [],
+      "items": [],
+      "spawn": [
+        1504.0,
+        82
+      ],
+      "goal": [
+        768,
+        580,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 39,
+        "spike": 18,
+        "spring": 3,
+        "launcher_left": 5,
+        "breakable": 3,
+        "timed": 2,
+        "timed_off": 2
+      },
+      "reference": "assets/stages/references/stage_05.jpeg",
+      "reference_sha256": "5dc030de23b508f568635fc082f076f569f1a9ede9c01f7114d1a2556a783e01"
+    },
+    {
+      "number": 6,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 0,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 2,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "kind": "breakable"
+        },
+        {
+          "c": 5,
+          "r": 8,
+          "kind": "breakable"
+        },
+        {
+          "c": 2,
+          "r": 12,
+          "kind": "breakable"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "kind": "sun"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 5,
+          "r": 9,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 12,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 12,
+          "kind": "sun"
+        },
+        {
+          "c": 10,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 21,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 6,
+          "kind": "launcher_right"
+        },
+        {
+          "c": 5,
+          "r": 13,
+          "kind": "launcher_right"
+        },
+        {
+          "c": 8,
+          "r": 10,
+          "kind": "spring"
+        },
+        {
+          "c": 23,
+          "r": 13,
+          "kind": "spring"
+        },
+        {
+          "c": 12.15,
+          "r": 10,
+          "kind": "moving"
+        },
+        {
+          "c": 13.15,
+          "r": 10,
+          "kind": "moving"
+        }
+      ],
+      "markers": [
+        [
+          9,
+          10
+        ],
+        [
+          23,
+          10
+        ]
+      ],
+      "rails": [
+        [
+          [
+            9.5,
+            10.5
+          ],
+          [
+            23.5,
+            10.5
+          ]
+        ]
+      ],
+      "stars": [],
+      "items": [],
+      "spawn": [
+        91.2,
+        210
+      ],
+      "goal": [
+        1408,
+        388,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 14,
+        "breakable": 3,
+        "sun": 8,
+        "launcher_right": 2,
+        "spring": 2,
+        "moving": 2
+      },
+      "reference": "assets/stages/references/stage_06.jpeg",
+      "reference_sha256": "583a3a45d4dc1a4da8954851aaa36544d8dfe4a0a60ee66ff4ea187a246ce734"
+    },
+    {
+      "number": 7,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 0,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 14,
+          "kind": "spring"
+        },
+        {
+          "c": 4,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 14,
+          "kind": "spring"
+        },
+        {
+          "c": 8,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 10,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 14,
+          "kind": "spring"
+        },
+        {
+          "c": 12,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 14,
+          "kind": "spring"
+        },
+        {
+          "c": 16,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 5,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 6,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 7,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 8,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 9,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 10,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 11,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 12,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 13,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 14,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 15,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 5,
+          "r": 8,
+          "kind": "spring"
+        },
+        {
+          "c": 7,
+          "r": 8,
+          "kind": "breakable"
+        },
+        {
+          "c": 9,
+          "r": 8,
+          "kind": "breakable"
+        },
+        {
+          "c": 11,
+          "r": 8,
+          "kind": "timed"
+        },
+        {
+          "c": 14,
+          "r": 8,
+          "kind": "timed_off"
+        },
+        {
+          "c": 17,
+          "r": 8,
+          "kind": "timed_off"
+        },
+        {
+          "c": 20,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "kind": "spring"
+        },
+        {
+          "c": 12.8,
+          "r": 5,
+          "kind": "moving"
+        },
+        {
+          "c": 13.8,
+          "r": 5,
+          "kind": "moving"
+        },
+        {
+          "c": 22,
+          "r": 4,
+          "kind": "normal"
+        }
+      ],
+      "markers": [
+        [
+          20,
+          5
+        ],
+        [
+          22,
+          7
+        ]
+      ],
+      "rails": [
+        [
+          [
+            13.3,
+            5.5
+          ],
+          [
+            20.5,
+            5.5
+          ]
+        ]
+      ],
+      "stars": [],
+      "items": [
+        [
+          16.5,
+          13.5,
+          "forward"
+        ],
+        [
+          2.5,
+          4.5,
+          "up"
+        ]
+      ],
+      "spawn": [
+        91.2,
+        786
+      ],
+      "goal": [
+        1408,
+        196,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 19,
+        "spring": 6,
+        "sun": 13,
+        "breakable": 2,
+        "timed": 1,
+        "timed_off": 2,
+        "moving": 2
+      },
+      "reference": "assets/stages/references/stage_07.jpeg",
+      "reference_sha256": "276155f377b4e016a159d994c60b78ea7e6a85b0b72ae40dfa3bc61d52c83b29"
+    },
+    {
+      "number": 8,
+      "width": 2240,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 0,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 13,
+          "kind": "moving"
+        },
+        {
+          "c": 1,
+          "r": 12,
+          "kind": "spring"
+        },
+        {
+          "c": 12,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 17,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 18,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 17,
+          "r": 13,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 21,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 25,
+          "r": 13,
+          "kind": "breakable"
+        },
+        {
+          "c": 28,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 29,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 9,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 10,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 11,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 12,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 22,
+          "r": 4,
+          "kind": "breakable"
+        },
+        {
+          "c": 25,
+          "r": 4,
+          "kind": "breakable"
+        },
+        {
+          "c": 19,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 28,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 21,
+          "r": 6,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 2,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "kind": "sun"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 30,
+          "r": 6,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 9,
+          "kind": "spring"
+        },
+        {
+          "c": 33,
+          "r": 6,
+          "kind": "spring"
+        },
+        {
+          "c": 31,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 30,
+          "r": 9.585201793721973,
+          "kind": "moving_vertical"
+        }
+      ],
+      "markers": [
+        [
+          30,
+          3
+        ],
+        [
+          30,
+          14
+        ]
+      ],
+      "rails": [
+        [
+          [
+            30.5,
+            3.5
+          ],
+          [
+            30.5,
+            14.5
+          ]
+        ]
+      ],
+      "stars": [],
+      "items": [
+        [
+          31.5,
+          8.5,
+          "up"
+        ]
+      ],
+      "spawn": [
+        1139.2,
+        658
+      ],
+      "goal": [
+        64,
+        388,
+        64,
+        64
+      ],
+      "counts": {
+        "normal": 15,
+        "moving": 1,
+        "spring": 3,
+        "launcher_left": 2,
+        "breakable": 11,
+        "sun": 9,
+        "moving_vertical": 1
+      },
+      "reference": "assets/stages/references/stage_08.jpeg",
+      "reference_sha256": "f744555cbae48e31d63400a87ce7fa16a79193e02f97b487e307a495ccaa05e0"
+    },
+    {
+      "number": 9,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 1,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 6,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 13,
+          "kind": "spike"
+        },
+        {
+          "c": 6,
+          "r": 13,
+          "kind": "spike"
+        },
+        {
+          "c": 7,
+          "r": 13,
+          "kind": "spike"
+        },
+        {
+          "c": 9,
+          "r": 13,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 12,
+          "kind": "spring"
+        },
+        {
+          "c": 23,
+          "r": 9,
+          "kind": "spring"
+        },
+        {
+          "c": 13,
+          "r": 9,
+          "kind": "breakable"
+        },
+        {
+          "c": 15,
+          "r": 9,
+          "kind": "breakable"
+        },
+        {
+          "c": 17,
+          "r": 9,
+          "kind": "breakable"
+        },
+        {
+          "c": 20,
+          "r": 9,
+          "kind": "breakable"
+        },
+        {
+          "c": 21,
+          "r": 6,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 13,
+          "r": 4,
+          "kind": "icicle"
+        },
+        {
+          "c": 15,
+          "r": 3.1,
+          "kind": "icicle_forming"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "kind": "normal"
+        }
+      ],
+      "markers": [],
+      "rails": [],
+      "stars": [],
+      "items": [
+        [
+          1.5,
+          12.5,
+          "up"
+        ]
+      ],
+      "goal": [
+        64,
+        388,
+        64,
+        64
+      ],
+      "spawn": [
+        224.0,
+        722
+      ],
+      "reference": "assets/stages/references/stage_09.jpeg",
+      "reference_sha256": "8c3c925d8e625dd98af0367f6b3e57aaf464be05c3e117b860c7d26a5257960a"
+    },
+    {
+      "number": 10,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 0,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 0,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 5,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 5,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 6,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 8,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 10,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 12,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 13,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 15,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 17,
+          "r": 7,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 3.55,
+          "kind": "icicle"
+        },
+        {
+          "c": 11,
+          "r": 3.1,
+          "kind": "icicle_forming"
+        },
+        {
+          "c": 12,
+          "r": 3.1,
+          "kind": "icicle_forming"
+        },
+        {
+          "c": 7,
+          "r": 8.6,
+          "kind": "icicle"
+        },
+        {
+          "c": 7,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 17,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 18,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 19,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 21,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 22,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 23,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 24,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 0,
+          "r": 13,
+          "kind": "launcher_right"
+        },
+        {
+          "c": 1,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 21,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 14,
+          "kind": "normal"
+        }
+      ],
+      "markers": [],
+      "rails": [],
+      "stars": [],
+      "items": [
+        [
+          7.5,
+          10.5,
+          "forward"
+        ]
+      ],
+      "goal": [
+        1408,
+        836,
+        64,
+        64
+      ],
+      "spawn": [
+        224.0,
+        274
+      ],
+      "reference": "assets/stages/references/stage_10.jpeg",
+      "reference_sha256": "50b907b490cd2e5536a095f6b15339985b0eb152d0150d66ef230d359f913e97"
+    },
+    {
+      "number": 11,
+      "width": 1600,
+      "height": 960,
+      "tiles": [
+        {
+          "c": 0,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 3,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 5,
+          "kind": "breakable"
+        },
+        {
+          "c": 5,
+          "r": 6,
+          "kind": "breakable"
+        },
+        {
+          "c": 5,
+          "r": 7,
+          "kind": "breakable"
+        },
+        {
+          "c": 5,
+          "r": 8,
+          "kind": "breakable"
+        },
+        {
+          "c": 5,
+          "r": 9,
+          "kind": "breakable"
+        },
+        {
+          "c": 1,
+          "r": 6,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 9,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 12,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 6,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 7,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 8,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 9,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 12,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 12,
+          "kind": "spring"
+        },
+        {
+          "c": 5,
+          "r": 13,
+          "kind": "breakable"
+        },
+        {
+          "c": 2,
+          "r": 13,
+          "kind": "launcher_right"
+        },
+        {
+          "c": 6,
+          "r": 9,
+          "kind": "spring"
+        },
+        {
+          "c": 7,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 9,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 10,
+          "r": 12,
+          "kind": "spring"
+        },
+        {
+          "c": 11,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 12,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 13,
+          "r": 12,
+          "kind": "breakable"
+        },
+        {
+          "c": 13,
+          "r": 13,
+          "kind": "breakable"
+        },
+        {
+          "c": 13,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 18,
+          "r": 12,
+          "kind": "breakable"
+        },
+        {
+          "c": 18,
+          "r": 13,
+          "kind": "breakable"
+        },
+        {
+          "c": 18,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 14,
+          "kind": "sun"
+        },
+        {
+          "c": 20,
+          "r": 14,
+          "kind": "sun"
+        },
+        {
+          "c": 21,
+          "r": 14,
+          "kind": "sun"
+        },
+        {
+          "c": 22,
+          "r": 14,
+          "kind": "sun"
+        },
+        {
+          "c": 23,
+          "r": 14,
+          "kind": "normal"
+        },
+        {
+          "c": 19,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 12,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 11,
+          "kind": "normal"
+        },
+        {
+          "c": 21,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 10,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 9,
+          "kind": "normal"
+        },
+        {
+          "c": 23,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 8,
+          "kind": "normal"
+        },
+        {
+          "c": 24,
+          "r": 9,
+          "kind": "sun"
+        },
+        {
+          "c": 24,
+          "r": 10,
+          "kind": "sun"
+        },
+        {
+          "c": 24,
+          "r": 11,
+          "kind": "sun"
+        },
+        {
+          "c": 24,
+          "r": 12,
+          "kind": "sun"
+        },
+        {
+          "c": 24,
+          "r": 13,
+          "kind": "sun"
+        },
+        {
+          "c": 20,
+          "r": 5.55,
+          "kind": "icicle"
+        }
+      ],
+      "markers": [],
+      "rails": [],
+      "stars": [],
+      "items": [
+        [
+          5.5,
+          12.5,
+          "up"
+        ],
+        [
+          8.5,
+          8.5,
+          "up"
+        ]
+      ],
+      "patrols": [
+        {
+          "bounds": [
+            15,
+            12,
+            2,
+            1
+          ],
+          "edge": "bottom",
+          "along": 0.85,
+          "size": 56
+        }
+      ],
+      "goal": [
+        1472,
+        836,
+        64,
+        64
+      ],
+      "spawn": [
+        1430.4,
+        402
+      ],
+      "reference": "assets/stages/references/stage_11.png",
+      "reference_sha256": "ba758527d4ec04ddc43bcd3cf4e4c68685c311d824d978e42afffe89b3493f1b"
+    },
+    {
+      "number": 12,
+      "width": 2240,
+      "height": 1024,
+      "tiles": [
+        {
+          "c": 0,
+          "r": 0,
+          "kind": "sun"
+        },
+        {
+          "c": 0,
+          "r": 1,
+          "kind": "sun"
+        },
+        {
+          "c": 0,
+          "r": 2,
+          "kind": "sun"
+        },
+        {
+          "c": 0,
+          "r": 3,
+          "kind": "sun"
+        },
+        {
+          "c": 0,
+          "r": 4,
+          "kind": "sun"
+        },
+        {
+          "c": 1,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 2,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 4,
+          "kind": "sun"
+        },
+        {
+          "c": 2,
+          "r": 4,
+          "kind": "sun"
+        },
+        {
+          "c": 3,
+          "r": 4,
+          "kind": "sun"
+        },
+        {
+          "c": 4,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 5,
+          "r": 4,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 5,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 6,
+          "r": 5,
+          "kind": "sun"
+        },
+        {
+          "c": 7,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 8,
+          "r": 5,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 6,
+          "kind": "sun"
+        },
+        {
+          "c": 8,
+          "r": 6,
+          "kind": "sun"
+        },
+        {
+          "c": 9,
+          "r": 6,
+          "kind": "sun"
+        },
+        {
+          "c": 10,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 11,
+          "r": 6,
+          "kind": "normal"
+        },
+        {
+          "c": 1,
+          "r": 8.6,
+          "kind": "icicle"
+        },
+        {
+          "c": 1,
+          "r": 11.5,
+          "kind": "normal"
+        },
+        {
+          "c": 4,
+          "r": 11.5,
+          "kind": "normal"
+        },
+        {
+          "c": 7,
+          "r": 11.5,
+          "kind": "normal"
+        },
+        {
+          "c": 25,
+          "r": 3,
+          "kind": "timed"
+        },
+        {
+          "c": 27,
+          "r": 3,
+          "kind": "timed"
+        },
+        {
+          "c": 29,
+          "r": 3,
+          "kind": "timed"
+        },
+        {
+          "c": 32,
+          "r": 3,
+          "kind": "normal"
+        },
+        {
+          "c": 27,
+          "r": 6.25,
+          "kind": "moving"
+        },
+        {
+          "c": 28,
+          "r": 6.25,
+          "kind": "moving"
+        },
+        {
+          "c": 34,
+          "r": 6.25,
+          "kind": "spring"
+        },
+        {
+          "c": 14,
+          "r": 9.4,
+          "kind": "normal"
+        },
+        {
+          "c": 14,
+          "r": 10.4,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 9.4,
+          "kind": "normal"
+        },
+        {
+          "c": 16,
+          "r": 10.4,
+          "kind": "normal"
+        },
+        {
+          "c": 18,
+          "r": 9.4,
+          "kind": "normal"
+        },
+        {
+          "c": 18,
+          "r": 10.4,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 9.4,
+          "kind": "normal"
+        },
+        {
+          "c": 20,
+          "r": 10.4,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 9.4,
+          "kind": "normal"
+        },
+        {
+          "c": 22,
+          "r": 10.4,
+          "kind": "normal"
+        },
+        {
+          "c": 15,
+          "r": 11.5,
+          "kind": "spring"
+        },
+        {
+          "c": 17,
+          "r": 11.5,
+          "kind": "spring"
+        },
+        {
+          "c": 19,
+          "r": 11.5,
+          "kind": "spring"
+        },
+        {
+          "c": 21,
+          "r": 11.5,
+          "kind": "spring"
+        },
+        {
+          "c": 23,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 24,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 25,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 26,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 27,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 28,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 29,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 30,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 31,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 32,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 24,
+          "r": 11.5,
+          "kind": "sun"
+        },
+        {
+          "c": 28,
+          "r": 12.5,
+          "kind": "sun"
+        },
+        {
+          "c": 29,
+          "r": 12.5,
+          "kind": "sun"
+        },
+        {
+          "c": 30,
+          "r": 12.5,
+          "kind": "sun"
+        },
+        {
+          "c": 31,
+          "r": 12.5,
+          "kind": "sun"
+        },
+        {
+          "c": 32,
+          "r": 12.5,
+          "kind": "sun"
+        },
+        {
+          "c": 34,
+          "r": 9.5,
+          "kind": "sun"
+        },
+        {
+          "c": 34,
+          "r": 10.5,
+          "kind": "sun"
+        },
+        {
+          "c": 25,
+          "r": 9.5,
+          "kind": "launcher_right"
+        },
+        {
+          "c": 33,
+          "r": 11.5,
+          "kind": "launcher_left"
+        },
+        {
+          "c": 10,
+          "r": 12.5,
+          "kind": "breakable"
+        },
+        {
+          "c": 13,
+          "r": 12.5,
+          "kind": "spring"
+        },
+        {
+          "c": 20,
+          "r": 14.5,
+          "kind": "normal"
+        },
+        {
+          "c": 26,
+          "r": 14.5,
+          "kind": "normal"
+        }
+      ],
+      "markers": [],
+      "rails": [],
+      "stars": [],
+      "items": [
+        [
+          15.5,
+          10.9,
+          "up"
+        ],
+        [
+          17.5,
+          10.9,
+          "forward"
+        ],
+        [
+          19.5,
+          10.9,
+          "forward"
+        ],
+        [
+          21.5,
+          10.9,
+          "up"
+        ]
+      ],
+      "goal": [
+        1664,
+        868.0,
+        64,
+        64
+      ],
+      "spawn": [
+        1472,
+        491.6
+      ],
+      "patrols": [
+        {
+          "bounds": [
+            4,
+            4,
+            2,
+            1
+          ],
+          "edge": "top",
+          "along": 0.4,
+          "size": 56
+        }
+      ],
+      "reference": "assets/stages/references/stage_12.png",
+      "reference_sha256": "29ea9961ffe94ffe6b270e8471c7f3f9f839f4d90e78bb139237aec08add5b6a"
+    }
+  ]
+}

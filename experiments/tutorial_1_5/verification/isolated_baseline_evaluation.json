@@ -1,0 +1,71 @@
+{
+  "experiment": "baseline",
+  "action": "evaluate",
+  "results": [
+    {
+      "model": "baseline-ppo-stage-05-seed-0",
+      "evaluation_seed": 20261101,
+      "stage": 5,
+      "episodes": 1,
+      "successes": 1,
+      "success_rate": 1.0,
+      "mean_success_seconds": 4.811496668280737,
+      "mean_return": 130.0,
+      "failures": {},
+      "greedy": {
+        "stage": 5,
+        "success": true,
+        "is_success": true,
+        "reason": "success",
+        "seconds": 4.811496668280737,
+        "ticks": 578,
+        "tick_delta": 2,
+        "decisions": 97,
+        "base_return": 100.0,
+        "shaping_return": 0.0,
+        "bonus_return": 30.0,
+        "episode_return": 130.0,
+        "goal_distance": 32.53562105728525,
+        "min_goal_distance": 32.53562105728525,
+        "visited_cells": 29,
+        "pickups": 0,
+        "power_uses": 0,
+        "milestones": [
+          "clock-crossing-0",
+          "clock-crossing-1",
+          "clock-crossing-2"
+        ],
+        "armed": [
+          "clock-crossing-0",
+          "clock-crossing-1",
+          "clock-crossing-2"
+        ],
+        "milestone_events": [
+          {
+            "id": "clock-crossing-0",
+            "target": "clock-1",
+            "tick": 271
+          },
+          {
+            "id": "clock-crossing-1",
+            "target": "clock-2",
+            "tick": 379
+          },
+          {
+            "id": "clock-crossing-2",
+            "target": "finish-0",
+            "tick": 487
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "success",
+            "points": 100.0
+          }
+        ],
+        "learning_return": 1.3
+      },
+      "mode": "sampled"
+    }
+  ]
+}
