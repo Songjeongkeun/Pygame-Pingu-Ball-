@@ -1,0 +1,4356 @@
+{
+  "step": 500224,
+  "training_steps": 500224,
+  "training_episodes": 14175,
+  "evaluation": {
+    "episodes": 20,
+    "successes": 0,
+    "success_rate": 0.0,
+    "mean_return": -7.0,
+    "mean_reward_items": 18.0,
+    "upper_entry_rate": 0.0,
+    "mean_success_seconds": null,
+    "mean_episode_seconds": 21.519642898859342,
+    "reward_item_rates": {
+      "01-first": 1.0,
+      "01-link": 1.0,
+      "01-exit": 1.0,
+      "02-first": 1.0,
+      "02-link": 1.0,
+      "02-exit": 1.0,
+      "03-first": 1.0,
+      "03-exit": 1.0,
+      "04-first": 1.0,
+      "04-exit": 1.0,
+      "05-first": 1.0,
+      "05-high": 1.0,
+      "05-link": 1.0,
+      "05-exit": 1.0,
+      "turn-first": 1.0,
+      "turn-1": 1.0,
+      "turn-2": 1.0,
+      "turn-3": 1.0,
+      "turn-exit": 0.0,
+      "06-first": 0.0,
+      "06-link": 0.0,
+      "06-exit": 0.0,
+      "07-first": 0.0,
+      "07-link": 0.0,
+      "07-exit": 0.0,
+      "08-first": 0.0,
+      "08-high": 0.0,
+      "08-link": 0.0,
+      "08-exit": 0.0,
+      "09-first": 0.0,
+      "09-exit": 0.0,
+      "10-first": 0.0,
+      "10-exit": 0.0
+    },
+    "target_reach_rates": {
+      "01-first": 1.0,
+      "01-link": 1.0,
+      "01-exit": 1.0,
+      "02-first": 1.0,
+      "02-link": 1.0,
+      "02-exit": 1.0,
+      "03-first": 1.0,
+      "03-exit": 1.0,
+      "04-first": 1.0,
+      "04-exit": 1.0,
+      "05-first": 1.0,
+      "05-high": 1.0,
+      "05-link": 1.0,
+      "05-exit": 1.0,
+      "turn-first": 1.0,
+      "turn-1": 1.0,
+      "turn-2": 1.0,
+      "turn-3": 1.0,
+      "turn-exit": 0.0,
+      "06-first": 0.0,
+      "06-link": 0.0,
+      "06-exit": 0.0,
+      "07-first": 0.0,
+      "07-link": 0.0,
+      "07-exit": 0.0,
+      "08-first": 0.0,
+      "08-high": 0.0,
+      "08-link": 0.0,
+      "08-exit": 0.0,
+      "09-first": 0.0,
+      "09-exit": 0.0,
+      "10-first": 0.0,
+      "10-exit": 0.0
+    },
+    "reward_payouts": {
+      "01-first": 20,
+      "01-link": 20,
+      "01-exit": 20,
+      "02-first": 20,
+      "02-link": 20,
+      "02-exit": 20,
+      "03-first": 20,
+      "03-exit": 20,
+      "04-first": 20,
+      "04-exit": 20,
+      "05-first": 20,
+      "05-high": 20,
+      "05-link": 20,
+      "05-exit": 20,
+      "turn-first": 20,
+      "turn-1": 20,
+      "turn-2": 20,
+      "turn-3": 20,
+      "turn-exit": 0,
+      "06-first": 0,
+      "06-link": 0,
+      "06-exit": 0,
+      "07-first": 0,
+      "07-link": 0,
+      "07-exit": 0,
+      "08-first": 0,
+      "08-high": 0,
+      "08-link": 0,
+      "08-exit": 0,
+      "09-first": 0,
+      "09-exit": 0,
+      "10-first": 0,
+      "10-exit": 0
+    },
+    "duplicate_landings": {
+      "02-exit": 20,
+      "03-exit": 20,
+      "04-first": 20,
+      "04-exit": 40,
+      "05-link": 1
+    },
+    "unpaid_landings": {},
+    "failures": {
+      "얼음 바다로 떨어졌어요": 20
+    },
+    "failure_regions": {
+      "층 전환": 20
+    },
+    "last_regions": {
+      "층 전환": 20
+    },
+    "actions": [
+      0,
+      0,
+      0,
+      144,
+      0,
+      121,
+      0,
+      260,
+      480
+    ],
+    "seed": 11000,
+    "protocol": "categorical_policy_sampling",
+    "native_comparison": false,
+    "max_native_error": null,
+    "raw": [
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3553235349227,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 22.37464290244081,
+        "ticks": 2685,
+        "tick_delta": 15,
+        "decisions": 54,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015339458225,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2286
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2374
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2462
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-2",
+          "z05lift-0",
+          "z05upper-0",
+          "z05upper-1"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 24,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 2,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2,
+          "05-link": 1
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3553235349227,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 38,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095745,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.301533460885,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 38,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3553235349227,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642873019693,
+        "ticks": 2577,
+        "tick_delta": 3,
+        "decisions": 51,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3297.8580795586554,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 37,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      },
+      {
+        "stage": 1,
+        "success": false,
+        "is_success": false,
+        "reason": "얼음 바다로 떨어졌어요",
+        "seconds": 21.474642900095915,
+        "ticks": 2577,
+        "tick_delta": 15,
+        "decisions": 50,
+        "base_return": -25.0,
+        "shaping_return": 0.0,
+        "bonus_return": 18.0,
+        "episode_return": -7.0,
+        "goal_distance": 3319.3015334608717,
+        "min_goal_distance": 434.00647205737863,
+        "visited_cells": 36,
+        "pickups": 0,
+        "power_uses": 0,
+        "map_kind": "reinforcement",
+        "map_number": 1,
+        "reward_variant": "map1-pdf-33",
+        "milestones": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2"
+        ],
+        "armed": [
+          "01-break-a-b",
+          "01-break-dock",
+          "02-spring-upper",
+          "03-clock-dock",
+          "04-ferry-dock",
+          "05-lift-upper",
+          "turn-spring-0",
+          "turn-spring-1",
+          "turn-spring-2",
+          "turn-spring-3"
+        ],
+        "milestone_events": [
+          {
+            "id": "01-break-a-b",
+            "target": "z01break-b-0",
+            "tick": 271
+          },
+          {
+            "id": "01-break-dock",
+            "target": "z01dock-0",
+            "tick": 379
+          },
+          {
+            "id": "02-spring-upper",
+            "target": "z02upper-1",
+            "tick": 575
+          },
+          {
+            "id": "03-clock-dock",
+            "target": "z03dock-1",
+            "tick": 1035
+          },
+          {
+            "id": "04-ferry-dock",
+            "target": "z04dock-0",
+            "tick": 1467
+          },
+          {
+            "id": "05-lift-upper",
+            "target": "z05upper-0",
+            "tick": 1845
+          },
+          {
+            "id": "turn-spring-0",
+            "target": "turn0-spring1-0",
+            "tick": 2178
+          },
+          {
+            "id": "turn-spring-1",
+            "target": "turn0-spring2-0",
+            "tick": 2266
+          },
+          {
+            "id": "turn-spring-2",
+            "target": "turn0-spring3-0",
+            "tick": 2354
+          }
+        ],
+        "reward_events": [
+          {
+            "kind": "failure",
+            "points": -25.0
+          }
+        ],
+        "reward_parts": {
+          "intermediate": 18.0,
+          "failure": -25.0
+        },
+        "auxiliary_state": {
+          "active_spring": "turn0-spring3-0",
+          "height_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "turn0-spring3-0",
+            "z02spring-0"
+          ],
+          "horizontal_paid": [
+            "turn0-spring0-0",
+            "turn0-spring1-0",
+            "turn0-spring2-0",
+            "z02spring-0"
+          ],
+          "lift_first": [
+            "z05lift-0"
+          ],
+          "lift_high": [],
+          "upper_first": [
+            "z05lift-0"
+          ],
+          "approach_armed": [
+            "z05lift-0"
+          ],
+          "approach_progress": {
+            "z05lift-0": 288.0,
+            "z08lift-0": 0.0
+          }
+        },
+        "learning_return": -0.07,
+        "direction": 1,
+        "requested_ticks": 72,
+        "reward_items": [
+          "01-exit",
+          "01-first",
+          "01-link",
+          "02-exit",
+          "02-first",
+          "02-link",
+          "03-exit",
+          "03-first",
+          "04-exit",
+          "04-first",
+          "05-exit",
+          "05-first",
+          "05-high",
+          "05-link",
+          "turn-1",
+          "turn-2",
+          "turn-3",
+          "turn-first"
+        ],
+        "previous_landing": "turn0-spring3-0",
+        "upper_entered": false,
+        "landed_platforms": [
+          "start-1",
+          "turn0-spring0-0",
+          "turn0-spring1-0",
+          "turn0-spring2-0",
+          "turn0-spring3-0",
+          "z01break-a-0",
+          "z01break-b-0",
+          "z01dock-0",
+          "z02dock-0",
+          "z02dock-1",
+          "z02spring-0",
+          "z02upper-1",
+          "z03clock-0",
+          "z03dock-1",
+          "z03dock-2",
+          "z04dock-0",
+          "z04dock-2",
+          "z04ferry-1",
+          "z05dock-1",
+          "z05lift-0",
+          "z05upper-0"
+        ],
+        "last_region": "층 전환",
+        "landing_count": 23,
+        "reward_attempts": {
+          "01-first": 1,
+          "01-link": 1,
+          "01-exit": 1,
+          "02-first": 1,
+          "02-link": 1,
+          "02-exit": 2,
+          "03-first": 1,
+          "03-exit": 2,
+          "04-first": 2,
+          "04-exit": 3,
+          "05-first": 1,
+          "05-high": 1,
+          "05-link": 1,
+          "05-exit": 1,
+          "turn-first": 1,
+          "turn-1": 1,
+          "turn-2": 1,
+          "turn-3": 1
+        },
+        "duplicate_landings": {
+          "02-exit": 1,
+          "03-exit": 1,
+          "04-first": 1,
+          "04-exit": 2
+        },
+        "unpaid_landings": {},
+        "start_kind": "original"
+      }
+    ]
+  }
+}

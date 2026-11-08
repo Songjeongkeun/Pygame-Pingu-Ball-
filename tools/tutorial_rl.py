@@ -138,6 +138,12 @@ def worker(args):
 
 
 def main():
+    if (sys.argv[1:2] == ['train']
+            or any(arg == '--suite' or arg.startswith('--suite=') for arg in sys.argv[1:])):
+        sys.path.insert(0, str(ROOT))
+        from rl.tutorials.suite import main as suite_main
+        return suite_main()
+
     parser=argparse.ArgumentParser(description=__doc__)
     sub=parser.add_subparsers(dest='command',required=True)
     sub.add_parser('list',help='선택 모델과 기록된 독립 시험 성공률')

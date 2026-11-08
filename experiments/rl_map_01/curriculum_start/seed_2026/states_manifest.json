@@ -1,0 +1,33 @@
+{
+  "seed": 2026,
+  "capacity_per_group": 32,
+  "count": 96,
+  "rejections": {
+    "pre_turn:같은 상태 중복": 1197,
+    "pre_turn:행동 종료 위치 범위 밖": 912,
+    "last_stair:같은 상태 중복": 1748,
+    "last_stair:행동 종료 위치 범위 밖": 727,
+    "upper_buffer:행동 종료 위치 범위 밖": 409,
+    "upper_buffer:같은 상태 중복": 1503
+  },
+  "groups": {
+    "pre_turn": {
+      "label": "마지막 계단 접근",
+      "stored": 32,
+      "collected": 3138,
+      "selected": 3509
+    },
+    "last_stair": {
+      "label": "마지막 계단 이후",
+      "stored": 32,
+      "collected": 4938,
+      "selected": 2735
+    },
+    "upper_buffer": {
+      "label": "2층 기본 발판",
+      "stored": 32,
+      "collected": 7305,
+      "selected": 2497
+    }
+  }
+}

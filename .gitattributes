@@ -1,3 +1,5 @@
-
-# 학습 당시 파일의 해시가 개행 변환으로 달라지지 않게 한다.
+# 학습 당시 소스 해시는 개행을 포함하므로 운영체제에 따른 자동 변환을 막는다.
 experiments/tutorial_1_5/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+experiments/rl_map_01/original_start/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+experiments/rl_map_01/curriculum_start/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+experiments/rl_map_01/diagnostics/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
